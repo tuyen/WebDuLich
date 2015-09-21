@@ -1,0 +1,16 @@
+assignment:
+Mr.Fat: 1, 6
+Mr.Thin: 2, 3, 4, 5
+Mr.BOSS: the rest
+
+1	register, login, forgot password
+2	profile manager
+3	add tour
+4	add tourist place
+5	add tourist's feeling
+6	home page
+7	manage list tour user already posted
+8	manage list tour user already booked
+9	view tour
+10	view tourist place
+11	view tourist's feeling
