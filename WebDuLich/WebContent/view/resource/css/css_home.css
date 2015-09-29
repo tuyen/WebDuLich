@@ -1,47 +1,28 @@
 
-.affix
-{
-top: 0 !important;
-width:100%;
+.navbar-form input, .form-inline input {
+	width:auto;
+}
+
+
+
+header {
+	height:120px;
+}
+
+#nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10;
+}
+
+#sidebar.affix-top {
+    position: static;
+}
+
+#sidebar.affix {
+    position: fixed;
+    top: 80px;
 
 }
-/*#myAffix
-{
-position: relative !important;
-}*/
-.container-fluid
-{
-padding-top: 10px;
-}
-.navbar-custom {
-color: #FFFFFF;
-background-color: #F6F1DC;
-width: 100%;
-}
-.form-signin
-{
-margin-top: 20px;
-}
-#menu-padding-1
-{
-	padding-top: 8px;
-}
-#menu-padding-2
-{
-	padding-top: 8px;
-	margin-left:150px;
-}
-.menu-format-text
-{
-	font-size: 15.5px;
-	font-weight: bold;
-}
-#img-space-menu-1
-{
-	padding-right: 7%;
 
-}
-#content-padding-top{
-	padding-top: 120px;
-}
- ul.nav a:hover { color: #CB3434 !important; }
