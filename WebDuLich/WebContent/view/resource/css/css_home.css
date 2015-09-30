@@ -6,7 +6,8 @@
 
 
 header {
-	height:120px;
+	height:60px;
+	background-color: #E1E2FF;
 }
 
 #nav.affix {
@@ -24,5 +25,30 @@ header {
     position: fixed;
     top: 80px;
 
+}
+.navbar-default .navbar-nav > li > a
+{
+	color: #FFFFFF;
+	padding-top: 30px;
+	height: 80px;
+	font-weight: bold;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #FFFFFF;
+    background-color: #031054;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+
+    background-color: #001685;
+
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #FFFFFF;
+    background-color: #031054;
+}
+
+.navbar-form
+{
+	padding-top: 15px;
 }
 
