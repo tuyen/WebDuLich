@@ -1,20 +1,47 @@
 
-.navbar-form input, .form-inline input {
+/*.navbar-form input, .form-inline input {
 	width:auto;
 }
-
-
-
+*/
+#footer
+{
+    background-color: #C5C6FE;
+    height: 60px;
+}
+body{
+    background-color: #F1F2FA;
+}
 header {
 	height:60px;
-	background-color: #E1E2FF;
+	background-color: #DDDEFF;
 }
-
-#nav.affix {
+@media (min-width: 768px){
+    #nav.affix {
     position: fixed;
     top: 0;
     width: 100%;
     z-index:10;
+}
+
+}
+
+@media (max-width: 768px) {
+  #nav.affix {
+    position: static;
+
+  }
+    label{
+        color: white;
+    }
+    #user_username {
+        width: 100%;
+    }
+    #user_password{
+        width: 100%;
+    }
+    #forgot_password{
+        color: white;
+    }
 }
 
 #sidebar.affix-top {
@@ -25,6 +52,10 @@ header {
     position: fixed;
     top: 80px;
 
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #FFFFFF;
+    background-color: #031054;
 }
 .navbar-default .navbar-nav > li > a
 {
@@ -45,10 +76,5 @@ header {
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #FFFFFF;
     background-color: #031054;
-}
-
-.navbar-form
-{
-	padding-top: 15px;
 }
 
