@@ -1,0 +1,29 @@
+.button_margin_right {
+	margin-right: 15px;
+}
+
+.hidden_div {
+	display: none;
+}
+
+.scroll_div {
+	height: 250px;
+	line-height: 3em;
+	overflow: auto;
+	padding: 5px;
+}
+
+.delete_size {
+	width: 10%;
+	float: left;
+	margin-left: 50px;
+}
+
+.content_size {
+	width: 80%;
+	float: left;
+}
+
+.user_post_item {
+	width: 100%;	
+}
