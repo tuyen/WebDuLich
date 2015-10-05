@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Travel</title>
+	<title>Travel - Sign up</title>
 
   <link href="resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="resource/bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="resource/css/css_home.css" rel="stylesheet">
-  <script type="text/javascript" src="resource/lib/jquery-2.1.4.min.js"></script>
+  <link href="resource/css/css_sign_up.css" rel="stylesheet">
+  <script src="resource/lib/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="resource/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="resource/lib/jquery-home.min.js"></script>
-
+	<script src="resource/lib/jquery-home.min.js"></script>
+  <script src="resource/lib/jquery-sign-up.min.js"></script>
 
 
 
@@ -28,7 +29,7 @@
 
 
 <!-- Begin Navbar -->
-<div id="nav">
+<div >
   <div class="navbar navbar-default navbar-static">
     <div>
     	<div class="navbar-header">
@@ -44,7 +45,7 @@
       <nav class="navbar-collapse collapse" id="navbar-collapse-1" role="navigation">
       	<div class="container">
       	<ul class="nav navbar-nav">
-          <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
+          <li ><a href="#"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
          <!--  <li class="divider"></li> -->
           <li><a href="#">Tour mới</a></li>
           <li><a href="#">Tour hot</a></li>
@@ -53,7 +54,7 @@
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="Sign-up.html">Sign Up</a></li>
+          <li class="active"><a href="">Sign Up</a></li>
           <li class="dropdown">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
             <div class="dropdown-menu" style="padding: 15px; ">
@@ -66,7 +67,7 @@
                 <label class="string optional" for="user_remember_me"> Remember me</label>
 
                 <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom:10px;" type="submit" name="commit" value="Sign In" />
-                <a href="Forgot-password" style="float:right;" id="forgot_password">Forgot password ?</a>
+                <a href="" style="float:right;" id="forgot_password">Forgot password ?</a>
               </form>
             </div>
           </li>
@@ -80,30 +81,50 @@
 </div>
 
 <!-- Begin Body -->
-<div style="height:30px"></div>
+<div style="margin-bottom::;%"></div>
 <div class="container">
-	<div class="row">
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 
-			<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-			<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-			<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-			<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-			<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
 
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
-    	<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-    	<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-    	<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-    	<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-    	<img src="http://1.bp.blogspot.com/-sMqkkSiIfsw/TzajOCuIXaI/AAAAAAAAELo/2ShDwod_yCw/s1600/Lago_Dalat.jpg" alt="" class="img-responsive">
-		</div>
-
-	</div>
+  <div class="row">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6" style="margin-bottom:2%">
+      <div class="col-xs-12"><h3>Welcome to ,,, </h3></div>
+      <form id="signupForm" method="POST" action="#hahaha" accept-charset="UTF-8">
+        <div class="input-group">
+            <span class="input-group-addon ">
+              <i class="icon-envelope icon-2x glyphicon glyphicon-user"></i>
+            </span>
+            <input id="user_name" class="form-control input-lg" placeholder="Full name" required="required" maxlength="100" type="text" name="user_name" value="">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon ">
+              <i class="icon-envelope icon-2x glyphicon glyphicon-envelope"></i>
+            </span>
+            <input id="email" class="form-control input-lg" placeholder="Email" required="required" maxlength="100" type="text" name="email" value="">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+              <i class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
+            </span>
+            <input id="password" class="form-control input-lg" placeholder="Password" required="required" maxlength="60" type="password" name="password">
+        </div>
+         <div class="input-group">
+            <span class="input-group-addon">
+              <i class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
+            </span>
+            <input id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" required="required" maxlength="60" type="password" name="password_confirmation">
+        </div>
+            <div class="form-group">
+            <button type="submit" id="btn-signup" class="btn btn-block btn-primary btn-lg">Sign Up</button>
+         </div>
+      </form>
+      <div class="col-xs-3"></div>
+</div>
+</div>
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="footer">
 
 </div>
+
 </body>
 </html>
