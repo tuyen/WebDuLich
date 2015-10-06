@@ -8,7 +8,7 @@
     margin-top: -12px;
     display: block;
     font-style: italic;
-    background: #fff;
+    background: #F1F2FA;
     z-index: 10;
     padding: 2px 20px;
     float: left;
@@ -18,7 +18,7 @@
     margin-top: -12px;
     display: block;
     font-style: italic;
-    background: #fff;
+    background: #F1F2FA;
     z-index: 10;
     padding: 2px 20px;
     float: right;
@@ -26,8 +26,16 @@
 
 .carousel-inner img {
 	width: 100%;
+	margin:0 auto;
+	position:relative;
 	height: 431px;
 	max-height:231px;
+}
+
+li.post{
+	margin-bottom:10px;
+	margin-top:10px;
+	background:#F7F7F8;
 }
 
 #myCarousel {
@@ -48,4 +56,9 @@
 
 .glyphicon.glyphicon-ok{
 	color:#33CCFF;
+}
+
+.avatar{
+	width: 40px;
+	height:40px;
 }

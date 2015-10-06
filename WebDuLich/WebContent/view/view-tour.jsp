@@ -76,10 +76,17 @@
 			<li><a href="#">Tour mới</a></li>
 			<li class="active">Vịnh hạ long - Huế</li>
 		</ol>
-		<div class="head">
+		<div class="head container-fluid">
 			<div class="row">
 				<div class="col-md-8">
 					<div id="carousel" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#carousel" data-slide-to="1"></li>
+							<li data-target="#carousel" data-slide-to="2"></li>
+							<li data-target="#carousel" data-slide-to="3"></li>
+						</ol>
 						<!-- Carousel items -->
 						<div class="carousel-inner">
 							<div class="active item" data-slide-number="0">
@@ -122,7 +129,7 @@
 							<span style="color: black">Lữ hành: Sài Gòn Tourist</span>
 						</h4>
 					</div>
-					<div style = "margin-top:10px">
+					<div style="margin-top: 10px">
 						<input type="submit" class="btn btn-primary" value="Đặt tour"
 							data-toggle="tooltip"
 							title="Báo đơn vị lữ hành liên hệ với bạn ngay!">
@@ -143,10 +150,28 @@
 				<br> <br>
 			</div>
 			<form class="form form-group" role="form">
-				<textarea class = "form-control" rows="3" placeholder="Nhập bình luận ..." required></textarea>
-				 <input
-					class="btn btn-primary pull-right" style = "margin-top:10px" type="submit" value="Bình luận">
+				<textarea class="form-control" rows="3"
+					placeholder="Nhập bình luận ..." required></textarea>
+				<input class="btn btn-primary pull-right"
+					style="margin-top: 10px; margin-bottom: 10px" type="submit"
+					value="Bình luận">
 			</form>
+			<div class="comment-detail panel panel-group"style = "margin-top:55px;">
+				<span class="panel panel-default">
+					<div class="panel-body">
+						<img class="avatar" src="resource/image/cm.jpg" alt="user avatar">
+						<p>bình luận của người dùng ở đây</p>
+					</div>
+				</span> <span class="panel panel-default">
+					<div class="panel-body">
+						<img class="avatar" src="" alt="user avatar">
+						<p>bình luận của người dùng ở đây bình luận của người dùng ở
+							đây bình luận của người dùng ở đây bình luận của người dùng ở đây
+							bình luận của người dùng ở đây bình luận của người dùng ở đây
+							bình luận của người dùng ở đây bình luận của người dùng ở đây</p>
+					</div>
+				</span>
+			</div>
 		</div>
 
 	</div>
