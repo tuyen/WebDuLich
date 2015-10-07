@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ModelConnection
 {
 
-	public final String mysqlHost = "jdbc:mysql://localhost:3306/recsys?useUnicode=true&characterEncoding=UTF-8";
+	public final String mysqlHost = "jdbc:mysql://localhost:3306/tourist?useUnicode=true&characterEncoding=UTF-8";
 	public final String userName = "root";
 	public final String password = "";
 	private Connection connection = null;
