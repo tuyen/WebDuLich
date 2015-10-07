@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +12,20 @@
   <link href="resource/css/css_sign_up.css" rel="stylesheet">
   <script src="resource/lib/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="resource/bootstrap/js/bootstrap.min.js"></script>
-	<script src="resource/lib/jquery-home.min.js"></script>
+  <script src="resource/lib/jquery-home.min.js"></script>
   <script src="resource/lib/jquery-sign-up.min.js"></script>
 
 
 
 </head>
 <body>
-<header class="masthead">
-  <div class="container">
+  <header class="masthead">
+    <div class="container">
 
-	<div >
-    <span style="font-weight:bold; font-size:40px;">, , ,</span>
-  	<!-- <p class="lead">Big Top Header and Fixed Sidebar</p> -->
-  </div>
+     <div >
+      <span style="font-weight:bold; font-size:40px;">, , ,</span>
+      <!-- <p class="lead">Big Top Header and Fixed Sidebar</p> -->
+    </div>
   </div>
 </header>
 
@@ -34,19 +36,19 @@
     <div>
     	<div class="navbar-header">
     		<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-	      <button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-    	</div>
+       <button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+         <span class="sr-only">Toggle navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+     </div>
 
-      <nav class="navbar-collapse collapse" id="navbar-collapse-1" role="navigation">
-      	<div class="container">
-      	<ul class="nav navbar-nav">
+     <nav class="navbar-collapse collapse" id="navbar-collapse-1" role="navigation">
+       <div class="container">
+         <ul class="nav navbar-nav">
           <li ><a href="#"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
-         <!--  <li class="divider"></li> -->
+          <!--  <li class="divider"></li> -->
           <li><a href="#">Tour mới</a></li>
           <li><a href="#">Tour hot</a></li>
           <li><a href="#">Điểm du lịch</a></li>
@@ -72,12 +74,12 @@
             </div>
           </li>
         </ul>
-    	</div>
+      </div>
 
 
-      </nav>
-    </div>
-  </div><!-- /.navbar -->
+    </nav>
+  </div>
+</div><!-- /.navbar -->
 </div>
 
 <!-- Begin Body -->
@@ -91,36 +93,43 @@
       <div class="col-xs-12"><h3>Welcome to ,,, </h3></div>
       <form id="signupForm" method="POST" action="#hahaha" accept-charset="UTF-8">
         <div class="input-group">
-            <span class="input-group-addon ">
-              <i class="icon-envelope icon-2x glyphicon glyphicon-user"></i>
-            </span>
-            <input id="user_name" class="form-control input-lg" placeholder="Full name" required="required" maxlength="100" type="text" name="user_name" value="">
+          <span class="input-group-addon ">
+            <i class="icon-envelope icon-2x glyphicon glyphicon-user"></i>
+          </span>
+          <input id="user_name" class="form-control input-lg" placeholder="Full name" required="required" maxlength="100" type="text" name="user_name" value="">
         </div>
         <div class="input-group">
-            <span class="input-group-addon ">
-              <i class="icon-envelope icon-2x glyphicon glyphicon-envelope"></i>
-            </span>
-            <input id="email" class="form-control input-lg" placeholder="Email" required="required" maxlength="100" type="text" name="email" value="">
+          <span class="input-group-addon ">
+            <i class="icon-envelope icon-2x glyphicon glyphicon-envelope"></i>
+          </span>
+          <input id="email" class="form-control input-lg" placeholder="Email" required="required" maxlength="100" type="text" name="email" value="">
         </div>
         <div class="input-group">
-            <span class="input-group-addon">
-              <i class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
-            </span>
-            <input id="password" class="form-control input-lg" placeholder="Password" required="required" maxlength="60" type="password" name="password">
+          <span class="input-group-addon">
+            <i class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
+          </span>
+          <input id="password" class="form-control input-lg" placeholder="Password" required="required" maxlength="60" type="password" name="password">
         </div>
-         <div class="input-group">
-            <span class="input-group-addon">
-              <i class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
-            </span>
-            <input id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" required="required" maxlength="60" type="password" name="password_confirmation">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
+          </span>
+          <input id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" required="required" maxlength="60" type="password" name="password_confirmation">
         </div>
-            <div class="form-group">
-            <button type="submit" id="btn-signup" class="btn btn-block btn-primary btn-lg">Sign Up</button>
-         </div>
+        <div class="input-group">
+          <span style="">
+            Loại tài khoản: &nbsp;&nbsp;          
+            <input type="radio" name="accout_type" value="personal"> Cá nhân&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="accout_type" value="company"> Công ty / Tổ chức
+          </span>
+        </div>
+        <div class="form-group">
+          <button type="submit" id="btn-signup" class="btn btn-block btn-primary btn-lg">Sign Up</button>
+        </div>
       </form>
       <div class="col-xs-3"></div>
-</div>
-</div>
+    </div>
+  </div>
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="footer">
 
