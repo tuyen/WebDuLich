@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PostController
+ * Servlet implementation class AddTour
  */
-@WebServlet("/PostController")
-public class PostController extends HttpServlet {
+@WebServlet("/AddTour")
+public class AddTour extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostController() {
+    public AddTour() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,11 +31,7 @@ public class PostController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		
-		//request.getRequestDispatcher("view/add-tour-review.jsp").include(request, response);
-		request.getRequestDispatcher("view/account-manager.jsp").include(request, response);
-		//request.getRequestDispatcher("view/add-tour-place.jsp").include(request, response);
-		//request.getRequestDispatcher("view/add-tour.jsp").include(request, response);
+		request.getRequestDispatcher("view/add-tour.jsp").include(request, response);
 	}
 
 	/**
