@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2015 at 08:59 AM
+-- Generation Time: Oct 07, 2015 at 09:48 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -31,7 +31,16 @@ USE `tourist`;
 CREATE TABLE IF NOT EXISTS `category` (
   `CATEGORYID` int(11) NOT NULL,
   `CATEGORYNAME` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`CATEGORYID`, `CATEGORYNAME`) VALUES
+(1, 'Tour'),
+(2, 'Place'),
+(3, 'Feeling');
 
 -- --------------------------------------------------------
 
@@ -56,7 +65,24 @@ CREATE TABLE IF NOT EXISTS `location` (
   `LOCATIONID` int(11) NOT NULL,
   `NAME` text,
   `DESCRIPTION` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`LOCATIONID`, `NAME`, `DESCRIPTION`) VALUES
+(1, 'Quảng Bình', 'Tỉnh'),
+(2, 'Hà Nội', 'Thành Phố'),
+(3, 'Đà Lạt', 'Thành Phố'),
+(4, 'Đà Năng', 'Thành Phố'),
+(5, 'Huế', 'Thành Phố'),
+(6, 'Quảng Ngãi', 'Tỉnh'),
+(7, 'Vũng Tàu', 'Thành Phố'),
+(8, 'Hồ Chí Minh', 'Thành Phố'),
+(9, 'Kon Tum', 'Tỉnh'),
+(10, 'Gia Lai', 'Tỉnh'),
+(11, 'Phú Yên', 'Tỉnh');
 
 -- --------------------------------------------------------
 
@@ -149,6 +175,30 @@ ALTER TABLE `touristplace`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`USERID`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `CATEGORYID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `LOCATIONID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `POSTID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `USERID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
