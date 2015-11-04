@@ -1,20 +1,30 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="dto.dtoCategory"%>
+<%@page import="java.util.List"%>
+<%@page import="model.ModelPost"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	ModelPost mdPost = new ModelPost();
+	List<dtoCategory> listCate = new ArrayList<dtoCategory>();
+	listCate = mdPost.getAllCategory();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Quản lý bài đăng</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="resource/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="resource/css/css_home.css" rel="stylesheet">
-<link href="resource/css/view-tour.css" rel="stylesheet">
-<script src="resource/lib/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="resource/lib/jquery-home.min.js"></script>
+<link href="view/resource/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="view/resource/css/css_home.css" rel="stylesheet">
+<link href="view/resource/css/view-tour.css" rel="stylesheet">
+<script src="view/resource/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
-	src="resource/bootstrap/js/bootstrap.min.js"></script>
-<script src="resource/lib/tour-utility.js"></script>
+	src="view/resource/lib/jquery-home.min.js"></script>
+<script type="text/javascript"
+	src="view/resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="view/resource/lib/tour-utility.js"></script>
 </head>
 <body>
 	<!-- body header -->
@@ -40,12 +50,10 @@
 							Thể loại <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li>
-								<a href="#">Tour</a>
-							</li>
-							<li>
-								<a href="#">Điểm du lịch</a>
-							</li>
+							<%
+								for (dtoCategory cate : listCate)
+									out.print("<li>	<a href='#/'>" + cate.getName() + "</a></li>");
+							%>
 						</ul>
 					</div>
 				</form>
@@ -61,29 +69,21 @@
 					<!-- Top part of the slider -->
 					<!-- Carousel items -->
 					<div class="carousel-inner">
+						<a href="#"
+							style="font-size: 25px; z-index: 1; display: none; background: red; padding: 10px; border-radius: 100%; color: white;"
+							class="glyphicon glyphicon-remove pull-right"
+							data-toggle="tooltip" title="Xóa"></a>
+						<a href="#"
+							style="font-size: 25px; z-index: 1; display: none; background: green; padding: 10px; border-radius: 100%; color: white;"
+							class="glyphicon glyphicon-pencil pull-right"
+							data-toggle="tooltip" title="Chỉnh sửa"></a>
 						<div class="active item" data-slide-number="0">
-							<a href="#"
-								style="font-size: 25px; z-index: 1; display: none; background: red; padding: 10px; border-radius: 100%; color: white;"
-								class="glyphicon glyphicon-remove pull-right"
-								data-toggle="tooltip" title="Xóa"></a>
-							<a href="#"
-								style="font-size: 25px; z-index: 1; display: none; background: green; padding: 10px; border-radius: 100%; color: white;"
-								class="glyphicon glyphicon-pencil pull-right"
-								data-toggle="tooltip" title="Chỉnh sửa"></a>
 							<img class="img-responsive" alt="not found" style="z-index: 0"
-								src="resource/image/cm.jpg">
+								src="view/resource/image/cm.jpg">
 						</div>
-						<div class=" item" data-slide-number="1">
-							<a href="#"
-								style="font-size: 25px; z-index: 1; display: none; background: red; padding: 10px; border-radius: 100%; color: white;"
-								class="glyphicon glyphicon-remove pull-right"
-								data-toggle="tooltip" title="Xóa"></a>
-							<a href="#"
-								style="font-size: 25px; z-index: 1; display: none; background: green; padding: 10px; border-radius: 100%; color: white;"
-								class="glyphicon glyphicon-pencil pull-right"
-								data-toggle="tooltip" title="Chỉnh sửa"></a>
+						<div class=" item" data-slide-number="1">							
 							<img class="img-responsive" alt="not found" style="z-index: 0"
-								src="resource/image/cm1.jpg">
+								src="view/resource/image/cm1.jpg">
 						</div>
 					</div>
 				</div>
