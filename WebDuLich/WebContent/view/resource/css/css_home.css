@@ -27,8 +27,11 @@ header {
     width: 100%;
     z-index:10;
 }
-
+.affix + .container
+{
+	padding-top: 60px;
 }
+
 
 @media (max-width: 768px) {
   #nav.affix {
