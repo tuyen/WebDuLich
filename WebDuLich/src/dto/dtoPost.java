@@ -9,6 +9,13 @@ public class dtoPost {
 	private String postDate;
 	private String price;
 	private String views;
+	private String locationId;
+	public String getLocationId() {
+		return locationId;
+	}
+	public void setLocationId(String locationId) {
+		this.locationId = locationId;
+	}
 	public String getPostId() {
 		return postId;
 	}

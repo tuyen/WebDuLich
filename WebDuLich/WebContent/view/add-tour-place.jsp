@@ -2,6 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
+<%@page import="java.util.List"%>
+<%@page import="dto.dtoLocation"%>
+<%@page import="model.ModelLocation"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +21,7 @@
 <script type="text/javascript"
 	src="view/resource/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="view/resource/lib/jquery-home.min.js"></script>
-<script src="view/view/resource/ckeditor/ckeditor.js"></script>
+<script src="view/resource/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<jsp:include page="body-header.jsp" />
@@ -31,28 +36,44 @@
 			<!-- /.column 1-->
 			<!-- .column 2-->
 			<div class="col-md-8">
-				<div>
-					<form role="form">
+				
+					<form role="form" method="post" action="AddTourPlace">
 							<div class="form-group">
 								<label for="tour_title">Tên địa điểm:</label> <input type="text"
-									class="form-control" id="tour_title">
+									class="form-control" name="txt_place" placeholder = "Khu du lịch sơn lâm" id="tour_title">
 							</div>
 							<div class="form-group">
 								<label for="tour_detail">Mô tả địa điểm:</label>
-								<textarea class="form-control" rows="15" id="tour_detail"></textarea>
+								<textarea name="txt_detail" class="form-control" rows="20" id="tour_detail"></textarea>
 							</div>
-							</div>
+							
+						<div class="form-group">
+							<label for="sel1">Chọn địa điểm:</label> <select name="txt_location"
+								class="form-control"
+								style="width: 60%" id="sel1">
+								
+								<%
+									ModelLocation mdLocation = new ModelLocation();
+									List<dtoLocation> locations = mdLocation.getAllLocation();
+									for(dtoLocation l: locations)
+									{
+										out.print("<option value=\""+l.getLocationId()+"\">"+l.getDescription() + " " + l.getName()+"</option>");
+									}								
+								%>																							
+							</select>
+						</div>													
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary">POST</button>
+								<button type="submit" name="btn_post" class="btn btn-primary">Đăng</button>
 							</div>
 						</form>
+										
 				</div>
 
 			</div>
 			<script>
 				// Replace the <textarea id="editor1"> with a CKEditor
 				// instance, using default configuration.
-				CKEDITOR.replace('tour_detail');
+				CKEDITOR.replace('tour_detail', { height: 350 } );
 			</script>
 			<!-- /.column 2-->
 			<!-- .column 3-->
