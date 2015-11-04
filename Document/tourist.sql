@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2015 at 05:45 PM
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Generation Time: Nov 04, 2015 at 04:26 AM
+-- Server version: 5.6.26
+-- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `tourist`
@@ -160,7 +160,9 @@ ALTER TABLE `category`
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`CommentId`), ADD KEY `FK_RELATIONSHIP_6` (`UserId`), ADD KEY `FK_RELATIONSHIP_7` (`PostId`);
+  ADD PRIMARY KEY (`CommentId`),
+  ADD KEY `FK_RELATIONSHIP_6` (`UserId`),
+  ADD KEY `FK_RELATIONSHIP_7` (`PostId`);
 
 --
 -- Indexes for table `location`
@@ -172,13 +174,17 @@ ALTER TABLE `location`
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`PostId`), ADD KEY `FK_RELATIONSHIP_1` (`UserId`), ADD KEY `FK_RELATIONSHIP_2` (`CategoryId`), ADD KEY `FK_RELATIONSHIP_3` (`LocationId`);
+  ADD PRIMARY KEY (`PostId`),
+  ADD KEY `FK_RELATIONSHIP_1` (`UserId`),
+  ADD KEY `FK_RELATIONSHIP_2` (`CategoryId`),
+  ADD KEY `FK_RELATIONSHIP_3` (`LocationId`);
 
 --
 -- Indexes for table `touristplace`
 --
 ALTER TABLE `touristplace`
-  ADD PRIMARY KEY (`TourId`,`PlaceId`), ADD KEY `FK_RELATIONSHIP_5` (`PlaceId`);
+  ADD PRIMARY KEY (`TourId`,`PlaceId`),
+  ADD KEY `FK_RELATIONSHIP_5` (`PlaceId`);
 
 --
 -- Indexes for table `user`
@@ -223,23 +229,23 @@ ALTER TABLE `user`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`),
-ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`PostId`) REFERENCES `post` (`PostId`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`PostId`) REFERENCES `post` (`PostId`);
 
 --
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`),
-ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`CategoryId`) REFERENCES `category` (`CategoryId`),
-ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`LocationId`) REFERENCES `location` (`LocationId`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`CategoryId`) REFERENCES `category` (`CategoryId`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`LocationId`) REFERENCES `location` (`LocationId`);
 
 --
 -- Constraints for table `touristplace`
 --
 ALTER TABLE `touristplace`
-ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`TourId`) REFERENCES `post` (`PostId`),
-ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`PlaceId`) REFERENCES `post` (`PostId`);
+  ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`TourId`) REFERENCES `post` (`PostId`),
+  ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`PlaceId`) REFERENCES `post` (`PostId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
