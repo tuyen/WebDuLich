@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2015 at 09:48 AM
+-- Generation Time: Oct 10, 2015 at 05:45 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -29,15 +29,15 @@ USE `tourist`;
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `CATEGORYID` int(11) NOT NULL,
-  `CATEGORYNAME` text
+  `CategoryId` int(11) NOT NULL,
+  `CategoryName` text
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`CATEGORYID`, `CATEGORYNAME`) VALUES
+INSERT INTO `category` (`CategoryId`, `CategoryName`) VALUES
 (1, 'Tour'),
 (2, 'Place'),
 (3, 'Feeling');
@@ -49,10 +49,11 @@ INSERT INTO `category` (`CATEGORYID`, `CATEGORYNAME`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `USERID` int(11) NOT NULL,
-  `POSTID` int(11) NOT NULL,
-  `COMMENTCONTENT` text,
-  `DATECOMMENT` datetime DEFAULT NULL
+  `CommentId` int(11) NOT NULL,
+  `PostId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
+  `CommentContent` text,
+  `DateComment` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -62,16 +63,16 @@ CREATE TABLE IF NOT EXISTS `comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `location` (
-  `LOCATIONID` int(11) NOT NULL,
-  `NAME` text,
-  `DESCRIPTION` text
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  `LocationId` int(11) NOT NULL,
+  `Name` text,
+  `Description` text
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `location`
 --
 
-INSERT INTO `location` (`LOCATIONID`, `NAME`, `DESCRIPTION`) VALUES
+INSERT INTO `location` (`LocationId`, `Name`, `Description`) VALUES
 (1, 'Quảng Bình', 'Tỉnh'),
 (2, 'Hà Nội', 'Thành Phố'),
 (3, 'Đà Lạt', 'Thành Phố'),
@@ -81,8 +82,17 @@ INSERT INTO `location` (`LOCATIONID`, `NAME`, `DESCRIPTION`) VALUES
 (7, 'Vũng Tàu', 'Thành Phố'),
 (8, 'Hồ Chí Minh', 'Thành Phố'),
 (9, 'Kon Tum', 'Tỉnh'),
-(10, 'Gia Lai', 'Tỉnh'),
-(11, 'Phú Yên', 'Tỉnh');
+(10, 'Bình Định', 'Tỉnh'),
+(11, 'Long An', 'Tỉnh'),
+(12, 'Quảng Trị', 'Thành Phố'),
+(13, 'Kon Tum', 'Thành Phố'),
+(14, 'Lào Cai', 'Thành Phố'),
+(15, 'Lạng Sơn', 'Thành Phố'),
+(16, 'Đắk Lắk', 'Tỉnh'),
+(17, 'Cà Mau', 'Thành Phố'),
+(18, 'Móng Cái', 'Thành Phố'),
+(19, 'Bắc Ninh', 'Tỉnh'),
+(20, 'Tuyên Quang', 'Tỉnh');
 
 -- --------------------------------------------------------
 
@@ -91,14 +101,15 @@ INSERT INTO `location` (`LOCATIONID`, `NAME`, `DESCRIPTION`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `post` (
-  `POSTID` int(11) NOT NULL,
-  `CATEGORYID` int(11) NOT NULL,
-  `USERID` int(11) NOT NULL,
-  `TITLE` text,
-  `CONTENT` text,
-  `DATE` datetime DEFAULT NULL,
-  `PRICE` text,
-  `VIEWS` int(11) DEFAULT NULL
+  `PostId` int(11) NOT NULL,
+  `CategoryId` int(11) NOT NULL,
+  `LocationId` int(11) DEFAULT NULL,
+  `UserId` int(11) NOT NULL,
+  `Title` text,
+  `Content` text,
+  `Date` datetime DEFAULT NULL,
+  `Price` text,
+  `Views` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -108,8 +119,8 @@ CREATE TABLE IF NOT EXISTS `post` (
 --
 
 CREATE TABLE IF NOT EXISTS `touristplace` (
-  `POSTID` int(11) NOT NULL,
-  `LOCATIONID` int(11) NOT NULL
+  `TourId` int(11) NOT NULL,
+  `PlaceId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -119,20 +130,20 @@ CREATE TABLE IF NOT EXISTS `touristplace` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `USERID` int(11) NOT NULL,
-  `FULLNAME` text,
-  `BIRTHDAY` date DEFAULT NULL,
-  `EMAIL` char(100) DEFAULT NULL,
-  `PASSWORD` char(100) DEFAULT NULL,
-  `LOGINTOKEN` char(100) DEFAULT NULL,
-  `ACCOUNTTYPE` varchar(10) DEFAULT NULL,
+  `UserId` int(11) NOT NULL,
+  `FullName` text,
+  `Birthday` date DEFAULT NULL,
+  `Enail` char(100) DEFAULT NULL,
+  `Password` char(100) DEFAULT NULL,
+  `LoginToken` char(100) DEFAULT NULL,
+  `AccountType` varchar(10) DEFAULT NULL,
   `PHONE` char(15) DEFAULT NULL,
-  `ADDRESS` text,
-  `COMPANYNAME` text,
-  `COMPANYDESCRIPTION` text,
-  `STATUS` varchar(5) DEFAULT NULL,
-  `COMFIRRMCODE` varchar(50) DEFAULT NULL,
-  `AVATAR` varchar(50) DEFAULT NULL
+  `Address` text,
+  `CompanyName` text,
+  `CompanyDescription` text,
+  `Status` varchar(5) DEFAULT NULL,
+  `ConfirmCode` varchar(50) DEFAULT NULL,
+  `Avatar` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -143,37 +154,37 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`CATEGORYID`);
+  ADD PRIMARY KEY (`CategoryId`);
 
 --
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`USERID`,`POSTID`), ADD KEY `FK_COMMENT2` (`POSTID`);
+  ADD PRIMARY KEY (`CommentId`), ADD KEY `FK_RELATIONSHIP_6` (`UserId`), ADD KEY `FK_RELATIONSHIP_7` (`PostId`);
 
 --
 -- Indexes for table `location`
 --
 ALTER TABLE `location`
-  ADD PRIMARY KEY (`LOCATIONID`);
+  ADD PRIMARY KEY (`LocationId`);
 
 --
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`POSTID`), ADD KEY `FK_RELATIONSHIP_1` (`USERID`), ADD KEY `FK_RELATIONSHIP_2` (`CATEGORYID`);
+  ADD PRIMARY KEY (`PostId`), ADD KEY `FK_RELATIONSHIP_1` (`UserId`), ADD KEY `FK_RELATIONSHIP_2` (`CategoryId`), ADD KEY `FK_RELATIONSHIP_3` (`LocationId`);
 
 --
 -- Indexes for table `touristplace`
 --
 ALTER TABLE `touristplace`
-  ADD PRIMARY KEY (`POSTID`,`LOCATIONID`), ADD KEY `FK_TOURISTPLACE2` (`LOCATIONID`);
+  ADD PRIMARY KEY (`TourId`,`PlaceId`), ADD KEY `FK_RELATIONSHIP_5` (`PlaceId`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`USERID`);
+  ADD PRIMARY KEY (`UserId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -183,22 +194,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `CATEGORYID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `CategoryId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `CommentId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `LOCATIONID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `LocationId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `POSTID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PostId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `USERID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -207,22 +223,23 @@ ALTER TABLE `user`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-ADD CONSTRAINT `FK_COMMENT` FOREIGN KEY (`USERID`) REFERENCES `user` (`USERID`),
-ADD CONSTRAINT `FK_COMMENT2` FOREIGN KEY (`POSTID`) REFERENCES `post` (`POSTID`);
+ADD CONSTRAINT `FK_RELATIONSHIP_6` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`),
+ADD CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`PostId`) REFERENCES `post` (`PostId`);
 
 --
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`USERID`) REFERENCES `user` (`USERID`),
-ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`CATEGORYID`) REFERENCES `category` (`CATEGORYID`);
+ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`),
+ADD CONSTRAINT `FK_RELATIONSHIP_2` FOREIGN KEY (`CategoryId`) REFERENCES `category` (`CategoryId`),
+ADD CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`LocationId`) REFERENCES `location` (`LocationId`);
 
 --
 -- Constraints for table `touristplace`
 --
 ALTER TABLE `touristplace`
-ADD CONSTRAINT `FK_TOURISTPLACE` FOREIGN KEY (`POSTID`) REFERENCES `post` (`POSTID`),
-ADD CONSTRAINT `FK_TOURISTPLACE2` FOREIGN KEY (`LOCATIONID`) REFERENCES `location` (`LOCATIONID`);
+ADD CONSTRAINT `FK_RELATIONSHIP_4` FOREIGN KEY (`TourId`) REFERENCES `post` (`PostId`),
+ADD CONSTRAINT `FK_RELATIONSHIP_5` FOREIGN KEY (`PlaceId`) REFERENCES `post` (`PostId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
