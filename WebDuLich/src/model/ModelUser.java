@@ -83,4 +83,99 @@ public class ModelUser extends Model
 		connection.close();
 		return true;
 	}	
+	
+	public void createAccount(String userName, String email, String password, String accountType,int code) throws SQLException
+	{
+		//dtoUser user = new dtoUser();
+		String sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode) "
+				+ "values(?,?,?,?,'No',?)";		
+		if (connection.connect())
+		{
+			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+			stm.setString(1, userName);
+			stm.setString(2, email);
+			stm.setString(3, password);
+			stm.setString(4, accountType);
+			stm.setInt(5,code);
+			connection.setPrepareStatement(stm);
+			connection.writeSecure();
+			connection.close();
+		}
+		
+	}
+	public boolean checkMailExist(String email) throws SQLException
+	{
+		String sql = "select Email from user where Email= ?";
+		if(connection.connect())
+		{
+			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+			stm.setString(1, email);
+			connection.setPrepareStatement(stm);
+			ResultSet rs = connection.readSecure();
+			if (rs.next())
+			{
+				connection.close();
+				return true;
+			}
+		}
+		connection.close();
+		return false;
+	}
+	public boolean checkCode(String code, String email) throws SQLException
+	{
+		String sql = "SELECT `Email` FROM `user` WHERE Email= ? and ConfirmCode = ?";
+		if(connection.connect())
+		{
+			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+			stm.setString(1, email);
+			stm.setString(2, code);
+			connection.setPrepareStatement(stm);
+			ResultSet rs = connection.readSecure();
+			if (rs.next())
+			{
+				connection.close();
+				return true;
+			}
+		}
+		connection.close();
+		return false;
+	}
+	public void activeAccount(String email) throws SQLException
+	{
+		String sql = "UPDATE `user` SET `Status`='Yes' WHERE Email = ?";
+		if (connection.connect())
+		{
+			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+			stm.setString(1, email);
+			connection.setPrepareStatement(stm);
+			connection.writeSecure();
+			connection.close();
+		}
+	}
+	
+	public boolean checkSignIn(String email,String password)
+	{
+		String sql = "SELECT * FROM `user` WHERE Email= ? and Password = ? and Status = 'No'";
+		if (connection.connect())
+		{
+			try {
+				PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+				stm.setString(1, email);
+				stm.setString(2, password);
+				connection.setPrepareStatement(stm);
+				ResultSet rs = connection.readSecure();
+				if (rs.next())
+				{
+					connection.close();
+					return true;
+				}
+			}
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		connection.close();
+		return false;
+	}
 }

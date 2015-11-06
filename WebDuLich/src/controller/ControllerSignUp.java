@@ -1,19 +1,19 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.SQLException;
 import java.util.Random;
 
 import javax.mail.MessagingException;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ModelSignUp;
+import model.ModelUser;
 import utility.EmailUtility;
 import utility.Md5Utility;
 
@@ -34,7 +34,7 @@ public class ControllerSignUp extends HttpServlet
 		// TODO Auto-generated constructor stub
 	}
 
-	ModelSignUp signup = new ModelSignUp();
+	ModelUser signup = new ModelUser();
 	private String host;
 	private String port;
 	private String user;

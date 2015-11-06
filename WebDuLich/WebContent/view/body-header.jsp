@@ -41,16 +41,16 @@
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="view/ControllerSignUp">Sign Up</a></li>
+						<li><a href="ControllerSignUp">Sign Up</a></li>
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
 							<div class="dropdown-menu" style="padding: 15px;">
 								<!-- Login form here -->
-								<form action="[YOUR ACTION]" method="post"
+								<form action="ControllerSignIn" method="post"
 									accept-charset="UTF-8" role="form">
 									<input id="user_username" 
 										placeholder=" Email"
-										style="margin-bottom: 15px;" type="text" name="user[username]"
+										style="margin-bottom: 15px;" type="email" name="user[email]"
 										size="25" /> 
 									<input id="user_password"
 										placeholder=" Password" 
