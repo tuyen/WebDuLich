@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ModelSignUp;
+import model.ModelUser;
 
 /**
  * Servlet implementation class ControllerActiveAccount
@@ -35,7 +35,7 @@ public class ControllerActiveAccount extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String email = request.getParameter("email");
 		String code = request.getParameter("code");
-		ModelSignUp signup = new ModelSignUp();
+		ModelUser signup = new ModelUser();
 		try {
 			boolean check = signup.checkCode(code, email);
 			if (check==true)
@@ -58,8 +58,7 @@ public class ControllerActiveAccount extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
 	}
 
 }
