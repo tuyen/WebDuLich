@@ -40,14 +40,15 @@ public class EmailUtility {
 		Session session = Session.getInstance(properties, auth);
 
 		// creates a new e-mail message
-		Message msg = new MimeMessage(session);
+		MimeMessage msg = new MimeMessage(session);
 
 		msg.setFrom(new InternetAddress(userName));
 		InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
 		msg.setRecipients(Message.RecipientType.TO, toAddresses);
-		msg.setSubject(subject);
+		msg.setSubject(subject,"UTF-8");
 		msg.setSentDate(new Date());
-		msg.setContent(message, "text/html");
+		msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
+		msg.setContent(message, "text/html;charset=UTF-8");
 
 		// sends the e-mail
 		Transport.send(msg);

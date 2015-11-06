@@ -1,6 +1,5 @@
 
 $(document).ready(function () {
-	alert('abc');
     $('form input').tooltip({
       placement: 'top',
       trigger: 'focus',
@@ -10,18 +9,59 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function CheckPassWord() {
-    var pw = document.getElementsById('password').value;
-    var pw_c = document.getElementsById('password_confirmation').value;
+function CheckPassword() {
+    var password1 = document.forms["signupForm"]["password"].value;
+    var password2 = document.forms["signupForm"]["password_confirmation"].value;
     var ok = true;
-     if (pw != pw_c) {
-        alert("Passwords Do not match");
-        document.getElementById("password").style.borderColor = "#E34234";
-        document.getElementById("password_confirmation").style.borderColor = "#E34234";
+    if (password1 !== password2) {
+// alert("Passwords do not match");
+        document.forms["signupForm"]["password"].style.borderColor = "#E34234";
+        document.forms["signupForm"]["password_confirmation"].style.borderColor = "#E34234";
+        $('#hintPassword').text("Mật khẩu xác nhận không đúng, Vui lòng nhập lại!");
         ok = false;
     }
     else {
-        alert("Passwords Match!!!");
+    	document.forms["signupForm"]["password"].style.borderColor = "#CCC";
+        document.forms["signupForm"]["password_confirmation"].style.borderColor = "#CCC";
+        $('#hintPassword').text("");
     }
+    // e.preventDefault();
     return ok;
+}
+$(document).ready(function () {
+
+   $('#password').keyup(CheckPassword);
+   $('#password_confirmation').keyup(CheckPassword);
+});
+function checkSubmit()
+{
+	var ok = CheckPassword();
+	
+	if (ok==true && $('#hintEmailExist').text()=="")
+		return true;
+	else
+		return false;
+}
+$(document).ready(function() {
+	$('#email').on('blur keyup', function(event) {
+		$.ajax({
+			url : 'ControllerSignUp',
+			data : {
+				email_ajax : $('#email').val()
+			},
+			type:'GET',
+			success : function(responseText) {
+				if (responseText!="")
+				{
+					$('#hintEmailExist').text(responseText);
+					document.forms["signupForm"]["email"].style.borderColor = "#E34234";
+				}
+				else
+				{
+					$('#hintEmailExist').text("");
+					document.forms["signupForm"]["email"].style.borderColor = "#CCC";
+				}
+			}
+		});
+	});
 });

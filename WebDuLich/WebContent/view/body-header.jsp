@@ -41,7 +41,7 @@
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="Sign-up.jsp">Sign Up</a></li>
+						<li><a href="view/ControllerSignUp">Sign Up</a></li>
 						<li class="dropdown"><a class="dropdown-toggle" href="#"
 							data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
 							<div class="dropdown-menu" style="padding: 15px;">
