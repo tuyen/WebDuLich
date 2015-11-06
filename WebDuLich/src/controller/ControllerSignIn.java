@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +42,7 @@ public class ControllerSignIn extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		String email = request.getParameter("user[email]");
 		String password = request.getParameter("user[userpassword]");
 		password = md5.md5(password);
@@ -56,10 +54,7 @@ public class ControllerSignIn extends HttpServlet {
 		}
 		else
 		{
-			response.getWriter().print("Lỗi !Email đăng nhập hoặc mật khẩu không chính xác, vui lòng kiểm tra lại. ");
-			  out.println("<script type=\"text/javascript\">");
-			  out.println("alert('Lỗi !Email đăng nhập hoặc mật khẩu không chính xác, vui lòng kiểm tra lại.');");
-			  out.println("</script>");
+			response.getWriter().print("Email đăng nhập hoặc mật khẩu không đúng!");
 		}
 	}
 

@@ -108,7 +108,7 @@ public class ControllerSignUp extends HttpServlet
 			int confirmCode = random.nextInt(999999) + 1;
 			String content = "Bạn hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
 					+ "<a href='http://localhost:8080/WebDuLich/ControllerActiveAccount?code=" + confirmCode + "&email="
-					+ email + "'>Xác nhận tàu khoản</a>";
+					+ email + "'>Xác nhận tài khoản</a>";
 			EmailUtility.sendEmail(host, port, user, pass, email, subject, content);
 			// database
 			signup.createAccount(username, email, md5Password.md5(password), accounttype, confirmCode);
