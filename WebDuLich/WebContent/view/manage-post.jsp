@@ -1,3 +1,4 @@
+<%@page import="dto.dtoPost"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.dtoCategory"%>
 <%@page import="java.util.List"%>
@@ -6,8 +7,13 @@
 	pageEncoding="utf-8"%>
 <%
 	ModelPost mdPost = new ModelPost();
+
+	//get category list
 	List<dtoCategory> listCate = new ArrayList<dtoCategory>();
 	listCate = mdPost.getAllCategory();
+
+	List<dtoPost> listPost = mdPost.getAllPostByCategory("2");
+	List<String> listSrc = new ArrayList<String>();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -62,47 +68,47 @@
 		</div>
 
 		<br> <br>
-		<ul class="list-inline" style="margin: 0 auto; width: 89%;">
-			<li class="post">
-				<div id="carousel-1" class="carousel slide c-fade"
-					data-ride="carousel">
-					<!-- Top part of the slider -->
-					<!-- Carousel items -->
-					<div class="carousel-inner">
-						<a href="#"
-							style="font-size: 25px; z-index: 1; display: none; background: red; padding: 10px; border-radius: 100%; color: white;"
-							class="glyphicon glyphicon-remove pull-right"
-							data-toggle="tooltip" title="Xóa"></a>
-						<a href="#"
-							style="font-size: 25px; z-index: 1; display: none; background: green; padding: 10px; border-radius: 100%; color: white;"
-							class="glyphicon glyphicon-pencil pull-right"
-							data-toggle="tooltip" title="Chỉnh sửa"></a>
-						<div class="active item" data-slide-number="0">
-							<img class="img-responsive" alt="not found" style="z-index: 0"
-								src="view/resource/image/cm.jpg">
-						</div>
-						<div class=" item" data-slide-number="1">							
-							<img class="img-responsive" alt="not found" style="z-index: 0"
-								src="view/resource/image/cm1.jpg">
-						</div>
-					</div>
-				</div>
-				<!--/Slider-->
-				<div class="caption">
-					<a href="#">
-						<h4 class="text-left">Đà Lạt - Huế - Hà Nội</h4>
-					</a>
-					<h4 class="text-left glyphicon glyphicon-usd"
-						style="color: #3399FF">
-						<span>15.000.000đ</span>
-					</h4>
-					<h4 class="pull-right glyphicon glyphicon-shopping-cart"
-						data-toggle="tooltip" title="Đã có 10 người mua tuor này"
-						style="color: #3399FF">10</h4>
-				</div>
-			</li>
-		</ul>
-
+		<center>
+			<ul class="list-inline" style="margin: 0 auto; width: 89%;">
+				<%
+					for (dtoPost post : listPost) {
+						out.write("<li class='post'>");
+						out.write("<div id='carousel-"
+								+ post.getPostId()
+								+ "' onmouseover = 'onMouseOver(this)' onmouseout = 'onMouseLeave(this)' class='carousel slide c-fade'data-interval='2000'>");
+						out.write("<div class='carousel-inner'>");
+						out.write("<a href='#'	style='font-size: 25px; z-index: 1; display: none; background: red; padding: 10px; border-radius: 100%; color: white;'	class='opt glyphicon glyphicon-remove pull-right'data-toggle='tooltip' title='Xóa'></a>");
+						out.write("<a href='#'	style='font-size: 25px; z-index: 1; display: none; background: green; padding: 10px; border-radius: 100%; color: white;'class='opt glyphicon glyphicon-pencil pull-right'data-toggle='tooltip' title='Chỉnh sửa'></a>");
+						listSrc = mdPost.getImagesFromPost(post.getPostId());
+						int i = 0;
+						for (String src : listSrc) {
+							if (i == 0) {
+								out.write("<div class='active item' data-slide-number='0'>");
+								i++;
+							} else
+								out.write("<div class='item' data-slide-number='0'>");
+							out.write("<img width = '478' height = '318' alt='not found' style='z-index: 0'src='"
+									+ src + "'>");
+							out.write("</div>");
+						}
+						out.write("</div>");
+						out.write("<table style = 'width:100%;'>");
+						out.write("<tr><td><h4 class='text-left'><a href='"
+								+ request.getContextPath() + "/postdetail?cate="
+								+ post.getCategoryId() + "&id=" + post.getPostId()
+								+ "'> " + post.getTitle() + "</a></h4></td></tr>");
+						out.write("<tr><td><h4 class='text-left' style='color: #3399FF'>");
+						out.write("<span class = 'glyphicon glyphicon-usd'></span>"
+								+ post.getPrice() + "đ </h4></td>");
+						out.write("<td><h4 class='pull-right' data-toggle='tooltip' title='Đã có "
+								+ post.getViews()
+								+ " người mua tuor này' style='color: #3399FF'> <span class = 'glyphicon glyphicon-shopping-cart'></span>"
+								+ post.getViews() + "</h4></td></tr></table>");
+						out.write("</div></li>");
+					}
+				%>
+			</ul>
+		</center>
 		<!-- pagination -->
 		<nav>
 		<ul class="pagination pull-right">

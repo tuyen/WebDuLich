@@ -10,6 +10,13 @@ public class dtoPost {
 	private String price;
 	private String views;
 	private String locationId;
+	private String buys;
+	public String getBuys() {
+		return buys;
+	}
+	public void setBuys(String buy) {
+		this.buys = buy;
+	}
 	public String getLocationId() {
 		return locationId;
 	}

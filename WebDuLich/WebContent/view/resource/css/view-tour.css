@@ -1,41 +1,40 @@
 .separator {
-    margin-top: 50px;
-    text-align: right;
-    border-top: 1px solid #000;
-    overflow: visible;
+	margin-top: 50px;
+	text-align: right;
+	border-top: 1px solid #000;
+	overflow: visible;
 }
+
 .separator h3 {
-    margin-top: -12px;
-    display: block;
-    font-style: italic;
-    background: #F1F2FA;
-    z-index: 10;
-    padding: 2px 20px;
-    float: left;
+	margin-top: -12px;
+	display: block;
+	font-style: italic;
+	background: #F1F2FA;
+	z-index: 10;
+	padding: 2px 20px;
+	float: left;
 }
 
 .separator form {
-    margin-top: -12px;
-    display: block;
-    font-style: italic;
-    background: #F1F2FA;
-    z-index: 10;
-    padding: 2px 20px;
-    float: right;
+	margin-top: -12px;
+	display: block;
+	font-style: italic;
+	background: #F1F2FA;
+	z-index: 10;
+	padding: 2px 20px;
+	float: right;
 }
 
 .carousel-inner img {
-	width: 100%;
-	margin:0 auto;
-	position:relative;
-	height: 431px;
-	max-height:231px;
+	margin: 0 auto;
+	position: relative;
+	max-height: 231px;
 }
 
-li.post{
-	margin-bottom:10px;
-	margin-top:10px;
-	background:#F7F7F8;
+li.post {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	background: #F7F7F8;
 }
 
 #myCarousel {
@@ -54,13 +53,13 @@ li.post{
 	text-align: center;
 }
 
-.glyphicon.glyphicon-ok{
-	color:#33CCFF;
+.glyphicon.glyphicon-ok {
+	color: #33CCFF;
 }
 
-.avatar{
+.avatar {
 	width: 40px;
-	height:40px;
+	height: 40px;
 }
 
 a.top {
@@ -77,6 +76,7 @@ a.top {
 	-moz-border-radius: 30px;
 	border-radius: 30px;
 }
+
 a:hover.top {
 	background-color: #165D91;
 }

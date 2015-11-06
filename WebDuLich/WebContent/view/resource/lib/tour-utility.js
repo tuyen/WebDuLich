@@ -1,4 +1,3 @@
-
 /**
  * function go to top
  */
@@ -8,10 +7,10 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > offset) {
 			$('.top').fadeIn(500); // Time(in Milliseconds) of appearing of the
-									// Button when scrolling down.
+			// Button when scrolling down.
 		} else {
 			$('.top').fadeOut(500); // Time(in Milliseconds) of disappearing of
-									// Button when scrolling up.
+			// Button when scrolling up.
 		}
 	});
 
@@ -28,9 +27,18 @@ $(document).ready(function() {
  * function check mousehover event and show option
  */
 $(document).ready(function() {
-	$(document).on('mouseenter', '.item', function() {
-		$(this).find("a").show();
-	}).on('mouseleave', '.item', function() {
-		$(this).find("a").hide();
+	$(document).on('mouseenter', '.post', function() {
+		$(this).find("a.opt").show();
+	}).on('mouseleave', '.post', function() {
+		$(this).find("a.opt").hide();
 	});
 });
+
+function onMouseOver(e) {	
+	$("#" + e.id).carousel("pause");
+	$("#" + e.id).carousel("cycle");
+}
+
+function onMouseLeave(e) {
+	$("#" + e.id).carousel("pause");
+}

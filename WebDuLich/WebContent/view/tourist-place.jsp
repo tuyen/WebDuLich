@@ -31,7 +31,7 @@
 		</ol>
 		<div class="text-right">
 			<div class="separator">
-				<h3 style = "font-family:Lobster, Roboto Slab;font-weight:400"> Điểm du lịch</h3>
+				<h3 style = "font-weight:400"> Điểm du lịch</h3>
 				<form action="" style="margin-bottom: 10px">
 					<div class="btn-group">
 						<a class="btn btn-default dropdown-toggle btn-select"
