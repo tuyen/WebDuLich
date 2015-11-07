@@ -78,6 +78,8 @@ public class ModelPost extends Model {
 					post.setPrice(rs.getString("Price"));
 					post.setViews(rs.getString("Views"));
 					post.setBuys(rs.getString("Buys"));
+					post.setNumberPerson(rs.getString("NumberPerson"));
+					post.setTotalTime(rs.getString("TotalTime"));
 					listPost.add(post);
 				}
 			} catch (SQLException e) {
@@ -246,6 +248,8 @@ public class ModelPost extends Model {
 						post.setUserId(rs.getString("UserId"));
 						post.setViews(rs.getString("Views"));
 						post.setBuys(rs.getString("Buys"));
+						post.setNumberPerson(rs.getString("NumberPerson"));
+						post.setTotalTime(rs.getString("TotalTime"));
 					} else
 						return null;
 				} catch (SQLException e) {

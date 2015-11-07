@@ -11,6 +11,20 @@ public class dtoPost {
 	private String views;
 	private String locationId;
 	private String buys;
+	private String totalTime;
+	public String getTotalTime() {
+		return totalTime;
+	}
+	public void setTotalTime(String totalTime) {
+		this.totalTime = totalTime;
+	}
+	public String getNumberPerson() {
+		return numberPerson;
+	}
+	public void setNumberPerson(String numberPerson) {
+		this.numberPerson = numberPerson;
+	}
+	private String numberPerson;
 	public String getBuys() {
 		return buys;
 	}
