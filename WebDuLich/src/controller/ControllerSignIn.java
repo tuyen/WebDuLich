@@ -43,18 +43,19 @@ public class ControllerSignIn extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		//PrintWriter out = response.getWriter();
-		String email = request.getParameter("user[email]");
-		String password = request.getParameter("user[userpassword]");
+		String email = request.getParameter("email_ajax");
+		String password = request.getParameter("password_ajax");
 		password = md5.md5(password);
 		ModelUser signin = new ModelUser();
 		boolean check = signin.checkSignIn(email, password);
 		if (check==true)
 		{
-			response.getWriter().print(check);
+			response.getWriter().write("true");
+			//request.setAttribute("abc", "123");
 		}
 		else
 		{
-			response.getWriter().print("Email đăng nhập hoặc mật khẩu không đúng!");
+			response.getWriter().write("Email đăng nhập hoặc mật khẩu không đúng!");
 		}
 	}
 
