@@ -13,7 +13,7 @@ import model.ModelPost;
 /**
  * Servlet implementation class ControllerPostManager
  */
-@WebServlet("/PostManager")
+@WebServlet("/postmanager")
 public class ControllerPostManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -80,6 +80,7 @@ public class ModelPost extends Model {
 					post.setBuys(rs.getString("Buys"));
 					post.setNumberPerson(rs.getString("NumberPerson"));
 					post.setTotalTime(rs.getString("TotalTime"));
+					post.setShortContent(getShortContents(post.getPostId()));
 					listPost.add(post);
 				}
 			} catch (SQLException e) {
@@ -250,6 +251,7 @@ public class ModelPost extends Model {
 						post.setBuys(rs.getString("Buys"));
 						post.setNumberPerson(rs.getString("NumberPerson"));
 						post.setTotalTime(rs.getString("TotalTime"));
+						post.setShortContent(getShortContents(post.getPostId()));
 					} else
 						return null;
 				} catch (SQLException e) {

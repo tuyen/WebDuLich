@@ -7,7 +7,8 @@
 	pageEncoding="utf-8"%>
 <%
 	ModelPost mdPost = new ModelPost();
-	dtoPost post = mdPost.getPostById(request.getParameter("id"));
+	dtoPost post = mdPost.getPostById(request.getParameter("post"));
+	List<String> listSrc = mdPost.getImagesFromPost(post.getPostId());
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,14 +40,24 @@
 			</li>
 			<li class="active">Vịnh hạ long - Huế</li>
 		</ol>
-		<div class="head container-fluid">
+		<div class="head container">
 			<div class="row">
 				<div class="col-md-8">
-					<div id="carousel" class="carousel slide" data-ride="carousel">
-						<!-- Carousel items -->
-						<div class="carousel-inner">
+					<div id="carousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval = "3000">
+						<ol class="carousel-indicators">
 							<%
-								List<String> listSrc = mdPost.getImagesFromPost(post.getPostId());
+								for (int i = 0; i < listSrc.size(); i++) {
+									if (i == 0)
+										out.write("<li data-target='#carousel' data-slide-to='"
+												+ i + "' class='active'></li>");
+									else
+										out.write("<li data-target='#carousel' data-slide-to='"
+												+ i + "'></li>");
+								}
+							%>
+						</ol>
+						<div class="carousel-inner" role = "listbox">
+							<%
 								int i = 0;
 								for (String src : listSrc) {
 									if (i == 0) {
@@ -54,7 +65,7 @@
 										i++;
 									} else
 										out.write("<div class='item' data-slide-number='0'>");
-									out.write("<img width = '478' height = '318' alt='not found' style='z-index: 0'src='"
+									out.write("<img width = '100%' style = 'max-height: 418px;'height = '418' alt='not found' style='z-index: 0'src='"
 											+ src + "'>");
 									out.write("</div>");
 								}
@@ -64,27 +75,30 @@
 				</div>
 				<div class="row col-md-4">
 					<div>
-						<h4 class="text-left glyphicon glyphicon-ok">
-							<span style="color: black"><%=post.getTitle()%></span>
+						<h4 class="text-left">
+							<span class='glyphicon glyphicon-ok'></span>
+							<%=post.getTitle()%>
 						</h4>
 					</div>
 					<div>
-						<h4 class="text-left glyphicon glyphicon-ok">
-							<span style="color: black">Giá tour: <%=post.getPrice()%></span>
+						<h4 class="text-left">
+							<span class='glyphicon glyphicon-ok'></span> Giá tour:
+							<%=post.getPrice()%>
 						</h4>
 					</div>
 					<div>
-						<h4 class="text-left glyphicon glyphicon-ok">
-							<span style="color: black">Thời gian: 4 ngày 5 đêm</span>
+						<h4 class="text-left">
+							<span class='glyphicon glyphicon-ok'></span> Thời gian:
+							<%=post.getTotalTime()%>
 						</h4>
 					</div>
 					<div>
-						<h4 class="text-left glyphicon glyphicon-ok">
-							<span style="color: black">Lữ hành: <%
-								ModelUser mdUser = new ModelUser();
-								out.write(mdUser.getCompanyNameById(post.getUserId()));
-							%>
-							</span>
+						<h4 class="text-left">
+							<span class='glyphicon glyphicon-ok'> </span> Lữ hành:
+							<%
+ 	ModelUser mdUser = new ModelUser();
+ 	out.write(mdUser.getCompanyNameById(post.getUserId()));
+ %>
 						</h4>
 					</div>
 					<div style="margin-top: 10px">

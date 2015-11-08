@@ -12,6 +12,13 @@ public class dtoPost {
 	private String locationId;
 	private String buys;
 	private String totalTime;
+	private String shortContent;
+	public String getShortContent() {
+		return shortContent;
+	}
+	public void setShortContent(String shortContent) {
+		this.shortContent = shortContent;
+	}
 	public String getTotalTime() {
 		return totalTime;
 	}
