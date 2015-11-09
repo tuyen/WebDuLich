@@ -117,7 +117,7 @@
 										style="width: 60%" id="sel1">
 										<%
 											ModelLocation mdLocation = new ModelLocation();
-																											List<dtoPost> locations = mdLocation.getAllTourPlace();
+																	List<dtoPost> locations = mdLocation.getAllTourPlace();
 																											for(dtoPost l: locations)
 																											{
 																												out.print("<option value=\""+l.getPostId()+"\">"+ " " + l.getTitle()+"</option>");
