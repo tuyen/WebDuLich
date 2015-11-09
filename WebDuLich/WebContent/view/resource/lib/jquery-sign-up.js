@@ -1,14 +1,19 @@
-
+/** Hiện placeholder phía trên input khi focus
+ * 
+ */
 $(document).ready(function () {
 	$('form input').tooltip({
-		placement: 'top',
+		placement: 'right',
 		trigger: 'focus',
 		title: function (){
 			return $(this).attr('placeholder');
 		}
 	});
 });
-
+/** Kiểm tra mật khẩu lặp lại ok ko
+ * 
+ * @returns {Boolean}
+ */
 function CheckPassword() {
 	var password1 = document.forms["signupForm"]["password"].value;
 	var password2 = document.forms["signupForm"]["password_confirmation"].value;
@@ -28,11 +33,18 @@ else {
     // e.preventDefault();
     return ok;
 }
+/** gọi hàm ChckPassword mỗi lần nhập input
+ * 
+ */
 $(document).ready(function () {
 
 	$('#password').keyup(CheckPassword);
 	$('#password_confirmation').keyup(CheckPassword);
 });
+/**
+ * Kiểm tra các input ok chưa. Nếu ok mới đc submit
+ * @returns {Boolean}
+ */
 function checkSubmit()
 {
 	var ok = CheckPassword();
@@ -42,6 +54,9 @@ function checkSubmit()
 	else
 		return false;
 }
+/**
+ * Kiểm tra email đăng kí có tồn tại hay không
+ */
 $(document).ready(function() {
 	$('#email').on('blur keyup', function(event) {
 		$.ajax({
@@ -67,7 +82,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function(){
-	$('#btn-signin').click(function(event){
+	$('buttoon#btn-signin').click(function(event){
 		
 		$.ajax({
 			url : 'ControllerSignIn',

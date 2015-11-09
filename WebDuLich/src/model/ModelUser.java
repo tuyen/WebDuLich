@@ -63,7 +63,7 @@ public class ModelUser extends Model {
 	 */
 	public dtoUser getAccountByEmail(String email) {
 		dtoUser user = new dtoUser();
-		String sql = "select * from `account` where `Email` = ?";
+		String sql = "select * from `user` where `Email` = ?";
 		connection.connect();
 		try {
 			PreparedStatement stm = connection.getConnection()
@@ -110,7 +110,7 @@ public class ModelUser extends Model {
 	 */
 	public dtoUser getAccountByUserId(String id) {
 		dtoUser user = new dtoUser();
-		String sql = "select * from `account` where `UserId` = ?";
+		String sql = "select * from `user` where `UserId` = ?";
 		connection.connect();
 		try {
 			PreparedStatement stm = connection.getConnection()
@@ -286,7 +286,7 @@ public class ModelUser extends Model {
 	}
 
 	public boolean checkSignIn(String email, String password) {
-		String sql = "SELECT * FROM `user` WHERE Email= ? and Password = ? and Status = 'No'";
+		String sql = "SELECT * FROM `user` WHERE Email= ? and Password = ? and Status = 'Yes'";
 		if (connection.connect()) {
 			try {
 				PreparedStatement stm = connection.getConnection()
