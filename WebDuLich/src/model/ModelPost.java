@@ -112,7 +112,7 @@ public class ModelPost extends Model {
 	public List<dtoTouristPlace> getTouristPlace(String postId)
 	{
 		List<dtoTouristPlace> tours = new ArrayList<dtoTouristPlace>();
-		String sql = "SELECT `TourId`, `PlaceId`,`Title` FROM `touristplace`,`post` WHERE `post`.`PostId` = `touristplace`.`TourId` and `TourId` = "+postId;		
+		String sql = "SELECT `TourId`, `PlaceId`,`post`.`Title` FROM `touristplace`,`post` WHERE `post`.`PostId` = `touristplace`.`PlaceId` and `TourId` = "+postId;		
 		if(this.connection.connect())
 		{
 			ResultSet rs = this.connection.read(sql);
@@ -286,7 +286,7 @@ public class ModelPost extends Model {
 	}
 	
 	public Boolean addTouristPlace(dtoPost dto) {		
-		String sql = "INSERT INTO `post`(`CategoryId`, `UserId`, `Title`, `Content`, `Date`, `Price`, `Views`,`NumberPerson`,`TotalTime`,`Buys`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO `post`(`CategoryId`, `UserId`, `Title`, `Content`, `Date`, `Price`, `Views`,`NumberPerson`,`TotalTime`,`Buys`,`LocationId`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		Boolean rs = false;
 		if (this.connection.connect()) {
 			try {
@@ -302,6 +302,8 @@ public class ModelPost extends Model {
 				preStatement.setInt(8, Integer.parseInt(dto.getNumberPeople().trim()));
 				preStatement.setString(9, dto.getTotalTime());
 				preStatement.setInt(10, Integer.parseInt(dto.getBuys().trim()));
+				if(dto.getLocationId() !="")
+					preStatement.setInt(11, Integer.parseInt(dto.getLocationId().trim()));
 				rs = preStatement.execute();
 
 			} catch (SQLException e) {

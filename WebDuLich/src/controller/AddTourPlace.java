@@ -105,6 +105,7 @@ public class AddTourPlace extends HttpServlet {
 				post.setPrice("0");
 				post.setUserId("1");
 				post.setViews("0");
+				post.setLocationId(txt_location);
 				ModelPost modelPost = new ModelPost();
 				modelPost.addTouristPlace(post);
 
@@ -137,8 +138,8 @@ public class AddTourPlace extends HttpServlet {
 				post.setCategoryId("2");
 				post.setContent(txt_detail);
 				post.setPrice("0");
-				post.setNumberPeople("0");
-				post.setLocationId("1");
+				post.setNumberPeople("0");				
+				post.setLocationId(txt_location);
 				ModelPost modelPost = new ModelPost();
 				modelPost.updatePost(post);
 				

@@ -50,9 +50,9 @@
 
 								<%
 									if(edit.getPostId() != "")
-														{
+									{
 															out.print("<input type='hidden' name='edit_post' value='"+edit.getPostId()+"'>");		
-														}
+									}
 								%>
 								<div class="form-group">
 									<label for="tour_title">Tên của tour:</label> <input
