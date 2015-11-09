@@ -69,7 +69,7 @@ public class AddTourPlace extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		edit_post = request.getParameter("edit_post");
-		if(edit_post != null)
+		if(edit_post == null)
 		{
 			this.addAPlace(request, response);
 			return;
@@ -77,13 +77,10 @@ public class AddTourPlace extends HttpServlet {
 		else
 		{
 			this.updateAPlace(request, response);
+			return;
 		}
 		// TODO Auto-generated method stub
-		
-		//
-		RequestDispatcher rd = request
-				.getRequestDispatcher("view/add-tour-place.jsp");
-		rd.include(request, response);
+			
 	}
 
 	private String getCurrentDate() {
