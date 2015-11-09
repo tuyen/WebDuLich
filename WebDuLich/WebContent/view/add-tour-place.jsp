@@ -4,8 +4,11 @@
 
 <%@page import="java.util.List"%>
 <%@page import="dto.dtoLocation"%>
+<%@page import="dto.dtoPost"%>
 <%@page import="model.ModelLocation"%>
-
+<%
+	dtoPost edit = (dtoPost)request.getAttribute("edit");
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,22 +47,28 @@
 					<div class="panel-body">
 						<div>
 							<form role="form" method="post" action="AddTourPlace">
+								<%
+									if(edit.getPostId() != "")
+									{
+										out.print("<input type='hidden' name='edit_post' value='"+edit.getPostId()+"'>");		
+									}
+								%>
+								
 								<div class="form-group">
 									<label for="tour_title">Tên địa điểm:</label> <input
 										type="text" class="form-control" required name="txt_place"
-										placeholder="Khu du lịch sơn lâm" id="tour_title">
+										placeholder="Khu du lịch sơn lâm" value="<%out.print(edit.getTitle());%>" id="tour_title">
 								</div>
 								<div class="form-group">
 									<label for="tour_detail">Mô tả địa điểm:</label>
 									<textarea name="txt_detail" required class="form-control"
-										rows="20" id="tour_detail"></textarea>
+										rows="20" id="tour_detail"><%=edit.getContent() %></textarea>
 								</div>
 
 								<div class="form-group">
 									<label for="sel1">Chọn địa điểm:</label> <select
 										name="txt_location" class="form-control" style="width: 60%"
 										id="sel1">
-
 										<%
 											ModelLocation mdLocation = new ModelLocation();
 											List<dtoLocation> locations = mdLocation.getAllLocation();

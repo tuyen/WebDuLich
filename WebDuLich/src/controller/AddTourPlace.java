@@ -40,8 +40,18 @@ public class AddTourPlace extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");				
-		RequestDispatcher rd = request.getRequestDispatcher("view/add-tour-place.jsp");		
+		response.setContentType("text/html; charset=UTF-8");
+		String edit = request.getParameter("edit");
+		dtoPost dto = new dtoPost();			
+		if (edit != null && edit != "")
+		{
+			ModelPost post = new ModelPost();
+			dto = post.getPostById(edit);
+			
+		}
+		request.setAttribute("edit", dto);
+		RequestDispatcher rd = request
+				.getRequestDispatcher("view/add-tour-place.jsp");
 		rd.include(request, response);
 	}
 
@@ -49,26 +59,39 @@ public class AddTourPlace extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	String edit_post = "";
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
+		edit_post = request.getParameter("edit_post");
+		if(edit_post != null)
+		{
+			this.addAPlace(request, response);
+			return;
+		}
+		else
+		{
+			this.updateAPlace(request, response);
+		}
 		// TODO Auto-generated method stub
-		this.addAPlace(request, response);						
-		RequestDispatcher rd = request.getRequestDispatcher("view/add-tour-place.jsp");		
+		
+		//
+		RequestDispatcher rd = request
+				.getRequestDispatcher("view/add-tour-place.jsp");
 		rd.include(request, response);
 	}
 
-	
-	private String getCurrentDate()
-	{
+	private String getCurrentDate() {
 		Date date = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return dateFormat.format(date);
 	}
-	
+
 	private void addAPlace(HttpServletRequest request,
 			HttpServletResponse response) {
 		String txt_place = request.getParameter("txt_place");
@@ -86,7 +109,50 @@ public class AddTourPlace extends HttpServlet {
 				post.setUserId("1");
 				post.setViews("0");
 				ModelPost modelPost = new ModelPost();
-				modelPost.addTouristPlace(post);				
+				modelPost.addTouristPlace(post);
+
+				String postId = modelPost.getLastPost("1");
+				String view_url = "postdetail?cate=2&post=" + postId;
+				try {
+					response.sendRedirect(view_url);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		}
+
+	}
+	
+	
+	private void updateAPlace(HttpServletRequest request,
+			HttpServletResponse response) {
+		String txt_place = request.getParameter("txt_place");
+		String txt_detail = request.getParameter("txt_detail");
+		String txt_location = request.getParameter("txt_location");
+		String btn_post = request.getParameter("btn_post");
+		if (btn_post != null && txt_detail != null && txt_location != null) {
+			if (txt_detail != "" && txt_location != "") {
+				dtoPost post = new dtoPost();
+				post.setPostId(edit_post);
+				post.setTitle(txt_place);
+				post.setCategoryId("2");
+				post.setContent(txt_detail);
+				post.setPrice("0");
+				post.setNumberPeople("0");
+				post.setLocationId("1");
+				ModelPost modelPost = new ModelPost();
+				modelPost.updatePost(post);
+				
+				String view_url = "postdetail?cate=2&post=" + edit_post;
+				try {
+					response.sendRedirect(view_url);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		}
 

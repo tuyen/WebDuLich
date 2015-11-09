@@ -1,19 +1,28 @@
 package dto;
 
 public class dtoTouristPlace {
-	private String postId;
-	private String locationId;
 	
-	public String getPostId() {
-		return postId;
+	
+	private String tourId;
+	private String placeId;
+	private String title;
+	public String getTitle() {
+		return title;
 	}
-	public void setPostId(String postId) {
-		this.postId = postId;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getLocationId() {
-		return locationId;
+	public String getTourId() {
+		return tourId;
 	}
-	public void setLocationId(String locationId) {
-		this.locationId = locationId;
+	public void setTourId(String tourId) {
+		this.tourId = tourId;
 	}
+	public String getPlaceId() {
+		return placeId;
+	}
+	public void setPlaceId(String placeId) {
+		this.placeId = placeId;
+	}
+		
 }

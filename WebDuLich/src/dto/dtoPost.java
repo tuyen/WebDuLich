@@ -1,18 +1,18 @@
 package dto;
 
 public class dtoPost {
-	private String postId;
-	private String categoryId;
-	private String userId;
-	private String title;
-	private String content;
-	private String postDate;
-	private String price;
-	private String views;
-	private String locationId;
+	private String postId = "";
+	private String categoryId ="";
+	private String userId="";
+	private String title="";
+	private String content="";
+	private String postDate="";
+	private String price="";
+	private String views="";
+	private String locationId="1";
 	private String buys = "0";
 	private String totalTime = "";
-	private String shortContent;
+	private String shortContent="";
 	private String numberPeople = "0";
 	
 	public String getNumberPeople() {
@@ -23,6 +23,7 @@ public class dtoPost {
 	}
 
 
+	
 	public String getShortContent() {
 		return shortContent;
 	}
@@ -36,6 +37,7 @@ public class dtoPost {
 		this.totalTime = totalTime;
 	}
 
+	
 	public String getBuys() {
 		return buys;
 	}

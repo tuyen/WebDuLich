@@ -43,25 +43,30 @@ public class ImageUpload extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		String userId = "1";
 		String path = this.getServletContext().getRealPath("/")
-				+ "/view/resource/image/user/1/";
+				+ "/view/resource/image/user/" + userId + "/";
 		File folder = new File(path);
 		File[] listOfFiles = folder.listFiles();
-
 		List<String> listImages = new ArrayList<String>();
 		PrintWriter out = response.getWriter();
-		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile()) {				
-				String name = listOfFiles[i].getName();	
-				listImages.add("/view/resource/image/user/1/" + name);
+		if (listOfFiles != null) {
+			for (int i = 0; i < listOfFiles.length; i++) {
+				if (listOfFiles[i].isFile()) {
+					String name = listOfFiles[i].getName();
+					listImages.add("/view/resource/image/user/" + userId + "/"
+							+ name);
+				}
 			}
 		}
 		request.setAttribute("url_image", listImages);
-		request.getRequestDispatcher("view/user-images.jsp").include(request, response);
+		request.getRequestDispatcher("view/user-images.jsp").include(request,
+				response);
 	}
 
 	private void uploadImage(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		String userId = "1";
 		if (ServletFileUpload.isMultipartContent(request)) {
 			// Create a factory for disk-based file items
 			DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -71,17 +76,22 @@ public class ImageUpload extends HttpServlet {
 			for (FileItem i : files) {
 				if (!i.isFormField()) {
 					String path = this.getServletContext().getRealPath("/");
-					File f = new File(path + "/view/resource/image/user/1/");
+					File f = new File(path + "/view/resource/image/user/"
+							+ userId + "/");
 					int list = f.listFiles().length;
 
 					String des = path
-							+ "/view/resource/image/user/1/"
+							+ "/view/resource/image/user/"
+							+ userId
+							+ "/"
 							+ list
 							+ "."
 							+ FilenameUtils.getExtension(i.getName())
 									.toUpperCase();
 
-					String url = "/view/resource/image/user/1/"
+					String url = "/view/resource/image/user/"
+							+ userId
+							+ "/"
 							+ list
 							+ "."
 							+ FilenameUtils.getExtension(i.getName())

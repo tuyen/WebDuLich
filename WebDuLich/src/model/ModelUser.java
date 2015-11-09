@@ -28,7 +28,7 @@ public class ModelUser extends Model {
 						user.setUserId(rs.getString("UserId"));
 						user.setFullName(rs.getString("FullName"));
 						user.setBirthday(rs.getString("Birthday"));
-						user.setEmail(rs.getString("Enail"));
+						user.setEmail(rs.getString("Email"));
 						user.setPassword(rs.getString("Password"));
 						user.setToken(rs.getString("LoginToken"));
 						user.setAccountType(rs.getString("AccountType"));
@@ -337,7 +337,7 @@ public class ModelUser extends Model {
 	}
 
 	public boolean updateUserProfile(dtoUser user) {
-		String sql = "UPDATE `user` SET `FullName`=?,`Birthday`=?,`Enail`=?,`PHONE`=?,`Address`=?,`CompanyName`=?,`CompanyDescription`=? WHERE `UserId`="
+		String sql = "UPDATE `user` SET `FullName`=?,`Birthday`=?,`Email`=?,`PHONE`=?,`Address`=?,`CompanyName`=?,`CompanyDescription`=? WHERE `UserId`="
 				+ user.getUserId();
 		boolean result = false;
 		if (connection.connect()) {

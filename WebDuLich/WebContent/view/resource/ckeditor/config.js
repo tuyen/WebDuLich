@@ -36,7 +36,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
-	config.filebrowserBrowseUrl = '/view/resource/image/8.JPG';
+	config.filebrowserBrowseUrl = 'ImageUpload';
 	
 	config.filebrowserUploadUrl = 'ImageUpload';
 };

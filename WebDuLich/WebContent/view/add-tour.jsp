@@ -3,7 +3,12 @@
 
 <%@page import="java.util.List"%>
 <%@page import="dto.dtoPost"%>
+<%@page import="dto.dtoTouristPlace"%>
 <%@page import="model.ModelLocation"%>
+<%
+	dtoPost edit = (dtoPost)request.getAttribute("edit");
+	List<dtoTouristPlace> places = (List<dtoTouristPlace>)request.getAttribute("places");
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,38 +47,69 @@
 					<div class="panel-body">
 						<div>
 							<form role="form" action="AddTour" method="post">
+
+								<%
+									if(edit.getPostId() != "")
+														{
+															out.print("<input type='hidden' name='edit_post' value='"+edit.getPostId()+"'>");		
+														}
+								%>
 								<div class="form-group">
 									<label for="tour_title">Tên của tour:</label> <input
 										type="text" class="form-control"
 										oninput="setCustomValidity('')" required
 										oninvalid="this.setCustomValidity('Vui lòng nhập tên của tour')"
-										name="tourName" id="tour_title">
+										name="tourName" value="<%=edit.getTitle()%>" id="tour_title">
 								</div>
 								<div class="form-group">
 									<label for="tour_detail">Chi tiết tour:</label>
 									<textarea class="form-control" required rows="15"
-										name="tourDetail" id="tour_detail"></textarea>
+										name="tourDetail" id="tour_detail"><%=edit.getContent()%></textarea>
 								</div>
 								<div class="form-group col-xs-6">
 									<label for="tour_price">Giá tour:</label> <input type="text"
-										class="form-control" name="tourPrice" required id="tour_price"
+										class="form-control" name="tourPrice"
+										value="<%=edit.getPrice()%>" required id="tour_price"
 										placeholder="Ex. Từ 10 đến 20 triệu"
 										oninput="setCustomValidity('')"
 										oninvalid="this.setCustomValidity('Bạn chưa chọn giá tour')">
 								</div>
 								<div class="form-group col-xs-6">
-									<label for="numberOfPeople">Số người:</label> 
-										<input type="text"
-										class="form-control" name="numberPeople" required id="numberOfPeople"										
-										oninput="setCustomValidity('')"
-										oninvalid="this.setCustomValidity('Bạn chưa nhập số người!')" maxlength="5"
-										 onkeypress='return (event.charCode == 0)||(event.charCode >= 48 && event.charCode <= 57)'>
+									<label for="numberOfPeople">Số người:</label> <input
+										type="text" class="form-control" name="numberPeople"
+										value="<%=edit.getNumberPeople()%>" required
+										id="numberOfPeople" oninput="setCustomValidity('')"
+										oninvalid="this.setCustomValidity('Bạn chưa nhập số người!')"
+										maxlength="5"
+										onkeypress='return (event.charCode == 0)||(event.charCode >= 48 && event.charCode <= 57)'>
 								</div>
 
-								<div class="form-group" id="placeList"></div>
+								<div class="form-group" id="placeList">
+									<%
+										for(dtoTouristPlace t : places)
+																{
+																	String data = "<input id='txt_hidden_place_"+t.getPlaceId()+"' type='hidden' name='placeId[]' value='"+t.getPlaceId()+"'>";
+																	out.print(data);
+																}
+									%>
+
+								</div>
 
 								<label>Địa điểm: </label>
-								<div class="form-group" id="viewPlaceList"></div>
+								<div class="form-group" id="viewPlaceList">
+
+									<%
+									for(dtoTouristPlace t : places)
+									{
+										String localtion = "<button id='btn_view_place_"+t.getPlaceId()+"' class='btn btn-default category_margin_left' type='button' onclick='removePlace(\"place_"+t.getPlaceId()+"\")'>"+
+												t.getTitle()+
+												"<span class='glyphicon glyphicon-remove'></span></button>";
+										out.print(localtion);
+									}
+										
+									%>
+
+								</div>
 
 								<div class="form-group">
 									<label for="sel1">Chọn địa điểm:</label> <select
@@ -81,20 +117,21 @@
 										style="width: 60%" id="sel1">
 										<%
 											ModelLocation mdLocation = new ModelLocation();
-																			List<dtoPost> locations = mdLocation.getAllTourPlace();
-																			for(dtoPost l: locations)
-																			{
-																				out.print("<option value=\""+l.getPostId()+"\">"+ " " + l.getTitle()+"</option>");
-																			}
+																											List<dtoPost> locations = mdLocation.getAllTourPlace();
+																											for(dtoPost l: locations)
+																											{
+																												out.print("<option value=\""+l.getPostId()+"\">"+ " " + l.getTitle()+"</option>");
+																											}
 										%>
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="tour_time">Thời gian đi:</label> <input
-										type="text" class="form-control"
-										oninput="setCustomValidity('')" required
+									<label for="tour_time">Thời gian đi:</label> <input type="text"
+										class="form-control" oninput="setCustomValidity('')" required
 										oninvalid="this.setCustomValidity('Vui lòng nhập thời gian đi của tour')"
-										name="tourTime" id="tour_time" placeHolder="Ex. Ba ngày 2 đêm">
+										name="tourTime" id="tour_time"
+										value="<%=edit.getTotalTime()%>"
+										placeHolder="Ex. Ba ngày 2 đêm">
 								</div>
 								<script type="text/javascript">
 									function isExisted(id) {
