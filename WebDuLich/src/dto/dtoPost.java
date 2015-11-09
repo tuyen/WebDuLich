@@ -35,13 +35,7 @@ public class dtoPost {
 	public void setTotalTime(String totalTime) {
 		this.totalTime = totalTime;
 	}
-	public String getNumberPerson() {
-		return numberPerson;
-	}
-	public void setNumberPerson(String numberPerson) {
-		this.numberPerson = numberPerson;
-	}
-	private String numberPerson;
+
 	public String getBuys() {
 		return buys;
 	}

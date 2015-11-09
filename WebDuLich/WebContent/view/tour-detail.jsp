@@ -93,6 +93,12 @@
 				</div>
 				<div>
 					<p class="text-left">
+						Số người:
+						<%=post.getNumberPeople()%>
+					</p>
+				</div>
+				<div>
+					<p class="text-left">
 						Thời gian:
 						<%=post.getTotalTime()%>
 					</p>

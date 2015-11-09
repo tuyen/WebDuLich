@@ -78,7 +78,52 @@ public class ModelPost extends Model {
 					post.setPrice(rs.getString("Price"));
 					post.setViews(rs.getString("Views"));
 					post.setBuys(rs.getString("Buys"));
-					post.setNumberPerson(rs.getString("NumberPerson"));
+					post.setNumberPeople(rs.getString("NumberPerson"));
+					post.setTotalTime(rs.getString("TotalTime"));
+					post.setShortContent(getShortContents(post.getPostId()));
+					listPost.add(post);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		connection.close();
+		return listPost;
+	}
+
+	/**
+	 * get a number of post by specific category from offset get limit post
+	 * 
+	 * @param categoryId
+	 *            String
+	 * @param limit
+	 *            int
+	 * @param offset
+	 *            int
+	 * @return listPost List<String>
+	 */
+	public List<dtoPost> getAllPostByCategory(String categoryId, int limit,
+			int offset) {
+		List<dtoPost> listPost = new ArrayList<dtoPost>();
+		String sql = "select * from post where post.CategoryId = " + categoryId
+				+ " order by post.PostId desc limit " + offset + "," + limit;
+		if (connection.connect()) {
+			ResultSet rs = connection.read(sql);
+			try {
+				while (rs.next()) {
+					dtoPost post = new dtoPost();
+					post.setPostId(rs.getString("PostId"));
+					post.setCategoryId(rs.getString("CategoryId"));
+					post.setLocationId(rs.getString("LocationId"));
+					post.setUserId(rs.getString("UserId"));
+					post.setTitle(rs.getString("Title"));
+					post.setContent(rs.getString("Content"));
+					post.setPostDate(rs.getString("Date"));
+					post.setPrice(rs.getString("Price"));
+					post.setViews(rs.getString("Views"));
+					post.setBuys(rs.getString("Buys"));
+					post.setNumberPeople(rs.getString("NumberPerson"));
 					post.setTotalTime(rs.getString("TotalTime"));
 					post.setShortContent(getShortContents(post.getPostId()));
 					listPost.add(post);
@@ -111,21 +156,24 @@ public class ModelPost extends Model {
 		return ret;
 	}
 
-	public Boolean addTouristPlace(dtoPost dto) {		
+	public Boolean addTouristPlace(dtoPost dto) {
 		String sql = "INSERT INTO `post`(`CategoryId`, `UserId`, `Title`, `Content`, `Date`, `Price`, `Views`,`NumberPerson`,`TotalTime`,`Buys`) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		Boolean rs = false;
 		if (this.connection.connect()) {
 			try {
 				java.sql.PreparedStatement preStatement = this.connection
 						.getConnection().prepareStatement(sql);
-				preStatement.setInt(1, Integer.parseInt(dto.getCategoryId().trim()));
-				preStatement.setInt(2, Integer.parseInt(dto.getUserId().trim()));
+				preStatement.setInt(1,
+						Integer.parseInt(dto.getCategoryId().trim()));
+				preStatement
+						.setInt(2, Integer.parseInt(dto.getUserId().trim()));
 				preStatement.setString(3, dto.getTitle());
 				preStatement.setString(4, dto.getContent());
 				preStatement.setString(5, dto.getPostDate());
 				preStatement.setString(6, dto.getPrice().trim());
 				preStatement.setInt(7, 0);
-				preStatement.setInt(8, Integer.parseInt(dto.getNumberPeople().trim()));
+				preStatement.setInt(8,
+						Integer.parseInt(dto.getNumberPeople().trim()));
 				preStatement.setString(9, dto.getTotalTime());
 				preStatement.setInt(10, Integer.parseInt(dto.getBuys().trim()));
 				rs = preStatement.execute();
@@ -159,6 +207,41 @@ public class ModelPost extends Model {
 					matcher = pattern.matcher(rs.getString("Content"));
 					while (matcher.find()) {
 						listSrc.add(matcher.group(1));
+					}
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (listSrc.isEmpty())
+			listSrc.add("view/resource/image/default.jpg");
+		connection.close();
+		return listSrc;
+	}
+
+	/**
+	 * get a number of image source of specific post
+	 * 
+	 * @param postId
+	 *            String
+	 * @param limit
+	 *            int
+	 * @return listSrc List<String>
+	 */
+	public List<String> getImagesFromPost(String postId, int limit) {
+		List<String> listSrc = new ArrayList<String>();
+		String sql = "select Content from post where PostId = " + postId;
+		int i = 0;
+		if (connection.connect()) {
+			ResultSet rs = connection.read(sql);
+			try {
+				if (rs.next()) {
+					matcher = pattern.matcher(rs.getString("Content"));
+					while (matcher.find()) {
+						listSrc.add(matcher.group(1));
+						if (limit > 0 && ++i > limit)
+							break;
 					}
 				}
 			} catch (SQLException e) {
@@ -225,7 +308,9 @@ public class ModelPost extends Model {
 
 	/**
 	 * get post by post id
-	 * @param id String
+	 * 
+	 * @param id
+	 *            String
 	 * @return post dtoPost
 	 */
 	public dtoPost getPostById(String id) {
@@ -250,7 +335,7 @@ public class ModelPost extends Model {
 						post.setUserId(rs.getString("UserId"));
 						post.setViews(rs.getString("Views"));
 						post.setBuys(rs.getString("Buys"));
-						post.setNumberPerson(rs.getString("NumberPerson"));
+						post.setNumberPeople(rs.getString("NumberPerson"));
 						post.setTotalTime(rs.getString("TotalTime"));
 						post.setShortContent(getShortContents(post.getPostId()));
 					} else
@@ -262,7 +347,7 @@ public class ModelPost extends Model {
 				e1.printStackTrace();
 			}
 			connection.close();
-		}		
+		}
 		return post;
 	}
 }

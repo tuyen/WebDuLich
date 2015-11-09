@@ -17,7 +17,7 @@
 
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
-	listPost = mdPost.getAllPostByCategory("1");
+	listPost = mdPost.getAllPostByCategory("1", 10, 0);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -103,53 +103,51 @@
 				</form>
 			</center>
 		</div>
-
-		<br> <br>
+		<hr>
+		<br>
 		<!-- list tour -->
-		<%
-			for (dtoPost post : listPost) {
-				out.write("<li class='post'>");
-			}
-		%>
 		<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
-
-			<div id='carousel-1' class='carousel slide c-fade'
-				data-ride='carousel'>
-				<!-- Top part of the slider -->
-				<!-- Carousel items -->
-				<div class='carousel-inner'>
-					<div class='active item' data-slide-number='0'>
-						<img class='img-responsive' alt='not found'
-							src='resource/image/cm.jpg'>
-					</div>
-					<div class=' item' data-slide-number='1'>
-						<img class='img-responsive' alt='not found'
-							src='resource/image/cm1.jpg'>
-					</div>
-				</div>
-			</div>
-			<!--/Slider-->
-			<div class='caption' style='font-size: 17px;'>
-				<div class='col-md-10'>
-					<p>
-						<a href='#'> Đà Lạt - Huế - Hà Nội </a>
-					</p>
-					<p>
-						<span class='glyphicon glyphicon-usd'></span> 15.000.000đ
-					</p>
-				</div>
-				<div class='col-md-2'>
-					<p data-toggle='tooltip' title='10 người đã xem'>
-						<span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span>
-						10
-					</p>
-					<p data-toggle='tooltip' title='Đã có 10 người mua tuor này'>
-						<span class='glyphicon glyphicon-shopping-cart'
-							style='color: #3399FF'></span> 10
-					</p>
-				</div>
-			</div>
-			</li>
+			<%
+				for (dtoPost post : listPost) {
+					out.write("<li class='post'style = 'width:50%'> ");
+					out.write("<div class = 'panel'style = 'width:100%'> ");
+					out.write("<div class = 'panel-body'");
+					out.write("<div id='carousel-" + post.getPostId()
+							+ "' class='carousel slide'data-ride='carousel'>");
+					out.write("<div class='carousel-inner'role='listbox'>");
+					List<String> listSrc = mdPost.getImagesFromPost(
+							post.getPostId(), 3);
+					int i = 0;
+					for (String src : listSrc) {
+						if (++i == 1)
+							out.write("<div class='active item'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></div>");
+						else
+							out.write("<div class='item'><img class='img-responsive' width = '100%' alt='not found'src='"
+									+ src + "'></div>");
+					}
+					out.write("</div></div>");
+					out.write("<div class = 'panel-footer'>");
+					out.write("<div style='font-size: 17px;'>");
+					out.write("<a href='" + request.getContextPath()
+							+ "/postdetail?cate=1&post=" + post.getPostId() + "'> "
+							+ post.getTitle() + " </a>");
+					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
+					out.write("<td><p data-toggle='tooltip' title='Giá tour "
+							+ post.getPrice()
+							+ "'><span class='glyphicon glyphicon-usd' style='color: #3399FF'></span> "
+							+ post.getPrice() + "</p><td>");
+					out.write("<td><p data-toggle='tooltip' title='"
+							+ post.getViews()
+							+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
+							+ post.getViews() + "</p></td>");
+					out.write("<td><p data-toggle='tooltip' title='Đã có "
+							+ post.getBuys()
+							+ " người mua tuor này'><span class='glyphicon glyphicon-shopping-cart'	style='color: #3399FF'></span> "
+							+ post.getBuys() + "</p></td></tr></table>");
+					out.write("</div></div></div></li>");
+				}
+			%>
 		</ul>
 	</div>
 	<!-- pagination -->
