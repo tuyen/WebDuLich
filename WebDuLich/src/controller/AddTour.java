@@ -73,7 +73,7 @@ public class AddTour extends HttpServlet {
 				post.setCategoryId("1");
 				post.setContent(tourDetail);
 				post.setPostDate(this.getCurrentDate());
-				post.setPrice("0");
+				post.setPrice(tourPrice);
 				post.setUserId("1");
 				post.setViews("0");
 				post.setNumberPeople(numberPeople);
