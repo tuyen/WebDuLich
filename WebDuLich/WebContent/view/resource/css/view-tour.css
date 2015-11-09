@@ -15,6 +15,13 @@
 	float: left;
 }
 
+.content img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin:0 auto;
+}
+
 .separator form {
 	margin-top: -12px;
 	display: block;
@@ -54,7 +61,7 @@ li.post {
 	height: 40px;
 }
 
-a.top {
+span.top {
 	display: none;
 	width: 60px;
 	height: 60px;
@@ -69,6 +76,6 @@ a.top {
 	border-radius: 30px;
 }
 
-a:hover.top {
+span:hover.top {
 	background-color: #165D91;
 }

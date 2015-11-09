@@ -224,7 +224,7 @@ public class ModelPost extends Model {
 	}
 
 	/**
-	 * get post by id
+	 * get post by post id
 	 * @param id String
 	 * @return post dtoPost
 	 */

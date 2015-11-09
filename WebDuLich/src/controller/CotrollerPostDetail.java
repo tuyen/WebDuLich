@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ModelPost;
-
 /**
  * Servlet implementation class CotrollerPostDetail
  */
@@ -40,11 +38,8 @@ public class CotrollerPostDetail extends HttpServlet {
 					request, response);
 			break;
 		case "2":
-			request.getRequestDispatcher("view/tour-detail.jsp").include(
-					request, response);
-			break;
 		case "3":
-			request.getRequestDispatcher("view/feeling-detail.jsp").include(
+			request.getRequestDispatcher("view/tourist-place-detail.jsp").include(
 					request, response);
 			break;
 		default:

@@ -3,6 +3,8 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dto.dtoUser;
 
@@ -10,9 +12,7 @@ public class ModelUser extends Model {
 	public ModelUser() {
 		super();
 	}
-	
-	
-	
+
 	public dtoUser getUserById(String userId) {
 		dtoUser user = new dtoUser();
 		String sql = "SELECT * FROM `user` WHERE `UserId` = ?";
@@ -56,9 +56,11 @@ public class ModelUser extends Model {
 
 	/**
 	 * get account by email
-	 * @param email String
+	 * 
+	 * @param email
+	 *            String
 	 * @return user dtoUser
-	 */	
+	 */
 	public dtoUser getAccountByEmail(String email) {
 		dtoUser user = new dtoUser();
 		String sql = "select * from `account` where `Email` = ?";
@@ -98,10 +100,12 @@ public class ModelUser extends Model {
 		connection.close();
 		return user;
 	}
-	
+
 	/**
 	 * get account by UserId
-	 * @param id String
+	 * 
+	 * @param id
+	 *            String
 	 * @return user dtoUser
 	 */
 	public dtoUser getAccountByUserId(String id) {
@@ -167,7 +171,14 @@ public class ModelUser extends Model {
 		return true;
 	}
 
-	public String getCompanyNameById(String userId) {
+	/**
+	 * get the user's company name
+	 * 
+	 * @param userId
+	 *            String
+	 * @return companyName String
+	 */
+	public String getCompanyNameByUserId(String userId) {
 		String sql = "select CompanyName from `user` where `UserId` = ?";
 		if (connection.connect()) {
 			try {
@@ -189,37 +200,53 @@ public class ModelUser extends Model {
 		}
 		return "";
 	}
-	
-	public void createAccount(String userName, String email, String password, String accountType,int code) throws SQLException
-	{
-		//dtoUser user = new dtoUser();
+
+	public List<String> getAllCompanyName() {
+		List<String> listCompany = new ArrayList<String>();
+		if (connection.connect()) {
+			ResultSet rs = connection.read("select CompanyName from user");
+			try {
+				while (rs.next()) {
+					listCompany.add(rs.getString("CompanyName"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			connection.close();
+		}
+		return listCompany;
+	}
+
+	public void createAccount(String userName, String email, String password,
+			String accountType, int code) throws SQLException {
+		// dtoUser user = new dtoUser();
 		String sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode) "
-				+ "values(?,?,?,?,'No',?)";		
-		if (connection.connect())
-		{
-			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+				+ "values(?,?,?,?,'No',?)";
+		if (connection.connect()) {
+			PreparedStatement stm = connection.getConnection()
+					.prepareStatement(sql);
 			stm.setString(1, userName);
 			stm.setString(2, email);
 			stm.setString(3, password);
 			stm.setString(4, accountType);
-			stm.setInt(5,code);
+			stm.setInt(5, code);
 			connection.setPrepareStatement(stm);
 			connection.writeSecure();
 			connection.close();
 		}
-		
+
 	}
-	public boolean checkMailExist(String email) throws SQLException
-	{
+
+	public boolean checkMailExist(String email) throws SQLException {
 		String sql = "select Email from user where Email= ?";
-		if(connection.connect())
-		{
-			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+		if (connection.connect()) {
+			PreparedStatement stm = connection.getConnection()
+					.prepareStatement(sql);
 			stm.setString(1, email);
 			connection.setPrepareStatement(stm);
 			ResultSet rs = connection.readSecure();
-			if (rs.next())
-			{
+			if (rs.next()) {
 				connection.close();
 				return true;
 			}
@@ -227,18 +254,17 @@ public class ModelUser extends Model {
 		connection.close();
 		return false;
 	}
-	public boolean checkCode(String code, String email) throws SQLException
-	{
+
+	public boolean checkCode(String code, String email) throws SQLException {
 		String sql = "SELECT `Email` FROM `user` WHERE Email= ? and ConfirmCode = ?";
-		if(connection.connect())
-		{
-			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+		if (connection.connect()) {
+			PreparedStatement stm = connection.getConnection()
+					.prepareStatement(sql);
 			stm.setString(1, email);
 			stm.setString(2, code);
 			connection.setPrepareStatement(stm);
 			ResultSet rs = connection.readSecure();
-			if (rs.next())
-			{
+			if (rs.next()) {
 				connection.close();
 				return true;
 			}
@@ -246,37 +272,34 @@ public class ModelUser extends Model {
 		connection.close();
 		return false;
 	}
-	public void activeAccount(String email) throws SQLException
-	{
+
+	public void activeAccount(String email) throws SQLException {
 		String sql = "UPDATE `user` SET `Status`='Yes' WHERE Email = ?";
-		if (connection.connect())
-		{
-			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+		if (connection.connect()) {
+			PreparedStatement stm = connection.getConnection()
+					.prepareStatement(sql);
 			stm.setString(1, email);
 			connection.setPrepareStatement(stm);
 			connection.writeSecure();
 			connection.close();
 		}
 	}
-	
-	public boolean checkSignIn(String email,String password)
-	{
+
+	public boolean checkSignIn(String email, String password) {
 		String sql = "SELECT * FROM `user` WHERE Email= ? and Password = ? and Status = 'No'";
-		if (connection.connect())
-		{
+		if (connection.connect()) {
 			try {
-				PreparedStatement stm = connection.getConnection().prepareStatement(sql);
+				PreparedStatement stm = connection.getConnection()
+						.prepareStatement(sql);
 				stm.setString(1, email);
 				stm.setString(2, password);
 				connection.setPrepareStatement(stm);
 				ResultSet rs = connection.readSecure();
-				if (rs.next())
-				{
+				if (rs.next()) {
 					connection.close();
 					return true;
 				}
-			}
-			catch (SQLException e) {
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -284,17 +307,19 @@ public class ModelUser extends Model {
 		connection.close();
 		return false;
 	}
-	
-	
-	public String getUserPassword(String userId) throws SQLException
-	{
-		String sql = "SELECT `Password` FROM `user` WHERE `UserId` = "+ userId;
-		String password= "";
-		if(this.connection.connect())
-		{
+
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getUserPassword(String userId) throws SQLException {
+		String sql = "SELECT `Password` FROM `user` WHERE `UserId` = " + userId;
+		String password = "";
+		if (this.connection.connect()) {
 			ResultSet rs = this.connection.read(sql);
-			if(rs.next())
-			{
+			if (rs.next()) {
 				password = rs.getString("Password");
 			}
 			this.connection.close();
@@ -302,17 +327,15 @@ public class ModelUser extends Model {
 		return password;
 	}
 
-
-	public void updateUserPassword(String userId, String userPassword)
-	{
-		String sql = "UPDATE `user` SET `Password`= '"+userPassword+"' WHERE `UserId` = "+ userId;
-		if(this.connection.connect())
-		{
+	public void updateUserPassword(String userId, String userPassword) {
+		String sql = "UPDATE `user` SET `Password`= '" + userPassword
+				+ "' WHERE `UserId` = " + userId;
+		if (this.connection.connect()) {
 			this.connection.write(sql);
 			this.connection.close();
 		}
 	}
-	
+
 	public boolean updateUserProfile(dtoUser user) {
 		String sql = "UPDATE `user` SET `FullName`=?,`Birthday`=?,`Enail`=?,`PHONE`=?,`Address`=?,`CompanyName`=?,`CompanyDescription`=? WHERE `UserId`="
 				+ user.getUserId();
@@ -330,7 +353,7 @@ public class ModelUser extends Model {
 				preStatement.setString(6, user.getCompany());
 				preStatement.setString(7, user.getCompanyDescription());
 				preStatement.execute();
-				result =  true;
+				result = true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -339,5 +362,28 @@ public class ModelUser extends Model {
 			connection.close();
 		}
 		return result;
+	}
+
+	/**
+	 * get user's avatar by commentId
+	 * @param commentId String
+	 * @return image_src String
+	 */
+	public String getAvatarByCommentId(String commentId) {
+		String image_src = "";
+		if (connection.connect()) {
+			String sql = "select Avatar from user, comment where user.UserId = comment.UserId and comment.CommentId="
+					+ commentId;
+			ResultSet rs = connection.read(sql);
+			try {
+				if (rs.next()) {
+					image_src = rs.getString("Avatar");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return image_src;
 	}
 }

@@ -122,6 +122,6 @@
 	<!-- body footer -->
 	<jsp:include page="body-footer.jsp" />
 	<!-- go to top button -->
-	<a href="#" class="top"></a>
+	<span class="top"></span>
 </body>
 </html>
