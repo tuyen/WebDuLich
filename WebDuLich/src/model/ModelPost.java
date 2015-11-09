@@ -72,7 +72,7 @@ public class ModelPost extends Model {
 		}
 		connection.close();
 		return listPost;
-	}
+	}		
 	
 	/**
 	 * get a number of image source of specific post
