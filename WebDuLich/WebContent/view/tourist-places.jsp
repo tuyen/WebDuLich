@@ -53,9 +53,9 @@
 		<div class="panel panel-body">
 			<lable class="text-left"> <i>Tùy chọn tìm kiếm</i></lable>
 			<center>
-				<form action="" style="margin: 10px" class="form" role="form">
+				<form action="touristplace" style="margin: 10px" class="form" role="form">
 					<div class="form-group">
-						<table width="80%">
+						<table width="50%">
 							<thead>
 								<tr>
 									<td style="padding-left: 25px;"><label for="place">Tỉnh
@@ -65,7 +65,7 @@
 							<tbody>
 								<tr>
 									<td style="padding-left: 25px;"><select
-											class="form-control " id="place">
+											class="form-control " id="place" name = "place">
 											<option>Tỉnh thành</option>
 											<%
 												for (dtoLocation location : listLocation) {
@@ -75,7 +75,7 @@
 											%>
 										</select></td>
 									<td><div class="btn-group" style="float: right">
-											<button type="button" id="btnSearch" class="btn btn-primary">Tìm
+											<button type="submit" id="btnSearch" class="btn btn-primary">Tìm
 												kiếm</button>
 										</div></td>
 								</tr>

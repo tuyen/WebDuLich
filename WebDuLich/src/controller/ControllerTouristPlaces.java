@@ -29,6 +29,7 @@ public class ControllerTouristPlaces extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("/view/tourist-places.jsp").include(request, response);
+		String s = request.getParameter("place");
 	}
 
 	/**
