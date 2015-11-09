@@ -21,8 +21,6 @@ public class dtoPost {
 	public void setNumberPeople(String numberPeople) {
 		this.numberPeople = numberPeople;
 	}
-
-
 	
 	public String getShortContent() {
 		return shortContent;

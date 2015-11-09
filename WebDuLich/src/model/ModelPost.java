@@ -170,6 +170,20 @@ public class ModelPost extends Model {
 		return result;
 
 	}
+	
+	public String getLastFeelingId(String userId) throws SQLException {
+		String sql = "SELECT COALESCE(max(`PostId`),-1) as `Id` FROM `post` WHERE `CategoryId` = 3 and `UserId` = "
+				+ userId;
+		String result = "-1";
+		if (this.connection.connect()) {
+			ResultSet resultSet = this.connection.read(sql);
+			resultSet.next();
+			result = resultSet.getString("Id");
+			this.connection.close();
+		}
+		return result;
+
+	}
 
 	public int getCountPost(String categoryId) {
 		if (connection.connect()) {
