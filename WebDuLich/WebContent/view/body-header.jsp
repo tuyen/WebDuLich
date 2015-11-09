@@ -1,21 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="model.ModelUser"%>
 
-	<!--header-->
-	<header class="masthead">
-	<div class="">
-
-		<div>
-			<span style="font-weight: bold; font-size: 40px; padding-left: 3%;">, , ,</span>
-			<!-- <p class="lead">Big Top Header and Fixed Sidebar</p> -->
-		</div>
-	</div>
-	</header>
-
 
 	<!-- Begin Navbar -->
-	<div id="nav">
-		<div class="navbar navbar-default navbar-static">
+	
+		<div class="navbar navbar-default  navbar-fixed-top" >
 			<div>
 				<div class="navbar-header">
 					<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -29,10 +18,9 @@
 
 				<nav class="navbar-collapse collapse" id="navbar-collapse-1"
 					role="navigation">
-				<div class="container">
+				<div class="container-fluid">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#"><span
-								class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
+						<li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
 						<!--  <li class="divider"></li> -->
 						<li><a href="#">Tour mới</a></li>
 						<li><a href="#">Tour hot</a></li>
@@ -63,13 +51,13 @@
 								}
 							
 							}
-							if (remember.equals("true"))
+							if ("true".equals(remember))
 							{
 								name = user.getAccountByUserId(userID).getFullName();
 							}
 							else 
 							{
-								session = request.getSession(false);
+								//session = request.getSession(false);
 								name = (String)session.getAttribute("name");
 							}
 							if (name!=null)
@@ -98,7 +86,7 @@
 												"<input id='user_username'"+ 
 													"placeholder=' Email'"+
 													"style='margin-bottom: 15px;' type='email' name='email'"+
-													"size='25' required='required'/>"+ 
+													"size='25' required='required'/> <br/>"+ 
 												"<input id='user_password'"+
 													"placeholder=' Password'"+ 
 													"style='margin-bottom: 15px;'"+
@@ -125,4 +113,4 @@
 				</nav>
 			</div>
 		</div>
-	</div>
+	

@@ -101,17 +101,20 @@ public class ControllerSignIn extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			request.getRequestDispatcher("view/Home.jsp").include(request, response);
+			//request.getRequestDispatcher("view/Home.jsp").forward(request, response);
 			//request.setAttribute("abc", "123");
+			response.sendRedirect("ControllerHome");
 		}
 		else
 		{
 			//response.getWriter().write("Email đăng nhập hoặc mật khẩu không đúng!");
-			request.getRequestDispatcher("view/Home.jsp").include(request, response);
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Email đăng nhập hoặc mật khẩu không đúng!');");
 			//out.println("location='index.jsp';");
-			out.println("</script>");  
+			out.println("</script>"); 
+			response.sendRedirect("ControllerHome");
+			//request.getRequestDispatcher("view/Home.jsp").forward(request, response);
+			 
 			
 		}
 		

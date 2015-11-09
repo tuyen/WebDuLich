@@ -23,7 +23,7 @@
 	<jsp:include page="body-header.jsp" />
 
 	<!-- Begin Body -->
-	<div style="margin-bottom: %"></div>
+	<div style="margin-top:"></div>
 	<div class="container" >
 		<center>
 		<h3>Welcome to ,,,</h3>
@@ -69,7 +69,7 @@
 					&nbsp;&nbsp; <label style="cursor:pointer"> <input type="radio"
 							name="accout_type" value="personal" checked> Cá nhân
 				</label>&nbsp;&nbsp;&nbsp; <label style="cursor:pointer"> <input type="radio"
-							name="accout_type" value="company"> Công ty / Tổ chức
+							name="accout_type" value="company"> Công ty 
 				</label>
 				</span>
 			</div>
@@ -80,6 +80,7 @@
 		</form>
 		</center>
 	</div>
+	<div style="margin-bottom:60px"></div>
 	<jsp:include page="body-footer.jsp" />
 
 

@@ -321,11 +321,10 @@ public class ModelUser extends Model {
 
 	public void setToken(String userID, String token) throws SQLException
 	{
-		String sql = "UPDATE `user` SET `LoginToken`= ? WHERE UserId=?";
+		String sql = "UPDATE `user` SET `LoginToken`=? WHERE UserId=?";
 		if (connection.connect())
 		{
-			PreparedStatement stm = connection.getConnection()
-					.prepareStatement(sql);
+			PreparedStatement stm = connection.getConnection().prepareStatement(sql);
 			stm.setString(1, token);
 			stm.setString(2, userID);
 			connection.setPrepareStatement(stm);
