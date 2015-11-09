@@ -22,12 +22,12 @@
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
 	listPost = mdPost
-			.getAllPostByCategory("1", 10, (cur_page - 1) * 10);
+			.getAllPostByCategory("3", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Tour mới</title>
+<title>Cảm nhận của du khách</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="view/resource/lib/jquery-2.1.4.min.js"></script>
@@ -47,72 +47,17 @@
 	<div class="container" style="width: 80%">
 
 		<div class="separator">
-			<h3>TOUR MỚI</h3>
+			<h3>Cảm nhận của du khách</h3>
 		</div>
-		<br> <br>
-		<div class="panel panel-body">
-			<lable class="text-left"> <i>Tùy chọn tìm kiếm</i></lable>
-			<center>
-				<form action="" style="margin: 10px" class="form" role="form">
-					<div class="form-group">
-						<table width="80%">
-							<thead>
-								<tr>
-									<td style="padding-left: 25px;"><label for="price">Giá
-											tour</label></td>
-									<td style="padding-left: 25px;"><label for="place">Tỉnh
-											thành</label></td>
-									<td style="padding-left: 25px;"><label for="tourist">Công
-											ty lữ hành</label></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td style="padding-left: 25px;"><select
-											class="form-control " id="price">
-											<option>Giá tour</option>
-											<option>10$</option>
-											<option>100$</option>
-											<option>1000$</option>
-										</select></td>
-
-									<td style="padding-left: 25px;"><select
-											class="form-control " id="place">
-											<option>Tỉnh thành</option>
-											<%
-												for (dtoLocation location : listLocation) {
-													out.write("<option value = '" + location.getLocationId() + "'>"
-															+ location.getName() + "</option>");
-												}
-											%>
-										</select></td>
-
-									<td style="padding-left: 25px;"><select
-											class="form-control " id="tourist">
-											<option>Công ty lữ hành</option>
-											<%
-												for (String company : listCompany) {
-													out.write("<option value = '" + company + "'>" + company
-															+ "</option>");
-												}
-											%>
-										</select></td>
-									<td><div class="btn-group" style="float: right">
-											<button type="button" id="btnSearch" class="btn btn-primary">Tìm
-												kiếm</button>
-										</div></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</form>
-			</center>
-		</div>
+		<br>
 		<hr>
 		<br>
 		<!-- list tour -->
 		<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
+				if (listPost.size() == 0) {
+					out.write("<div class = 'panel panel-body'> <h4> Chưa có bài cảm nhận nào!!! Bạn hãy là người đầu tiên <a href=''> viết cảm nhận </a> nhé :) </h4> </div>");
+				}
 				for (dtoPost post : listPost) {
 					out.write("<li class='post'style = 'width:50%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
@@ -135,21 +80,13 @@
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=1&post=" + post.getPostId() + "'> "
+							+ "/postdetail?cate=3&post=" + post.getPostId() + "'> "
 							+ post.getTitle() + " </a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
-					out.write("<td><p data-toggle='tooltip' title='Giá tour "
-							+ post.getPrice()
-							+ "'><span class='glyphicon glyphicon-usd' style='color: #3399FF'></span> "
-							+ post.getPrice() + "</p><td>");
 					out.write("<td><p data-toggle='tooltip' title='"
 							+ post.getViews()
 							+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
-							+ post.getViews() + "</p></td>");
-					out.write("<td><p data-toggle='tooltip' title='Đã có "
-							+ post.getBuys()
-							+ " người mua tuor này'><span class='glyphicon glyphicon-shopping-cart'	style='color: #3399FF'></span> "
-							+ post.getBuys() + "</p></td></tr></table>");
+							+ post.getViews() + "</p></td></tr></table>");
 					out.write("</div></div></div></li>");
 				}
 			%>
@@ -158,7 +95,7 @@
 		<!-- pagination -->
 
 		<%
-			int pages = mdPost.getCountPost("1") / 10 + 1;
+			int pages = mdPost.getCountPost("3") / 10 + 1;
 			if (pages > 1) {
 		%>
 		<nav>
@@ -168,12 +105,11 @@
 					while (pages >= _page) {
 						if (cur_page == _page)
 							out.write("<li class = 'active'><a href='"
-									+ request.getContextPath()
-									+ "/tours?page=" + _page + "'>" + _page
-									+ "</a></li>");
+									+ request.getContextPath() + "/feelings?page="
+									+ _page + "'>" + _page + "</a></li>");
 						else
 							out.write("<li><a href='" + request.getContextPath()
-									+ "/tours?page=" + _page + "'>" + _page
+									+ "/feelings?page=" + _page + "'>" + _page
 									+ "</a></li>");
 						_page++;
 					}

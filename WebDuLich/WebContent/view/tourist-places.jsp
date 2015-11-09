@@ -22,12 +22,12 @@
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
 	listPost = mdPost
-			.getAllPostByCategory("1", 10, (cur_page - 1) * 10);
+			.getAllPostByCategory("2", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Tour mới</title>
+<title>Điểm du lịch</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="view/resource/lib/jquery-2.1.4.min.js"></script>
@@ -47,7 +47,7 @@
 	<div class="container" style="width: 80%">
 
 		<div class="separator">
-			<h3>TOUR MỚI</h3>
+			<h3>Điểm du lịch</h3>
 		</div>
 		<br> <br>
 		<div class="panel panel-body">
@@ -58,24 +58,12 @@
 						<table width="80%">
 							<thead>
 								<tr>
-									<td style="padding-left: 25px;"><label for="price">Giá
-											tour</label></td>
 									<td style="padding-left: 25px;"><label for="place">Tỉnh
 											thành</label></td>
-									<td style="padding-left: 25px;"><label for="tourist">Công
-											ty lữ hành</label></td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td style="padding-left: 25px;"><select
-											class="form-control " id="price">
-											<option>Giá tour</option>
-											<option>10$</option>
-											<option>100$</option>
-											<option>1000$</option>
-										</select></td>
-
 									<td style="padding-left: 25px;"><select
 											class="form-control " id="place">
 											<option>Tỉnh thành</option>
@@ -83,17 +71,6 @@
 												for (dtoLocation location : listLocation) {
 													out.write("<option value = '" + location.getLocationId() + "'>"
 															+ location.getName() + "</option>");
-												}
-											%>
-										</select></td>
-
-									<td style="padding-left: 25px;"><select
-											class="form-control " id="tourist">
-											<option>Công ty lữ hành</option>
-											<%
-												for (String company : listCompany) {
-													out.write("<option value = '" + company + "'>" + company
-															+ "</option>");
 												}
 											%>
 										</select></td>
@@ -135,21 +112,13 @@
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=1&post=" + post.getPostId() + "'> "
+							+ "/postdetail?cate=2&post=" + post.getPostId() + "'> "
 							+ post.getTitle() + " </a>");
-					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
-					out.write("<td><p data-toggle='tooltip' title='Giá tour "
-							+ post.getPrice()
-							+ "'><span class='glyphicon glyphicon-usd' style='color: #3399FF'></span> "
-							+ post.getPrice() + "</p><td>");
+					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");					
 					out.write("<td><p data-toggle='tooltip' title='"
 							+ post.getViews()
 							+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
-							+ post.getViews() + "</p></td>");
-					out.write("<td><p data-toggle='tooltip' title='Đã có "
-							+ post.getBuys()
-							+ " người mua tuor này'><span class='glyphicon glyphicon-shopping-cart'	style='color: #3399FF'></span> "
-							+ post.getBuys() + "</p></td></tr></table>");
+							+ post.getViews() + "</p></td></tr></table>");
 					out.write("</div></div></div></li>");
 				}
 			%>
@@ -158,7 +127,7 @@
 		<!-- pagination -->
 
 		<%
-			int pages = mdPost.getCountPost("1") / 10 + 1;
+			int pages = mdPost.getCountPost("2") / 10 + 1;
 			if (pages > 1) {
 		%>
 		<nav>
@@ -169,11 +138,11 @@
 						if (cur_page == _page)
 							out.write("<li class = 'active'><a href='"
 									+ request.getContextPath()
-									+ "/tours?page=" + _page + "'>" + _page
+									+ "/touristplace?page=" + _page + "'>" + _page
 									+ "</a></li>");
 						else
 							out.write("<li><a href='" + request.getContextPath()
-									+ "/tours?page=" + _page + "'>" + _page
+									+ "/touristplace?page=" + _page + "'>" + _page
 									+ "</a></li>");
 						_page++;
 					}
