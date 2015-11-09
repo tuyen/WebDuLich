@@ -254,7 +254,13 @@ public class ModelUser extends Model {
 		connection.close();
 		return false;
 	}
-
+	/**
+	 * Kiểm tra mã xác nhận
+	 * @param code
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean checkCode(String code, String email) throws SQLException {
 		String sql = "SELECT `Email` FROM `user` WHERE Email= ? and ConfirmCode = ?";
 		if (connection.connect()) {
@@ -284,7 +290,12 @@ public class ModelUser extends Model {
 			connection.close();
 		}
 	}
-
+	/**
+	 * kiểm tra đăng nhập
+	 * @param email
+	 * @param password
+	 * @return
+	 */
 	public boolean checkSignIn(String email, String password) {
 		String sql = "SELECT * FROM `user` WHERE Email= ? and Password = ? and Status = 'Yes'";
 		if (connection.connect()) {
@@ -308,6 +319,20 @@ public class ModelUser extends Model {
 		return false;
 	}
 
+	public void setToken(String userID, String token) throws SQLException
+	{
+		String sql = "UPDATE `user` SET `LoginToken`= ? WHERE UserId=?";
+		if (connection.connect())
+		{
+			PreparedStatement stm = connection.getConnection()
+					.prepareStatement(sql);
+			stm.setString(1, token);
+			stm.setString(2, userID);
+			connection.setPrepareStatement(stm);
+			connection.writeSecure();
+			connection.close();
+		}
+	}
 	/**
 	 * 
 	 * @param userId
