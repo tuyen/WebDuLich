@@ -10,12 +10,55 @@ public class ModelUser extends Model {
 	public ModelUser() {
 		super();
 	}
+	
+	
+	
+	public dtoUser getUserById(String userId) {
+		dtoUser user = new dtoUser();
+		String sql = "SELECT * FROM `user` WHERE `UserId` = ?";
+		if (connection.connect()) {
+			try {
+				PreparedStatement stm = connection.getConnection()
+						.prepareStatement(sql);
+				stm.setString(1, userId);
+				connection.setPrepareStatement(stm);
+				ResultSet rs = connection.readSecure();
+				try {
+					if (rs.next() != false) {
+						user.setUserId(rs.getString("UserId"));
+						user.setFullName(rs.getString("FullName"));
+						user.setBirthday(rs.getString("Birthday"));
+						user.setEmail(rs.getString("Enail"));
+						user.setPassword(rs.getString("Password"));
+						user.setToken(rs.getString("LoginToken"));
+						user.setAccountType(rs.getString("AccountType"));
+						user.setPhone(rs.getString("PHONE"));
+						user.setAddress(rs.getString("Address"));
+						user.setCompany(rs.getString("CompanyName"));
+						user.setCompanyDescription(rs
+								.getString("CompanyDescription"));
+						user.setStatus(rs.getBoolean("Status"));
+						user.setConfirmCode(rs.getString("ConfirmCode"));
+						user.setAvatar(rs.getString("Avatar"));
+
+					} else
+						return null;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			connection.close();
+		}
+		return user;
+	}
 
 	/**
 	 * get account by email
 	 * @param email String
 	 * @return user dtoUser
-	 */
+	 */	
 	public dtoUser getAccountByEmail(String email) {
 		dtoUser user = new dtoUser();
 		String sql = "select * from `account` where `Email` = ?";
@@ -240,5 +283,61 @@ public class ModelUser extends Model {
 		}
 		connection.close();
 		return false;
+	}
+	
+	
+	public String getUserPassword(String userId) throws SQLException
+	{
+		String sql = "SELECT `Password` FROM `user` WHERE `UserId` = "+ userId;
+		String password= "";
+		if(this.connection.connect())
+		{
+			ResultSet rs = this.connection.read(sql);
+			if(rs.next())
+			{
+				password = rs.getString("Password");
+			}
+			this.connection.close();
+		}
+		return password;
+	}
+
+
+	public void updateUserPassword(String userId, String userPassword)
+	{
+		String sql = "UPDATE `user` SET `Password`= '"+userPassword+"' WHERE `UserId` = "+ userId;
+		if(this.connection.connect())
+		{
+			this.connection.write(sql);
+			this.connection.close();
+		}
+	}
+	
+	public boolean updateUserProfile(dtoUser user) {
+		String sql = "UPDATE `user` SET `FullName`=?,`Birthday`=?,`Enail`=?,`PHONE`=?,`Address`=?,`CompanyName`=?,`CompanyDescription`=? WHERE `UserId`="
+				+ user.getUserId();
+		boolean result = false;
+		if (connection.connect()) {
+			java.sql.PreparedStatement preStatement;
+			try {
+				preStatement = this.connection.getConnection()
+						.prepareStatement(sql);
+				preStatement.setString(1, user.getFullName());
+				preStatement.setString(2, user.getBirthday());
+				preStatement.setString(3, user.getEmail());
+				preStatement.setString(4, user.getPhone());
+				preStatement.setString(5, user.getAddress());
+				preStatement.setString(6, user.getCompany());
+				preStatement.setString(7, user.getCompanyDescription());
+				preStatement.execute();
+				result =  true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				result = false;
+			}
+			connection.close();
+		}
+		return result;
 	}
 }

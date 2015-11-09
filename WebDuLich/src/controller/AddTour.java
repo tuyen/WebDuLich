@@ -54,9 +54,7 @@ public class AddTour extends HttpServlet {
 	//xu lý them tour
 	private void addTour(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-					
-		int x = 2;
-		x++;
+						
 		//tourName
 		//tourDetail
 		//tourPrice		
@@ -65,6 +63,8 @@ public class AddTour extends HttpServlet {
 		String tourDetail = request.getParameter("tourDetail");
 		String tourPrice = request.getParameter("tourPrice");
 		String[] placeId = request.getParameterValues("placeId[]");
+		String numberPeople = request.getParameter("numberPeople");
+		String tourTime = request.getParameter("tourTime");
 		
 		if (tourName != null && tourDetail != null && tourPrice != null) {
 			if (tourDetail != "" && tourName != "") {
@@ -76,6 +76,9 @@ public class AddTour extends HttpServlet {
 				post.setPrice("0");
 				post.setUserId("1");
 				post.setViews("0");
+				post.setNumberPeople(numberPeople);
+				post.setTotalTime(tourTime);
+				
 				ModelPost modelPost = new ModelPost();
 				modelPost.addTouristPlace(post);
 				String postId;
@@ -108,6 +111,10 @@ public class AddTour extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		addTour(request, response);
 		
 	}

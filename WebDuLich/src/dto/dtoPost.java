@@ -10,9 +10,19 @@ public class dtoPost {
 	private String price;
 	private String views;
 	private String locationId;
-	private String buys;
-	private String totalTime;
+	private String buys = "0";
+	private String totalTime = "";
 	private String shortContent;
+	private String numberPeople = "0";
+	
+	public String getNumberPeople() {
+		return numberPeople;
+	}
+	public void setNumberPeople(String numberPeople) {
+		this.numberPeople = numberPeople;
+	}
+
+
 	public String getShortContent() {
 		return shortContent;
 	}

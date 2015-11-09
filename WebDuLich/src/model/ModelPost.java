@@ -111,22 +111,23 @@ public class ModelPost extends Model {
 		return ret;
 	}
 
-	public Boolean addTouristPlace(dtoPost dto) {
-		String sql = "INSERT INTO `post`(`CategoryId`, `UserId`, `Title`, `Content`, `Date`, `Price`, `Views`) VALUES (?,?,?,?,?,?,?)";
+	public Boolean addTouristPlace(dtoPost dto) {		
+		String sql = "INSERT INTO `post`(`CategoryId`, `UserId`, `Title`, `Content`, `Date`, `Price`, `Views`,`NumberPerson`,`TotalTime`,`Buys`) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		Boolean rs = false;
 		if (this.connection.connect()) {
 			try {
 				java.sql.PreparedStatement preStatement = this.connection
 						.getConnection().prepareStatement(sql);
-				preStatement.setInt(1,
-						Integer.parseInt(dto.getCategoryId().trim()));
-				preStatement
-						.setInt(2, Integer.parseInt(dto.getUserId().trim()));
+				preStatement.setInt(1, Integer.parseInt(dto.getCategoryId().trim()));
+				preStatement.setInt(2, Integer.parseInt(dto.getUserId().trim()));
 				preStatement.setString(3, dto.getTitle());
 				preStatement.setString(4, dto.getContent());
 				preStatement.setString(5, dto.getPostDate());
 				preStatement.setString(6, dto.getPrice().trim());
 				preStatement.setInt(7, 0);
+				preStatement.setInt(8, Integer.parseInt(dto.getNumberPeople().trim()));
+				preStatement.setString(9, dto.getTotalTime());
+				preStatement.setInt(10, Integer.parseInt(dto.getBuys().trim()));
 				rs = preStatement.execute();
 
 			} catch (SQLException e) {

@@ -14,13 +14,16 @@
 <title>Travel</title>
 
 
-<link href="view/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="view/resource/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="view/resource/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="view/resource/css/css_home.css" rel="stylesheet">
-<script type="text/javascript" src="view/resource/lib/jquery-2.1.4.min.js"></script>
+<script type="text/javascript"
+	src="view/resource/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="view/resource/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="view/resource/lib/jquery-home.min.js"></script>
+<script type="text/javascript"
+	src="view/resource/lib/jquery-home.min.js"></script>
 <script src="view/resource/ckeditor/ckeditor.js"></script>
 </head>
 <body>
@@ -36,50 +39,62 @@
 			<!-- /.column 1-->
 			<!-- .column 2-->
 			<div class="col-md-8">
-				
-					<form role="form" method="post" action="AddTourPlace">
-							<div class="form-group">
-								<label for="tour_title">Tên địa điểm:</label> <input type="text"
-									class="form-control" name="txt_place" placeholder = "Khu du lịch sơn lâm" id="tour_title">
-							</div>
-							<div class="form-group">
-								<label for="tour_detail">Mô tả địa điểm:</label>
-								<textarea name="txt_detail" class="form-control" rows="20" id="tour_detail"></textarea>
-							</div>
-							
-						<div class="form-group">
-							<label for="sel1">Chọn địa điểm:</label> <select name="txt_location"
-								class="form-control"
-								style="width: 60%" id="sel1">
-								
-								<%
-									ModelLocation mdLocation = new ModelLocation();
-									List<dtoLocation> locations = mdLocation.getAllLocation();
-									for(dtoLocation l: locations)
-									{
-										out.print("<option value=\""+l.getLocationId()+"\">"+l.getDescription() + " " + l.getName()+"</option>");
-									}								
-								%>																							
-							</select>
-						</div>													
-							<div class="form-group">
-								<button type="submit" name="btn_post" class="btn btn-primary">Đăng</button>
-							</div>
-						</form>
-										
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div>
+							<form role="form" method="post" action="AddTourPlace">
+								<div class="form-group">
+									<label for="tour_title">Tên địa điểm:</label> <input
+										type="text" class="form-control" required name="txt_place"
+										placeholder="Khu du lịch sơn lâm" id="tour_title">
+								</div>
+								<div class="form-group">
+									<label for="tour_detail">Mô tả địa điểm:</label>
+									<textarea name="txt_detail" required class="form-control"
+										rows="20" id="tour_detail"></textarea>
+								</div>
+
+								<div class="form-group">
+									<label for="sel1">Chọn địa điểm:</label> <select
+										name="txt_location" class="form-control" style="width: 60%"
+										id="sel1">
+
+										<%
+											ModelLocation mdLocation = new ModelLocation();
+											List<dtoLocation> locations = mdLocation.getAllLocation();
+											for(dtoLocation l: locations)
+											{
+												out.print("<option value=\""+l.getLocationId()+"\">"+l.getDescription() + " " + l.getName()+"</option>");
+											}
+										%>
+									</select>
+								</div>
+								<div class="form-group">
+									<button type="submit" name="btn_post" class="btn btn-primary">Đăng</button>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 
+
+
 			</div>
-			<script>
-				// Replace the <textarea id="editor1"> with a CKEditor
-				// instance, using default configuration.
-				CKEDITOR.replace('tour_detail', { height: 350 } );
-			</script>
-			<!-- /.column 2-->
-			<!-- .column 3-->
-			<div class="col-md-2"></div>
 
 		</div>
+		<script>
+			// Replace the <textarea id="editor1"> with a CKEditor
+			// instance, using default configuration.
+			CKEDITOR.replace('tour_detail', {
+				height : 350
+			});
+		</script>
+		<!-- /.column 2-->
+		<!-- .column 3-->
+		<div class="col-md-2"></div>
+
+	</div>
 	</div>
 	<jsp:include page="body-footer.jsp" />
 

@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@page import="dto.dtoUser"%>
+<%@page import="model.ModelUser"%>
+<%
+	String userId = (String) request.getAttribute("loggedUserId");
+	//out.print(userId);
+	ModelUser userModel = new ModelUser();
+	dtoUser user = userModel.getUserById(userId);
+%>
+
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -34,17 +44,18 @@
 
 					// user clicks change button
 					$("#btn_change_password").click(function() {
-
+						$("#btn_update_information").hide();
 						$("#view_information").hide();
-						$("#update_password").slideDown();
+						$("#update_password").show();
 
 					});
 
 					// user clicks cancel button
 					$("#btn_cancel_change").click(function() {
 
+						$("#btn_update_information").show();
 						$("#view_information").show();
-						$("#update_password").slideUp();
+						$("#update_password").hide();
 
 					});
 				});
@@ -54,16 +65,18 @@
 					// user clicks change button
 					$("#btn_update_information").click(function() {
 
+						$("#btn_update_information").hide();
 						$("#view_information").hide();
-						$("#update_information").slideDown();
+						$("#update_information").show();
 
 					});
 
 					// user clicks cancel button
 					$("#btn_cancel_update").click(function() {
 
+						$("#btn_update_information").show();
 						$("#view_information").show();
-						$("#update_information").slideUp();
+						$("#update_information").hide();
 
 					});
 				});
@@ -86,53 +99,79 @@
 						</div>
 						<div class="panel-body">
 							<div id="view_information">
-								<h4>Họ và tên: Trần Cảnh</h4>
-								<h4>Ngày Sinh: 26/05/1994</h4>
-								<h4>Điện Thoại: 09876475784578</h4>
-								<h4>Email: xxsasdasdasdasd@gmail.com</h4>
+								<h4>
+									Họ và tên:
+									<%=user.getFullName()%></h4>
+								<h4>
+									Ngày Sinh:
+									<%=user.getBirthday()%></h4>
+								<h4>
+									Điện Thoại:
+									<%=user.getPhone()%></h4>
+								<h4>
+									Email:
+									<%=user.getEmail()%></h4>
 								<h4>
 									Mật khẩu: <a id="btn_change_password" href="#">Thay đổi</a>
 								</h4>
-								<h4>Loại tài khoản: Thường dân</h4>
-								<h4>Tên công ty: Việt Travel</h4>
-								<h4>Mô tả công ty: Công ty du lịch đa quốc gia, tốt nhất
-									mọi thời đại :)))</h4>
+								<h4>
+									Loại tài khoản:
+									<%=user.getAccountType()%></h4>
+								<h4>
+									Tên công ty:
+									<%=user.getCompany()%></h4>
+								<h4>
+									Mô tả công ty:
+									<%=user.getCompanyDescription()%></h4>
 							</div>
 							<div id="update_information" class="hidden_div">
 								<h3>Cập nhật thông tin tài khoản</h3>
-								<form role="form">
+								<form role="form" action="ProfileManager" method="post">
 									<div class="form-group">
 										<label for="email">Họ & Tên:</label> <input type="text"
-											class="form-control" id="email">
+											class="form-control" required
+											value="<%=user.getFullName()%>" id="email" name="fullName">
 									</div>
 
 									<div class="form-group">
-										<label for="txt_birthday">Ngày Sinh:</label> <input readonly
-											type="text" class="form-control" value="2015-10-22"
-											id="txt_birthday">
+										<label for="txt_birthday">Ngày Sinh:</label> <input required
+											readonly type="text" class="form-control"
+											value="<%=user.getBirthday()%>" id="txt_birthday"
+											name="birthday">
 									</div>
 
 
 									<div class="form-group">
 										<label for="email">Email:</label> <input type="text"
-											class="form-control" id="email">
+											class="form-control" required value="<%=user.getEmail()%>"
+											id="email" name="email">
 									</div>
 
 
 									<div class="form-group">
+										<label for="email">Điện thoại:</label> <input type="text"
+											class="form-control" required value="<%=user.getPhone()%>"
+											id="email" name="phone">
+									</div>
+
+									<div class="form-group">
 										<label for="email">Địa chỉ:</label> <input type="text"
-											class="form-control" id="email">
+											class="form-control" required value="<%=user.getAddress()%>"
+											id="email" name="address">
 									</div>
 
 									<div class="form-group">
 										<label for="email">Tên công ty:</label> <input type="text"
-											class="form-control" id="email">
+											class="form-control" id="email" required
+											value="<%=user.getCompany()%>" name="companyName">
 									</div>
 
 
 									<div class="form-group">
 										<label for="email">Mô tả công ty:</label> <input type="text"
-											class="form-control" id="email">
+											class="form-control" id="email" required
+											value="<%=user.getCompanyDescription()%>"
+											name="companyDescription">
 									</div>
 
 
@@ -149,32 +188,83 @@
 							</div>
 							<div id="update_password" class="hidden_div">
 								<h4>Thay đổi mật khẩu:</h4>
-								<form role="form">
+								<form role="form" onsubmit="return change_pass_ajax()"
+									action="ProfileManager" method="post">
 									<div class="form-group">
 										<label for="old_password">Mật khẩu cũ:</label> <input
-											type="password" class="form-control" id="old_password">
+											type="password" required class="form-control"
+											id="old_password" name="oldPassword">
 									</div>
 									<div class="form-group">
 										<label for="new_password">Mật khẩu mới:</label> <input
-											type="password" class="form-control" id="new_password">
+											type="password" required class="form-control"
+											id="new_password" name="newPassword">
 									</div>
 									<div class="form-group">
 										<label for="confirm_password">Xác nhận mật khẩu mới:</label> <input
-											type="password" class="form-control" id="confirm_password">
+											type="password" required class="form-control"
+											id="confirm_password" name="confirmPassword">
 									</div>
-									<button type="submit" class="btn btn-default">Thay đổi</button>
-									<button type="submit" id="btn_cancel_change"
+									<button type="submit" class="btn btn-default" name="btn_change">Thay
+										đổi</button>
+									<button type="button" id="btn_cancel_change"
 										class="btn btn-default">Hủy</button>
+									<label id="change_message"></label>
 								</form>
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>
 			<script>
 				// Replace the <textarea id="editor1"> with a CKEditor
 				// instance, using default configuration.
 				CKEDITOR.replace('tour_detail');
+
+				function change_pass_ajax() {
+					var confirm_pass = document
+							.getElementById("confirm_password").value;
+					var old_pass = document.getElementById("old_password").value;
+					var new_pass = document.getElementById("new_password").value;
+					if (confirm_pass != new_pass) {
+						document.getElementById("change_message").innerHTML = " * Password mới không khớp!"
+						return false;
+					}
+					$
+							.post(
+									"ProfileManager",
+									{
+										btn_change : "btn_change",
+										confirmPassword : confirm_pass,
+										newPassword : new_pass,
+										oldPassword : old_pass
+									},
+									function(data, status) {
+										if (status == "success") {
+											switch (data) {
+											case "change_success":
+												document
+														.getElementById("change_message").innerHTML = " * Đã thay đổi password!"
+												alert(" * Đã thay đổi password!");
+												$("#update_password").hide();
+												$("#btn_update_information")
+														.show();
+												$("#view_information").show();
+												break;
+											case "old_password_is_incorrect":
+												document
+														.getElementById("change_message").innerHTML = " * Password cũ không đúng!"
+												break;
+											case "password_not_match":
+												document
+														.getElementById("change_message").innerHTML = " * Password mới không khớp!"
+												break;
+											}
+										}
+
+									});
+					return false;
+				}
 			</script>
 			<!-- /.column 2-->
 
