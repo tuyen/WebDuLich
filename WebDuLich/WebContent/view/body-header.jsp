@@ -38,19 +38,22 @@
 							String page_1= null;
 							String remember = null;
 							String userID = null;
-							
-							for (int i=0;i<cookies.length;i++)
+							if (cookies!=null)
 							{
-								if (cookies[i].getName().equals("login_remember"))
+								for (int i=0;i<cookies.length;i++)
 								{
-									remember = cookies[i].getValue();
+									if (cookies[i].getName().equals("login_remember"))
+									{
+										remember = cookies[i].getValue();
+									}
+									if (cookies[i].getName().equals("login_cookie"))
+									{
+										userID = cookies[i].getValue();
+									}
+								
 								}
-								if (cookies[i].getName().equals("login_cookie"))
-								{
-									userID = cookies[i].getValue();
-								}
-							
 							}
+							
 							if ("true".equals(remember))
 							{
 								name = user.getAccountByUserId(userID).getFullName();
@@ -64,12 +67,12 @@
 							{
 								page_1 = "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>"+name+"<b class='caret'></b></a>"+ 
 										"<ul class='dropdown-menu'>"+
-											"<li><a href='#'>Action</a></li>"+
-											"<li><a href='#'>Another action</a></li>"+
+											"<li><a href='#'>Quản lý bài đăng</a></li>"+
+											"<li><a href='#'>Thay đổi thông tin cá nhân</a></li>"+
 											"<li><a href='#'>Something else here</a></li>"+
 											"<li class='divider'></li>"+
 											"<li class='nav-header'>Nav header</li>"+
-											"<li><a href='#'>Separated link</a></li>"+
+											"<li><a href='"+request.getContextPath()+"/ControllerSignOut'>Sign out</a></li>"+
 											"<li><a href='#'>One more separated link</a></li>"+
 										"</ul></li>";
 							}

@@ -1,8 +1,9 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.SQLException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,7 +49,7 @@ public class ControllerSignIn extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
+		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String remember = request.getParameter("remember");
@@ -71,11 +72,11 @@ public class ControllerSignIn extends HttpServlet {
 				String token = md5.generateToken();
 				try {
 					signin.setToken(user.getUserId(), token);
-					Cookie cookieToken = new Cookie("login_token", token);
-					cookieToken.setMaxAge(60*60*24*30);
+					//Cookie cookieToken = new Cookie("login_token", token);
+					//cookieToken.setMaxAge(60*60*24*30);
 					
 					response.addCookie(cookieUserID);
-					response.addCookie(cookieToken);
+					//response.addCookie(cookieToken);
 					response.addCookie(cookieRemember);
 				}
 				catch (SQLException e) {
@@ -90,35 +91,25 @@ public class ControllerSignIn extends HttpServlet {
 				HttpSession session = request.getSession();
 				
 				
-				String token = md5.generateToken();
-				try {
-					signin.setToken(user.getUserId(), token);
+				//String token = md5.generateToken();
+				
+					//signin.setToken(user.getUserId(), token);
 					session.setAttribute("name", user.getFullName());
+					session.setAttribute("userID", user.getUserId());
 					response.addCookie(cookieRemember);
-				}
-				catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
+				
 			}
-			//request.getRequestDispatcher("view/Home.jsp").forward(request, response);
-			//request.setAttribute("abc", "123");
+			
 			response.sendRedirect("ControllerHome");
+			return;
 		}
 		else
-		{
-			//response.getWriter().write("Email đăng nhập hoặc mật khẩu không đúng!");
-			out.println("<script type=\"text/javascript\">");
-			out.println("alert('Email đăng nhập hoặc mật khẩu không đúng!');");
-			//out.println("location='index.jsp';");
-			out.println("</script>"); 
-			response.sendRedirect("ControllerHome");
-			//request.getRequestDispatcher("view/Home.jsp").forward(request, response);
-			 
-			
+		{			
+			response.sendRedirect("ControllerHome?login=false");		
+			return;			
 		}
 		
-		//response.sendRedirect(request.getContextPath() + "/ControllerHome");
 	}
 
 }
