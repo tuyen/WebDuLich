@@ -52,6 +52,7 @@ public class LoginUtility
 				break;
 			}
 		}
+
 		switch (remember)
 		{
 		case "true":

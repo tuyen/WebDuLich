@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utility.LoginUtility;
 import model.ModelPost;
 import dto.dtoPost;
 
@@ -43,6 +44,17 @@ public class AddTourPlace extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		String edit = request.getParameter("edit");
 		dtoPost dto = new dtoPost();			
+		
+		if(!login.isLogged(request, response))
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		else
+		{
+			userId = login.getLoggedUserID();
+		}
+		
 		if (edit != null && edit != "")
 		{
 			ModelPost post = new ModelPost();
@@ -60,6 +72,8 @@ public class AddTourPlace extends HttpServlet {
 	 *      response)
 	 */
 	
+	LoginUtility login = new LoginUtility();
+	String userId = "";
 	String edit_post = "";
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -67,6 +81,16 @@ public class AddTourPlace extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
+		if(!login.isLogged(request, response))
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		else
+		{
+			userId = login.getLoggedUserID();
+		}
 		
 		edit_post = request.getParameter("edit_post");
 		if(edit_post == null)
@@ -103,13 +127,13 @@ public class AddTourPlace extends HttpServlet {
 				post.setContent(txt_detail);
 				post.setPostDate(this.getCurrentDate());
 				post.setPrice("0");
-				post.setUserId("1");
+				post.setUserId(userId);
 				post.setViews("0");
 				post.setLocationId(txt_location);
 				ModelPost modelPost = new ModelPost();
 				modelPost.addTouristPlace(post);
 
-				String postId = modelPost.getLastPost("1");
+				String postId = modelPost.getLastPost(userId);
 				String view_url = "postdetail?cate=2&post=" + postId;
 				try {
 					response.sendRedirect(view_url);

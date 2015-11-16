@@ -30,6 +30,7 @@ public class AddTour extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	LoginUtility login = new LoginUtility();
+	String userId = "";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -54,6 +55,7 @@ public class AddTour extends HttpServlet {
 		if(!login.isLogged(request, response))
 		{
 			response.sendRedirect("ControllerHome");
+			return;
 		}
 		
 		String edit = request.getParameter("edit");
@@ -87,7 +89,9 @@ public class AddTour extends HttpServlet {
 		String[] placeId = request.getParameterValues("placeId[]");
 		String numberPeople = request.getParameter("numberPeople");
 		String tourTime = request.getParameter("tourTime");
+		
 
+		
 		if (tourName != null && tourDetail != null && tourPrice != null) {
 			if (tourDetail != "" && tourName != "") {
 				dtoPost post = new dtoPost();
@@ -96,7 +100,7 @@ public class AddTour extends HttpServlet {
 				post.setContent(tourDetail);
 				post.setPostDate(this.getCurrentDate());
 				post.setPrice(tourPrice);
-				post.setUserId("1");
+				post.setUserId(userId);
 				post.setViews("0");
 				post.setNumberPeople(numberPeople);
 				post.setTotalTime(tourTime);
@@ -105,7 +109,7 @@ public class AddTour extends HttpServlet {
 				modelPost.addTouristPlace(post);
 				String postId;
 				try {
-					postId = modelPost.getLastTourId("1");
+					postId = modelPost.getLastTourId(userId);
 					if (!post.equals("-1")) {
 						modelPost.insertPlace(postId, placeId);
 
@@ -171,6 +175,16 @@ public class AddTour extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
+		if(!login.isLogged(request, response))
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		else
+		{
+			userId = login.getLoggedUserID();
+		}
+		
 		edit_post = request.getParameter("edit_post");
 		if (edit_post != null && edit_post != "") {
 			updateTour(request, response);

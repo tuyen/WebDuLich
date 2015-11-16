@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utility.LoginUtility;
 import model.ModelPost;
 import dto.dtoPost;
 import dto.dtoTouristPlace;
@@ -24,6 +25,9 @@ import dto.dtoTouristPlace;
 @WebServlet("/AddUserFeeling")
 public class AddUserFeeling extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	LoginUtility login = new LoginUtility();
+	String userId = "";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -69,11 +73,13 @@ public class AddUserFeeling extends HttpServlet {
 	private void addTourFeeling(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		
+		
 		String tourId = request.getParameter("tourId");
 		String feelingName = request.getParameter("feelingName");
 		String yourFeeling = request.getParameter("yourFeeling");
 		String edit_post = request.getParameter("edit_post");
-		String userId = "1";
+		
 		if (tourId != null && feelingName != null & yourFeeling != null) {
 			if (tourId != "" && feelingName != "" & yourFeeling != "") {
 				dtoPost dto = new dtoPost();
@@ -128,6 +134,18 @@ public class AddUserFeeling extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
+		
+		if(!login.isLogged(request, response))
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		else
+		{
+			userId = login.getLoggedUserID();
+		}
+		
 		this.addTourFeeling(request, response);
 	}
 

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utility.LoginUtility;
 import utility.Md5Utility;
 import model.ModelUser;
 import dto.dtoUser;
@@ -29,6 +30,9 @@ public class ProfileManager extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	LoginUtility login = new LoginUtility();
+	String userId =""; 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -39,18 +43,21 @@ public class ProfileManager extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		request.setAttribute("loggedUserId", "1");
+		if(!login.isLogged(request, response))
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		else
+		{
+			userId = login.getLoggedUserID();
+		}
+		request.setAttribute("loggedUserId", userId);
 		request.getRequestDispatcher("view/account-manager.jsp").include(
 				request, response);
 	}
 
-	// companyDescription
-	// companyName
-	// address
-	// email
-	// birthday
-	// fullName
-	// update user's profile
+	
 	private void updateUserProfile(HttpServletRequest request,
 			HttpServletResponse response) throws SQLException, IOException {
 		PrintWriter out = response.getWriter();
@@ -62,7 +69,7 @@ public class ProfileManager extends HttpServlet {
 			if (confirmPassword.equals(newPassword)) {
 				ModelUser modelUser = new ModelUser();
 				Md5Utility md5 = new Md5Utility();
-				if (md5.md5(oldPassword).equals(modelUser.getUserPassword("1"))) {
+				if (md5.md5(oldPassword).equals(modelUser.getUserPassword(userId))) {
 					modelUser.updateUserPassword("1", md5.md5(newPassword));
 					out.print("change_success");
 				}
@@ -101,11 +108,11 @@ public class ProfileManager extends HttpServlet {
 				user.setCompanyDescription(companyDescription);
 				user.setAddress(address);
 				user.setPhone(phone);
-				user.setUserId("1");
+				user.setUserId(userId);
 				ModelUser modelUser = new ModelUser();
 				modelUser.updateUserProfile(user);
 				try {
-					request.setAttribute("loggedUserId", "1");
+					request.setAttribute("loggedUserId", userId);
 					request.getRequestDispatcher("view/account-manager.jsp")
 							.include(request, response);
 				} catch (ServletException e) {
@@ -129,6 +136,17 @@ public class ProfileManager extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
+		if(!login.isLogged(request, response))
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		else
+		{
+			userId = login.getLoggedUserID();
+		}
+		
 		try {
 			this.updateUserProfile(request, response);
 		} catch (SQLException e) {

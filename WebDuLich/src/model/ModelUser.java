@@ -40,6 +40,10 @@ public class ModelUser extends Model {
 						user.setStatus(rs.getBoolean("Status"));
 						user.setConfirmCode(rs.getString("ConfirmCode"));
 						user.setAvatar(rs.getString("Avatar"));
+						if(user.getBirthday() == null || user.getBirthday().equals(""))
+						{
+							user.setBirthday("2015-10-27");
+						}
 
 					} else
 						return null;
