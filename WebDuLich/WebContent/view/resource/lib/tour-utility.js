@@ -23,6 +23,9 @@ $(document).ready(function() {
 	})
 });
 
+/**
+ * datatable
+ */
 $(document).ready(function(){
     $('#tpost').DataTable({    	
     	"order": [[ 0, "desc" ]],
@@ -46,3 +49,14 @@ $(document).ready(function(){
     	}
     });
 });
+
+function commentButtonClick(){
+	$.ajax({
+		type : "post",
+		url : "postdetail",
+		data : {txtComment:$("#txtComment").val()},		
+		success : function(data) {
+			$("#comment_list").append(data);
+		}
+	});
+}

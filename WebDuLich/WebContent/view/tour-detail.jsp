@@ -72,7 +72,7 @@
 									i++;
 								} else
 									out.write("<div class='item' data-slide-number='0'>");
-								out.write("<img width = '100%' style = 'max-height: 418px;'height = '418' alt='not found' style='z-index: 0'src='"
+								out.write("<img width = '100%' style = 'max-height: 418px;height :418' alt='not found' style='z-index: 0'src='"
 										+ src + "'>");
 								out.write("</div>");
 							}
@@ -160,14 +160,14 @@
 				<h3>BÌNH LUẬN</h3>
 				<br> <br>
 			</div>
-			<form class="form form-group" role="form">
-				<textarea class="form-control" rows="3"
-					placeholder="Nhập bình luận ..." required></textarea>
-				<input class="btn btn-primary pull-right"
-					style="margin-top: 10px; margin-bottom: 10px" type="submit"
-					value="Bình luận">
-			</form>
-			<div class="comment-detail panel panel-group"
+			<div class="form form-group">
+				<textarea class="form-control" rows="3" name="txtComment"
+					id="txtComment" placeholder="Nhập bình luận ..." required></textarea>
+				<button class="btn btn-primary pull-right"
+					style="margin-top: 10px; margin-bottom: 10px"
+					onclick="commentButtonClick()">Bình luận</button>
+			</div>
+			<div class="comment-detail panel panel-group" id = "comment_list"
 				style="margin-top: 55px;">
 				<%
 					if (listComment.size() == 0) {

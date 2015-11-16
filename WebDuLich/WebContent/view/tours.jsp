@@ -138,7 +138,7 @@
 							+ "/postdetail?cate=1&post=" + post.getPostId() + "'> "
 							+ post.getTitle() + " </a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
-					out.write("<td><p data-toggle='tooltip' title='Giá tour "
+					out.write("<td width='50%'<p data-toggle='tooltip' title='Giá tour "
 							+ post.getPrice()
 							+ "'><span class='glyphicon glyphicon-usd' style='color: #3399FF'></span> "
 							+ post.getPrice() + "</p><td>");
