@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sun.xml.internal.ws.api.policy.PolicyResolver.ServerContext;
+
 import dto.dtoUser;
 import model.ModelUser;
 import utility.Md5Utility;
@@ -94,8 +96,9 @@ public class ControllerSignIn extends HttpServlet {
 				//String token = md5.generateToken();
 				
 					//signin.setToken(user.getUserId(), token);
-					session.setAttribute("name", user.getFullName());
 					session.setAttribute("userID", user.getUserId());
+					session.setAttribute("name", user.getFullName());
+					session.setAttribute("avatar", user.getAvatar());
 					response.addCookie(cookieRemember);
 				
 				
@@ -105,7 +108,10 @@ public class ControllerSignIn extends HttpServlet {
 			return;
 		}
 		else
-		{			
+		{		
+			
+			String a = getServletContext().getRealPath("view");
+			response.getWriter().write(a);
 			response.sendRedirect("ControllerHome?login=false");		
 			return;			
 		}

@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.sql.SQLException;
@@ -13,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 import model.ModelUser;
 import utility.EmailUtility;
 import utility.Md5Utility;
@@ -110,8 +113,14 @@ public class ControllerSignUp extends HttpServlet
 					+ "<a href='http://localhost:8080/WebDuLich/ControllerActiveAccount?code=" + confirmCode + "&email="
 					+ email + "'>Xác nhận tài khoản</a>";
 			EmailUtility.sendEmail(host, port, user, pass, email, subject, content);
+			
+			
 			// database
 			signup.createAccount(username, email, md5Password.md5(password), accounttype, confirmCode);
+			//create folder
+		//	String userID = signup.getAccountByEmail(email).getUserId();
+
+			
 			request.getRequestDispatcher("view/Successful-sign-up.jsp").include(request, response);
 		}
 		catch (SQLException | MessagingException e) {

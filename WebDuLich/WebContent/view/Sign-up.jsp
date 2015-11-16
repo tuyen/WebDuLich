@@ -26,7 +26,7 @@
 	<div style="margin-top:"></div>
 	<div class="container" >
 		<center>
-		<h3>Welcome to ,,,</h3>
+		<h3>Welcome to Banana Tour</h3>
 
 		<form id="signupForm" onsubmit="return checkSubmit()" method="POST" action="ControllerSignUp">
 			<br />

@@ -8,7 +8,6 @@
 
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <link href="view/resource/css/css_home.css" rel="stylesheet">
 <link href="view/resource/css/css_sign_up.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/jquery-2.1.4.min.js"></script>

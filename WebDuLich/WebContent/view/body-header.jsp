@@ -20,17 +20,19 @@
 					role="navigation">
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
+						<li><img alt="" src="http://logopond.com/logos/face4d80544d288d73016224fc961951.png" height="80px" width="100px" style="margin-right:20px" ></li>
 						<li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
 						<!--  <li class="divider"></li> -->
-						<li><a href="#">Tour mới</a></li>
-						<li><a href="#">Tour hot</a></li>
+						<li><a href="#">Tours</a></li>
+						
 						<li><a href="#">Điểm du lịch</a></li>
-						<li><a href="#">Điểm du lịch hot</a></li>
+						<li><a href="#">Cảm nhận của du khách</a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<% 
 							ModelUser user = new ModelUser();
+							
 							Cookie cookie = null;
 							Cookie[] cookies = null;
 							cookies = request.getCookies();
@@ -38,6 +40,8 @@
 							String page_1= null;
 							String remember = null;
 							String userID = null;
+							String image_name = null;
+							String image_src= null;
 							if (cookies!=null)
 							{
 								for (int i=0;i<cookies.length;i++)
@@ -49,6 +53,7 @@
 									if (cookies[i].getName().equals("login_cookie"))
 									{
 										userID = cookies[i].getValue();
+										image_name = user.getAccountByUserId(userID).getAvatar();
 									}
 								
 								}
@@ -61,11 +66,20 @@
 							else 
 							{
 								//session = request.getSession(false);
+								image_name = (String)session.getAttribute("avatar");
 								name = (String)session.getAttribute("name");
 							}
 							if (name!=null)
 							{
-								page_1 = "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>"+name+"<b class='caret'></b></a>"+ 
+								if(image_name!=null)
+								{
+									image_src = "view/resource/image/user/"+image_name;
+								}
+								else
+								{
+									image_src = "view/resource/image/user/default-avatar.png";
+								}
+								page_1 = "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'><img src='"+request.getContextPath()+"/"+image_src+"' width ='50px' height = '50px' padding='15px'>&nbsp;"+name+"&nbsp;<b class='caret'></b></a>"+ 
 										"<ul class='dropdown-menu'>"+
 											"<li><a href='#'>Quản lý bài đăng</a></li>"+
 											"<li><a href='#'>Thay đổi thông tin cá nhân</a></li>"+
