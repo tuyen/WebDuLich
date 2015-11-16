@@ -122,7 +122,6 @@ public class AddUserFeeling extends HttpServlet {
 		}
 
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
