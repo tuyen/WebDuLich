@@ -8,6 +8,7 @@
 <%@page import="model.ModelLocation"%>
 <%
 	dtoPost edit = (dtoPost)request.getAttribute("edit");
+	String place = (String)request.getAttribute("place");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -67,10 +68,17 @@
 										 id="sel1">
 										<%
 											ModelLocation mdLocation = new ModelLocation();
-											List<dtoPost> locations = mdLocation.getAllTourPlace();
+											List<dtoPost> locations = mdLocation.getAllPosts();
 											for(dtoPost l: locations)
 											{
-												out.print("<option value=\""+l.getPostId()+"\">"+ " " + l.getTitle()+"</option>");
+												if(place.equals(l.getPostId()))
+												{
+													out.print("<option selected value=\""+l.getPostId()+"\">"+ "  " + l.getTitle()+"</option>");
+												}
+												else
+												{
+													out.print("<option value=\""+l.getPostId()+"\">"+ " " + l.getTitle()+"</option>");
+												}
 											}
 										%>
 									</select>

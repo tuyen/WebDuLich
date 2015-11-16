@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sun.awt.RepaintArea;
+import utility.LoginUtility;
 import model.ModelPost;
 import dto.dtoPost;
 import dto.dtoTouristPlace;
@@ -27,6 +28,8 @@ import dto.dtoTouristPlace;
 @WebServlet("/AddTour")
 public class AddTour extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	LoginUtility login = new LoginUtility();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -47,6 +50,11 @@ public class AddTour extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
+//		if(!login.isLogged(request, response))
+//		{
+//			response.sendRedirect(view_url);
+//		}
+		
 		String edit = request.getParameter("edit");
 		dtoPost dto = new dtoPost();
 		List<dtoTouristPlace> places = new ArrayList<dtoTouristPlace>();

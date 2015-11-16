@@ -24,29 +24,40 @@ import dto.dtoTouristPlace;
 @WebServlet("/AddUserFeeling")
 public class AddUserFeeling extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddUserFeeling() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddUserFeeling() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
 		String edit = request.getParameter("edit");
-		dtoPost dto = new dtoPost();		
+		dtoPost dto = new dtoPost();
+		String place = "";
+		if (edit != null && edit != "") {
+			ModelPost post = new ModelPost();
+			dto = post.getPostById(edit);
+			place = post.getTourFeelingId(edit);
+
+		}
 		request.setAttribute("edit", dto);
-		request.getRequestDispatcher("view/add-user-feeling.jsp").include(request,
-				response);
+		request.setAttribute("place", place);
+
+		request.getRequestDispatcher("view/add-user-feeling.jsp").include(
+				request, response);
 	}
 
 	private String getCurrentDate() {
@@ -55,18 +66,16 @@ public class AddUserFeeling extends HttpServlet {
 		return dateFormat.format(date);
 	}
 
-	
 	private void addTourFeeling(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String tourId = request.getParameter("tourId");
-		String feelingName = request.getParameter("feelingName");		
+		String feelingName = request.getParameter("feelingName");
 		String yourFeeling = request.getParameter("yourFeeling");
+		String edit_post = request.getParameter("edit_post");
 		String userId = "1";
-		if(tourId != null && feelingName != null & yourFeeling != null)
-		{
-			if(tourId != "" && feelingName != "" & yourFeeling != "")
-			{
+		if (tourId != null && feelingName != null & yourFeeling != null) {
+			if (tourId != "" && feelingName != "" & yourFeeling != "") {
 				dtoPost dto = new dtoPost();
 				dto.setTitle(feelingName);
 				dto.setContent(yourFeeling);
@@ -74,30 +83,48 @@ public class AddUserFeeling extends HttpServlet {
 				dto.setUserId(userId);
 				dto.setPostDate(getCurrentDate());
 				ModelPost post = new ModelPost();
-				post.addTouristPlace(dto);
-				String id = null;
-				try {
-					id = post.getLastFeelingId(userId);
-					String[] str = {tourId};
-					post.insertPlace(id, str);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}			
-				
-				request.setAttribute("edit", dto);
-				request.getRequestDispatcher("view/add-user-feeling.jsp").include(request,
-						response);
+				if (edit_post != null) {
+					dto.setPostId(edit_post);
+					post.updatePost(dto);
+					post.removeAllPlace(edit_post);
+					String[] str = { tourId };
+					post.insertPlace(edit_post, str);
+					String url = "postdetail?cate=3&post=" + edit_post;
+					response.sendRedirect(url);
+				} else {
+					post.addTouristPlace(dto);
+					String id = null;
+					try {
+						id = post.getLastFeelingId(userId);
+						String[] str = { tourId };
+						post.insertPlace(id, str);
+						String url = "postdetail?cate=3&post=" + id;
+						response.sendRedirect(url);
+						return;
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+
+
+				// request.setAttribute("edit", dto);
+				// request.getRequestDispatcher("view/add-user-feeling.jsp").include(request,
+				// response);
 			}
 		}
 
 	}
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

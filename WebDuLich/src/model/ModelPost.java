@@ -135,6 +135,34 @@ public class ModelPost extends Model {
 		return tours;
 	}
 	
+	
+	public String getTourFeelingId(String postId)
+	{
+		dtoTouristPlace tours = new dtoTouristPlace();
+		tours.setPlaceId("");
+		String sql = "SELECT `PlaceId` FROM `touristplace`,`post` WHERE `post`.`PostId` = `touristplace`.`PlaceId` and `TourId` = "+postId;		
+		if(this.connection.connect())
+		{
+			ResultSet rs = this.connection.read(sql);
+			try {
+				if(rs.next())
+				{
+					dtoTouristPlace dto = new dtoTouristPlace();					
+					tours.setPlaceId(rs.getString("PlaceId"));
+					tours.setTourId(postId);	
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			this.connection.close();
+		}
+		return tours.getPlaceId();
+	}
+	
+	
 	public void insertPlace(String tourId, String[] placeIds) {
 		String sql = "INSERT INTO `touristplace`(`TourId`, `PlaceId`) VALUES (?,?)";
 		if (this.connection.connect()) {
