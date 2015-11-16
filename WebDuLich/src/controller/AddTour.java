@@ -52,12 +52,11 @@ public class AddTour extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		
-		if(!login.isLogged(request, response))
+		if((!login.isLogged(request, response))||(!login.getAccountType().equals("company")))
 		{
 			response.sendRedirect("ControllerHome");
 			return;
-		}
-		
+		}					
 		String edit = request.getParameter("edit");
 		dtoPost dto = new dtoPost();
 		List<dtoTouristPlace> places = new ArrayList<dtoTouristPlace>();

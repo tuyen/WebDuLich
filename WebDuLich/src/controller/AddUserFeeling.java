@@ -25,7 +25,7 @@ import dto.dtoTouristPlace;
 @WebServlet("/AddUserFeeling")
 public class AddUserFeeling extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	LoginUtility login = new LoginUtility();
 	String userId = "";
 
@@ -44,6 +44,13 @@ public class AddUserFeeling extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		if ((!login.isLogged(request, response))
+				|| (!login.getAccountType().equals("company"))) {
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -74,12 +81,12 @@ public class AddUserFeeling extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		
-		
+
 		String tourId = request.getParameter("tourId");
 		String feelingName = request.getParameter("feelingName");
 		String yourFeeling = request.getParameter("yourFeeling");
 		String edit_post = request.getParameter("edit_post");
-		
+
 		if (tourId != null && feelingName != null & yourFeeling != null) {
 			if (tourId != "" && feelingName != "" & yourFeeling != "") {
 				dtoPost dto = new dtoPost();
@@ -113,8 +120,6 @@ public class AddUserFeeling extends HttpServlet {
 					}
 				}
 
-
-
 				// request.setAttribute("edit", dto);
 				// request.getRequestDispatcher("view/add-user-feeling.jsp").include(request,
 				// response);
@@ -122,6 +127,7 @@ public class AddUserFeeling extends HttpServlet {
 		}
 
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -133,18 +139,15 @@ public class AddUserFeeling extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
-		
-		if(!login.isLogged(request, response))
-		{
+
+		if ((!login.isLogged(request, response))
+				|| (!login.getAccountType().equals("company"))) {
 			response.sendRedirect("ControllerHome");
 			return;
-		}
-		else
-		{
+		} else {
 			userId = login.getLoggedUserID();
 		}
-		
+
 		this.addTourFeeling(request, response);
 	}
 

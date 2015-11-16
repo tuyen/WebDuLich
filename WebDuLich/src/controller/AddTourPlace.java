@@ -45,7 +45,7 @@ public class AddTourPlace extends HttpServlet {
 		String edit = request.getParameter("edit");
 		dtoPost dto = new dtoPost();			
 		
-		if(!login.isLogged(request, response))
+		if((!login.isLogged(request, response))||(!login.getAccountType().equals("company")))
 		{
 			response.sendRedirect("ControllerHome");
 			return;
