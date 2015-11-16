@@ -11,6 +11,7 @@ public class LoginUtility
 	ModelUser user;
 	Md5Utility md5;
 	String currentUserID = null;
+	String currentUserAccounttype = null;
 	public LoginUtility()
 	{
 		user = new ModelUser();
@@ -45,6 +46,8 @@ public class LoginUtility
 			case "login_cookie":
 				currentUserID = cookies[i].getValue();
 				break;
+			case "login_accounttype":
+				currentUserAccounttype = cookies[i].getValue();
 			default:
 				break;
 			}
@@ -56,6 +59,7 @@ public class LoginUtility
 		case "false":
 			HttpSession session = request.getSession();
 			currentUserID = (String)session.getAttribute("userID");
+			currentUserAccounttype = (String)session.getAttribute("login_accounttype");
 			if (this.currentUserID!=null)
 				return true;
 			else 
@@ -68,5 +72,9 @@ public class LoginUtility
 	public String getLoggedUserID()
 	{
 		return this.currentUserID;
+	}
+	public String getAccountType()
+	{
+		return this.currentUserAccounttype;
 	}
 }

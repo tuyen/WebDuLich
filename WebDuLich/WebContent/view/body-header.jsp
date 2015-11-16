@@ -66,6 +66,7 @@
 							else 
 							{
 								//session = request.getSession(false);
+								userID = (String)session.getAttribute("userID");
 								image_name = (String)session.getAttribute("avatar");
 								name = (String)session.getAttribute("name");
 							}
@@ -73,13 +74,15 @@
 							{
 								if(image_name!=null)
 								{
-									image_src = "view/resource/image/user/"+image_name;
+									
+									image_src = request.getContextPath() + ("/view/resource/image/user/")+userID+"/"+image_name;
 								}
 								else
 								{
-									image_src = "view/resource/image/user/default-avatar.png";
+									image_src = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
 								}
-								page_1 = "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'><img src='"+request.getContextPath()+"/"+image_src+"' width ='50px' height = '50px' padding='15px'>&nbsp;"+name+"&nbsp;<b class='caret'></b></a>"+ 
+								page_1 ="<li><img src='"+image_src+"' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"+ 
+										"<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>"+name+"&nbsp;<b class='caret'></b></a>"+ 
 										"<ul class='dropdown-menu'>"+
 											"<li><a href='#'>Quản lý bài đăng</a></li>"+
 											"<li><a href='#'>Thay đổi thông tin cá nhân</a></li>"+

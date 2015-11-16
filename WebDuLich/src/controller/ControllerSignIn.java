@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.xml.internal.ws.api.policy.PolicyResolver.ServerContext;
+
 
 import dto.dtoUser;
 import model.ModelUser;
@@ -71,6 +71,7 @@ public class ControllerSignIn extends HttpServlet {
 				Cookie cookieUserID = new Cookie("login_cookie", user.getUserId());
 				cookieUserID.setMaxAge(60*60*24*30);
 				
+				Cookie cookieAccoutType = new Cookie ("login_accounttype",user.getAccountType());
 				String token = md5.generateToken();
 				try {
 					signin.setToken(user.getUserId(), token);
@@ -80,6 +81,7 @@ public class ControllerSignIn extends HttpServlet {
 					response.addCookie(cookieUserID);
 					//response.addCookie(cookieToken);
 					response.addCookie(cookieRemember);
+					response.addCookie(cookieAccoutType);
 				}
 				catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -99,6 +101,7 @@ public class ControllerSignIn extends HttpServlet {
 					session.setAttribute("userID", user.getUserId());
 					session.setAttribute("name", user.getFullName());
 					session.setAttribute("avatar", user.getAvatar());
+					session.setAttribute("login_accounttype", user.getAccountType());
 					response.addCookie(cookieRemember);
 				
 				
