@@ -50,10 +50,12 @@ public class AddTour extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-//		if(!login.isLogged(request, response))
-//		{
-//			response.sendRedirect(view_url);
-//		}
+		//what is thu bug?
+		//hi thiểu năng?
+		if(!login.isLogged(request, response))
+		{
+			response.sendRedirect("ControllerHome");
+		}
 		
 		String edit = request.getParameter("edit");
 		dtoPost dto = new dtoPost();
@@ -76,7 +78,7 @@ public class AddTour extends HttpServlet {
 		return dateFormat.format(date);
 	}
 
-	// xu l� them tour
+	// xu lý them tour
 	private void addTour(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
