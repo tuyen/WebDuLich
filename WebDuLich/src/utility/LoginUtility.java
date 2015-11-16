@@ -29,7 +29,7 @@ public class LoginUtility
 	public boolean isLogged(HttpServletRequest request, HttpServletResponse response)
 	{
 		this.currentUserID = null;
-		String remember = null;
+		String remember = "";
 		Cookie[] cookies = request.getCookies();
 		if(cookies==null)
 		{

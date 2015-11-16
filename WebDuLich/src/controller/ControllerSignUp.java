@@ -118,9 +118,11 @@ public class ControllerSignUp extends HttpServlet
 			// database
 			signup.createAccount(username, email, md5Password.md5(password), accounttype, confirmCode);
 			//create folder
-		//	String userID = signup.getAccountByEmail(email).getUserId();
-
-			
+			String userID = signup.getAccountByEmail(email).getUserId();
+			//String filePath=getServletConfig().getServletContext().getRealPath("/view/resource/image/user");
+			String filePath = request.getContextPath()+"/view/resource/image/user";
+			File folder = new File(filePath,userID);
+			folder.mkdirs();
 			request.getRequestDispatcher("view/Successful-sign-up.jsp").include(request, response);
 		}
 		catch (SQLException | MessagingException e) {

@@ -110,8 +110,9 @@ public class ControllerSignIn extends HttpServlet {
 		else
 		{		
 			
-			String a = getServletContext().getRealPath("view");
-			response.getWriter().write(a);
+			//String a = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
+			String filePath=getServletConfig().getServletContext().getRealPath("/view/resource/image/user/");
+			response.getWriter().println(filePath);
 			response.sendRedirect("ControllerHome?login=false");		
 			return;			
 		}
