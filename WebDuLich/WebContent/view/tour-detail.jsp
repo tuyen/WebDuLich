@@ -186,11 +186,16 @@
 				<br> <br>
 			</div>
 			<div class="form form-group">
-				<textarea class="form-control" rows="3" name="txtComment"
-					id="txtComment" placeholder="Nhập bình luận ..." required></textarea>
-				<button class="btn btn-primary pull-right"
-					style="margin-top: 10px; margin-bottom: 10px"
-					onclick="commentButtonClick()">Bình luận</button>
+				<form class="form form-group" role="form" method="post"
+					action="postdetail">
+					<input type="hidden" name="txt_postId" value="<%=postId%>">
+					<input type="hidden" name="txt_cate" value="<%=cate%>">
+					<textarea class="form-control" rows="3"
+						placeholder="Nhập bình luận ..." required name="txt_comment"></textarea>
+					<input class="btn btn-primary pull-right" name="btn_comment"
+						style="margin-top: 10px; margin-bottom: 10px" type="submit"
+						value="Bình luận">
+				</form>
 			</div>
 			<div class="comment-detail panel panel-group" id="comment_list"
 				style="margin-top: 55px;">

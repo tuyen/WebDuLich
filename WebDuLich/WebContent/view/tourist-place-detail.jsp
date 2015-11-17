@@ -123,11 +123,13 @@
 				<h3>BÌNH LUẬN</h3>
 				<br> <br>
 			</div>
-			<form class="form form-group" role="form">
+			<form class="form form-group" role="form" method="post" action="postdetail">
+				<input type="hidden" name="txt_postId" value="<%=postId%>">
+				<input type="hidden" name="txt_cate" value="<%=cate%>">
 				<textarea class="form-control" rows="3"
-					placeholder="Nhập bình luận ..." required></textarea>
-				<input class="btn btn-primary pull-right"
-					style="margin-top: 10px; margin-bottom: 10px" type="submit"
+					placeholder="Nhập bình luận ..." required name="txt_comment"></textarea>
+				<input class="btn btn-primary pull-right" name="btn_comment"
+					style="margin-top: 10px;  margin-bottom: 10px" type="submit"
 					value="Bình luận">
 			</form>
 			<div class="comment-detail panel panel-group"

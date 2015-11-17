@@ -2,7 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.dtoBookedTour;
+import dto.dtoComment;
 import dto.dtoUser;
 import model.ModelBookedTour;
+import model.ModelComment;
 import model.ModelPost;
 import model.ModelUser;
 import utility.EmailUtility;
@@ -57,10 +62,22 @@ public class CotrollerPostDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String category = request.getParameter("cate");
+		if(category == null)
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
+		if(category == "")
+		{
+			response.sendRedirect("ControllerHome");
+			return;
+		}
 		this.updateView(request, response);
+				
 		switch (category) {
 		case "1":
 			request.getRequestDispatcher("view/tour-detail.jsp").include(
@@ -76,6 +93,12 @@ public class CotrollerPostDetail extends HttpServlet {
 		}
 	}
 
+	String userId = "";
+	private String getCurrentDateTime() {
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return dateFormat.format(date);
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -84,9 +107,45 @@ public class CotrollerPostDetail extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-
 		String comment = request.getParameter("txtComment");
 
+		
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		if((!login.isLogged(request, response)))
+		{
+			response.getWriter()
+			.write("Bạn chưa đăng nhập, vui lòng đăng nhập để sử dụng chức năng này!");			
+			return;
+		}
+		else
+		{
+			userId = this.login.getLoggedUserID();
+		}
+		
+		String txt_postId = request.getParameter("txt_postId");
+		String txt_comment = request.getParameter("txt_comment");
+		String btn_comment = request.getParameter("btn_comment");
+		String txt_cate = request.getParameter("txt_cate");
+		String date = this.getCurrentDateTime();
+		if(txt_postId != null && txt_comment != null && txt_cate!=null)
+		{
+			if(txt_postId != "" && txt_comment != "" && txt_cate!="")
+			{
+				ModelComment mdComment = new ModelComment();
+				dtoComment dto = new dtoComment();
+				dto.setContent(txt_comment);
+				dto.setDateComment(date);
+				dto.setUserId(userId);
+				dto.setPostId(txt_postId);
+				mdComment.addComment(dto);
+				response.sendRedirect("postdetail?cate="+txt_cate+"&post="+txt_postId);
+				return;
+			}
+		}
+		
 		// when customer click on book-tour button
 		if (request.getParameter("bookTour") != null) {
 			String booked = request.getParameter("bookTour");
