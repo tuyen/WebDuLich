@@ -479,4 +479,36 @@ public class ModelPost extends Model {
 		}		
 		return post;
 	}
+	
+	/**
+	 * get the owner of specific post
+	 * @param postId String 
+	 * @param categoryId String
+	 * @return userId String
+	 */
+	public String getUserIdFromPost(String postId, String categoryId){
+		String userId = "";
+		if (connection.connect()) {
+			String sql = "select UserId from post where PostId = ? and CategoryId = ?";
+			try {
+				PreparedStatement stm = connection.getConnection()
+						.prepareStatement(sql);
+				stm.setString(1, postId);
+				stm.setString(2, categoryId);
+				connection.setPrepareStatement(stm);
+				ResultSet rs = connection.readSecure();
+				try {
+					if (rs.next()) {
+						userId = rs.getString("UserId");
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			connection.close();
+		}		
+		return userId;
+	}
 }

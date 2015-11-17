@@ -1,3 +1,5 @@
+<%@page import="utility.LoginUtility"%>
+<%@page import="model.ModelBookedTour"%>
 <%@page import="model.ModelComment"%>
 <%@page import="dto.dtoComment"%>
 <%@page import="model.ModelUser"%>
@@ -39,7 +41,6 @@
 <link href="view/resource/css/css_home.css" rel="stylesheet">
 <link href="view/resource/css/view-tour.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
-<script src="view/resource/lib/jquery-sign-in.min.js"></script>
 </head>
 <body>
 
@@ -112,9 +113,33 @@
 					</p>
 				</div>
 				<div style="margin-top: 10px">
-					<input type="submit" class="btn btn-primary" value="Đặt tour"
-						data-toggle="tooltip"
-						title="Báo đơn vị lữ hành liên hệ với bạn ngay!">
+					<%
+						ModelBookedTour mdBTour = new ModelBookedTour();
+						LoginUtility login = new LoginUtility();
+						if (login.isLogged(request, response)) {
+							if (mdBTour.checkBookedTour(login.getLoggedUserID(), postId)) {
+								out.write("<input id = 'book_tour' type='submit' class='btn btn-primary' value='Hủy đặt tour' onclick='bookTour(0, "
+										+ cate
+										+ " , "
+										+ postId
+										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'>");
+							} else
+								out.write("<input id = 'book_tour' type='submit' class='btn btn-primary' value='Đặt tour' onclick='bookTour(1, "
+										+ cate
+										+ " , "
+										+ postId
+										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'>");
+						} else
+							out.write("<input id = 'book_tour' type='submit' class='btn btn-primary' value='Đặt tour' onclick='bookTour(1, "
+									+ cate
+									+ " , "
+									+ postId
+									+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'>");
+					%>
+
+				</div>
+				<div>
+					<i style="color: red" id="book_status"></i>
 				</div>
 			</div>
 		</div>
@@ -167,7 +192,7 @@
 					style="margin-top: 10px; margin-bottom: 10px"
 					onclick="commentButtonClick()">Bình luận</button>
 			</div>
-			<div class="comment-detail panel panel-group" id = "comment_list"
+			<div class="comment-detail panel panel-group" id="comment_list"
 				style="margin-top: 55px;">
 				<%
 					if (listComment.size() == 0) {

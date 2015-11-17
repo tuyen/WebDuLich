@@ -1,4 +1,28 @@
 /**
+ * show tooltip
+ */
+$(document).ready(function() {
+	$('[data-toggle="tooltip"]').tooltip();
+});
+
+function bookTour(isBook, cate, post) {alert(isBook + cate + post);
+	var post_url = window.location;	
+	$.ajax({
+		type : "post",
+		url : "postdetail",
+		data : {
+			bookTour : isBook,
+			postUrl : post_url.toString(),
+			categoryId : cate,
+			postId : post
+		},
+		success : function(data) {
+			$("#book_status").html(data);
+		}
+	});
+}
+
+/**
  * function go to top
  */
 $(document).ready(function() {
@@ -26,35 +50,37 @@ $(document).ready(function() {
 /**
  * datatable
  */
-$(document).ready(function(){
-    $('#tpost').DataTable({    	
-    	"order": [[ 0, "desc" ]],
-    	"language": {
-            "lengthMenu": "Hiển thị _MENU_ bài",
-            "zeroRecords": "Chưa có dữ liệu",
-            "search":         "Tìm kiếm:",
-            "info":           "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ bài",
-            "infoEmpty": "Chưa có dữ liệu",
-            "infoFiltered": "(Lọc từ _MAX_ bài)",
-            "paginate": {
-                "first":      "Trang đầu",
-                "last":       "Trang cuối",
-                "next":       "Trang sau",
-                "previous":   "Trang trước"
-            },
-            "aria": {
-                "sortAscending":  ": Chọn để sắp xếp tăng dần",
-                "sortDescending": ": Chọn để sắp xếp giảm dần"
-            }
-    	}
-    });
+$(document).ready(function() {
+	$('#tpost').DataTable({
+		"order" : [ [ 0, "desc" ] ],
+		"language" : {
+			"lengthMenu" : "Hiển thị _MENU_ bài",
+			"zeroRecords" : "Chưa có dữ liệu",
+			"search" : "Tìm kiếm:",
+			"info" : "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ bài",
+			"infoEmpty" : "Chưa có dữ liệu",
+			"infoFiltered" : "(Lọc từ _MAX_ bài)",
+			"paginate" : {
+				"first" : "Trang đầu",
+				"last" : "Trang cuối",
+				"next" : "Trang sau",
+				"previous" : "Trang trước"
+			},
+			"aria" : {
+				"sortAscending" : ": Chọn để sắp xếp tăng dần",
+				"sortDescending" : ": Chọn để sắp xếp giảm dần"
+			}
+		}
+	});
 });
 
-function commentButtonClick(){
+function commentButtonClick() {
 	$.ajax({
 		type : "post",
 		url : "postdetail",
-		data : {txtComment:$("#txtComment").val()},		
+		data : {
+			txtComment : $("#txtComment").val()
+		},
 		success : function(data) {
 			$("#comment_list").append(data);
 		}
