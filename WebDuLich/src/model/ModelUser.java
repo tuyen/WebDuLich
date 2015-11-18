@@ -223,10 +223,22 @@ public class ModelUser extends Model {
 	}
 
 	public void createAccount(String userName, String email, String password,
-			String accountType, int code) throws SQLException {
+			String accountType, int code,String address,String Phone, String company_name,String company_description) throws SQLException {
 		// dtoUser user = new dtoUser();
-		String sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode) "
-				+ "values(?,?,?,?,'No',?)";
+		String sql="";
+		Boolean turn = false;
+		if ("NULL".equals(company_name))
+		{
+			sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode,Address,PHONE,CompanyName,CompanyDescription) "
+					+ "values(?,?,?,?,'No',?,?,?,NULL,NULL)";
+		}
+		else
+		{
+			turn= true;
+			sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode,Address,PHONE,CompanyName,CompanyDescription) "
+					+ "values(?,?,?,?,'No',?,?,?,?,?)";
+		}
+		
 		if (connection.connect()) {
 			PreparedStatement stm = connection.getConnection()
 					.prepareStatement(sql);
@@ -235,6 +247,14 @@ public class ModelUser extends Model {
 			stm.setString(3, password);
 			stm.setString(4, accountType);
 			stm.setInt(5, code);
+			stm.setString(6, address);
+			stm.setString(7, Phone);
+			if (turn)
+			{
+				stm.setString(8, company_name);
+				stm.setString(9, company_description);	
+			}
+			
 			connection.setPrepareStatement(stm);
 			connection.writeSecure();
 			connection.close();

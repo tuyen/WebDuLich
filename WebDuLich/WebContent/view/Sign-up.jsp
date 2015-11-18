@@ -16,8 +16,6 @@
 <script type="text/javascript" src="view/resource/lib/jquery-sign-up.js"></script>
 
 
-
-
 </head>
 <body>
 	<jsp:include page="body-header.jsp" />
@@ -25,19 +23,13 @@
 	<!-- Begin Body -->
 	<div style="margin-top:"></div>
 	<div class="container" >
+		<center><h3>Welcome to Banana Tour</h3></center>
+		
+		
 		<center>
-		<h3>Welcome to Banana Tour</h3>
-
 		<form id="signupForm" onsubmit="return checkSubmit()" method="POST" action="ControllerSignUp">
 			<br />
-			<div class="input-group">
-				<span class="input-group-addon "> <i
-					class="icon-envelope icon-2x glyphicon glyphicon-user"></i>
-				</span>
-				<input id="user_name" class="form-control input-lg"
-					placeholder="Full name" required="required" maxlength="100"
-					type="text" name="user_name" value="">
-			</div>
+			
 			<i id ="hintEmailExist" style="color:#E82626"></i>
 			<div class="input-group">
 				<span class="input-group-addon "> <i
@@ -52,27 +44,68 @@
 					class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
 				</span>
 				<input id="password" class="form-control input-lg"
-					placeholder="Password" required="required" maxlength="60"
+					placeholder="Mật khẩu" required="required" maxlength="60"
 					type="password" name="password">
 			</div>
-      <i id ="hintPassword" style="color:#E82626"></i>
+      		<i id ="hintPassword" style="color:#E82626"></i>
 			<div class="input-group">
 				<span class="input-group-addon"> <i
 					class="icon-asterisk icon-2x glyphicon glyphicon-asterisk"></i>
 				</span>
 				<input id="password_confirmation" class="form-control input-lg"
-					placeholder="Confirm Password" required="required" maxlength="60"
+					placeholder="Xác nhận mật khẩu" required="required" maxlength="60"
 					type="password" name="password_confirmation"  >
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon "> <i
+					class="icon-envelope icon-2x glyphicon glyphicon-user"></i>
+				</span>
+				<input id="user_name" class="form-control input-lg"
+					placeholder="Họ Tên" required="required" maxlength="100"
+					type="text" name="user_name" value="">
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon"> <i
+					class="icon-asterisk icon-2x glyphicon glyphicon-home"></i>
+				</span>
+				<input id="address" class="form-control input-lg"
+					placeholder="Địa chỉ" required="required" maxlength="60"
+					type="text" name="address"  >
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon"> <i
+					class="icon-asterisk icon-2x glyphicon glyphicon-earphone"></i>
+				</span>
+				<input id="phone" class="form-control input-lg"
+					placeholder="Số điện thoại" required="required" maxlength="60"
+					type="tel" pattern="[0-9]{4,11}"   name="phone"  >
 			</div>
 			<div class="input-group" class="radio">
 				<span style=""> <strong>Loại tài khoản:</strong>
-					&nbsp;&nbsp; <label style="cursor:pointer"> <input type="radio"
-							name="accout_type" value="personal" checked> Cá nhân
-				</label>&nbsp;&nbsp;&nbsp; <label style="cursor:pointer"> <input type="radio"
-							name="accout_type" value="company"> Công ty 
+					&nbsp;&nbsp; <label style="cursor:pointer"> <input id ="account_personal" type="radio"
+							name="account_type" value="personal" checked > Cá nhân
+				</label>&nbsp;&nbsp;&nbsp; <label style="cursor:pointer"> <input id ="account_company" type="radio"
+							name="account_type" value="company" > Công ty 
 				</label>
 				</span>
 			</div>
+			<div class="input-group" id="company1">
+				<span class="input-group-addon"> <i
+					class="icon-asterisk icon-2x glyphicon glyphicon-briefcase"></i>
+				</span>
+				<input id="company_name" class="form-control input-lg"
+					placeholder="Tên công ty" required="required" maxlength="60"
+					type="text" name="company_name"  >
+			</div>
+			<div class="input-group" id="company2">
+				<span class="input-group-addon"> <i
+					class="icon-asterisk icon-2x glyphicon glyphicon-pencil"></i>
+				</span>
+				<textarea id="company_description" data-autoresize rows="2"  class="form-control input-lg"
+					placeholder="Mô tả công ty" required="required" maxlength="150"
+					name="company_description" style=""></textarea> 
+			</div>
+			
 			<div class="form-group">
 				<button type="submit" id="btn-signup"   
 					class="btn btn-block btn-primary btn-lg">Sign Up</button>

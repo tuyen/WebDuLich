@@ -13,7 +13,7 @@
 <script type="text/javascript" src="view/resource/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="view/resource/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="view/resource/lib/jquery-home.min.js"></script>
-<script type="text/javascript" src="view/resource/lib/jquery-sign-up.js"></script>
+
 
 
 
@@ -21,7 +21,7 @@
 
 </head>
 <body>
-
+	
 	<jsp:include page="body-header.jsp" />
 
 
@@ -65,6 +65,7 @@
 		out.println(p3);
 		out.println(p4);
 		out.println(p5);
+		
 	}
 %>
 

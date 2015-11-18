@@ -102,33 +102,71 @@ public class ControllerSignUp extends HttpServlet
 		String email = request.getParameter("email");
 		String username = request.getParameter("user_name");
 		String password = request.getParameter("password");
-		String accounttype = request.getParameter("accout_type");
-
-		try {
-			// sent mail
-			String subject = "Xác nhận đăng ký tài khoản ,,,";
-			Random random = new Random();
-			int confirmCode = random.nextInt(999999) + 1;
-			String content = "Bạn hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
-					+ "<a href='http://localhost:8080/WebDuLich/ControllerActiveAccount?code=" + confirmCode + "&email="
-					+ email + "'>Xác nhận tài khoản</a>";
-			EmailUtility.sendEmail(host, port, user, pass, email, subject, content);
-			
-			
-			// database
-			signup.createAccount(username, email, md5Password.md5(password), accounttype, confirmCode);
-			//create folder
-			String userID = signup.getAccountByEmail(email).getUserId();
-			String filePath=getServletConfig().getServletContext().getRealPath("/view/resource/image/user");
-			//String filePath = request.getContextPath()+"/view/resource/image/user";
-			File folder = new File(filePath,userID);
-			folder.mkdirs();
-			request.getRequestDispatcher("view/Successful-sign-up.jsp").include(request, response);
+		String accounttype = request.getParameter("account_type");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		String company_name = request.getParameter("company_name");
+		String company_description = request.getParameter("company_description");
+		
+		if (company_name!=null && !company_name.isEmpty())
+		{
+			try {
+				// sent mail
+				String subject = "Xác nhận đăng ký tài khoản ,,,";
+				Random random = new Random();
+				int confirmCode = random.nextInt(999999) + 1;
+				String content = "Bạn hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
+						+ "<a href='http://localhost:8080/WebDuLich/ControllerActiveAccount?code=" + confirmCode + "&email="
+						+ email + "'>Xác nhận tài khoản</a>";
+				EmailUtility.sendEmail(host, port, user, pass, email, subject, content);
+				
+				
+				// database
+				signup.createAccount(username, email, md5Password.md5(password), accounttype, confirmCode,address,phone,company_name,company_description);
+				//create folder
+				String userID = signup.getAccountByEmail(email).getUserId();
+				String filePath=getServletConfig().getServletContext().getRealPath("/view/resource/image/user");
+				//String filePath = request.getContextPath()+"/view/resource/image/user";
+				File folder = new File(filePath,userID);
+				folder.mkdirs();
+				request.getRequestDispatcher("view/Successful-sign-up.jsp").include(request, response);
+			}
+			catch (SQLException | MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		catch (SQLException | MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		else 
+		{
+			company_name = "NULL";
+			company_description = "NULL";
+			try {
+				// sent mail
+				String subject = "Xác nhận đăng ký tài khoản ,,,";
+				Random random = new Random();
+				int confirmCode = random.nextInt(999999) + 1;
+				String content = "Bạn hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
+						+ "<a href='http://localhost:8080/WebDuLich/ControllerActiveAccount?code=" + confirmCode + "&email="
+						+ email + "'>Xác nhận tài khoản</a>";
+				EmailUtility.sendEmail(host, port, user, pass, email, subject, content);
+				
+				
+				// database
+				signup.createAccount(username, email, md5Password.md5(password), accounttype, confirmCode,address,phone,company_name,company_description);
+				//create folder
+				String userID = signup.getAccountByEmail(email).getUserId();
+				String filePath=getServletConfig().getServletContext().getRealPath("/view/resource/image/user");
+				//String filePath = request.getContextPath()+"/view/resource/image/user";
+				File folder = new File(filePath,userID);
+				folder.mkdirs();
+				request.getRequestDispatcher("view/Successful-sign-up.jsp").include(request, response);
+			}
+			catch (SQLException | MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 
 	}
 

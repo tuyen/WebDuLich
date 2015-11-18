@@ -81,7 +81,7 @@
 								{
 									image_src = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
 								}
-								page_1 ="<li><img src='"+image_src+"' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"+ 
+								page_1 ="<li><img src='"+image_src+"' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"+ 
 										"<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>"+name+"&nbsp;<b class='caret'></b></a>"+ 
 										"<ul class='dropdown-menu'>"+
 											"<li><a href='#'>Quản lý bài đăng</a></li>"+

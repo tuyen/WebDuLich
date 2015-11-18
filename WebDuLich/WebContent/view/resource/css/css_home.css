@@ -78,7 +78,7 @@ header {
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     color: #FFFFFF;
-    background-color: #00244F;
+    background-color: #02162D;
 }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 
@@ -87,6 +87,6 @@ header {
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #FFFFFF;
-    background-color: #00244F;
+    background-color: #02162D;
 }
 
