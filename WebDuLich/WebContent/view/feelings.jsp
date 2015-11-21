@@ -22,7 +22,7 @@
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
 	listPost = mdPost
-			.getAllPostByCategory("3", 10, (cur_page - 1) * 10);
+			.getPosts("3", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -95,7 +95,7 @@
 		<!-- pagination -->
 
 		<%
-			int pages = mdPost.getCountPost("3") / 10 + 1;
+			int pages = mdPost.getCountPost() / 10 + 1;
 			if (pages > 1) {
 		%>
 		<nav>

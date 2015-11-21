@@ -1,11 +1,10 @@
 package dto;
 
-import java.sql.Timestamp;
 
 public class dtoBookedTour {
 	private String userId = "";
 	private String tourId = "";
-	private Timestamp time;
+	private String time;
 	private int status;
 	
 	public int getStatus() {
@@ -14,11 +13,11 @@ public class dtoBookedTour {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public Timestamp getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Timestamp time) {
-		this.time = time;
+	public void setTime(String string) {
+		this.time = string;
 	}
 	public String getUserId() {
 		return userId;

@@ -60,7 +60,7 @@ public class AddUserFeeling extends HttpServlet {
 		String place = "";
 		if (edit != null && edit != "") {
 			ModelPost post = new ModelPost();
-			dto = post.getPostById(edit);
+			dto = post.getPost(edit);
 			place = post.getTourFeelingId(edit);
 
 		}

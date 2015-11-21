@@ -35,7 +35,7 @@ public class CotrollerPostDetail extends HttpServlet {
 	ModelUser mdAccount = new ModelUser();
 	LoginUtility login = new LoginUtility();
 	Calendar cal;
-	Timestamp currentDate;
+	Date currentDate;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -66,12 +66,13 @@ public class CotrollerPostDetail extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String category = request.getParameter("cate");
+		String postId =  request.getParameter("post");
 		if(category == null)
 		{
 			response.sendRedirect("ControllerHome");
 			return;
 		}
-		if(category == "")
+		if(category == "" || Integer.parseInt(category) > 3 || Integer.parseInt(category) < 0 || !mdPost.checkPostExist(postId, category))
 		{
 			response.sendRedirect("ControllerHome");
 			return;
@@ -106,9 +107,7 @@ public class CotrollerPostDetail extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		String comment = request.getParameter("txtComment");
-
+		response.setCharacterEncoding("UTF-8");		
 		
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -162,10 +161,11 @@ public class CotrollerPostDetail extends HttpServlet {
 						.getAccountByUserId(postOwnerId);
 				dtoUser customerAccount = mdAccount
 						.getAccountByUserId(customerId);
-				// if user book a tour
+				// if user book a tour				
 				if (booked.equals("1")) {
-					// if this tour has already booked
-					if (mdBookedTour.checkBookedTour(customerId, postId)) {
+					// if this tour has already exist
+					int isBooked = mdBookedTour.checkBookedTour(customerId, postId);
+					if (isBooked == -1) {//if this tour is canceled
 						// check if user can book this tour again
 						if (mdBookedTour.checkUserCanBookTour(customerId,
 								postId)) {
@@ -178,12 +178,13 @@ public class CotrollerPostDetail extends HttpServlet {
 							.write("Bạn đã hủy đặt tour này, vui lòng đặt tour lại sau 24h!");
 						}
 					} else {
+						if(isBooked == 0)
 						// user can book tour
 						bookTour(request,response, postUrl, postId, customerId,
 								customerAccount, false, postOwnerAccount);
 					}
 				} else {// if user cancel a tour has already booked
-					cancelBookedTour(request, postUrl, postId, customerId,
+					cancelBookedTour(request, response, postUrl, postId, customerId,
 							customerAccount, postOwnerAccount);
 				}		
 			} else {//if user are not logged in
@@ -199,16 +200,15 @@ public class CotrollerPostDetail extends HttpServlet {
 
 		dtoBookedTour bookedTour = new dtoBookedTour();
 		bookedTour.setTourId(postId);
-		bookedTour.setUserId(customerId);
-		cal = Calendar.getInstance();
-		currentDate = new Timestamp(cal.getTimeInMillis());
-		bookedTour.setTime(currentDate);
+		bookedTour.setUserId(customerId);		
+		bookedTour.setTime(getCurrentDateTime());
 		bookedTour.setStatus(1);
 
 		if (isBooked)
 			mdBookedTour.updateBookedTour(bookedTour);
 		else
 			mdBookedTour.addBookedTour(bookedTour);
+		mdPost.updateBuys(postId);
 
 		String content = "Xin chào "
 				+ postOwnerAccount.getFullName()
@@ -227,8 +227,8 @@ public class CotrollerPostDetail extends HttpServlet {
 				+ ". <br> BananaTour xin chúc "
 				+ postOwnerAccount.getFullName()
 				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng từ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "Thông báo đặt tour",
-				content);
+//		sendMail(request, customerAccount.getEmail(), "Thông báo đặt tour",
+//				content);
 		try {
 			response.getWriter()
 			.write("Bạn đã đặt tour thành công, đơn vị lữ hành sẽ liên hệ với bạn sớm nhất có thể. Chúc bạn có những chuyến đi thú vị!");
@@ -238,15 +238,13 @@ public class CotrollerPostDetail extends HttpServlet {
 		}
 	}
 
-	private void cancelBookedTour(HttpServletRequest request, String postUrl,
+	private void cancelBookedTour(HttpServletRequest request, HttpServletResponse response, String postUrl,
 			String postId, String customerId, dtoUser customerAccount,
 			dtoUser postOwnerAccount) {
 		dtoBookedTour bookedTour = new dtoBookedTour();
 		bookedTour.setTourId(postId);
 		bookedTour.setUserId(customerId);
-		cal = Calendar.getInstance();
-		currentDate = new Timestamp(cal.getTimeInMillis());
-		bookedTour.setTime(currentDate);
+		bookedTour.setTime(getCurrentDateTime());
 		bookedTour.setStatus(0);
 
 		mdBookedTour.updateBookedTour(bookedTour);
@@ -268,8 +266,15 @@ public class CotrollerPostDetail extends HttpServlet {
 				+ ". <br> BananaTour rất tiếc về điều này! Xin chúc "
 				+ postOwnerAccount.getFullName()
 				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng khác từ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "Thông báo hủy tour",
-				content);
+//		sendMail(request, customerAccount.getEmail(), "Thông báo hủy tour",
+//				content);
+		try {
+			response.getWriter()
+			.write("Bạn đã hủy đặt tour thành công. Chúc bạn có những lựa chọn thú vị với BananaTour!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void sendMail(HttpServletRequest request, String recipient,

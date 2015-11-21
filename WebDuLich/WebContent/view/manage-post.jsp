@@ -138,5 +138,33 @@
 	<jsp:include page="body-footer.jsp" />
 	<!-- go to top button -->
 	<span class="top"></span>
+	<script type="text/javascript">
+	/**
+	 * datatable
+	 */
+	$(document).ready(function() {
+		$('#tpost').DataTable({
+			"order" : [ [ 0, "desc" ] ],
+			"language" : {
+				"lengthMenu" : "Hiển thị _MENU_ bài",
+				"zeroRecords" : "Chưa có dữ liệu",
+				"search" : "Tìm kiếm:",
+				"info" : "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ bài",
+				"infoEmpty" : "Chưa có dữ liệu",
+				"infoFiltered" : "(Lọc từ _MAX_ bài)",
+				"paginate" : {
+					"first" : "Trang đầu",
+					"last" : "Trang cuối",
+					"next" : "Trang sau",
+					"previous" : "Trang trước"
+				},
+				"aria" : {
+					"sortAscending" : ": Chọn để sắp xếp tăng dần",
+					"sortDescending" : ": Chọn để sắp xếp giảm dần"
+				}
+			}
+		});
+	});
+	</script>
 </body>
 </html>

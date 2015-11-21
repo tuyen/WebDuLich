@@ -208,7 +208,7 @@ public class ModelUser extends Model {
 	public List<String> getAllCompanyName() {
 		List<String> listCompany = new ArrayList<String>();
 		if (connection.connect()) {
-			ResultSet rs = connection.read("select CompanyName from user");
+			ResultSet rs = connection.read("select CompanyName from user where AccountType = 'company'");
 			try {
 				while (rs.next()) {
 					listCompany.add(rs.getString("CompanyName"));

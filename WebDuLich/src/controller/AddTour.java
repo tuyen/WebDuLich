@@ -62,7 +62,7 @@ public class AddTour extends HttpServlet {
 		List<dtoTouristPlace> places = new ArrayList<dtoTouristPlace>();
 		if (edit != null && edit != "") {
 			ModelPost post = new ModelPost();
-			dto = post.getPostById(edit);
+			dto = post.getPost(edit);
 			places = post.getTouristPlace(edit);
 
 		}

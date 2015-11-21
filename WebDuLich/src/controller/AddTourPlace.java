@@ -58,7 +58,7 @@ public class AddTourPlace extends HttpServlet {
 		if (edit != null && edit != "")
 		{
 			ModelPost post = new ModelPost();
-			dto = post.getPostById(edit);
+			dto = post.getPost(edit);
 			
 		}
 		request.setAttribute("edit", dto);

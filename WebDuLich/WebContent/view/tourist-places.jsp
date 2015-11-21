@@ -21,8 +21,12 @@
 
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
-	listPost = mdPost
-			.getAllPostByCategory("2", 10, (cur_page - 1) * 10);
+
+	if (request.getParameter("place") != null)
+		listPost = mdPost.SearchTouristPlaces(
+				request.getParameter("place"), 10, (cur_page - 1) * 10);
+	else
+		listPost = mdPost.getPosts("2", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,7 +42,6 @@
 <link href="view/resource/css/css_home.css" rel="stylesheet">
 <link href="view/resource/css/view-tour.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
-<script src="view/resource/lib/jquery-sign-in.min.js"></script>
 </head>
 <body>
 	<!-- body header -->
@@ -53,7 +56,8 @@
 		<div class="panel panel-body">
 			<lable class="text-left"> <i>Tùy chọn tìm kiếm</i></lable>
 			<center>
-				<form action="touristplace" style="margin: 10px" class="form" role="form">
+				<form action="touristplace" style="margin: 10px" class="form"
+					method="get" role="form">
 					<div class="form-group">
 						<table width="50%">
 							<thead>
@@ -65,7 +69,7 @@
 							<tbody>
 								<tr>
 									<td style="padding-left: 25px;"><select
-											class="form-control " id="place" name = "place">
+											class="form-control " id="place" name="place">
 											<option>Tỉnh thành</option>
 											<%
 												for (dtoLocation location : listLocation) {
@@ -114,7 +118,7 @@
 					out.write("<a href='" + request.getContextPath()
 							+ "/postdetail?cate=2&post=" + post.getPostId() + "'> "
 							+ post.getTitle() + " </a>");
-					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");					
+					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 					out.write("<td><p data-toggle='tooltip' title='"
 							+ post.getViews()
 							+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
@@ -127,7 +131,7 @@
 		<!-- pagination -->
 
 		<%
-			int pages = mdPost.getCountPost("2") / 10 + 1;
+			int pages = mdPost.getCountPost() / 10 + 1;
 			if (pages > 1) {
 		%>
 		<nav>

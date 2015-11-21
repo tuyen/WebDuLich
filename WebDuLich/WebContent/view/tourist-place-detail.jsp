@@ -11,7 +11,7 @@
 	String postId = request.getParameter("post");
 	String cate = request.getParameter("cate");
 	//get requested post
-	dtoPost post = mdPost.getPostById(postId);
+	dtoPost post = mdPost.getPost(postId, cate);
 	//get all image of requested post
 	List<String> listSrc = mdPost.getImagesFromPost(postId);
 	//get concerning post
@@ -38,7 +38,6 @@
 <link href="view/resource/css/css_home.css" rel="stylesheet">
 <link href="view/resource/css/view-tour.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
-<script src="view/resource/lib/jquery-sign-in.min.js"></script>
 </head>
 <body>
 	<!-- body header -->

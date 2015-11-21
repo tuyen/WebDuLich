@@ -21,8 +21,21 @@
 
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
-	listPost = mdPost
-			.getAllPostByCategory("1", 10, (cur_page - 1) * 10);
+	listPost = mdPost.getPosts("1", 10, (cur_page - 1) * 10);
+	if (request.getParameter("place") != null
+			&& request.getParameter("company") != null)
+		listPost = mdPost.SearchTours(request.getParameter("place"),
+				request.getParameter("company"), 10,
+				(cur_page - 1) * 10);
+	else if (request.getParameter("place") != null)
+		listPost = mdPost.SearchToursByLocation(
+				request.getParameter("place"), 10, (cur_page - 1) * 10);
+	else if (request.getParameter("company") != null)
+		listPost = mdPost.SearchToursByLocation(
+				request.getParameter("company"), 10,
+				(cur_page - 1) * 10);
+	else
+		listPost = mdPost.getPosts("1", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,7 +51,6 @@
 <link href="view/resource/css/css_home.css" rel="stylesheet">
 <link href="view/resource/css/view-tour.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
-<script src="view/resource/lib/jquery-sign-in.min.js"></script>
 </head>
 <body>
 	<!-- body header -->
@@ -53,13 +65,12 @@
 		<div class="panel panel-body">
 			<lable class="text-left"> <i>Tùy chọn tìm kiếm</i></lable>
 			<center>
-				<form action="" style="margin: 10px" class="form" role="form">
+				<form action="tours" method="GET" style="margin: 10px" class="form"
+					role="form">
 					<div class="form-group">
 						<table width="80%">
 							<thead>
-								<tr>
-									<td style="padding-left: 25px;"><label for="price">Giá
-											tour</label></td>
+								<tr>									
 									<td style="padding-left: 25px;"><label for="place">Tỉnh
 											thành</label></td>
 									<td style="padding-left: 25px;"><label for="tourist">Công
@@ -69,15 +80,7 @@
 							<tbody>
 								<tr>
 									<td style="padding-left: 25px;"><select
-											class="form-control " id="price">
-											<option>Giá tour</option>
-											<option>10$</option>
-											<option>100$</option>
-											<option>1000$</option>
-										</select></td>
-
-									<td style="padding-left: 25px;"><select
-											class="form-control " id="place">
+											class="form-control " id="place" name="place">
 											<option>Tỉnh thành</option>
 											<%
 												for (dtoLocation location : listLocation) {
@@ -88,7 +91,7 @@
 										</select></td>
 
 									<td style="padding-left: 25px;"><select
-											class="form-control " id="tourist">
+											class="form-control " id="tourist" name="tourist">
 											<option>Công ty lữ hành</option>
 											<%
 												for (String company : listCompany) {
@@ -98,7 +101,7 @@
 											%>
 										</select></td>
 									<td><div class="btn-group" style="float: right">
-											<button type="button" id="btnSearch" class="btn btn-primary">Tìm
+											<button type="submit" id="btnSearch" class="btn btn-primary">Tìm
 												kiếm</button>
 										</div></td>
 								</tr>
@@ -158,7 +161,7 @@
 		<!-- pagination -->
 
 		<%
-			int pages = mdPost.getCountPost("1") / 10 + 1;
+			int pages = mdPost.getCountPost() / 10 + 1;
 			if (pages > 1) {
 		%>
 		<nav>
@@ -168,9 +171,8 @@
 					while (pages >= _page) {
 						if (cur_page == _page)
 							out.write("<li class = 'active'><a href='"
-									+ request.getContextPath()
-									+ "/tours?page=" + _page + "'>" + _page
-									+ "</a></li>");
+									+ request.getContextPath() + "/tours?page="
+									+ _page + "'>" + _page + "</a></li>");
 						else
 							out.write("<li><a href='" + request.getContextPath()
 									+ "/tours?page=" + _page + "'>" + _page

@@ -14,7 +14,7 @@
 	String postId = request.getParameter("post");
 	String cate = request.getParameter("cate");
 	//get requested post
-	dtoPost post = mdPost.getPostById(postId);
+	dtoPost post = mdPost.getPost(postId, cate);
 	//get all image of requested post
 	List<String> listSrc = mdPost.getImagesFromPost(postId);
 	//get concerning post
@@ -117,24 +117,25 @@
 						ModelBookedTour mdBTour = new ModelBookedTour();
 						LoginUtility login = new LoginUtility();
 						if (login.isLogged(request, response)) {
-							if (mdBTour.checkBookedTour(login.getLoggedUserID(), postId)) {
-								out.write("<input id = 'book_tour' type='submit' class='btn btn-primary' value='Hủy đặt tour' onclick='bookTour(0, "
+							if (mdBTour.checkBookedTourStatus(login.getLoggedUserID(),
+									postId)) {
+								out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='0' onclick='bookTour("
 										+ cate
 										+ " , "
 										+ postId
-										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'>");
+										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Hủy đặt tour </button>");
 							} else
-								out.write("<input id = 'book_tour' type='submit' class='btn btn-primary' value='Đặt tour' onclick='bookTour(1, "
+								out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
 										+ cate
 										+ " , "
 										+ postId
-										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'>");
+										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
 						} else
-							out.write("<input id = 'book_tour' type='submit' class='btn btn-primary' value='Đặt tour' onclick='bookTour(1, "
+							out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
 									+ cate
 									+ " , "
 									+ postId
-									+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'>");
+									+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
 					%>
 
 				</div>

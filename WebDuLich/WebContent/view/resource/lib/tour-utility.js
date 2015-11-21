@@ -5,19 +5,27 @@ $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
-function bookTour(isBook, cate, post) {alert(isBook + cate + post);
+function bookTour(cate, post) {
 	var post_url = window.location;	
 	$.ajax({
 		type : "post",
 		url : "postdetail",
 		data : {
-			bookTour : isBook,
+			bookTour : $("#book_tour").attr("value"),
 			postUrl : post_url.toString(),
 			categoryId : cate,
 			postId : post
 		},
 		success : function(data) {
 			$("#book_status").html(data);
+			if(data === "Bạn đã đặt tour thành công, đơn vị lữ hành sẽ liên hệ với bạn sớm nhất có thể. Chúc bạn có những chuyến đi thú vị!"){
+				$("#book_tour").html("Hủy đặt tour");
+				$("#book_tour").attr("value", "0");
+			}
+			else{
+				$("#book_tour").html("Đặt tour");
+				$("#book_tour").attr("value", "1");
+			}
 		}
 	});
 }
@@ -45,33 +53,6 @@ $(document).ready(function() {
 			scrollTop : 0
 		}, scrollDuration);
 	})
-});
-
-/**
- * datatable
- */
-$(document).ready(function() {
-	$('#tpost').DataTable({
-		"order" : [ [ 0, "desc" ] ],
-		"language" : {
-			"lengthMenu" : "Hiển thị _MENU_ bài",
-			"zeroRecords" : "Chưa có dữ liệu",
-			"search" : "Tìm kiếm:",
-			"info" : "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ bài",
-			"infoEmpty" : "Chưa có dữ liệu",
-			"infoFiltered" : "(Lọc từ _MAX_ bài)",
-			"paginate" : {
-				"first" : "Trang đầu",
-				"last" : "Trang cuối",
-				"next" : "Trang sau",
-				"previous" : "Trang trước"
-			},
-			"aria" : {
-				"sortAscending" : ": Chọn để sắp xếp tăng dần",
-				"sortDescending" : ": Chọn để sắp xếp giảm dần"
-			}
-		}
-	});
 });
 
 function commentButtonClick() {
