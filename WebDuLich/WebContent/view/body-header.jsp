@@ -15,18 +15,18 @@
 							class="icon-bar"></span>
 					</button>
 				</div>
-
+			
 				<nav class="navbar-collapse collapse" id="navbar-collapse-1"
 					role="navigation">
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
 						<li><img alt="" src="http://logopond.com/logos/face4d80544d288d73016224fc961951.png" height="80px" width="100px" style="margin-right:20px" ></li>
-						<li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
+						<li class="active"><a href="ControllerHome"><span class="glyphicon glyphicon-home"></span> Trang chủ</a></li>
 						<!--  <li class="divider"></li> -->
-						<li><a href="#">Tours</a></li>
+						<li><a href="ControllerTours">Tours</a></li>
 						
-						<li><a href="#">Điểm du lịch</a></li>
-						<li><a href="#">Cảm nhận của du khách</a></li>
+						<li><a href="ControllerToristPlace">Điểm du lịch</a></li>
+						<li><a href="ControllerFeeling">Cảm nhận của du khách</a></li>
 
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -72,25 +72,24 @@
 							}
 							if (name!=null)
 							{
-								if(image_name!=null)
-								{
-									
-									image_src = request.getContextPath() + ("/view/resource/image/user/")+userID+"/"+image_name;
-								}
-								else
+								if("default-avatar.png".equals(image_name))
 								{
 									image_src = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
 								}
-								page_1 ="<li><img src='"+image_src+"' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"+ 
+								else
+								{
+									image_src = request.getContextPath() + ("/view/resource/image/user/")+userID+"/"+image_name;
+								}
+								page_1 ="<li><img id = 'avatar' src='"+image_src+"' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"+ 
 										"<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>"+name+"&nbsp;<b class='caret'></b></a>"+ 
 										"<ul class='dropdown-menu'>"+
 											"<li><a href='#'>Quản lý bài đăng</a></li>"+
 											"<li><a href='#'>Thay đổi thông tin cá nhân</a></li>"+
-											"<li><a href='#'>Something else here</a></li>"+
+											//"<li><a href='#'>Something else here</a></li>"+
 											"<li class='divider'></li>"+
-											"<li class='nav-header'>Nav header</li>"+
+											//"<li class='nav-header'>Nav header</li>"+
 											"<li><a href='"+request.getContextPath()+"/ControllerSignOut'>Sign out</a></li>"+
-											"<li><a href='#'>One more separated link</a></li>"+
+											//"<li><a href='#'>One more separated link</a></li>"+
 										"</ul></li>";
 							}
 							
@@ -99,7 +98,7 @@
 								page_1 = "<li id='signup'><a href='ControllerSignUp'>Sign Up</a></li>"+
 										"<li id ='signin' class='dropdown'><a class='dropdown-toggle' href='#'"+
 										"data-toggle='dropdown'>Sign In <strong class='caret'></strong></a>"+
-										"<div class='dropdown-menu' style='padding: 15px;'>"+
+										"<div class='dropdown-menu'  style='padding: 15px;z-index:20;'>"+
 											"<!-- Login form here -->"+
 											"<form id='signinForm' action='ControllerSignIn' method='post' "+
 												"accept-charset='UTF-8' role='form' >"+
@@ -119,7 +118,7 @@
 												
 													"<button  id='btn-signin' type='submit'"+   
 													"class='btn btn-block btn-primary' style='clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom: 10px;'>Sign In</button>"+
-													"<a	href='Forgot-password' style='float: right;'"+
+													"<a	href='ControllerForgotPassword' style='float: right;'"+
 													"id='forgot_password'>Forgot password ?</a>"+
 											"</form>"+
 										"</div>"+

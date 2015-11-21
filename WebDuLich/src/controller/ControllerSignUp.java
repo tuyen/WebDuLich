@@ -71,9 +71,7 @@ public class ControllerSignUp extends HttpServlet
 				if (check == true) {
 					response.getWriter().write("Email đã được đăng ký, vui lòng nhập lại email khác!");
 					return;
-					// RequestDispatcher
-					// rd=request.getRequestDispatcher("view/SignUp.jsp");
-					// rd.include(request,response);
+					
 				}
 
 			}
@@ -112,7 +110,7 @@ public class ControllerSignUp extends HttpServlet
 		{
 			try {
 				// sent mail
-				String subject = "Xác nhận đăng ký tài khoản ,,,";
+				String subject = "Xác nhận đăng ký tài khoản Banana Tour";
 				Random random = new Random();
 				int confirmCode = random.nextInt(999999) + 1;
 				String content = "Bạn hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
@@ -145,7 +143,7 @@ public class ControllerSignUp extends HttpServlet
 				String subject = "Xác nhận đăng ký tài khoản ,,,";
 				Random random = new Random();
 				int confirmCode = random.nextInt(999999) + 1;
-				String content = "Bạn hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
+				String content = "Bạn đã đăng ký tài khoản tại <a href='http://localhost:8080/WebDuLich/ControllerHome'>Banana Tour</a>, hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
 						+ "<a href='http://localhost:8080/WebDuLich/ControllerActiveAccount?code=" + confirmCode + "&email="
 						+ email + "'>Xác nhận tài khoản</a>";
 				EmailUtility.sendEmail(host, port, user, pass, email, subject, content);

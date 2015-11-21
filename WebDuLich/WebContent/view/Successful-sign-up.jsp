@@ -8,7 +8,7 @@
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="view/resource/css/css_home.css" rel="stylesheet">
-<link href="view/resource/css/css_sign_up.css" rel="stylesheet">
+
 
 <script type="text/javascript" src="view/resource/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="view/resource/bootstrap/js/bootstrap.min.js"></script>
@@ -25,7 +25,7 @@
 	  <div class="row">
 	    <div class="col-xs-2"></div>
 	    <div class="col-xs-8" style="margin-bottom:17.6%">
-	      <div class="col-xs-12"><h2>Chúc mừng bạn đã đăng ký thành công, vui lòng kiểm tra hộp thư email để xác nhận tài khoản.</h2></div>
+	      <div class="col-xs-12"><h2>Chúc mừng bạn đã đăng ký thành công, vui lòng kiểm tra hộp thư email để xác nhận tài khoản. Have a nice day!!!</h2></div>
 
 	    <div class="col-xs-2"></div>
 	    </div>

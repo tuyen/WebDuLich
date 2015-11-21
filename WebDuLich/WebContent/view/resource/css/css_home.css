@@ -3,6 +3,17 @@
 	width:auto;
 }
 */
+#avatar {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    height:50px;
+    line-height: 1.42857;
+    max-width: 100%;
+    padding:0;
+    transition: all 0.2s ease-in-out 0s;
+}
 .container-fluid {
     padding-right: 30px;
 }
@@ -22,14 +33,14 @@ header {
 }
 .navbar-header
 {
-    background-color: #031054;
+    background-color: #02162D;
 }
 @media (min-width: 768px){
     #nav.affix {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index:10;
+    z-index:2;
 }
 .affix + .container
 {
@@ -38,10 +49,7 @@ header {
 
 
 @media (max-width: 768px) {
-  #nav.affix {
-    position: static;
 
-  }
     label{
         color: white;
     }
@@ -54,17 +62,10 @@ header {
     #forgot_password{
         color: white;
     }
-}
-
-#sidebar.affix-top {
-    position: static;
-}
-
-#sidebar.affix {
-    position: fixed;
-    top: 80px;
 
 }
+
+
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     color: #FFFFFF;
     background-color: #00244F;

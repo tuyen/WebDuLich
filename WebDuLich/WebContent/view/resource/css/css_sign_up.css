@@ -39,6 +39,10 @@
     #social-sign-in .icon-5x {
         font-size: 7em;
     }
+    .input-group {
+    margin-bottom: 20px;
+    width:100%;
+}
 }
 @media (max-width: 480px) {
     #social-sign-in .icon-5x {

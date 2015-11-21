@@ -20,12 +20,12 @@
 	<jsp:include page="body-header.jsp" />
 
 	<!-- Begin Body -->
-	<div style="margin-bottom:14.5%"></div>
+	<div style="margin-bottom:12%"></div>
 	<div class="container">
 	  <div class="row">
 	    <div class="col-xs-2"></div>
-	    <div class="col-xs-8" style="margin-bottom:17.6%">
-	    <div class="col-xs-12"><h2>Bạn kích hoạt thành công tài khoản, click vào <a href='http://localhost:8080/WebDuLich/ControllerHome'>đây</a> để trở về trang chủ.</h2></div>
+	    <div class="col-xs-8" style="margin-bottom:21%">
+	      <div class="col-xs-12"><h2>Hệ thống đã gửi mật khẩu mới đến email của bạn, vui lòng kiểm tra hộp thư email. Have a nice day!!!</h2></div>
 
 	    <div class="col-xs-2"></div>
 	    </div>

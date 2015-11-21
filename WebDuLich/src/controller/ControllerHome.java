@@ -32,14 +32,19 @@ public class ControllerHome extends HttpServlet
 	{
 		// TODO Auto-generated method stub
 
-		String xxxx = request.getParameter("login");
-
+		String login = request.getParameter("login");
+		String active = request.getParameter("active");
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-			if (("false").equals(xxxx)) {
+			if (("false").equals(login))
+			{
 				request.setAttribute("login_status", "not_ok");
+			}
+			if ("false".equals(active))
+			{
+				request.setAttribute("active", "not_yet");
 			}
 		
 		request.getRequestDispatcher("view/Home.jsp").include(request, response);

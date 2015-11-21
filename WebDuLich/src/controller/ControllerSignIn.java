@@ -58,9 +58,11 @@ public class ControllerSignIn extends HttpServlet {
 		password = md5.md5(password);
 		ModelUser signin = new ModelUser();
 		
-		boolean check = signin.checkSignIn(email, password);
-		if (check==true)
+		boolean checkPass = signin.checkSignIn(email, password);
+		boolean checkactive = signin.checkActive(email);
+		if (checkPass==true && checkactive==true)
 		{
+			
 			dtoUser user = new dtoUser();
 			user = signin.getAccountByEmail(email);
 			if (remember != null)
@@ -111,14 +113,19 @@ public class ControllerSignIn extends HttpServlet {
 			return;
 		}
 		else
-		{		
-			
-			//String a = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
-			String filePath=getServletConfig().getServletContext().getRealPath("/view/resource/image/user/");
-			response.getWriter().println(filePath);
-			response.sendRedirect("ControllerHome?login=false");		
-			return;			
-		}
+			if (checkactive==false && checkPass==true)
+			{		
+				
+				//String a = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
+				response.sendRedirect("ControllerHome?active=false");		
+				return;		
+			}
+			else
+			{
+				
+				response.sendRedirect("ControllerHome?login=false");		
+				return;			
+			}
 		
 	}
 

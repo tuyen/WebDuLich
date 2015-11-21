@@ -223,20 +223,21 @@ public class ModelUser extends Model {
 	}
 
 	public void createAccount(String userName, String email, String password,
-			String accountType, int code,String address,String Phone, String company_name,String company_description) throws SQLException {
+			String accountType, int code,String address,String Phone, 
+			String company_name,String company_description) throws SQLException {
 		// dtoUser user = new dtoUser();
 		String sql="";
 		Boolean turn = false;
 		if ("NULL".equals(company_name))
 		{
-			sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode,Address,PHONE,CompanyName,CompanyDescription) "
-					+ "values(?,?,?,?,'No',?,?,?,NULL,NULL)";
+			sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode,Address,PHONE,CompanyName,CompanyDescription,Avatar) "
+					+ "values(?,?,?,?,'No',?,?,?,NULL,NULL,'default-avatar.png')";
 		}
 		else
 		{
 			turn= true;
-			sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode,Address,PHONE,CompanyName,CompanyDescription) "
-					+ "values(?,?,?,?,'No',?,?,?,?,?)";
+			sql = "insert into user(FullName,Email,Password,AccountType,Status,ConfirmCode,Address,PHONE,CompanyName,CompanyDescription,Avatar) "
+					+ "values(?,?,?,?,'No',?,?,?,?,?,'default-avatar.png')";
 		}
 		
 		if (connection.connect()) {
@@ -321,13 +322,35 @@ public class ModelUser extends Model {
 	 * @return
 	 */
 	public boolean checkSignIn(String email, String password) {
-		String sql = "SELECT * FROM `user` WHERE Email= ? and Password = ? and Status = 'Yes'";
+		String sql = "SELECT * FROM `user` WHERE Email= ? and Password = ? ";
 		if (connection.connect()) {
 			try {
 				PreparedStatement stm = connection.getConnection()
 						.prepareStatement(sql);
 				stm.setString(1, email);
 				stm.setString(2, password);
+				connection.setPrepareStatement(stm);
+				ResultSet rs = connection.readSecure();
+				if (rs.next()) {
+					connection.close();
+					return true;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		connection.close();
+		return false;
+	}
+	public boolean checkActive(String email)
+	{
+		String sql = "SELECT * FROM `user` WHERE Email= ? and Status = 'Yes'";
+		if (connection.connect()) {
+			try {
+				PreparedStatement stm = connection.getConnection()
+						.prepareStatement(sql);
+				stm.setString(1, email);
 				connection.setPrepareStatement(stm);
 				ResultSet rs = connection.readSecure();
 				if (rs.next()) {
@@ -433,5 +456,21 @@ public class ModelUser extends Model {
 			}
 		}
 		return image_src;
+	}
+	public void resetPassword(String email,String password) throws SQLException
+	{
+		if (connection.connect())
+		{
+			String sql = "UPDATE `user` SET `Password`=? WHERE `Email`=? ";
+			PreparedStatement stm = this.connection.getConnection()
+					.prepareStatement(sql);
+			stm.setString(1, password);
+			stm.setString(2,email);
+			connection.setPrepareStatement(stm);
+			connection.writeSecure();
+			connection.close();
+		}
+		 
+		
 	}
 }
