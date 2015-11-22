@@ -22,3 +22,4 @@ xem doi tuong(tour, tourplace) cua khi xem user feeling
 thêm chuc nang doi avatar
 fix lai menu
 viet tap tin xml(thay servlet thanh cai url)
+loi khong vao dc http://localhost:8080/WebDuLich/PostController
