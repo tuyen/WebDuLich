@@ -78,19 +78,19 @@
 					<div class="btn-group">
 						<%
 							if (request.getParameter("cate") != null)
-									out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
-											+ listCate.get(Integer.parseInt(strCate) - 1)
-													.getName()
-											+ " <span class='caret'></span></button>");
-								else
-									out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
+													out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
+															+ listCate.get(Integer.parseInt(strCate) - 1)
+																	.getName()
+															+ " <span class='caret'></span></button>");
+												else
+													out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
 						%>
 						<ul class="dropdown-menu">
 							<%
 								for (dtoCategory cate : listCate)
-										out.print("<li>	<a href='" + request.getContextPath()
-												+ "/postmanager?cate=" + cate.getCategoryId()
-												+ "'>" + cate.getName() + "</a></li>");
+															out.print("<li>	<a href='" + request.getContextPath()
+																	+ "/postmanager?cate=" + cate.getCategoryId()
+																	+ "'>" + cate.getName() + "</a></li>");
 							%>
 						</ul>
 					</div>
@@ -113,19 +113,19 @@
 				<tbody>
 					<%
 						for (dtoPost p : listPost) {
-								out.write("<tr>");
-								out.write("<td>" + p.getPostDate() + "</td>");
-								out.write("<td><b font-size = '20px'><a href= '"
-										+ request.getContextPath() + "/postdetail?cate="
-										+ p.getCategoryId() + "&post=" + p.getPostId()
-										+ "'>" + p.getTitle() + "</a></b>");
-								out.write("<p>" + p.getShortContent() + " ...</p></td>");
-								out.write("<td style = 'font-size:15px'>");
-								out.write("<a style = 'margin-left:20px;' 	href = '#' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
-								out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
-								out.write("</td>");
-								out.write("</tr>");
-							}
+											out.write("<tr>");
+											out.write("<td>" + p.getPostDate() + "</td>");
+											out.write("<td><b font-size = '20px'><a href= '"
+													+ request.getContextPath() + "/postdetail?cate="
+													+ p.getCategoryId() + "&post=" + p.getPostId()
+													+ "'>" + p.getTitle() + "</a></b>");
+											out.write("<p>" + p.getShortContent() + " ...</p></td>");
+											out.write("<td style = 'font-size:15px'>");
+											out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/AddTour?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
+											out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
+											out.write("</td>");
+											out.write("</tr>");
+										}
 					%>
 				</tbody>
 			</table>
@@ -139,32 +139,36 @@
 	<!-- go to top button -->
 	<span class="top"></span>
 	<script type="text/javascript">
-	/**
-	 * datatable
-	 */
-	$(document).ready(function() {
-		$('#tpost').DataTable({
-			"order" : [ [ 0, "desc" ] ],
-			"language" : {
-				"lengthMenu" : "Hiển thị _MENU_ bài",
-				"zeroRecords" : "Chưa có dữ liệu",
-				"search" : "Tìm kiếm:",
-				"info" : "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ bài",
-				"infoEmpty" : "Chưa có dữ liệu",
-				"infoFiltered" : "(Lọc từ _MAX_ bài)",
-				"paginate" : {
-					"first" : "Trang đầu",
-					"last" : "Trang cuối",
-					"next" : "Trang sau",
-					"previous" : "Trang trước"
-				},
-				"aria" : {
-					"sortAscending" : ": Chọn để sắp xếp tăng dần",
-					"sortDescending" : ": Chọn để sắp xếp giảm dần"
-				}
-			}
-		});
-	});
+		/**
+		 * datatable
+		 */
+		$(document)
+				.ready(
+						function() {
+							$('#tpost')
+									.DataTable(
+											{
+												"order" : [ [ 0, "desc" ] ],
+												"language" : {
+													"lengthMenu" : "Hiển thị _MENU_ bài",
+													"zeroRecords" : "Chưa có dữ liệu",
+													"search" : "Tìm kiếm:",
+													"info" : "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ bài",
+													"infoEmpty" : "Chưa có dữ liệu",
+													"infoFiltered" : "(Lọc từ _MAX_ bài)",
+													"paginate" : {
+														"first" : "Trang đầu",
+														"last" : "Trang cuối",
+														"next" : "Trang sau",
+														"previous" : "Trang trước"
+													},
+													"aria" : {
+														"sortAscending" : ": Chọn để sắp xếp tăng dần",
+														"sortDescending" : ": Chọn để sắp xếp giảm dần"
+													}
+												}
+											});
+						});
 	</script>
 </body>
 </html>

@@ -22,12 +22,14 @@
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
 	listPost = mdPost.getPosts("1", 10, (cur_page - 1) * 10);
+	String placeId = request.getParameter("place");
+	String companyId = request.getParameter("company");
 	if (request.getParameter("place") != null
-			&& request.getParameter("company") != null)
+			&& request.getParameter("company") != null) {			
 		listPost = mdPost.SearchTours(request.getParameter("place"),
 				request.getParameter("company"), 10,
 				(cur_page - 1) * 10);
-	else if (request.getParameter("place") != null)
+	} else if (request.getParameter("place") != null)
 		listPost = mdPost.SearchToursByLocation(
 				request.getParameter("place"), 10, (cur_page - 1) * 10);
 	else if (request.getParameter("company") != null)
@@ -84,8 +86,13 @@
 											<option>Tỉnh thành</option>
 											<%
 												for (dtoLocation location : listLocation) {
-													out.write("<option value = '" + location.getLocationId() + "'>"
-															+ location.getName() + "</option>");
+													if (location.getLocationId().equals(placeId))
+														out.write("<option selected value = '"
+																+ location.getLocationId() + "'>"
+																+ location.getName() + "</option>");
+													else
+														out.write("<option value = '" + location.getLocationId()
+																+ "'>" + location.getName() + "</option>");
 												}
 											%>
 										</select></td>
@@ -95,8 +102,12 @@
 											<option>Công ty lữ hành</option>
 											<%
 												for (String company : listCompany) {
-													out.write("<option value = '" + company + "'>" + company
-															+ "</option>");
+													if (company.equals(companyId))
+														out.write("<option selected value = '" + company + "'>"
+																+ company + "</option>");
+													else
+														out.write("<option value = '" + company + "'>" + company
+																+ "</option>");
 												}
 											%>
 										</select></td>

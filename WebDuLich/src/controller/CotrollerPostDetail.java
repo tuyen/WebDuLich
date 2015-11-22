@@ -227,8 +227,8 @@ public class CotrollerPostDetail extends HttpServlet {
 				+ ". <br> BananaTour xin chúc "
 				+ postOwnerAccount.getFullName()
 				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng từ BananaTour!";
-//		sendMail(request, customerAccount.getEmail(), "Thông báo đặt tour",
-//				content);
+		sendMail(request, customerAccount.getEmail(), "Thông báo đặt tour",
+				content);
 		try {
 			response.getWriter()
 			.write("Bạn đã đặt tour thành công, đơn vị lữ hành sẽ liên hệ với bạn sớm nhất có thể. Chúc bạn có những chuyến đi thú vị!");
@@ -266,8 +266,8 @@ public class CotrollerPostDetail extends HttpServlet {
 				+ ". <br> BananaTour rất tiếc về điều này! Xin chúc "
 				+ postOwnerAccount.getFullName()
 				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng khác từ BananaTour!";
-//		sendMail(request, customerAccount.getEmail(), "Thông báo hủy tour",
-//				content);
+		sendMail(request, customerAccount.getEmail(), "Thông báo hủy tour",
+				content);
 		try {
 			response.getWriter()
 			.write("Bạn đã hủy đặt tour thành công. Chúc bạn có những lựa chọn thú vị với BananaTour!");
