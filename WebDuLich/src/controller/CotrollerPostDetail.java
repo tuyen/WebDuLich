@@ -13,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dto.dtoBookedTour;
 import dto.dtoComment;
@@ -63,8 +62,7 @@ public class CotrollerPostDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.setAttribute("controller", "abc");
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String category = request.getParameter("cate");
@@ -118,7 +116,7 @@ public class CotrollerPostDetail extends HttpServlet {
 		if((!login.isLogged(request, response)))
 		{
 			response.getWriter()
-			.write("BaÌ£n chÆ°a Ä‘Äƒng nhÃ¢Ì£p, vui loÌ€ng Ä‘Äƒng nhÃ¢Ì£p Ä‘ÃªÌ‰ sÆ°Ì‰ duÌ£ng chÆ°Ì�c nÄƒng naÌ€y!");			
+			.write("Bạn chưa đăng nhập, vui lòng đăng nhập để sử dụng chức năng này!");			
 			return;
 		}
 		else
@@ -177,7 +175,7 @@ public class CotrollerPostDetail extends HttpServlet {
 						} else {
 							// user can not book tour
 							response.getWriter()
-							.write("BaÌ£n Ä‘aÌƒ huÌ‰y Ä‘ÄƒÌ£t tour naÌ€y, vui loÌ€ng Ä‘ÄƒÌ£t tour laÌ£i sau 24h!");
+							.write("Bạn đã hủy đặt tour này, vui lòng đặt tour lại sau 24h!");
 						}
 					} else {
 						if(isBooked == 0)
@@ -191,7 +189,7 @@ public class CotrollerPostDetail extends HttpServlet {
 				}		
 			} else {//if user are not logged in
 				response.getWriter()
-						.write("BaÌ£n chÆ°a Ä‘Äƒng nhÃ¢Ì£p, vui loÌ€ng Ä‘Äƒng nhÃ¢Ì£p Ä‘ÃªÌ‰ sÆ°Ì‰ duÌ£ng chÆ°Ì�c nÄƒng naÌ€y!");
+						.write("Bạn chưa đăng nhập, vui lòng đăng nhập để sử dụng chức năng này!");
 			}
 		}
 	}
@@ -212,28 +210,28 @@ public class CotrollerPostDetail extends HttpServlet {
 			mdBookedTour.addBookedTour(bookedTour);
 		mdPost.updateBuys(postId);
 
-		String content = "Xin chaÌ€o "
+		String content = "Xin chào "
 				+ postOwnerAccount.getFullName()
 				+ "! <br>"
-				+ "Tour du liÌ£ch baÌ£n Ä‘Äƒng taÌ£i <a href = '"
+				+ "Tour du lịch bạn đăng tại <a href = '"
 				+ postUrl
-				+ "'> BananaTour </a> vÆ°Ì€a Ä‘Æ°Æ¡Ì£c khaÌ�ch haÌ€ng Ä‘ÄƒÌ£t mua. <br>"
-				+ "ThÃ´ng tin khaÌ�ch Ä‘ÄƒÌ£t mua nhu sau: <br> - TÃªn: "
+				+ "'> BananaTour </a> vừa được khách hàng đặt mua. <br>"
+				+ "Thông tin khách đặt mua nhu sau: <br> - Tên: "
 				+ customerAccount.getFullName()
 				+ ".<br> - Email: "
 				+ customerAccount.getEmail()
-				+ ". <br> - Ä�iÃªÌ£n thoaÌ£i: "
+				+ ". <br> - Điện thoại: "
 				+ customerAccount.getPhone()
-				+ ".<br> - Ä�iÌ£a chiÌ‰: "
+				+ ".<br> - Địa chỉ: "
 				+ customerAccount.getAddress()
-				+ ". <br> BananaTour xin chuÌ�c "
+				+ ". <br> BananaTour xin chúc "
 				+ postOwnerAccount.getFullName()
-				+ " coÌ� 1 ngaÌ€y laÌ€m viÃªÌ£c hiÃªÌ£u quaÌ‰ vaÌ€ coÌ� Ä‘Æ°Æ¡Ì£c nhÆ°Ìƒng hÆ¡Ì£p Ä‘Ã´Ì€ng chÃ¢Ì�t lÆ°Æ¡Ì£ng tÆ°Ì€ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "ThÃ´ng baÌ�o Ä‘ÄƒÌ£t tour",
+				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng từ BananaTour!";
+		sendMail(request, customerAccount.getEmail(), "Thông báo đặt tour",
 				content);
 		try {
 			response.getWriter()
-			.write("BaÌ£n Ä‘aÌƒ Ä‘ÄƒÌ£t tour thaÌ€nh cÃ´ng, Ä‘Æ¡n viÌ£ lÆ°Ìƒ haÌ€nh seÌƒ liÃªn hÃªÌ£ vÆ¡Ì�i baÌ£n sÆ¡Ì�m nhÃ¢Ì�t coÌ� thÃªÌ‰. ChuÌ�c baÌ£n coÌ� nhÆ°Ìƒng chuyÃªÌ�n Ä‘i thuÌ� viÌ£!");
+			.write("Bạn đã đặt tour thành công, đơn vị lữ hành sẽ liên hệ với bạn sớm nhất có thể. Chúc bạn có những chuyến đi thú vị!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -251,28 +249,28 @@ public class CotrollerPostDetail extends HttpServlet {
 
 		mdBookedTour.updateBookedTour(bookedTour);
 
-		String content = "Xin chaÌ€o "
+		String content = "Xin chào "
 				+ postOwnerAccount.getFullName()
 				+ "! <br>"
-				+ "KhaÌ�ch haÌ€ng Ä‘ÄƒÌ£t tour du liÌ£ch baÌ£n Ä‘Äƒng taÌ£i <a href = '"
+				+ "Khách hàng đặt tour du lịch bạn đăng tại <a href = '"
 				+ postUrl
-				+ "'> BananaTour </a> vÆ°Ì€a huÌ‰y Ä‘ÄƒÌ£t tour. <br>"
-				+ "ThÃ´ng tin khaÌ�ch haÌ€ng nhÆ° sau: <br> - TÃªn: "
+				+ "'> BananaTour </a> vừa hủy đặt tour. <br>"
+				+ "Thông tin khách hàng như sau: <br> - Tên: "
 				+ customerAccount.getFullName()
 				+ ".<br> - Email: "
 				+ customerAccount.getEmail()
-				+ ". <br> - Ä�iÃªÌ£n thoaÌ£i: "
+				+ ". <br> - Điện thoại: "
 				+ customerAccount.getPhone()
-				+ ".<br> - Ä�iÌ£a chiÌ‰: "
+				+ ".<br> - Địa chỉ: "
 				+ customerAccount.getAddress()
-				+ ". <br> BananaTour rÃ¢Ì�t tiÃªÌ�c vÃªÌ€ Ä‘iÃªÌ€u naÌ€y! Xin chuÌ�c "
+				+ ". <br> BananaTour rất tiếc về điều này! Xin chúc "
 				+ postOwnerAccount.getFullName()
-				+ " coÌ� 1 ngaÌ€y laÌ€m viÃªÌ£c hiÃªÌ£u quaÌ‰ vaÌ€ coÌ� Ä‘Æ°Æ¡Ì£c nhÆ°Ìƒng hÆ¡Ì£p Ä‘Ã´Ì€ng chÃ¢Ì�t lÆ°Æ¡Ì£ng khaÌ�c tÆ°Ì€ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "ThÃ´ng baÌ�o huÌ‰y tour",
+				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng khác từ BananaTour!";
+		sendMail(request, customerAccount.getEmail(), "Thông báo hủy tour",
 				content);
 		try {
 			response.getWriter()
-			.write("BaÌ£n Ä‘aÌƒ huÌ‰y Ä‘ÄƒÌ£t tour thaÌ€nh cÃ´ng. ChuÌ�c baÌ£n coÌ� nhÆ°Ìƒng lÆ°Ì£a choÌ£n thuÌ� viÌ£ vÆ¡Ì�i BananaTour!");
+			.write("Bạn đã hủy đặt tour thành công. Chúc bạn có những lựa chọn thú vị với BananaTour!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -293,7 +291,7 @@ public class CotrollerPostDetail extends HttpServlet {
 			EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
 					content);
 			// resultMessage =
-			// "B?n dï¿½ d?t tour thï¿½nh cï¿½ng, don v? l? hï¿½nh s? liï¿½n h? v?i b?n s?m nh?t cï¿½ th?. Chï¿½c b?n cï¿½ nh?ng chuy?n di thï¿½ v?!";
+			// "B?n d� d?t tour th�nh c�ng, don v? l? h�nh s? li�n h? v?i b?n s?m nh?t c� th?. Ch�c b?n c� nh?ng chuy?n di th� v?!";
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			resultMessage = "L?i g?i mail. Sorry!!!" + ex.getMessage();
