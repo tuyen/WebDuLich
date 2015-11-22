@@ -93,9 +93,7 @@ public class ControllerSignUp extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		// TODO Auto-generated method stub
-		Cookie cookieController = new Cookie("controller", "sign-up");
-		cookieController.setMaxAge(60*60*24*30);
-		response.addCookie(cookieController);
+		
 		Md5Utility md5Password = new Md5Utility();
 		
 		response.setContentType("text/html;charset=UTF-8");
@@ -146,7 +144,7 @@ public class ControllerSignUp extends HttpServlet
 			company_description = "NULL";
 			try {
 				// sent mail
-				String subject = "Xác nhận đăng ký tài khoản ,,,";
+				String subject = "Xác nhận đăng ký tài khoản Banana Tour";
 				Random random = new Random();
 				int confirmCode = random.nextInt(999999) + 1;
 				String content = "Bạn đã đăng ký tài khoản tại <a href='http://localhost:8080/WebDuLich/ControllerHome'>Banana Tour</a>, hãy hoàn thành bước cuối cùng để sử dụng tài khoản bằng cách click vào đường link bên đưới:<br/>"
