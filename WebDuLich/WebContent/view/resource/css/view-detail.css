@@ -19,7 +19,7 @@
 	display: block;
 	max-width: 100%;
 	height: auto;
-	margin:0 auto;
+	margin: 0 auto;
 }
 
 .separator form {
@@ -35,18 +35,20 @@
 .carousel-inner img {
 	margin: 0 auto;
 	position: relative;
-	max-height: 231px;
+	height: 431px;
+	max-height: 431px;
+	overflow: hidden;
+}
+
+.carousel-inner>.item>img {
+	height: 431px;
+	max-height: 431px;
 }
 
 li.post {
 	margin-bottom: 10px;
 	margin-top: 10px;
 	background: #F7F7F8;
-}
-
-.carousel-inner>.item>img {
-	height: 231px;
-	max-height: 231px;
 }
 
 .glyphicon.glyphicon-ok {

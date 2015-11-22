@@ -39,7 +39,8 @@
 <script type="text/javascript"
 	src="view/resource/bootstrap/js/bootstrap.min.js"></script>
 <link href="view/resource/css/css_home.css" rel="stylesheet">
-<link href="view/resource/css/view-tour.css" rel="stylesheet">
+<!-- <link href="view/resource/css/view-tour.css" rel="stylesheet"> -->
+<link href="view/resource/css/view-detail.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
 </head>
 <body>
@@ -69,12 +70,14 @@
 							int i = 0;
 							for (String src : listSrc) {
 								if (i == 0) {
-									out.write("<div class='active item' data-slide-number='0'>");
+									out.write("<div class='active item' data-slide-number='"
+											+ ++i + "'>");
 									i++;
 								} else
-									out.write("<div class='item' data-slide-number='0'>");
-								out.write("<img width = '100%' style = 'max-height: 418px;height :418' alt='not found' style='z-index: 0'src='"
-										+ src + "'>");
+									out.write("<div class='item' data-slide-number='" + ++i
+											+ "'>");
+								out.write("<img width = '100%'  alt='not found' src='" + src
+										+ "'>");
 								out.write("</div>");
 							}
 						%>
