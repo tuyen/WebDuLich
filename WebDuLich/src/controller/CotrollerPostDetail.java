@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.dtoBookedTour;
 import dto.dtoComment;
@@ -65,6 +66,8 @@ public class CotrollerPostDetail extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		session.setAttribute("controller", "abc");
 		String category = request.getParameter("cate");
 		String postId =  request.getParameter("post");
 		if(category == null)
