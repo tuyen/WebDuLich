@@ -14,3 +14,9 @@ Mr.BOSS: the rest
 9	view tour
 10	view tourist place
 11	view tourist's feeling
+
+//new
+xem cac diem den trong tour
+thêm chuc nang doi avatar
+fix lai menu
+viet tap tin xml(thay servlet thanh cai url)
