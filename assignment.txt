@@ -16,7 +16,9 @@ Mr.BOSS: the rest
 11	view tourist's feeling
 
 //new
-xem cac diem den trong tour
+xem cac diem den trong tour(when view tour)
+xem vi tri cua tourplace(view tour place)
+xem doi tuong(tour, tourplace) cua khi xem user feeling
 thêm chuc nang doi avatar
 fix lai menu
 viet tap tin xml(thay servlet thanh cai url)
