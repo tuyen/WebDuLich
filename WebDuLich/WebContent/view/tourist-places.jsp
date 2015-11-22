@@ -22,10 +22,12 @@
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
 
-	if (request.getParameter("place") != null)
+	String place = "";
+	if (request.getParameter("place") != null) {
+		place = request.getParameter("place");
 		listPost = mdPost.SearchTouristPlaces(
 				request.getParameter("place"), 10, (cur_page - 1) * 10);
-	else
+	} else
 		listPost = mdPost.getPosts("2", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -73,8 +75,13 @@
 											<option>Tỉnh thành</option>
 											<%
 												for (dtoLocation location : listLocation) {
-													out.write("<option value = '" + location.getLocationId() + "'>"
-															+ location.getName() + "</option>");
+													if (location.getLocationId().equals(place))
+														out.write("<option selected value = '"
+																+ location.getLocationId() + "'>"
+																+ location.getName() + "</option>");
+													else
+														out.write("<option value = '" + location.getLocationId()
+																+ "'>" + location.getName() + "</option>");
 												}
 											%>
 										</select></td>
@@ -94,49 +101,54 @@
 		<!-- list tour -->
 		<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
-				for (dtoPost post : listPost) {
-					out.write("<li class='post'style = 'width:50%'> ");
-					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'>");
-					out.write("<div id='carousel-" + post.getPostId()
-							+ "' class='carousel slide'data-ride='carousel'>");
-					out.write("<div class='carousel-inner'role='listbox'>");
-					List<String> listSrc = mdPost.getImagesFromPost(
-							post.getPostId(), 3);
-					int i = 0;
-					for (String src : listSrc) {
-						if (++i == 1)
-							out.write("<div data-slide-number='"
-									+ i
-									+ "' class='active item'><a href = '"
-									+ request.getContextPath()
-									+ "/postdetail?cate=2&post="
-									+ post.getPostId()
-									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
-									+ src + "'></a></div>");
-						else
-							out.write("<div data-slide-number='"
-									+ i
-									+ "' class='item'><a href = '"
-									+ request.getContextPath()
-									+ "/postdetail?cate=2&post="
-									+ post.getPostId()
-									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
-									+ src + "'></a></div>");
+				if (listPost.size() != 0)
+					for (dtoPost post : listPost) {
+						out.write("<li class='post'style = 'width:50%'> ");
+						out.write("<div class = 'panel'style = 'width:100%'> ");
+						out.write("<div class = 'panel-body'>");
+						out.write("<div id='carousel-" + post.getPostId()
+								+ "' class='carousel slide'data-ride='carousel'>");
+						out.write("<div class='carousel-inner'role='listbox'>");
+						List<String> listSrc = mdPost.getImagesFromPost(
+								post.getPostId(), 3);
+						int i = 0;
+						for (String src : listSrc) {
+							if (++i == 1)
+								out.write("<div data-slide-number='"
+										+ i
+										+ "' class='active item'><a href = '"
+										+ request.getContextPath()
+										+ "/postdetail?cate=2&post="
+										+ post.getPostId()
+										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+										+ src + "'></a></div>");
+							else
+								out.write("<div data-slide-number='"
+										+ i
+										+ "' class='item'><a href = '"
+										+ request.getContextPath()
+										+ "/postdetail?cate=2&post="
+										+ post.getPostId()
+										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+										+ src + "'></a></div>");
+						}
+						out.write("</div></div>");
+						out.write("<div class = 'panel-footer'>");
+						out.write("<div style='font-size: 17px;'>");
+						out.write("<a href='" + request.getContextPath()
+								+ "/postdetail?cate=2&post=" + post.getPostId()
+								+ "'> " + post.getTitle() + " </a>");
+						out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
+						out.write("<td><p data-toggle='tooltip' title='"
+								+ post.getViews()
+								+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
+								+ post.getViews() + "</p></td></tr></table>");
+						out.write("</div></div></div></li>");
 					}
-					out.write("</div></div>");
-					out.write("<div class = 'panel-footer'>");
-					out.write("<div style='font-size: 17px;'>");
-					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=2&post=" + post.getPostId() + "'> "
-							+ post.getTitle() + " </a>");
-					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
-					out.write("<td><p data-toggle='tooltip' title='"
-							+ post.getViews()
-							+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
-							+ post.getViews() + "</p></td></tr></table>");
-					out.write("</div></div></div></li>");
-				}
+				else
+					out.write("<center> <h3> Không tìm thấy bài viết nào! Bạn hãy là người đầu tiên <a href = '"
+							+ request.getContextPath()
+							+ "/AddTourPlace'> viết bài </a> nhé! </h3> </center>");
 			%>
 		</ul>
 

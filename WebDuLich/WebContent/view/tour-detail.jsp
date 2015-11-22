@@ -56,30 +56,31 @@
 					<ol class="carousel-indicators">
 						<%
 							for (int i = 0; i < listSrc.size(); i++) {
-								if (i == 0)
-									out.write("<li data-target='#carousel' data-slide-to='" + i
-											+ "' class='active'></li>");
-								else
-									out.write("<li data-target='#carousel' data-slide-to='" + i
-											+ "'></li>");
-							}
+																				if (i == 0)
+																					out.write("<li data-target='#carousel' data-slide-to='" + i
+																							+ "' class='active'></li>");
+																				else
+																					out.write("<li data-target='#carousel' data-slide-to='" + i
+																							+ "'></li>");
+																			}
 						%>
+
 					</ol>
 					<div class="carousel-inner" role="listbox">
 						<%
 							int i = 0;
-							for (String src : listSrc) {
-								if (i == 0) {
-									out.write("<div class='active item' data-slide-number='"
-											+ ++i + "'>");
-									i++;
-								} else
-									out.write("<div class='item' data-slide-number='" + ++i
-											+ "'>");
-								out.write("<img width = '100%'  alt='not found' src='" + src
-										+ "'>");
-								out.write("</div>");
-							}
+															for (String src : listSrc) {
+																if (i == 0) {
+																	out.write("<div class='active item' data-slide-number='"
+																			+ ++i + "'>");
+																	i++;
+																} else
+																	out.write("<div class='item' data-slide-number='" + ++i
+																			+ "'>");
+																out.write("<img width = '100%'  alt='not found' src='" + src
+																		+ "'>");
+																out.write("</div>");
+															}
 						%>
 					</div>
 				</div>
@@ -118,27 +119,27 @@
 				<div style="margin-top: 10px">
 					<%
 						ModelBookedTour mdBTour = new ModelBookedTour();
-						LoginUtility login = new LoginUtility();
-						if (login.isLogged(request, response)) {
-							if (mdBTour.checkBookedTourStatus(login.getLoggedUserID(),
-									postId)) {
-								out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='0' onclick='bookTour("
-										+ cate
-										+ " , "
-										+ postId
-										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Hủy đặt tour </button>");
-							} else
-								out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
-										+ cate
-										+ " , "
-										+ postId
-										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
-						} else
-							out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
-									+ cate
-									+ " , "
-									+ postId
-									+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
+												LoginUtility login = new LoginUtility();
+												if (login.isLogged(request, response)) {
+													if (mdBTour.checkBookedTourStatus(login.getLoggedUserID(),
+															postId)) {
+														out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='0' onclick='bookTour("
+																+ cate
+																+ " , "
+																+ postId
+																+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Hủy đặt tour </button>");
+													} else
+														out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
+																+ cate
+																+ " , "
+																+ postId
+																+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
+												} else
+													out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
+															+ cate
+															+ " , "
+															+ postId
+															+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
 					%>
 
 				</div>
@@ -161,26 +162,26 @@
 				<label>Có thể bạn quan tâm</label>
 				<%
 					int j = 0;
-					for (dtoPost p : listPost) {
-						if (!p.getPostId().equals(postId)) {
-							out.write("<div class='panel' style='width: 100%; margin-bottom:10px;'>");
-							out.write("<div class='panel-body'>");
-							out.write("<a href='" + request.getContextPath()
-									+ "/postdetail?cate=" + cate + "&post="
-									+ p.getPostId()
-									+ "'><img class='img-responsive' src='"
-									+ mdPost.getImagesFromPost(p.getPostId()).get(0)
-									+ "'></a>");
-							out.write("</div>");
-							out.write("<div class='panel-footer'>");
-							out.write("<a href='" + request.getContextPath()
-									+ "/postdetail?cate=" + cate + "&post="
-									+ p.getPostId() + "'>" + p.getTitle() + "</a>");
-							out.write("</div></div>");
-						}
-						if (++j >= 10)
-							break;
-					}
+									for (dtoPost p : listPost) {
+										if (!p.getPostId().equals(postId)) {
+											out.write("<div class='panel' style='width: 100%; margin-bottom:10px;'>");
+											out.write("<div class='panel-body'>");
+											out.write("<a href='" + request.getContextPath()
+													+ "/postdetail?cate=" + cate + "&post="
+													+ p.getPostId()
+													+ "'><img class='img-responsive' src='"
+													+ mdPost.getImagesFromPost(p.getPostId()).get(0)
+													+ "'></a>");
+											out.write("</div>");
+											out.write("<div class='panel-footer'>");
+											out.write("<a href='" + request.getContextPath()
+													+ "/postdetail?cate=" + cate + "&post="
+													+ p.getPostId() + "'>" + p.getTitle() + "</a>");
+											out.write("</div></div>");
+										}
+										if (++j >= 10)
+											break;
+									}
 				%>
 			</div>
 		</div>
@@ -205,20 +206,20 @@
 				style="margin-top: 55px;">
 				<%
 					if (listComment.size() == 0) {
-						out.write("<div class='panel panel-default'>");
-						out.write("<div class='panel-body'>");
-						out.write("<p>Chưa có bình luận nào</p>");
-						out.write("</div></div>");
-					} else
-						for (dtoComment comment : listComment) {
-							out.write("<div class='panel panel-default'>");
-							out.write("<div class='panel-body'>");
-							out.write("<img class='avatar' src='"
-									+ mdUser.getAvatarByCommentId(comment
-											.getCommentId()) + "' alt='user avatar'>");
-							out.write("<p>" + comment.getContent() + "</p>");
-							out.write("</div></div>");
-						}
+										out.write("<div class='panel panel-default'>");
+										out.write("<div class='panel-body'>");
+										out.write("<p>Chưa có bình luận nào</p>");
+										out.write("</div></div>");
+									} else
+										for (dtoComment comment : listComment) {
+											out.write("<div class='panel panel-default'>");
+											out.write("<div class='panel-body'>");
+											out.write("<img class='avatar' src='"
+													+ mdUser.getAvatarByCommentId(comment
+															.getCommentId()) + "' alt='user avatar'>");
+											out.write("<p>" + comment.getContent() + "</p>");
+											out.write("</div></div>");
+										}
 				%>
 			</div>
 		</div>
@@ -227,5 +228,6 @@
 	<jsp:include page="body-footer.jsp"></jsp:include>
 	<!-- go to top button -->
 	<span class="top"></span>
+	
 </body>
 </html>

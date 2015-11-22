@@ -4,14 +4,6 @@
   <welcome-file-list>
     <welcome-file>view/Home.jsp</welcome-file>    
   </welcome-file-list>
-  <servlet>
-      <servlet-name>addtour</servlet-name>
-      <servlet-class>controller.AddTour</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>addtour</servlet-name>
-    <url-pattern>*.html</url-pattern>
-  </servlet-mapping>
   <context-param>
     <param-name>host</param-name>
     <param-value>smtp.gmail.com</param-value>
