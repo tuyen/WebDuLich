@@ -77,7 +77,7 @@
 									+ "<li><a href='feelings'>Cảm nhận của du khách</a></li>");
 							break;
 						default:
-							out.write("	<li <a href='ControllerHome'><span"
+							out.write("	<li> <a href='ControllerHome'><span"
 									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
 
 							"<li><a href='tours'>Tours</a></li>" +
@@ -103,6 +103,7 @@
 						String userID = null;
 						String image_name = null;
 						String image_src = null;
+						
 						if (cookies != null) {
 							for (int i = 0; i < cookies.length; i++) {
 								if (cookies[i].getName().equals("login_remember")) {
