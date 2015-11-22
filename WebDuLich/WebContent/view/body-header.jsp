@@ -141,7 +141,7 @@
 
 							"<li class='divider'></li>" +
 									//"<li class='nav-header'>Nav header</li>"+
-									"<li><a href='" + request.getContextPath() + "/ControllerSignOut'>Sign out</a></li>" +
+									"<li><a href='" + request.getContextPath() + "/ControllerSignOut'>Đăng xuất</a></li>" +
 									//"<li><a href='#'>One more separated link</a></li>"+
 									"</ul></li>";
 						}
