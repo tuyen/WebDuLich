@@ -11,10 +11,11 @@ import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import model.ModelUser;
 import utility.EmailUtility;
@@ -56,6 +57,8 @@ public class ControllerSignUp extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		session.setAttribute("controller", "sign-up");
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -90,6 +93,9 @@ public class ControllerSignUp extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		// TODO Auto-generated method stub
+		Cookie cookieController = new Cookie("controller", "sign-up");
+		cookieController.setMaxAge(60*60*24*30);
+		response.addCookie(cookieController);
 		Md5Utility md5Password = new Md5Utility();
 		
 		response.setContentType("text/html;charset=UTF-8");

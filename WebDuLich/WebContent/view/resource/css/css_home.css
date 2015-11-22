@@ -3,6 +3,19 @@
 	width:auto;
 }
 */
+.carousel-inner img {
+	margin: 0 auto;
+	position: relative;
+	height: 200px;
+	max-height: 200px;
+	overflow: hidden;
+}
+
+.carousel-inner>.item>img {
+	height: 200px;
+	max-height: 200px;
+}
+
 #avatar {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -20,8 +33,13 @@
 #footer
 {
     background-color: #C5C6FE;
-    height: 60px;
+    
 }
+p#end
+{
+	font-weight: bold;
+}
+
 body{
     background-color: #F1F2FA;
     padding-top: 90px; 
