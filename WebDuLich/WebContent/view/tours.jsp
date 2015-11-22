@@ -70,7 +70,7 @@
 					<div class="form-group">
 						<table width="80%">
 							<thead>
-								<tr>									
+								<tr>
 									<td style="padding-left: 25px;"><label for="place">Tỉnh
 											thành</label></td>
 									<td style="padding-left: 25px;"><label for="tourist">Công
@@ -119,27 +119,40 @@
 				for (dtoPost post : listPost) {
 					out.write("<li class='post'style = 'width:50%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
+					out.write("<div class = 'panel-body'>");
 					out.write("<div id='carousel-" + post.getPostId()
-							+ "' class='carousel slide'data-ride='carousel'>");
+							+ "' class='carousel slide' data-ride='carousel'>");
 					out.write("<div class='carousel-inner'role='listbox'>");
 					List<String> listSrc = mdPost.getImagesFromPost(
 							post.getPostId(), 3);
 					int i = 0;
 					for (String src : listSrc) {
 						if (++i == 1)
-							out.write("<div class='active item'><img class='img-responsive' width = '100%'alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='active item'> <a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=1&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 						else
-							out.write("<div class='item'><img class='img-responsive' width = '100%' alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='item'><a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=1&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 					}
 					out.write("</div></div>");
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=1&post=" + post.getPostId() + "'> "
-							+ post.getTitle() + " </a>");
+							+ "/postdetail?cate=1&post=" + post.getPostId()
+							+ "'> <p class = 'title-overflow' >" + post.getTitle()
+							+ " </p></a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 					out.write("<td width='50%'<p data-toggle='tooltip' title='Giá tour "
 							+ post.getPrice()

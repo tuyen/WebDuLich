@@ -97,7 +97,7 @@
 				for (dtoPost post : listPost) {
 					out.write("<li class='post'style = 'width:50%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
+					out.write("<div class = 'panel-body'>");
 					out.write("<div id='carousel-" + post.getPostId()
 							+ "' class='carousel slide'data-ride='carousel'>");
 					out.write("<div class='carousel-inner'role='listbox'>");
@@ -106,11 +106,23 @@
 					int i = 0;
 					for (String src : listSrc) {
 						if (++i == 1)
-							out.write("<div class='active item'><img class='img-responsive' width = '100%'alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='active item'><a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=2&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 						else
-							out.write("<div class='item'><img class='img-responsive' width = '100%' alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='item'><a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=2&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 					}
 					out.write("</div></div>");
 					out.write("<div class = 'panel-footer'>");

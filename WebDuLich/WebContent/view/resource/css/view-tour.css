@@ -19,7 +19,7 @@
 	display: block;
 	max-width: 100%;
 	height: auto;
-	margin:0 auto;
+	margin: 0 auto;
 }
 
 .separator form {
@@ -47,6 +47,13 @@ li.post {
 .carousel-inner>.item>img {
 	height: 231px;
 	max-height: 231px;
+}
+
+.title-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+	white-space: nowrap;
 }
 
 .glyphicon.glyphicon-ok {
