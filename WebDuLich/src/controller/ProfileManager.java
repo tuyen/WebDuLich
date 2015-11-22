@@ -70,7 +70,7 @@ public class ProfileManager extends HttpServlet {
 				ModelUser modelUser = new ModelUser();
 				Md5Utility md5 = new Md5Utility();
 				if (md5.md5(oldPassword).equals(modelUser.getUserPassword(userId))) {
-					modelUser.updateUserPassword("1", md5.md5(newPassword));
+					modelUser.updateUserPassword(userId, md5.md5(newPassword));
 					out.print("change_success");
 				}
 				else
@@ -85,7 +85,6 @@ public class ProfileManager extends HttpServlet {
 			return;
 
 		}
-
 		String companyDescription = request.getParameter("companyDescription");
 		String companyName = request.getParameter("companyName");
 		String address = request.getParameter("address");
