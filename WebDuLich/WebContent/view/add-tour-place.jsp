@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Travel</title>
+<title>Thêm địa điểm du lịch</title>
 
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css"
@@ -55,18 +55,13 @@
 								%>
 								
 								<div class="form-group">
-									<label for="tour_title">Tên địa điểm:</label> <input
+									<label for="tour_title">Tên điểm du lịch:</label> <input
 										type="text" class="form-control" required name="txt_place"
 										placeholder="Khu du lịch sơn lâm" value="<%out.print(edit.getTitle());%>" id="tour_title">
 								</div>
+								
 								<div class="form-group">
-									<label for="tour_detail">Mô tả địa điểm:</label>
-									<textarea name="txt_detail" required class="form-control"
-										rows="20" id="tour_detail"><%=edit.getContent() %></textarea>
-								</div>
-
-								<div class="form-group">
-									<label for="sel1">Chọn địa điểm:</label> <select
+									<label for="sel1">Tỉnh thành:</label> <select
 										name="txt_location" class="form-control" style="width: 60%"
 										id="sel1">
 										<%
@@ -79,6 +74,12 @@
 										%>
 									</select>
 								</div>
+								
+								<div class="form-group">
+									<label for="tour_detail">Mô tả địa điểm:</label>
+									<textarea name="txt_detail" required class="form-control"
+										rows="20" id="tour_detail"><%=edit.getContent() %></textarea>
+								</div>						
 								<div class="form-group">
 									<button type="submit" name="btn_post" class="btn btn-primary">Đăng</button>
 								</div>

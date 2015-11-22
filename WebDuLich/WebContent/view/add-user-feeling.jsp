@@ -63,7 +63,7 @@
 										name="feelingName" value="<%=edit.getTitle()%>" id="tour_title">
 								</div>
 								<div class="form-group">
-									<label for="sel1">Chọn tour:</label> <select
+									<label for="sel1">Chọn chủ đề:</label> <select
 										 class="form-control" name="tourId"
 										 id="sel1">
 										<%

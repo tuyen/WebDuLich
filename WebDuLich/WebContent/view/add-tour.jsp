@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Travel</title>
+<title>Thêm tour du lịch</title>
 
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css"
@@ -61,11 +61,7 @@
 										oninvalid="this.setCustomValidity('Vui lòng nhập tên của tour')"
 										name="tourName" value="<%=edit.getTitle()%>" id="tour_title">
 								</div>
-								<div class="form-group">
-									<label for="tour_detail">Chi tiết tour:</label>
-									<textarea class="form-control" required rows="15"
-										name="tourDetail" id="tour_detail"><%=edit.getContent()%></textarea>
-								</div>
+								
 								<div class="form-group col-xs-6">
 									<label for="tour_price">Giá tour:</label> <input type="text"
 										class="form-control" name="tourPrice"
@@ -115,6 +111,7 @@
 									<label for="sel1">Chọn địa điểm:</label> <select
 										onchange="addNewPlace(this);" class="form-control"
 										style="width: 60%" id="sel1">
+										<option value="-1" selected> Chưa chọn địa điểm nào </option>
 										<%
 											ModelLocation mdLocation = new ModelLocation();
 																	List<dtoPost> locations = mdLocation.getAllTourPlace();
@@ -168,6 +165,10 @@
 									function addNewPlace(sel) {
 										var text = sel.options[sel.selectedIndex].text;
 										var _value = sel.options[sel.selectedIndex].value;
+										if(_value == "-1")
+										{
+											return false;
+										}
 										try {
 											var dom = document
 													.getElementById("placeList");
@@ -213,6 +214,12 @@
 										return true;
 									}
 								</script>
+
+								<div class="form-group">
+									<label for="tour_detail">Chi tiết tour:</label>
+									<textarea class="form-control" required rows="15"
+										name="tourDetail" id="tour_detail"><%=edit.getContent()%></textarea>
+								</div>
 
 								<div class="form-group">
 									<button type="submit" onclick="return hasAPlace()"
