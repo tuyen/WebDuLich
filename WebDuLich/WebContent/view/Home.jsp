@@ -32,11 +32,13 @@
 
 	<jsp:include page="body-header.jsp" />
 <%
+	List<dtoPost> listFeeling = null;
 	List<dtoPost> listPostLocation = null;
 	List<dtoPost> listPostTour = null;
 	ModelPost mdPost = new ModelPost();
 	listPostTour = mdPost.getPosts("1", 6, 0);
 	listPostLocation = mdPost.getPosts("2", 6, 0);
+	listFeeling = mdPost.getPosts("3", 6, 0);
 	
 %>
 
@@ -44,7 +46,7 @@
 	<div style="height: 30px"></div>
 	<div class="container">
 		<div class="row">
-			<div class="separator" style="margin: 10px 0 0 0">
+			<div class="separator" style="margin: 10px 0 0 0;width: 100%;">
 				<a href="tours"><h3 style="font: italic bold 18px/30px Georgia, serif;">Tours
 					mới</h3></a>
 			</div>
@@ -91,7 +93,7 @@
 					out.write("</div></div></div></li>");
 				}
 			%>
-		</ul>
+			</ul>
 
 
 
@@ -137,8 +139,52 @@
 					out.write("</div></div></div></li>");
 				}
 			%>
+			</ul>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+				style="width: 102.5%; margin: 20px 0px 10px -13px">
+				<div class="separator" style="margin: 10px 0 0 0">
+					<a href="feelings"><h3 style="font: italic bold 18px/30px Georgia, serif;">Cảm nhận của du khách</h3></a>
+				</div>
+			</div>
+			<br /> <br />
+			<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
+			<%
+				if (listFeeling.size() == 0) {
+					out.write("<div class = 'panel panel-body'> <h4> Chưa có bài cảm nhận nào!!! Bạn hãy là người đầu tiên <a href=''> viết cảm nhận </a> nhé :) </h4> </div>");
+				}
+				for (dtoPost post : listFeeling) {
+					out.write("<li class='post'style = 'width:33.33333333333333333333333333333%'> ");
+					out.write("<div class = 'panel'style = 'width:100%'> ");
+					out.write("<div class = 'panel-body'");
+					out.write("<div id='carousel-" + post.getPostId()
+							+ "' class='carousel slide'data-ride='carousel'>");
+					out.write("<div class='carousel-inner'role='listbox'>");
+					List<String> listSrc = mdPost.getImagesFromPost(
+							post.getPostId(), 3);
+					int i = 0;
+					for (String src : listSrc) {
+						if (++i == 1)
+							out.write("<div class='active item'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></div>");
+						else
+							out.write("<div class='item'><img class='img-responsive' width = '100%' alt='not found'src='"
+									+ src + "'></div>");
+					}
+					out.write("</div></div>");
+					out.write("<div class = 'panel-footer'>");
+					out.write("<div style='font-size: 17px;'>");
+					out.write("<a href='" + request.getContextPath()
+							+ "/postdetail?cate=3&post=" + post.getPostId() + "'> "
+							+ post.getTitle() + " </a>");
+					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
+					out.write("<td><p data-toggle='tooltip' title='"
+							+ post.getViews()
+							+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
+							+ post.getViews() + "</p></td></tr></table>");
+					out.write("</div></div></div></li>");
+				}
+			%>
 		</ul>
-
 		</div>
 	</div>
 

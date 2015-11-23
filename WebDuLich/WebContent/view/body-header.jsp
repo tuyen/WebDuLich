@@ -21,9 +21,9 @@
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 
-					<li><img alt=""
+					<li id='not-focus'><a href="ControllerHome"><img alt=""
 						src="http://logopond.com/logos/face4d80544d288d73016224fc961951.png"
-						height="80px" width="100px" style="margin-right: 20px"></li>
+						height="80px" width="100px" style="margin:-30px 0px 0px 0px"></a></li>
 					<%
 						String controller = "";
 
@@ -103,7 +103,7 @@
 						String userID = null;
 						String image_name = null;
 						String image_src = null;
-						
+						String accountType = null;
 						if (cookies != null) {
 							for (int i = 0; i < cookies.length; i++) {
 								if (cookies[i].getName().equals("login_remember")) {
@@ -112,11 +112,12 @@
 								if (cookies[i].getName().equals("login_cookie")) {
 									userID = cookies[i].getValue();
 									image_name = user.getAccountByUserId(userID).getAvatar();
+									accountType = user.getAccountByUserId(userID).getAccountType();
 								}
 
 							}
 						}
-
+						
 						if ("true".equals(remember)) {
 							name = user.getAccountByUserId(userID).getFullName();
 						}
@@ -133,18 +134,37 @@
 							else {
 								image_src = request.getContextPath() + ("/view/resource/image/user/") + userID + "/" + image_name;
 							}
-							page_1 = "<li><img id = 'avatar' src='" + image_src
-									+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
-									+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
-									+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
-									+ "<li><a href='AddTour'>Thêm tour mới</a></li>" + "<li><a href='postmanager'>Quản lý bài đăng</a></li>"
-									+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
+							if ("company".equals(accountType))
+							{
+								page_1 = "<li><img id = 'avatar' src='" + image_src
+										+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
+										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
+										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
+										+ "<li><a href='AddTour'>Thêm tour mới</a></li>" + "<li><a href='postmanager'>Quản lý bài đăng</a></li>"
+										+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
 
-							"<li class='divider'></li>" +
-									//"<li class='nav-header'>Nav header</li>"+
-									"<li><a href='" + request.getContextPath() + "/ControllerSignOut'>Đăng xuất</a></li>" +
-									//"<li><a href='#'>One more separated link</a></li>"+
-									"</ul></li>";
+								"<li class='divider'></li>" +
+										//"<li class='nav-header'>Nav header</li>"+
+										"<li><a href='" + request.getContextPath() + "/ControllerSignOut'>Đăng xuất</a></li>" +
+										//"<li><a href='#'>One more separated link</a></li>"+
+										"</ul></li>";
+							}
+							else
+							{
+								page_1 = "<li><img id = 'avatar' src='" + image_src
+										+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
+										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
+										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
+										
+										+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
+
+								"<li class='divider'></li>" +
+										//"<li class='nav-header'>Nav header</li>"+
+										"<li><a href='" + request.getContextPath() + "/ControllerSignOut'>Đăng xuất</a></li>" +
+										//"<li><a href='#'>One more separated link</a></li>"+
+										"</ul></li>";
+							}
+
 						}
 
 						else {

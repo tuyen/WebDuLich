@@ -86,7 +86,7 @@ header {
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     color: #FFFFFF;
-    background-color: #00244F;
+    background-color: #02162D;
 }
 .navbar-default .navbar-nav > li > a
 {
@@ -108,4 +108,7 @@ header {
     color: #FFFFFF;
     background-color: #02162D;
 }
-
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus >#not-focus 
+{
+	background-color: #00244F;
+}
