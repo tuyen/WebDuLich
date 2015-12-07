@@ -5,6 +5,20 @@ $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
+/**
+ * show loading icon when loading data
+ */
+$(document).ajaxStart(function() {
+	$("#loading").show();
+});
+
+/**
+ * hide loading icon when data load completely
+ */
+$(document).ajaxStop(function() {
+	$("#loading").hide();
+});
+
 function bookTour(cate, post) {
 	var post_url = window.location;	
 	$.ajax({

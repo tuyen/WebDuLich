@@ -1,3 +1,4 @@
+<%@page import="dto.dtoTouristPlace"%>
 <%@page import="utility.LoginUtility"%>
 <%@page import="model.ModelBookedTour"%>
 <%@page import="model.ModelComment"%>
@@ -24,7 +25,8 @@
 	List<dtoComment> listComment = null;
 	ModelComment mdComment = new ModelComment();
 	listComment = mdComment.getAllComment(postId);
-
+	//get all place belong to this post
+	List<dtoTouristPlace> listPlace = mdPost.getTouristPlace(postId);
 	ModelUser mdUser = new ModelUser();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -43,7 +45,7 @@
 <link href="view/resource/css/view-detail.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
 </head>
-<body>
+<body style="text-align: justify;">
 
 	<!-- body header -->
 	<jsp:include page="body-header.jsp" />
@@ -56,92 +58,108 @@
 					<ol class="carousel-indicators">
 						<%
 							for (int i = 0; i < listSrc.size(); i++) {
-																				if (i == 0)
-																					out.write("<li data-target='#carousel' data-slide-to='" + i
-																							+ "' class='active'></li>");
-																				else
-																					out.write("<li data-target='#carousel' data-slide-to='" + i
-																							+ "'></li>");
-																			}
+								if (i == 0)
+									out.write("<li data-target='#carousel' data-slide-to='" + i
+											+ "' class='active'></li>");
+								else
+									out.write("<li data-target='#carousel' data-slide-to='" + i
+											+ "'></li>");
+							}
 						%>
 
 					</ol>
 					<div class="carousel-inner" role="listbox">
 						<%
 							int i = 0;
-															for (String src : listSrc) {
-																if (i == 0) {
-																	out.write("<div class='active item' data-slide-number='"
-																			+ ++i + "'>");
-																	i++;
-																} else
-																	out.write("<div class='item' data-slide-number='" + ++i
-																			+ "'>");
-																out.write("<img width = '100%'  alt='not found' src='" + src
-																		+ "'>");
-																out.write("</div>");
-															}
+							for (String src : listSrc) {
+								if (i == 0) {
+									out.write("<div class='active item' data-slide-number='"
+											+ ++i + "'>");
+									i++;
+								} else
+									out.write("<div class='item' data-slide-number='" + ++i
+											+ "'>");
+								out.write("<img width = '100%'  alt='not found' src='" + src
+										+ "'>");
+								out.write("</div>");
+							}
 						%>
 					</div>
 				</div>
 			</div>
-			<div class="row col-md-4">
+			<div class="row col-md-4"
+				style="background: white; height: azimuth; margin-left: 5px; padding: 20px">
 				<div>
-					<h3 class="text-left" style="color: #90D1EF"><%=post.getTitle()%>
+					<h3 class="text-left" style="color: #00244F"><%=post.getTitle()%>
 					</h3>
 				</div>
 				<div>
 					<p class="text-left">
-						Giá tour:
+						<b>Lộ trình: </b><br>
+						<%
+							if (listPlace.size() != 0) {
+								int t = 0;
+								for (dtoTouristPlace place : listPlace) {
+									out.write("<span class = 'glyphicon glyphicon-hand-right'>&nbsp;</span>");
+									out.write("<a class = 'title-overflow' href = '#'>" + place.getTitle() + "</a> <br>");
+								}
+							}
+						%>
+					</p>
+				</div>
+				<div>
+					<p class="text-left">
+						<b>Giá tour:</b>
 						<%=post.getPrice()%>
 					</p>
 				</div>
 				<div>
 					<p class="text-left">
-						Số người:
+						<b>Số người:</b>
 						<%=post.getNumberPeople()%>
 					</p>
 				</div>
 				<div>
 					<p class="text-left">
-						Thời gian:
+						<b>Thời gian:</b>
 						<%=post.getTotalTime()%>
 					</p>
 				</div>
 				<div>
 					<p class="text-left">
-						Công ty lữ hành:
+						<b>Công ty lữ hành:</b>
 						<%
-						out.write(mdUser.getCompanyNameByUserId(post.getUserId()));
-					%>
+							out.write(mdUser.getCompanyNameByUserId(post.getUserId()));
+						%>
 					</p>
 				</div>
 				<div style="margin-top: 10px">
 					<%
 						ModelBookedTour mdBTour = new ModelBookedTour();
-												LoginUtility login = new LoginUtility();
-												if (login.isLogged(request, response)) {
-													if (mdBTour.checkBookedTourStatus(login.getLoggedUserID(),
-															postId)) {
-														out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='0' onclick='bookTour("
-																+ cate
-																+ " , "
-																+ postId
-																+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Hủy đặt tour </button>");
-													} else
-														out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
-																+ cate
-																+ " , "
-																+ postId
-																+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
-												} else
-													out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
-															+ cate
-															+ " , "
-															+ postId
-															+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
+						LoginUtility login = new LoginUtility();
+						if (login.isLogged(request, response)) {
+							if (mdBTour.checkBookedTourStatus(login.getLoggedUserID(),
+									postId)) {
+								out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='0' onclick='bookTour("
+										+ cate
+										+ " , "
+										+ postId
+										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Hủy đặt tour </button>");
+							} else
+								out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
+										+ cate
+										+ " , "
+										+ postId
+										+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
+						} else
+							out.write("<button id = 'book_tour' type='submit' class='btn btn-primary' value='1' onclick='bookTour("
+									+ cate
+									+ " , "
+									+ postId
+									+ ")' data-toggle='tooltip' data-placement='right'	title='Báo đơn vị lữ hành liên hệ với bạn ngay!'/> Đặt tour </button>");
 					%>
-
+					<div id="loading" style="margin: 0 auto;"
+						class="loading-icon custom_hiden"></div>
 				</div>
 				<div>
 					<i style="color: red" id="book_status"></i>
@@ -162,26 +180,26 @@
 				<label>Có thể bạn quan tâm</label>
 				<%
 					int j = 0;
-									for (dtoPost p : listPost) {
-										if (!p.getPostId().equals(postId)) {
-											out.write("<div class='panel' style='width: 100%; margin-bottom:10px;'>");
-											out.write("<div class='panel-body'>");
-											out.write("<a href='" + request.getContextPath()
-													+ "/postdetail?cate=" + cate + "&post="
-													+ p.getPostId()
-													+ "'><img class='img-responsive' src='"
-													+ mdPost.getImagesFromPost(p.getPostId()).get(0)
-													+ "'></a>");
-											out.write("</div>");
-											out.write("<div class='panel-footer'>");
-											out.write("<a href='" + request.getContextPath()
-													+ "/postdetail?cate=" + cate + "&post="
-													+ p.getPostId() + "'>" + p.getTitle() + "</a>");
-											out.write("</div></div>");
-										}
-										if (++j >= 10)
-											break;
-									}
+					for (dtoPost p : listPost) {
+						if (!p.getPostId().equals(postId)) {
+							out.write("<div class='panel' style='width: 100%; margin-bottom:10px;'>");
+							out.write("<div class='panel-body'>");
+							out.write("<a href='" + request.getContextPath()
+									+ "/postdetail?cate=" + cate + "&post="
+									+ p.getPostId()
+									+ "'><img class='img-responsive' src='"
+									+ mdPost.getImagesFromPost(p.getPostId()).get(0)
+									+ "'></a>");
+							out.write("</div>");
+							out.write("<div class='panel-footer'>");
+							out.write("<a href='" + request.getContextPath()
+									+ "/postdetail?cate=" + cate + "&post="
+									+ p.getPostId() + "'>" + p.getTitle() + "</a>");
+							out.write("</div></div>");
+						}
+						if (++j >= 10)
+							break;
+					}
 				%>
 			</div>
 		</div>
@@ -206,20 +224,20 @@
 				style="margin-top: 55px;">
 				<%
 					if (listComment.size() == 0) {
-										out.write("<div class='panel panel-default'>");
-										out.write("<div class='panel-body'>");
-										out.write("<p>Chưa có bình luận nào</p>");
-										out.write("</div></div>");
-									} else
-										for (dtoComment comment : listComment) {
-											out.write("<div class='panel panel-default'>");
-											out.write("<div class='panel-body'>");
-											out.write("<img class='avatar' src='"
-													+ mdUser.getAvatarByCommentId(comment
-															.getCommentId()) + "' alt='user avatar'>");
-											out.write("<p>" + comment.getContent() + "</p>");
-											out.write("</div></div>");
-										}
+						out.write("<div class='panel panel-default'>");
+						out.write("<div class='panel-body'>");
+						out.write("<p>Chưa có bình luận nào</p>");
+						out.write("</div></div>");
+					} else
+						for (dtoComment comment : listComment) {
+							out.write("<div class='panel panel-default'>");
+							out.write("<div class='panel-body'>");
+							out.write("<img class='avatar' src='"
+									+ mdUser.getAvatarByCommentId(comment
+											.getCommentId()) + "' alt='user avatar'>");
+							out.write("<p>" + comment.getContent() + "</p>");
+							out.write("</div></div>");
+						}
 				%>
 			</div>
 		</div>
@@ -228,6 +246,6 @@
 	<jsp:include page="body-footer.jsp"></jsp:include>
 	<!-- go to top button -->
 	<span class="top"></span>
-	
+
 </body>
 </html>

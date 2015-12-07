@@ -22,6 +22,10 @@
 	margin: 0 auto;
 }
 
+.content{
+	text-align: justify;
+}
+
 .separator form {
 	margin-top: -12px;
 	display: block;
@@ -78,3 +82,39 @@ span.top {
 span:hover.top {
 	background-color: #165D91;
 }
+
+.custom_hiden{
+	display: none;
+}
+
+/* START loading icon with css3 */
+.loading-icon{
+    border: 8px solid #FFF;
+  border-top-color: red;
+  border-left-color: blue;
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+  overflow:hidden;
+  border-radius: 50%;
+    -webkit-animation: mm 0.7s linear infinite; /* Chrome, Safari, Opera */
+    animation: mm 0.7s linear infinite;
+}
+
+.flip-container{overflow:hidden}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mm{
+    from {left: 0px;}
+    to {left: 2000px;}
+}
+
+@keyframes mm{
+    from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* END loading icon with css3 */

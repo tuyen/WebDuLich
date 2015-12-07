@@ -148,6 +148,11 @@ public class ModelPost extends Model {
 		return listSrc;
 	}
 
+	/**
+	 * get the list place of a tour
+	 * @param postId
+	 * @return
+	 */
 	public List<dtoTouristPlace> getTouristPlace(String postId) {
 		List<dtoTouristPlace> tours = new ArrayList<dtoTouristPlace>();
 		String sql = "SELECT `TourId`, `PlaceId`,`post`.`Title` FROM `touristplace`,`post` WHERE `post`.`PostId` = `touristplace`.`PlaceId` and `TourId` = "
