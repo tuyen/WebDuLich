@@ -124,9 +124,12 @@
 						else {
 
 							userID = (String) session.getAttribute("userID");
+							if (userID!=null)
+							{
 							image_name = user.getAccountByUserId(userID).getAvatar();
 							accountType = user.getAccountByUserId(userID).getAccountType();
 							name = user.getAccountByUserId(userID).getFullName();
+							}
 							//image_name = (String) session.getAttribute("avatar");
 							//name = (String) session.getAttribute("name");
 							//accountType = (String) session.getAttribute("login_accounttype");
@@ -143,7 +146,7 @@
 										+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
-										+ "<li><a href='AddTourPlace'>Địa điểm mới</a></li>"
+										+ "<li><a href='AddTourPlace'>Thêm điểm du lịch</a></li>"
 										+ "<li><a href='AddTour'>Thêm tour mới</a></li>"
 										+ "<li><a href='postmanager'>Quản lý bài đăng</a></li>"
 										+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
