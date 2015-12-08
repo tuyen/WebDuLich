@@ -126,7 +126,7 @@ public class ControllerSignIn extends HttpServlet {
 				response.sendRedirect("touristplace");
 				break;
 			case "feeling":
-				response.sendRedirect("feeling");
+				response.sendRedirect("feelings");
 				break;
 			default:
 				response.sendRedirect("ControllerHome");
