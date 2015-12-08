@@ -28,7 +28,7 @@
 						String controller = "";
 
 						controller = (String)session.getAttribute("controller")!=null?(String)session.getAttribute("controller"):"";
-						
+
 						switch (controller)
 						{
 						case "home":
@@ -122,11 +122,14 @@
 							name = user.getAccountByUserId(userID).getFullName();
 						}
 						else {
-							//session = request.getSession(false);
+
 							userID = (String) session.getAttribute("userID");
-							image_name = (String) session.getAttribute("avatar");
-							name = (String) session.getAttribute("name");
-							accountType = (String) session.getAttribute("login_accounttype");
+							image_name = user.getAccountByUserId(userID).getAvatar();
+							accountType = user.getAccountByUserId(userID).getAccountType();
+							name = user.getAccountByUserId(userID).getFullName();
+							//image_name = (String) session.getAttribute("avatar");
+							//name = (String) session.getAttribute("name");
+							//accountType = (String) session.getAttribute("login_accounttype");
 						}
 						if (name != null) {
 							if ("default-avatar.png".equals(image_name)) {
