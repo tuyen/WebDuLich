@@ -106,6 +106,10 @@
 								<h4>
 									Ngày Sinh:
 									<%=user.getBirthday()%></h4>
+
+								<h4>
+									Địa Chỉ:
+									<%=user.getAddress()%></h4>
 								<h4>
 									Điện Thoại:
 									<%=user.getPhone()%></h4>
@@ -130,8 +134,8 @@
 										if (isCompany)
 											out.print("Mô tả công ty: " + user.getCompanyDescription());
 									%>
-									
-									</h4>
+
+								</h4>
 							</div>
 							<div id="update_information" class="hidden_div">
 								<h3>Cập nhật thông tin tài khoản</h3>
@@ -171,21 +175,26 @@
 
 
 									<%
-									
 										
 									%>
-									<div class="form-group">
-										<label for="email">Tên công ty:</label> <input type="text"
-											class="form-control" id="email" required
-											value="<%=user.getCompany()%>" name="companyName">
+									<div class='form-group'>
+										<%
+											if (isCompany) {
+												out.print("<label for='email'>Tên công ty:</label> <input type='text' class='form-control' id='email' required value='"
+														+ user.getCompany() + "' name='companyName'>");
+											}
+										%>
 									</div>
 
 
 									<div class="form-group">
-										<label for="email">Mô tả công ty:</label> <input type="text"
-											class="form-control" id="email" required
-											value="<%=user.getCompanyDescription()%>"
-											name="companyDescription">
+										<%
+											if (isCompany) {
+												out.print("<label for='email'>Mô tả công ty:</label> <input type='text' class='form-control' id='email' required value='"
+														+ user.getCompanyDescription()
+														+ "' name='companyDescription'>");
+											}
+										%>
 									</div>
 
 

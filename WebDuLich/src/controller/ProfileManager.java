@@ -95,10 +95,13 @@ public class ProfileManager extends HttpServlet {
 		String fullName = request.getParameter("fullName");
 		String phone = request.getParameter("phone");
 
-		if (companyDescription != null && companyName != null
-				&& address != null && email != null && birthday != null
+		
+		companyDescription = (companyDescription == null) ? "individual":companyDescription;
+		companyName = (companyName == null) ? "individual":companyName;		
+		if (
+			 address != null && email != null && birthday != null
 				&& fullName != null && phone != null) {
-			if (companyDescription != "" && companyName != "" && address != ""
+			if ( address != ""
 					&& email != "" && birthday != "" && fullName != ""
 					&& phone != "") {
 				dtoUser user = new dtoUser();
