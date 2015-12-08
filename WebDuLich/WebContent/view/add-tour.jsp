@@ -91,7 +91,7 @@
 
 								</div>
 
-								<label>Địa điểm: </label>
+								<label>Điểm du lịch: </label>
 								<div class="form-group" id="viewPlaceList">
 
 									<%
