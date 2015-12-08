@@ -33,7 +33,7 @@
 <script src="view/resource/datepicker/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
-	<jsp:include page="body-header.jsp" />
+	
 
 	<!-- Begin Body -->
 	<div style="height: 30px"></div>
@@ -129,8 +129,8 @@
 								<form role="form" action="ProfileManager" method="post">
 									<div class="form-group">
 										<label for="email">Họ & Tên:</label> <input type="text"
-											class="form-control" required
-											value="<%=user.getFullName()%>" id="email" name="fullName">
+											class="form-control" required value="<%=user.getFullName()%>"
+											id="email" name="fullName">
 									</div>
 
 									<div class="form-group">
@@ -214,6 +214,49 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4>
+								Cập nhật ảnh đại diện								
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div id="update_information">								
+								<form role="form" method="post" action="ProfileManager"
+									enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="file">File name:</label> <input type="file"
+											accept="image/*"  class="file"
+											name="image-avatar" id="file">
+									</div>
+									<div class="form-group">
+										<button type="submit" name="btnChangeAvatar"
+											value="fca-btn-change"
+											class="btn btn-default navbar-right custom_margin">Thay
+											đổi</button>
+									</div>
+
+								</form>
+							</div>
+							<div id="update_password" class="hidden_div">
+								<h4>Thay đổi mật khẩu:</h4>
+								<form role="form" onsubmit="return change_pass_ajax()"
+									action="ProfileManager" method="post">
+									<div class="form-group">
+										<label for="old_password">Mật khẩu cũ:</label> <input
+											type="password" required class="form-control"
+											id="old_password" name="oldPassword">
+									</div>
+									<button type="submit" class="btn btn-default" name="btn_change">Thay
+										đổi</button>
+									<button type="button" id="btn_cancel_change"
+										class="btn btn-default">Hủy</button>
+									<label id="change_message"></label>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<script>
@@ -273,7 +316,7 @@
 
 		</div>
 	</div>
-	<jsp:include page="body-footer.jsp" />
+	
 
 
 </body>

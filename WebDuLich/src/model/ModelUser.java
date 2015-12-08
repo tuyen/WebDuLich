@@ -473,4 +473,14 @@ public class ModelUser extends Model {
 		 
 		
 	}
+
+	public void updateAvatar(String userId, String avartar)
+	{
+		if (connection.connect())
+		{
+			String sql = "UPDATE `user` SET `Avatar` ='"+avartar+"' WHERE `UserId` = " + userId;
+			connection.write(sql);
+			connection.close();
+		}
+	}
 }

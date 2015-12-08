@@ -38,8 +38,7 @@
 	ModelPost mdPost = new ModelPost();
 	listPostTour = mdPost.getPosts("1", 6, 0);
 	listPostLocation = mdPost.getPosts("2", 6, 0);
-	listFeeling = mdPost.getPosts("3", 6, 0);
-	
+	listFeeling = mdPost.getPosts("3", 6, 0);	
 %>
 
 	<!-- Begin Body -->
