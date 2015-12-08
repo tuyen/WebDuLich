@@ -118,19 +118,33 @@
 			</div>
 		</div>
 		<div class="comment">
+			<%
+				boolean isLogged = (boolean) request.getAttribute("isLogged");
+				String msg1 = "";
+				String msg2 = "";
+				if (isLogged) {
+					msg2 = "style='display:none'";
+				} else {
+					msg1 = "style='display:none'";
+				}
+			%>
 			<div class="separator">
 				<h3>BÌNH LUẬN</h3>
 				<br> <br>
 			</div>
-			<form class="form form-group" role="form" method="post" action="postdetail">
+			<form class="form form-group" role="form" method="post"
+				action="postdetail" <%=msg1%>>
 				<input type="hidden" name="txt_postId" value="<%=postId%>">
 				<input type="hidden" name="txt_cate" value="<%=cate%>">
 				<textarea class="form-control" rows="3"
 					placeholder="Nhập bình luận ..." required name="txt_comment"></textarea>
 				<input class="btn btn-primary pull-right" name="btn_comment"
-					style="margin-top: 10px;  margin-bottom: 10px" type="submit"
+					style="margin-top: 10px; margin-bottom: 10px" type="submit"
 					value="Bình luận">
 			</form>
+			<div <%=msg2%>>
+				<h4>Bạn chưa đăng nhập! Vui lòng đăng nhập để bình luận!</h4>
+			</div>
 			<div class="comment-detail panel panel-group"
 				style="margin-top: 55px;">
 				<%
@@ -144,8 +158,8 @@
 							out.write("<div class='panel panel-default'>");
 							out.write("<div class='panel-body'>");
 							out.write("<img class='avatar' src='"
-									+ mdUser.getAvatarByCommentId(comment.getCommentId())
-									+ "' alt='user avatar'>");
+									+ mdUser.getAvatarByCommentId(comment
+											.getCommentId()) + "' alt='user avatar'>");
 							out.write("<p>" + comment.getContent() + "</p>");
 							out.write("</div></div>");
 						}

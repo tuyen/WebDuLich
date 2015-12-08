@@ -81,7 +81,7 @@ public class CotrollerPostDetail extends HttpServlet {
 			return;
 		}
 		this.updateView(request, response);
-				
+		request.setAttribute("isLogged", this.login.isLogged(request, response));
 		switch (category) {
 		case "1":
 			request.getRequestDispatcher("view/tour-detail.jsp").include(

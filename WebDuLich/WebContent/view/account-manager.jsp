@@ -4,6 +4,7 @@
 <%@page import="model.ModelUser"%>
 <%
 	String userId = (String) request.getAttribute("loggedUserId");
+	boolean isCompany = (boolean) request.getAttribute("isCompany");
 	//out.print(userId);
 	ModelUser userModel = new ModelUser();
 	dtoUser user = userModel.getUserById(userId);
@@ -33,8 +34,8 @@
 <script src="view/resource/datepicker/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
-	
 
+	<jsp:include page="body-header.jsp" />
 	<!-- Begin Body -->
 	<div style="height: 30px"></div>
 	<div class="container">
@@ -118,11 +119,19 @@
 									Loại tài khoản:
 									<%=user.getAccountType()%></h4>
 								<h4>
-									Tên công ty:
-									<%=user.getCompany()%></h4>
+									<%
+										if (isCompany)
+											out.print("Tên công ty: " + user.getCompany());
+									%>
+								</h4>
 								<h4>
-									Mô tả công ty:
-									<%=user.getCompanyDescription()%></h4>
+
+									<%
+										if (isCompany)
+											out.print("Mô tả công ty: " + user.getCompanyDescription());
+									%>
+									
+									</h4>
 							</div>
 							<div id="update_information" class="hidden_div">
 								<h3>Cập nhật thông tin tài khoản</h3>
@@ -160,6 +169,11 @@
 											id="email" name="address">
 									</div>
 
+
+									<%
+									
+										
+									%>
 									<div class="form-group">
 										<label for="email">Tên công ty:</label> <input type="text"
 											class="form-control" id="email" required
@@ -217,18 +231,15 @@
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4>
-								Cập nhật ảnh đại diện								
-							</h4>
+							<h4>Cập nhật ảnh đại diện</h4>
 						</div>
 						<div class="panel-body">
-							<div id="update_information">								
+							<div id="update_information">
 								<form role="form" method="post" action="ProfileManager"
 									enctype="multipart/form-data">
 									<div class="form-group">
 										<label for="file">File name:</label> <input type="file"
-											accept="image/*"  class="file"
-											name="image-avatar" id="file">
+											accept="image/*" class="file" name="image-avatar" id="file">
 									</div>
 									<div class="form-group">
 										<button type="submit" name="btnChangeAvatar"
@@ -316,7 +327,7 @@
 
 		</div>
 	</div>
-	
+
 
 
 </body>

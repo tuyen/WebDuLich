@@ -58,6 +58,7 @@ public class ProfileManager extends HttpServlet {
 			userId = login.getLoggedUserID();
 		}
 		request.setAttribute("loggedUserId", userId);
+		request.setAttribute("isCompany", login.getAccountType().equals("company"));
 		request.getRequestDispatcher("view/account-manager.jsp").include(
 				request, response);
 	}
@@ -113,6 +114,7 @@ public class ProfileManager extends HttpServlet {
 				modelUser.updateUserProfile(user);
 				try {
 					request.setAttribute("loggedUserId", userId);
+					request.setAttribute("isCompany", login.getAccountType().equals("company"));
 					request.getRequestDispatcher("view/account-manager.jsp")
 							.include(request, response);
 				} catch (ServletException e) {
@@ -179,6 +181,7 @@ public class ProfileManager extends HttpServlet {
 									.toUpperCase());
 					try {
 						request.setAttribute("loggedUserId", userId);
+						request.setAttribute("isCompany", login.getAccountType().equals("company"));
 						request.getRequestDispatcher("view/account-manager.jsp")
 								.include(request, response);
 					} catch (ServletException e) {

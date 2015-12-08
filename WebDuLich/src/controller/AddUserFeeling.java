@@ -105,25 +105,25 @@ public class AddUserFeeling extends HttpServlet {
 					String url = "postdetail?cate=3&post=" + edit_post;
 					response.sendRedirect(url);
 				} else {
-//					post.addTouristPlace(dto);
-//					String id = null;
-//					try {
-//						//id = post.getLastFeelingId(userId);
-//						String[] str = { tourId };
-//						post.insertPlace(id, str);
-//						String url = "postdetail?cate=3&post=" + id;
-//						response.sendRedirect(url);
-//						return;
-//					} catch (SQLException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-					request.getContextPath();
+					post.addTouristPlace(dto);
+					String id = null;
+					try {
+						id = post.getLastFeelingId(userId);
+						String[] str = { tourId };
+						post.insertPlace(id, str);
+						String url = "postdetail?cate=3&post=" + id;
+						response.sendRedirect(url);
+						return;
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
 
-				// request.setAttribute("edit", dto);
-				// request.getRequestDispatcher("view/add-user-feeling.jsp").include(request,
-				// response);
+				 request.setAttribute("edit", dto);
+				 request.getRequestDispatcher("view/add-user-feeling.jsp").include(request,
+				 response);
 			}
 		}
 

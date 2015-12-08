@@ -101,7 +101,8 @@
 								int t = 0;
 								for (dtoTouristPlace place : listPlace) {
 									out.write("<span class = 'glyphicon glyphicon-hand-right'>&nbsp;</span>");
-									out.write("<a class = 'title-overflow' href = '#'>" + place.getTitle() + "</a> <br>");
+									out.write("<a class = 'title-overflow' href = '#'>"
+											+ place.getTitle() + "</a> <br>");
 								}
 							}
 						%>
@@ -208,9 +209,19 @@
 				<h3>BÌNH LUẬN</h3>
 				<br> <br>
 			</div>
+			<%
+				boolean isLogged = (boolean) request.getAttribute("isLogged");
+				String msg1 = "";
+				String msg2 = "";
+				if (isLogged) {					
+					msg2 = "style='display:none'";
+				} else {					
+					msg1 = "style='display:none'";
+				}
+			%>
 			<div class="form form-group">
-				<form class="form form-group" role="form" method="post"
-					action="postdetail">
+				<form class="form form-group" role="form" method="post" <%=msg1 %>
+					action="postdetail" id="test" >
 					<input type="hidden" name="txt_postId" value="<%=postId%>">
 					<input type="hidden" name="txt_cate" value="<%=cate%>">
 					<textarea class="form-control" rows="3"
@@ -219,6 +230,9 @@
 						style="margin-top: 10px; margin-bottom: 10px" type="submit"
 						value="Bình luận">
 				</form>
+				<div <%=msg2 %>>
+					<h4>Bạn chưa đăng nhập! Vui lòng đăng nhập để bình luận!</h4>
+				</div>
 			</div>
 			<div class="comment-detail panel panel-group" id="comment_list"
 				style="margin-top: 55px;">
