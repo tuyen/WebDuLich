@@ -1,33 +1,36 @@
-Mr.Ròm
+﻿Mr.Ròm
 trang addTourPlace:
-	- đưa cái chọn địa điểm lên trên trước khi nhập mô tả sẽ tốt hơn (thay chữ địa điểm này thành tỉnh thành)
+	
 	- Sửa chỗ "Tên địa điểm, Mô tả địa điểm" lại thành Tên điểm du lịch (để tên địa điểm nghe hiểu lầm với địa điểm đại lý)
 	
-trang addUserFeeling:
-	- bỏ cái chọn tour đi. cho người dùng add feeling về gì kệ họ (cái này bữa trước bàn rồi mà)
 
 trang addTour:
-	- đưa phần mô tả xuống dưới cùng sẽ phù hợp hơn (sau khi chọn các thông tin cơ bản thì mới thêm mô tả cụ thể, như vậy hợp lý hơn)
+	
 	- mặc định nếu người dùng không chọn thì để "chưa xác định" (như vậy cho nó hợp lệ thay vì để mặc định là 1 điêm k hợp lý)
 
 chức năng comment: dùng ajax load comment lên thì ngon hơn :D (cái này k vấn đề)
 
-chức năng đếm số lượt mua: fix lại cách đếm cho hợp lý :D
 
-cập nhật thông tin tài khoản: không có đổi avatar à?
+	bug - chưa đăng nhập mà 
+	nguời dùng không phải loại tài khoản công ty thì không hiện phần sửa thông tin công ty
 	
-	
-	
-	
-Mr.Mập
-	- thêm url của hình mặc định vào database.
-	- sửa mẫu email gửi thông báo đăng ký tài khoản
-	- sửa lại câu thông báo khi người dùng chưa xác thực tài khoản (để k đúng email hoặc mật khẩu gây hiểu nhầm)
-	- fix lại cái footer
-	- nhét link liên kết trang trên menu vào
-	- chỉnh lại tiếng việt hết các thành phần trên trang
-	
-	
-	
-Mr.Boss
-	
+
+
+xem vi tri cua tourplace(view tour place)
+
+xem doi tuong(tour, tourplace) cua khi xem user feeling
+
+viet tap tin xml(thay servlet thanh cai url)
+
+//phàn của boss
+tour mới nhất
+bài cảm nhận
+
+tourplace:
+tour liên quan
+cảm nhận
+
+feeling:
+
+
+sửa xóa bài viết
