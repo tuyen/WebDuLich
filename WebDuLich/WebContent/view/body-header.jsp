@@ -22,13 +22,13 @@
 				<ul class="nav navbar-nav">
 
 					<li id='not-focus'><a href="ControllerHome"><img alt=""
-						src="http://logopond.com/logos/face4d80544d288d73016224fc961951.png"
-						height="80px" width="100px" style="margin:-30px 0px 0px 0px"></a></li>
+							src="http://logopond.com/logos/face4d80544d288d73016224fc961951.png"
+							height="80px" width="100px" style="margin: -30px 0px 0px 0px"></a></li>
 					<%
 						String controller = "";
 
-						controller = (String)session.getAttribute("controller");
-
+						controller = (String)session.getAttribute("controller")!=null?(String)session.getAttribute("controller"):"";
+						
 						switch (controller)
 						{
 						case "home":
@@ -117,7 +117,7 @@
 
 							}
 						}
-						
+
 						if ("true".equals(remember)) {
 							name = user.getAccountByUserId(userID).getFullName();
 						}
@@ -126,6 +126,7 @@
 							userID = (String) session.getAttribute("userID");
 							image_name = (String) session.getAttribute("avatar");
 							name = (String) session.getAttribute("name");
+							accountType = (String) session.getAttribute("login_accounttype");
 						}
 						if (name != null) {
 							if ("default-avatar.png".equals(image_name)) {
@@ -134,13 +135,14 @@
 							else {
 								image_src = request.getContextPath() + ("/view/resource/image/user/") + userID + "/" + image_name;
 							}
-							if ("company".equals(accountType))
-							{
+							if ("company".equals(accountType)) {
 								page_1 = "<li><img id = 'avatar' src='" + image_src
 										+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
-										+ "<li><a href='AddTour'>Thêm tour mới</a></li>" + "<li><a href='postmanager'>Quản lý bài đăng</a></li>"
+										+ "<li><a href='AddTourPlace'>Địa điểm mới</a></li>"
+										+ "<li><a href='AddTour'>Thêm tour mới</a></li>"
+										+ "<li><a href='postmanager'>Quản lý bài đăng</a></li>"
 										+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
 
 								"<li class='divider'></li>" +
@@ -149,13 +151,12 @@
 										//"<li><a href='#'>One more separated link</a></li>"+
 										"</ul></li>";
 							}
-							else
-							{
+							else {
 								page_1 = "<li><img id = 'avatar' src='" + image_src
 										+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
-										
+
 										+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
 
 								"<li class='divider'></li>" +

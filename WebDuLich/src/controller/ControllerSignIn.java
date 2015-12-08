@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import java.sql.SQLException;
 
-
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import com.mysql.fabric.Response;
 
 import dto.dtoUser;
 import model.ModelUser;
@@ -47,18 +47,23 @@ public class ControllerSignIn extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Md5Utility md5 = new Md5Utility();
+		//dang o trang nao
+		HttpSession session1 = request.getSession();
+		String controller  = "";
+		controller = (String)session1.getAttribute("controller")!=null?(String)session1.getAttribute("controller"):"";
 		
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+		//lay gia tri tu form dang nhap
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String remember = request.getParameter("remember");
 		password = md5.md5(password);
 		ModelUser signin = new ModelUser();
-		
+		//kiem tra password
 		boolean checkPass = signin.checkSignIn(email, password);
+		//kiem tra active
 		boolean checkactive = signin.checkActive(email);
 		if (checkPass==true && checkactive==true)
 		{
@@ -109,7 +114,25 @@ public class ControllerSignIn extends HttpServlet {
 				
 			}
 			
-			response.sendRedirect("ControllerHome");
+			switch (controller)
+			{
+			case "home":
+				response.sendRedirect("ControllerHome");
+				break;
+			case "tours":
+				response.sendRedirect("tours");
+				break;
+			case "tours-place":
+				response.sendRedirect("touristplace");
+				break;
+			case "feeling":
+				response.sendRedirect("feeling");
+				break;
+			default:
+				response.sendRedirect("ControllerHome");
+				break;
+			}
+			
 			return;
 		}
 		else
