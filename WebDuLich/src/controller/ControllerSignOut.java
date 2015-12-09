@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import utility.LoginUtility;
 /**
  * Servlet implementation class ControllerSignOut
@@ -29,9 +31,31 @@ public class ControllerSignOut extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		HttpSession session1 = request.getSession();
+		String controller  = "";
+		controller = (String)session1.getAttribute("controller")!=null?(String)session1.getAttribute("controller"):"";
+		
 		LoginUtility signout = new  LoginUtility();
 		signout.signOut(request, response);
-		response.sendRedirect("ControllerHome");
+		switch (controller)
+		{
+		case "home":
+			response.sendRedirect("ControllerHome");
+			break;
+		case "tours":
+			response.sendRedirect("tours");
+			break;
+		case "tours-place":
+			response.sendRedirect("touristplace");
+			break;
+		case "feeling":
+			response.sendRedirect("feelings");
+			break;
+		default:
+			response.sendRedirect("ControllerHome");
+			break;
+		}
+		
 	}
 
 	/**

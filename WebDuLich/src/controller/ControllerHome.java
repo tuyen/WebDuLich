@@ -32,15 +32,16 @@ public class ControllerHome extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.setAttribute("controller", "home");
 	
 		String login = request.getParameter("login");
 		String active = request.getParameter("active");
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		
 		
 			if (("false").equals(login))
 			{

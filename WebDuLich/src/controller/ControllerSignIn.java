@@ -138,15 +138,49 @@ public class ControllerSignIn extends HttpServlet {
 		else
 			if (checkactive==false && checkPass==true)
 			{		
-				
+				switch (controller)
+				{
+				case "home":
+					response.sendRedirect("ControllerHome?active=false");
+					break;
+				case "tours":
+					response.sendRedirect("tours?active=false");
+					break;
+				case "tours-place":
+					response.sendRedirect("touristplace?active=false");
+					break;
+				case "feeling":
+					response.sendRedirect("feelings?active=false");
+					break;
+				default:
+					response.sendRedirect("ControllerHome?active=false");
+					break;
+				}
 				//String a = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
-				response.sendRedirect("ControllerHome?active=false");		
+				//response.sendRedirect("ControllerHome?active=false");		
 				return;		
 			}
 			else
 			{
-				
-				response.sendRedirect("ControllerHome?login=false");		
+				switch (controller)
+				{
+				case "home":
+					response.sendRedirect("ControllerHome?login=false");
+					break;
+				case "tours":
+					response.sendRedirect("tours?login=false");
+					break;
+				case "tours-place":
+					response.sendRedirect("touristplace?login=false");
+					break;
+				case "feeling":
+					response.sendRedirect("feelings?login=false");
+					break;
+				default:
+					response.sendRedirect("ControllerHome?login=false");
+					break;
+				}
+				//response.sendRedirect("ControllerHome?login=false");		
 				return;			
 			}
 		

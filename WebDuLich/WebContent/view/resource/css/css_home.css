@@ -3,11 +3,16 @@
 	width:auto;
 }
 */
+.panel-body
+{
+	padding:2px;
+}
 .carousel-inner img {
 	margin: 0 auto;
 	position: relative;
 	height: 200px;
 	max-height: 200px;
+	min-height: 200px;
 	overflow: hidden;
 }
 

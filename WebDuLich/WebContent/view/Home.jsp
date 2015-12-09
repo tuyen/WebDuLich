@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Travel</title>
+<title>Banana Tour</title>
 
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css"
@@ -55,27 +55,40 @@
 				for (dtoPost post : listPostTour) {
 					out.write("<li class='post'style = 'width:33.33333333333333333333333333333333%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
+					out.write("<div class = 'panel-body'>");
 					out.write("<div id='carousel-" + post.getPostId()
-							+ "' class='carousel slide'data-ride='carousel'>");
+							+ "' class='carousel slide' data-ride='carousel'>");
 					out.write("<div class='carousel-inner'role='listbox'>");
 					List<String> listSrc = mdPost.getImagesFromPost(
 							post.getPostId(), 3);
 					int i = 0;
 					for (String src : listSrc) {
 						if (++i == 1)
-							out.write("<div class='active item' height='30%'><img   width = '100%'alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='active item'> <a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=1&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 						else
-							out.write("<div class='item' height='30%'><img  width = '100%' alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='item'><a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=1&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 					}
 					out.write("</div></div>");
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=1&post=" + post.getPostId() + "'> "
-							+ post.getTitle() + " </a>");
+							+ "/postdetail?cate=1&post=" + post.getPostId()
+							+ "'> <p class = 'title-overflow' >" + post.getTitle()
+							+ " </p></a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 					out.write("<td width='50%'<p data-toggle='tooltip' title='Giá tour "
 							+ post.getPrice()
@@ -107,9 +120,9 @@
 			<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
 				for (dtoPost post : listPostLocation) {
-					out.write("<li class='post'style = 'width:33.333333333333333333333333333333333%'> ");
+					out.write("<li class='post'style = 'width:33.33333333333333333333333333333333%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
+					out.write("<div class = 'panel-body'>");
 					out.write("<div id='carousel-" + post.getPostId()
 							+ "' class='carousel slide'data-ride='carousel'>");
 					out.write("<div class='carousel-inner'role='listbox'>");
@@ -118,18 +131,30 @@
 					int i = 0;
 					for (String src : listSrc) {
 						if (++i == 1)
-							out.write("<div class='active item'><img class='img-responsive' width = '100%'alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='active item'><a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=2&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 						else
-							out.write("<div class='item'><img class='img-responsive' width = '100%' alt='not found'src='"
-									+ src + "'></div>");
+							out.write("<div data-slide-number='"
+									+ i
+									+ "' class='item'><a href = '"
+									+ request.getContextPath()
+									+ "/postdetail?cate=2&post="
+									+ post.getPostId()
+									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+									+ src + "'></a></div>");
 					}
 					out.write("</div></div>");
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=2&post=" + post.getPostId() + "'> "
-							+ post.getTitle() + " </a>");
+							+ "/postdetail?cate=2&post=" + post.getPostId()
+							+ "'> <p class = 'title-overflow' >" + post.getTitle() + " </a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 					out.write("<td><p data-toggle='tooltip' title='"
 							+ post.getViews()
@@ -173,7 +198,7 @@
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=3&post=" + post.getPostId() + "'> "
+							+ "/postdetail?cate=3&post=" + post.getPostId() + "'> <p class = 'title-overflow' >"
 							+ post.getTitle() + " </a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 					out.write("<td><p data-toggle='tooltip' title='"
@@ -188,37 +213,8 @@
 	</div>
 
 	<jsp:include page="body-footer.jsp" />
-	<%
-		String login_check = (String) request.getAttribute("login_status");
-		String active = (String) request.getAttribute("active");
-		if (("not_ok").equals(login_check)) {
-			String p1 = "<script type=\"text/javascript\">";
-			String p2 = "$(document).ready(function(){";
-			String p3 = "alert('Email đăng nhập hoặc mật khẩu không đúng!');";
-			String p4 = "});";
-			String p5 = "</script>";
-
-			out.println(p1);
-			out.println(p2);
-			out.println(p3);
-			out.println(p4);
-			out.println(p5);
-
-		}
-		if ("not_yet".equals(active)) {
-			String p1 = "<script type=\"text/javascript\">";
-			String p2 = "$(document).ready(function(){";
-			String p3 = "alert('Bạn phải xác thực tài khoản trước khi đăng nhập!');";
-			String p4 = "});";
-			String p5 = "</script>";
-
-			out.println(p1);
-			out.println(p2);
-			out.println(p3);
-			out.println(p4);
-			out.println(p5);
-		}
-	%>
+	<jsp:include page="notify.jsp" />
+	
 
 </body>
 </html>
