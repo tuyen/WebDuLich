@@ -22,7 +22,7 @@
 				<ul class="nav navbar-nav">
 
 					<li id='not-focus'><a href="ControllerHome"><img alt=""
-							src="http://logopond.com/logos/face4d80544d288d73016224fc961951.png"
+							src="view/resource/image/logo.png"
 							height="80px" width="100px" style="margin: -30px 0px 0px 0px"></a></li>
 					<%
 						String controller = "";

@@ -34,6 +34,7 @@
 <html>
 <head>
 <title>Điểm du lịch</title>
+<link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="view/resource/lib/jquery-2.1.4.min.js"></script>
@@ -97,7 +98,6 @@
 			</center>
 		</div>
 		<hr>
-		<br>
 		<!-- list tour -->
 		<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%

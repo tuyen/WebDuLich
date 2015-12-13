@@ -26,6 +26,7 @@
 <html>
 <head>
 <title>Quản lý bài đăng</title>
+<link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 

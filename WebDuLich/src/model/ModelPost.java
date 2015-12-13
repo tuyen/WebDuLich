@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dto.dtoCategory;
+import dto.dtoLocation;
 import dto.dtoPost;
 import dto.dtoTouristPlace;
 
@@ -155,7 +156,7 @@ public class ModelPost extends Model {
 	 */
 	public List<dtoTouristPlace> getTouristPlace(String postId) {
 		List<dtoTouristPlace> tours = new ArrayList<dtoTouristPlace>();
-		String sql = "SELECT `TourId`, `PlaceId`,`post`.`Title` FROM `touristplace`,`post` WHERE `post`.`PostId` = `touristplace`.`PlaceId` and `TourId` = "
+		String sql = "SELECT `TourId`, `PlaceId`, `post`.CategoryId, `post`.`Title` FROM `touristplace`,`post` WHERE `post`.`PostId` = `touristplace`.`PlaceId` and `TourId` = "
 				+ postId;
 		if (this.connection.connect()) {
 			ResultSet rs = this.connection.read(sql);
@@ -164,6 +165,7 @@ public class ModelPost extends Model {
 					dtoTouristPlace dto = new dtoTouristPlace();
 					dto.setPlaceId(rs.getString("PlaceId"));
 					dto.setTitle(rs.getString("Title"));
+					dto.setCategoryId(rs.getString("CategoryId"));
 					dto.setTourId(postId);
 					tours.add(dto);
 				}
@@ -175,6 +177,33 @@ public class ModelPost extends Model {
 			this.connection.close();
 		}
 		return tours;
+	}
+	
+	/**
+	 * get location by id
+	 * @param locationId
+	 * @return
+	 */
+	public dtoLocation getLocation(String locationId) {
+		dtoLocation dto = new dtoLocation();
+		String sql = "SELECT * FROM `location` WHERE `location`.`LocationId` = "
+				+ locationId;
+		if (this.connection.connect()) {
+			ResultSet rs = this.connection.read(sql);
+			try {
+				while (rs.next()) {
+					dto.setDescription(rs.getString("Description"));
+					dto.setLocationId(locationId);
+					dto.setName(rs.getString("Name"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			this.connection.close();
+		}
+		return dto;
 	}
 
 	public String getTourFeelingId(String postId) {

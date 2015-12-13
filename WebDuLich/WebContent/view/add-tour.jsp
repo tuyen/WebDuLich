@@ -15,7 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Thêm tour du lịch</title>
-
+<link rel="shortcut icon" href="view/resource/image/logo.ico" />
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">

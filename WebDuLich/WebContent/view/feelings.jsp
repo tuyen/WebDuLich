@@ -21,13 +21,13 @@
 
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();
-	listPost = mdPost
-			.getPosts("3", 10, (cur_page - 1) * 10);
+	listPost = mdPost.getPosts("3", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Cảm nhận của du khách</title>
+<link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="view/resource/lib/jquery-2.1.4.min.js"></script>
@@ -49,48 +49,60 @@
 		<div class="separator">
 			<h3>Cảm nhận của du khách</h3>
 		</div>
-		<br>
 		<hr>
-		<br>
 		<!-- list tour -->
 		<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
-				if (listPost.size() == 0) {
-					out.write("<div class = 'panel panel-body'> <h4> Chưa có bài cảm nhận nào!!! Bạn hãy là người đầu tiên <a href=''> viết cảm nhận </a> nhé :) </h4> </div>");
-				}
-				for (dtoPost post : listPost) {
-					out.write("<li class='post'style = 'width:50%'> ");
-					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
-					out.write("<div id='carousel-" + post.getPostId()
-							+ "' class='carousel slide'data-ride='carousel'>");
-					out.write("<div class='carousel-inner'role='listbox'>");
-					List<String> listSrc = mdPost.getImagesFromPost(
-							post.getPostId(), 3);
-					int i = 0;
-					for (String src : listSrc) {
-						if (++i == 1)
-							out.write("<div class='active item'><img class='img-responsive' width = '100%'alt='not found'src='"
-									+ src + "'></div>");
-						else
-							out.write("<div class='item'><img class='img-responsive' width = '100%' alt='not found'src='"
-									+ src + "'></div>");
+				if (listPost.size() != 0)
+					for (dtoPost post : listPost) {
+						out.write("<li class='post'style = 'width:50%'> ");
+						out.write("<div class = 'panel'style = 'width:100%'> ");
+						out.write("<div class = 'panel-body'>");
+						out.write("<div id='carousel-" + post.getPostId()
+								+ "' class='carousel slide'data-ride='carousel'>");
+						out.write("<div class='carousel-inner'role='listbox'>");
+						List<String> listSrc = mdPost.getImagesFromPost(
+								post.getPostId(), 3);
+						int i = 0;
+						for (String src : listSrc) {
+							if (++i == 1)
+								out.write("<div data-slide-number='"
+										+ i
+										+ "' class='active item'><a href = '"
+										+ request.getContextPath()
+										+ "/postdetail?cate=3&post="
+										+ post.getPostId()
+										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+										+ src + "'></a></div>");
+							else
+								out.write("<div data-slide-number='"
+										+ i
+										+ "' class='item'><a href = '"
+										+ request.getContextPath()
+										+ "/postdetail?cate=3&post="
+										+ post.getPostId()
+										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
+										+ src + "'></a></div>");
+						}
+						out.write("</div></div>");
+						out.write("<div class = 'panel-footer'>");
+						out.write("<div style='font-size: 17px;'>");
+						out.write("<a href='" + request.getContextPath()
+								+ "/postdetail?cate=3&post=" + post.getPostId()
+								+ "'> " + post.getTitle() + " </a>");
+						out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
+						out.write("<td><p data-toggle='tooltip' title='"
+								+ post.getViews()
+								+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
+								+ post.getViews() + "</p></td></tr></table>");
+						out.write("</div></div></div></li>");
 					}
-					out.write("</div></div>");
-					out.write("<div class = 'panel-footer'>");
-					out.write("<div style='font-size: 17px;'>");
-					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=3&post=" + post.getPostId() + "'> "
-							+ post.getTitle() + " </a>");
-					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
-					out.write("<td><p data-toggle='tooltip' title='"
-							+ post.getViews()
-							+ " người đã xem'><span class='glyphicon glyphicon-eye-open' style='color: #3399FF'></span> "
-							+ post.getViews() + "</p></td></tr></table>");
-					out.write("</div></div></div></li>");
-				}
+				else
+					out.write("<center> <h4> Không tìm thấy bài viết nào! Bạn hãy là người đầu tiên <a href = '"
+							+ request.getContextPath()
+							+ "/AddTourPlace'> viết bài </a> nhé! </h4> </center>");
 			%>
-		</ul>
+		</ul>		
 
 		<!-- pagination -->
 

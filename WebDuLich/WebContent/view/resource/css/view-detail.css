@@ -26,6 +26,11 @@
 	text-align: justify;
 }
 
+.title-content{
+	border: 3px solid #ddd;
+	padding: 5px;
+}
+
 .separator form {
 	margin-top: -12px;
 	display: block;

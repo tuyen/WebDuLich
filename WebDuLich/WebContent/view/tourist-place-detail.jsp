@@ -1,3 +1,5 @@
+<%@page import="dto.dtoLocation"%>
+<%@page import="dto.dtoTouristPlace"%>
 <%@page import="model.ModelComment"%>
 <%@page import="dto.dtoComment"%>
 <%@page import="model.ModelUser"%>
@@ -21,13 +23,14 @@
 	List<dtoComment> listComment = null;
 	ModelComment mdComment = new ModelComment();
 	listComment = mdComment.getAllComment(postId);
-
+	
 	ModelUser mdUser = new ModelUser();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title><%=post.getTitle()%></title>
+<link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="view/resource/lib/jquery-2.1.4.min.js"></script>
@@ -36,7 +39,7 @@
 <script type="text/javascript"
 	src="view/resource/bootstrap/js/bootstrap.min.js"></script>
 <link href="view/resource/css/css_home.css" rel="stylesheet">
-<link href="view/resource/css/view-tour.css" rel="stylesheet">
+<link href="view/resource/css/view-detail.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
 </head>
 <body>
@@ -84,6 +87,28 @@
 		<br>
 		<div class="row">
 			<div class="col-md-8">
+				<%
+					if (cate.equals("3")) {
+						//get all place belong to this post
+						List<dtoTouristPlace> listPlace = mdPost.getTouristPlace(postId);
+						out.write("<div class='well well-sm'>");
+						out.write("<p><b>Bài cảm nhận về: </b><a href='"
+								+ request.getContextPath() + "/postdetail?cate="
+								+ listPlace.get(0).getCategoryId() + "&post="
+								+ listPlace.get(0).getPlaceId() + "'>"
+								+ listPlace.get(0).getTitle() + "</a></p>");
+						out.write("</div>");
+					}else
+						if (cate.equals("2")) {
+							dtoLocation loc =mdPost.getLocation(post.getLocationId()); 
+							out.write("<div class='well well-sm'>");
+							out.write("<p><b>Điểm du lịch thuộc về tỉnh/ thành phố: </b><a href='"
+									+ request.getContextPath() + "/touristplace?place="
+									+ loc.getLocationId() + "'>"
+									+ loc.getName() + "</a></p>");
+							out.write("</div>");
+						}
+				%>
 				<div class="content">
 					<%
 						out.write(post.getContent());
