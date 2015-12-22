@@ -105,9 +105,8 @@
 		<div class="col-md-2"></div>
 
 	</div>
-	</div>
-	<jsp:include page="body-footer.jsp" />
 
+	<jsp:include page="body-footer.jsp" />
 
 </body>
 </html>

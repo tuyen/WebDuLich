@@ -34,7 +34,6 @@
 <script src="view/resource/datepicker/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
-
 	<jsp:include page="body-header.jsp" />
 	<!-- Begin Body -->
 	<div style="height: 30px"></div>
@@ -336,7 +335,6 @@
 
 		</div>
 	</div>
-
 
 
 </body>

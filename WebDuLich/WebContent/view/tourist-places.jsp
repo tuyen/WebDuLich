@@ -25,8 +25,8 @@
 	String place = "";
 	if (request.getParameter("place") != null) {
 		place = request.getParameter("place");
-		listPost = mdPost.SearchTouristPlaces(
-				request.getParameter("place"), 10, (cur_page - 1) * 10);
+		listPost = mdPost.SearchTouristPlaces(place, 10,
+				(cur_page - 1) * 10);
 	} else
 		listPost = mdPost.getPosts("2", 10, (cur_page - 1) * 10);
 %>

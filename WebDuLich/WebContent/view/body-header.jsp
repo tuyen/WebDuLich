@@ -3,7 +3,7 @@
 
 
 <!-- Begin Navbar -->
-
+<div class = "wrapper">
 <div class="navbar navbar-default  navbar-fixed-top">
 	<div>
 		<div class="navbar-header">

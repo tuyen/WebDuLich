@@ -29,7 +29,6 @@
 
 </head>
 <body>
-
 	<jsp:include page="body-header.jsp" />
 <%
 	List<dtoPost> listFeeling = null;

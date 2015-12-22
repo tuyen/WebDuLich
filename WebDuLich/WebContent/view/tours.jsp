@@ -23,20 +23,23 @@
 	ModelPost mdPost = new ModelPost();
 	listPost = mdPost.getPosts("1", 10, (cur_page - 1) * 10);
 	String placeId = request.getParameter("place");
-	String companyId = request.getParameter("company");
+	String companyId = request.getParameter("tourist");
 	if (request.getParameter("place") != null
-			&& request.getParameter("company") != null) {			
+			&& request.getParameter("tourist") != null) //search both place and company
+	{			
 		listPost = mdPost.SearchTours(request.getParameter("place"),
-				request.getParameter("company"), 10,
+				request.getParameter("tourist"), 10,
 				(cur_page - 1) * 10);
-	} else if (request.getParameter("place") != null)
+	} else if (request.getParameter("place") != null) //search place
+	{
 		listPost = mdPost.SearchToursByLocation(
 				request.getParameter("place"), 10, (cur_page - 1) * 10);
-	else if (request.getParameter("company") != null)
-		listPost = mdPost.SearchToursByLocation(
-				request.getParameter("company"), 10,
+	}else if (request.getParameter("tourist") != null) //search company
+	{
+		listPost = mdPost.SearchToursByCompany(
+				request.getParameter("tourist"), 10,
 				(cur_page - 1) * 10);
-	else
+	}else
 		listPost = mdPost.getPosts("1", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,11 +58,12 @@
 <link href="view/resource/css/view-tour.css" rel="stylesheet">
 <script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
 </head>
+
 <body>
 	<!-- body header -->
 	<jsp:include page="body-header.jsp"></jsp:include>
 	<!-- body content -->
-	<div class="container" style="width: 80%">
+	<div class="container" style="width: 80%; ">
 
 		<div class="separator">
 			<h3>TOUR MỚI</h3>
@@ -214,5 +218,6 @@
 	<jsp:include page="body-footer.jsp"></jsp:include>
 	<!-- go to top button -->
 	<span class="top"></span>
+
 </body>
 </html>

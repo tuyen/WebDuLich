@@ -236,7 +236,7 @@
 						for (dtoComment comment : listComment) {
 							out.write("<div class='panel panel-default'>");
 							out.write("<div class='panel-body'>");
-							out.write("<img class='avatar' src='"
+							out.write("<img class='avatar' src='view/resource/image/user/"+comment.getUserId()+"/"
 									+ mdUser.getAvatarByCommentId(comment
 											.getCommentId()) + "' alt='user avatar'>");
 							out.write("<p>" + comment.getContent() + "</p>");

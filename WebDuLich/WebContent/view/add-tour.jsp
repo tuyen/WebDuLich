@@ -246,7 +246,6 @@
 	</div>
 	<jsp:include page="body-footer.jsp" />
 
-
 </body>
 </html>
 

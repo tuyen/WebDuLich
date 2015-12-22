@@ -56,7 +56,7 @@ public class ModelPost extends Model {
 	 */
 	public List<dtoPost> getAllPostByCategory(String categoryId) {
 		List<dtoPost> listPost = new ArrayList<dtoPost>();
-		String sql = "select * from post where post.CategoryId = " + categoryId;
+		String sql = "select * from post where post.Deleted = 0 and post.CategoryId = " + categoryId;
 		if (connection.connect()) {
 			ResultSet rs = connection.read(sql);
 			try {
@@ -528,7 +528,7 @@ public class ModelPost extends Model {
 	public List<dtoPost> getPosts(String categoryId, int limit, int offset) {
 		List<dtoPost> listPost = new ArrayList<dtoPost>();
 		if (connection.connect()) {
-			String sql = "select SQL_CALC_FOUND_ROWS * from post where CategoryId = ? order by post.PostId desc limit "
+			String sql = "select SQL_CALC_FOUND_ROWS * from post where post.Deleted = 0 and CategoryId = ? order by post.PostId desc limit "
 					+ offset + "," + limit;
 			try {
 				PreparedStatement stm = connection.getConnection()
@@ -698,7 +698,7 @@ public class ModelPost extends Model {
 			int offset) {
 		List<dtoPost> listPost = new ArrayList<dtoPost>();
 		if (connection.connect()) {
-			String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM `post` WHERE `post`.`LocationId` = ? AND `post`.`CategoryId` = 1  order by post.PostId desc limit "
+			String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM `post` WHERE `post`.`Deleted` = 0 AND `post`.`LocationId` = ? AND `post`.`CategoryId` = 1  order by post.PostId desc limit "
 					+ offset + "," + limit;
 			try {
 				PreparedStatement stm = connection.getConnection()
