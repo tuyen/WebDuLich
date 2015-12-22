@@ -46,10 +46,6 @@
 	<!-- body content -->
 	<div class="container" style="width: 80%">
 
-		<div class="separator">
-			<h3>Cảm nhận của du khách</h3>
-		</div>
-		<hr>
 		<!-- list tour -->
 		<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%

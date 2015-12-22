@@ -52,10 +52,6 @@
 	<!-- body content -->
 	<div class="container" style="width: 80%">
 
-		<div class="separator">
-			<h3>Điểm du lịch</h3>
-		</div>
-		<br> <br>
 		<div class="panel panel-body">
 			<lable class="text-left"> <i>Tùy chọn tìm kiếm</i></lable>
 			<center>
