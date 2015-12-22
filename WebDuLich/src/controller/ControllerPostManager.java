@@ -18,7 +18,7 @@ import model.ModelPost;
 public class ControllerPostManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LoginUtility login = new LoginUtility();
-
+	ModelPost md = new ModelPost();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -36,7 +36,7 @@ public class ControllerPostManager extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-		ModelPost md = new ModelPost();
+		
 		md.getAllCategory();
 		request.getRequestDispatcher("view/manage-post.jsp").include(request,
 				response);
@@ -50,6 +50,8 @@ public class ControllerPostManager extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String deletePost = request.getParameter("delete_post");
+		md.updateDelete(deletePost);
 	}
 
 }

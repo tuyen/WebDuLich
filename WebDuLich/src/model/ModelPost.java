@@ -38,6 +38,15 @@ public class ModelPost extends Model {
 			this.connection.close();
 		}
 	}
+	
+	public void updateDelete(String postId) {
+		String sql = "UPDATE `post` SET `Deleted` = 1 WHERE `PostId`="
+				+ postId;
+		if (this.connection.connect()) {
+			this.connection.write(sql);
+			this.connection.close();
+		}
+	}
 
 	public void removeAllPlace(String tourId) {
 		String sql = "DELETE FROM `touristplace` WHERE `TourId` = " + tourId;

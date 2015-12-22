@@ -45,6 +45,8 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="view/resource/DataTables-1.10.9/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src="view/resource/DataTables-1.10.9/js/jquery.dataTables.js"></script>
 
 <!-- custom css & javasript -->
 <link href="view/resource/css/css_home.css" rel="stylesheet">
@@ -79,19 +81,19 @@
 					<div class="btn-group">
 						<%
 							if (request.getParameter("cate") != null)
-													out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
-															+ listCate.get(Integer.parseInt(strCate) - 1)
-																	.getName()
-															+ " <span class='caret'></span></button>");
-												else
-													out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
+																	out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
+																			+ listCate.get(Integer.parseInt(strCate) - 1)
+																					.getName()
+																			+ " <span class='caret'></span></button>");
+																else
+																	out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
 						%>
 						<ul class="dropdown-menu">
 							<%
 								for (dtoCategory cate : listCate)
-															out.print("<li>	<a href='" + request.getContextPath()
-																	+ "/postmanager?cate=" + cate.getCategoryId()
-																	+ "'>" + cate.getName() + "</a></li>");
+																				out.print("<li>	<a href='" + request.getContextPath()
+																						+ "/postmanager?cate=" + cate.getCategoryId()
+																						+ "'>" + cate.getName() + "</a></li>");
 							%>
 						</ul>
 					</div>
@@ -114,19 +116,19 @@
 				<tbody>
 					<%
 						for (dtoPost p : listPost) {
-											out.write("<tr>");
-											out.write("<td>" + p.getPostDate() + "</td>");
-											out.write("<td><b font-size = '20px'><a href= '"
-													+ request.getContextPath() + "/postdetail?cate="
-													+ p.getCategoryId() + "&post=" + p.getPostId()
-													+ "'>" + p.getTitle() + "</a></b>");
-											out.write("<p>" + p.getShortContent() + " ...</p></td>");
-											out.write("<td style = 'font-size:15px'>");
-											out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/AddTour?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
-											out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
-											out.write("</td>");
-											out.write("</tr>");
-										}
+														out.write("<tr id = '"+p.getPostId()+"'>");
+														out.write("<td>" + p.getPostDate() + "</td>");
+														out.write("<td><b font-size = '20px'><a href= '"
+																+ request.getContextPath() + "/postdetail?cate="
+																+ p.getCategoryId() + "&post=" + p.getPostId()
+																+ "'>" + p.getTitle() + "</a></b>");
+														out.write("<p>" + p.getShortContent() + " ...</p></td>");
+														out.write("<td style = 'font-size:15px'>");
+														out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/AddTour?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
+														out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-toggle='modal' data-target='#myModal' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
+														out.write("</td>");
+														out.write("</tr>");
+													}
 					%>
 				</tbody>
 			</table>
@@ -139,37 +141,28 @@
 	<jsp:include page="body-footer.jsp" />
 	<!-- go to top button -->
 	<span class="top"></span>
-	<script type="text/javascript">
-		/**
-		 * datatable
-		 */
-		$(document)
-				.ready(
-						function() {
-							$('#tpost')
-									.DataTable(
-											{
-												"order" : [ [ 0, "desc" ] ],
-												"language" : {
-													"lengthMenu" : "Hiển thị _MENU_ bài",
-													"zeroRecords" : "Chưa có dữ liệu",
-													"search" : "Tìm kiếm:",
-													"info" : "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ bài",
-													"infoEmpty" : "Chưa có dữ liệu",
-													"infoFiltered" : "(Lọc từ _MAX_ bài)",
-													"paginate" : {
-														"first" : "Trang đầu",
-														"last" : "Trang cuối",
-														"next" : "Trang sau",
-														"previous" : "Trang trước"
-													},
-													"aria" : {
-														"sortAscending" : ": Chọn để sắp xếp tăng dần",
-														"sortDescending" : ": Chọn để sắp xếp giảm dần"
-													}
-												}
-											});
-						});
-	</script>
+	
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Thông báo xác thực</h4>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc muốn xóa bài viết này?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Xác nhận</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	<script type="text/javascript" src = "view/resource/lib/datatable.js">	</script>
 </body>
 </html>
