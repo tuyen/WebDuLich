@@ -35,7 +35,7 @@ $(document).ready(function() {
 	function deletePost(obj) {
 		table.row($(obj).parents('tr')).remove().draw();
 		$.ajax({
-			url : "postmanager",
+			url : "post-manager",
 			type : "post",
 			data : {
 				delete_post : $(obj).parents('tr').attr("id")
