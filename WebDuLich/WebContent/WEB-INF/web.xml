@@ -150,6 +150,10 @@
     <location>/page-not-found</location>
   </error-page>
   
+  <error-page>    
+    <location>/error</location>
+  </error-page>
+  
   <welcome-file-list>
     <welcome-file>home</welcome-file>
   </welcome-file-list>
