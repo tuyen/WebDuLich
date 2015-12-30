@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class PostController
+ * Servlet implementation class PageError
  */
-@WebServlet("/PostController")
-public class PostController extends HttpServlet {
+@WebServlet("/PageError")
+public class PageError extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostController() {
+    public PageError() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,15 +28,28 @@ public class PostController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		
-		//request.getRequestDispatcher("view/add-tour-review.jsp").include(request, response);
-		request.getRequestDispatcher("view/account-manager.jsp").include(request, response);
-		//request.getRequestDispatcher("view/add-tour-place.jsp").include(request, response);
-		//request.getRequestDispatcher("view/add-tour.jsp").include(request, response);
+		if (!ckcon.isConnected()) {
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request, response);
+			return;
+		}
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		session.setAttribute("controller", "home");
+
+		String login = request.getParameter("login");
+		String active = request.getParameter("active");
+
+		if (("false").equals(login)) {
+			request.setAttribute("login_status", "not_ok");
+		}
+		if ("false".equals(active)) {
+			request.setAttribute("active", "not_yet");
+		}
+
+		request.getRequestDispatcher("view/page-error.jsp").include(request, response);
 	}
 
 	/**
@@ -43,6 +57,7 @@ public class PostController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//doGet(request, response);
 	}
 
 }

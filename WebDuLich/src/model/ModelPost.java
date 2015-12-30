@@ -343,7 +343,7 @@ public class ModelPost extends Model {
 	}
 
 	public Boolean addTouristPlace(dtoPost dto) {
-		String sql = "INSERT INTO `post`(`CategoryId`, `UserId`, `Title`, `Content`, `Date`, `Price`, `Views`,`NumberPerson`,`TotalTime`,`Buys`,`LocationId`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO `post`(`CategoryId`, `UserId`, `Title`, `Content`, `Date`, `Price`, `Views`,`NumberPerson`,`TotalTime`,`Buys`,`LocationId`,`Deleted`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 		Boolean rs = false;
 		if (this.connection.connect()) {
 			try {
@@ -365,6 +365,8 @@ public class ModelPost extends Model {
 				if (dto.getLocationId() != "")
 					preStatement.setInt(11,
 							Integer.parseInt(dto.getLocationId().trim()));
+				
+				preStatement.setBoolean(12,false);
 				rs = preStatement.execute();
 
 			} catch (SQLException e) {

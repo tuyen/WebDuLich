@@ -17,7 +17,7 @@ import model.ModelUser;
 @WebServlet("/ControllerActiveAccount")
 public class ControllerActiveAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,6 +33,12 @@ public class ControllerActiveAccount extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		String email = request.getParameter("email");
 		String code = request.getParameter("code");
 		ModelUser signup = new ModelUser();

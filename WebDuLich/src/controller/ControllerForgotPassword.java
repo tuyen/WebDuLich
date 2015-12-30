@@ -24,7 +24,7 @@ import utility.EmailUtility;
 public class ControllerForgotPassword extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -59,7 +59,12 @@ public class ControllerForgotPassword extends HttpServlet
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		ModelUser user = new ModelUser();
 		String email_ajax = request.getParameter("email_ajax");
 		if (email_ajax == null) {
@@ -92,6 +97,12 @@ public class ControllerForgotPassword extends HttpServlet
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		Md5Utility md5 = new Md5Utility();
 		String email = request.getParameter("email");
 		if (email != null) {

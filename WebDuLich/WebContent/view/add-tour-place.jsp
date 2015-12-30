@@ -46,7 +46,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div>
-							<form role="form" method="post" action="AddTourPlace">
+							<form role="form" method="post" action="add-tour-place">
 								<%
 									if(edit.getPostId() != "")
 									{

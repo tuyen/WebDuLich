@@ -143,7 +143,7 @@
 									+ i
 									+ "' class='active item'> <a href = '"
 									+ request.getContextPath()
-									+ "/postdetail?cate=1&post="
+									+ "/detail?cate=1&post="
 									+ post.getPostId()
 									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 									+ src + "'></a></div>");
@@ -152,7 +152,7 @@
 									+ i
 									+ "' class='item'><a href = '"
 									+ request.getContextPath()
-									+ "/postdetail?cate=1&post="
+									+ "/detail?cate=1&post="
 									+ post.getPostId()
 									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 									+ src + "'></a></div>");
@@ -161,7 +161,7 @@
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=1&post=" + post.getPostId()
+							+ "/detail?cate=1&post=" + post.getPostId()
 							+ "'> <p class = 'title-overflow' >" + post.getTitle()
 							+ " </p></a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");

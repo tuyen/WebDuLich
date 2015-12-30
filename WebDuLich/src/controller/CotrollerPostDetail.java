@@ -28,7 +28,7 @@ import utility.LoginUtility;
 /**
  * Servlet implementation class CotrollerPostDetail
  */
-@WebServlet("/postdetail")
+@WebServlet("/CotrollerPostDetail")
 public class CotrollerPostDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ModelBookedTour mdBookedTour = new ModelBookedTour();
@@ -37,7 +37,7 @@ public class CotrollerPostDetail extends HttpServlet {
 	LoginUtility login = new LoginUtility();
 	Calendar cal;
 	Date currentDate;
-
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -66,13 +66,19 @@ public class CotrollerPostDetail extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		HttpSession session = request.getSession();
 		session.setAttribute("controller", "abc");
 		String category = request.getParameter("cate");
 		String postId =  request.getParameter("post");
 		if(category == null)
 		{
-			response.sendRedirect("ControllerHome");
+			response.sendRedirect("home");
 			return;
 		}
 		if(category == "" || Integer.parseInt(category) > 3 || Integer.parseInt(category) < 0 || !mdPost.checkPostExist(postId, category))
@@ -115,7 +121,12 @@ public class CotrollerPostDetail extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		if((!login.isLogged(request, response)))
 		{
 			response.getWriter()
@@ -143,7 +154,7 @@ public class CotrollerPostDetail extends HttpServlet {
 				dto.setUserId(userId);
 				dto.setPostId(txt_postId);
 				mdComment.addComment(dto);
-				response.sendRedirect("postdetail?cate="+txt_cate+"&post="+txt_postId);
+				response.sendRedirect("detail?cate="+txt_cate+"&post="+txt_postId);
 				return;
 			}
 		}

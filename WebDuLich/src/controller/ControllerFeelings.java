@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ControllerFeelings
  */
-@WebServlet("/feelings")
+@WebServlet("/ControllerFeelings")
 public class ControllerFeelings extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,6 +32,12 @@ public class ControllerFeelings extends HttpServlet {
 		session.setAttribute("controller", "feeling");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		request.getRequestDispatcher("/view/feelings.jsp").include(request, response);
 	}
 

@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ControllerPost
  */
-
+@WebServlet("/ControllerTours")
 public class ControllerTours extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,6 +28,12 @@ public class ControllerTours extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		HttpSession session = request.getSession();
 		session.setAttribute("controller", "tours");
 		response.setCharacterEncoding("UTF-8");

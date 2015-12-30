@@ -92,7 +92,7 @@
 							<%
 								for (dtoCategory cate : listCate)
 																				out.print("<li>	<a href='" + request.getContextPath()
-																						+ "/postmanager?cate=" + cate.getCategoryId()
+																						+ "/post-manager?cate=" + cate.getCategoryId()
 																						+ "'>" + cate.getName() + "</a></li>");
 							%>
 						</ul>
@@ -119,7 +119,7 @@
 														out.write("<tr id = '"+p.getPostId()+"'>");
 														out.write("<td>" + p.getPostDate() + "</td>");
 														out.write("<td><b font-size = '20px'><a href= '"
-																+ request.getContextPath() + "/postdetail?cate="
+																+ request.getContextPath() + "/detail?cate="
 																+ p.getCategoryId() + "&post=" + p.getPostId()
 																+ "'>" + p.getTitle() + "</a></b>");
 														out.write("<p>" + p.getShortContent() + " ...</p></td>");

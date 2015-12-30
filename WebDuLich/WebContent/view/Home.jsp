@@ -37,7 +37,7 @@
 	ModelPost mdPost = new ModelPost();
 	listPostTour = mdPost.getPosts("1", 6, 0);
 	listPostLocation = mdPost.getPosts("2", 6, 0);
-	listFeeling = mdPost.getPosts("3", 6, 0);	
+	listFeeling = mdPost.getPosts("3", 6, 0);		
 %>
 
 	<!-- Begin Body -->
@@ -67,7 +67,7 @@
 									+ i
 									+ "' class='active item'> <a href = '"
 									+ request.getContextPath()
-									+ "/postdetail?cate=1&post="
+									+ "/detail?cate=1&post="
 									+ post.getPostId()
 									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 									+ src + "'></a></div>");
@@ -76,7 +76,7 @@
 									+ i
 									+ "' class='item'><a href = '"
 									+ request.getContextPath()
-									+ "/postdetail?cate=1&post="
+									+ "/detail?cate=1&post="
 									+ post.getPostId()
 									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 									+ src + "'></a></div>");
@@ -85,7 +85,7 @@
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=1&post=" + post.getPostId()
+							+ "/detail?cate=1&post=" + post.getPostId()
 							+ "'> <p class = 'title-overflow' >" + post.getTitle()
 							+ " </p></a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
@@ -111,7 +111,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
 				style="width: 102.5%; margin: 20px 0px 10px -13px">
 				<div class="separator" style="margin: 10px 0 0 0">
-					<a href="touristplace"><h3 style="font: italic bold 18px/30px Georgia, serif;">Các
+					<a href="tourist-place"><h3 style="font: italic bold 18px/30px Georgia, serif;">Các
 						điểm du lịch</h3></a>
 				</div>
 			</div>
@@ -134,7 +134,7 @@
 									+ i
 									+ "' class='active item'><a href = '"
 									+ request.getContextPath()
-									+ "/postdetail?cate=2&post="
+									+ "/detail?cate=2&post="
 									+ post.getPostId()
 									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 									+ src + "'></a></div>");
@@ -143,7 +143,7 @@
 									+ i
 									+ "' class='item'><a href = '"
 									+ request.getContextPath()
-									+ "/postdetail?cate=2&post="
+									+ "/detail?cate=2&post="
 									+ post.getPostId()
 									+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 									+ src + "'></a></div>");
@@ -152,7 +152,7 @@
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=2&post=" + post.getPostId()
+							+ "/detail?cate=2&post=" + post.getPostId()
 							+ "'> <p class = 'title-overflow' >" + post.getTitle() + " </a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 					out.write("<td><p data-toggle='tooltip' title='"
@@ -166,7 +166,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
 				style="width: 102.5%; margin: 20px 0px 10px -13px">
 				<div class="separator" style="margin: 10px 0 0 0">
-					<a href="feelings"><h3 style="font: italic bold 18px/30px Georgia, serif;">Cảm nhận của du khách</h3></a>
+					<a href="user-review"><h3 style="font: italic bold 18px/30px Georgia, serif;">Cảm nhận của du khách</h3></a>
 				</div>
 			</div>
 			<br /> <br />
@@ -197,7 +197,7 @@
 					out.write("<div class = 'panel-footer'>");
 					out.write("<div style='font-size: 17px;'>");
 					out.write("<a href='" + request.getContextPath()
-							+ "/postdetail?cate=3&post=" + post.getPostId() + "'> <p class = 'title-overflow' >"
+							+ "/detail?cate=3&post=" + post.getPostId() + "'> <p class = 'title-overflow' >"
 							+ post.getTitle() + " </a>");
 					out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 					out.write("<td><p data-toggle='tooltip' title='"

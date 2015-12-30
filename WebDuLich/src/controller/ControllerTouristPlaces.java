@@ -13,9 +13,10 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ControllerTouristPlaces
  */
-@WebServlet("/touristplace")
+@WebServlet("/ControllerTouristPlaces")
 public class ControllerTouristPlaces extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
        /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,6 +33,12 @@ public class ControllerTouristPlaces extends HttpServlet {
 		session.setAttribute("controller", "tours-place");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		request.getRequestDispatcher("/view/tourist-places.jsp").include(request, response);			
 	}
 

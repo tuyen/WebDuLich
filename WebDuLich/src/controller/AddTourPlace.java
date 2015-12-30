@@ -22,7 +22,7 @@ import dto.dtoPost;
 @WebServlet("/AddTourPlace")
 public class AddTourPlace extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -42,12 +42,19 @@ public class AddTourPlace extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		String edit = request.getParameter("edit");
 		dtoPost dto = new dtoPost();			
 		
 		if((!login.isLogged(request, response))||(!login.getAccountType().equals("company")))
 		{
-			response.sendRedirect("ControllerHome");
+			request.getRequestDispatcher("view/Access-denied.jsp").include(request,
+					response);
 			return;
 		}
 		else
@@ -81,10 +88,15 @@ public class AddTourPlace extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		if(!login.isLogged(request, response))
 		{
-			response.sendRedirect("ControllerHome");
+			response.sendRedirect("home");
 			return;
 		}
 		else
@@ -134,7 +146,7 @@ public class AddTourPlace extends HttpServlet {
 				modelPost.addTouristPlace(post);
 
 				String postId = modelPost.getLastPost(userId);
-				String view_url = "postdetail?cate=2&post=" + postId;
+				String view_url = "detail?cate=2&post=" + postId;
 				try {
 					response.sendRedirect(view_url);
 				} catch (IOException e) {
@@ -145,9 +157,7 @@ public class AddTourPlace extends HttpServlet {
 			}
 		}
 
-	}
-	
-	
+	}	
 	private void updateAPlace(HttpServletRequest request,
 			HttpServletResponse response) {
 		String txt_place = request.getParameter("txt_place");
@@ -167,7 +177,7 @@ public class AddTourPlace extends HttpServlet {
 				ModelPost modelPost = new ModelPost();
 				modelPost.updatePost(post);
 				
-				String view_url = "postdetail?cate=2&post=" + edit_post;
+				String view_url = "detail?cate=2&post=" + edit_post;
 				try {
 					response.sendRedirect(view_url);
 				} catch (IOException e) {

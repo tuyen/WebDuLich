@@ -93,7 +93,7 @@
 						List<dtoTouristPlace> listPlace = mdPost.getTouristPlace(postId);
 						out.write("<div class='well well-sm'>");
 						out.write("<p><b>Bài cảm nhận về: </b><a href='"
-								+ request.getContextPath() + "/postdetail?cate="
+								+ request.getContextPath() + "/detail?cate="
 								+ listPlace.get(0).getCategoryId() + "&post="
 								+ listPlace.get(0).getPlaceId() + "'>"
 								+ listPlace.get(0).getTitle() + "</a></p>");
@@ -103,7 +103,7 @@
 							dtoLocation loc =mdPost.getLocation(post.getLocationId()); 
 							out.write("<div class='well well-sm'>");
 							out.write("<p><b>Điểm du lịch thuộc về tỉnh/ thành phố: </b><a href='"
-									+ request.getContextPath() + "/touristplace?place="
+									+ request.getContextPath() + "/tourist-place?place="
 									+ loc.getLocationId() + "'>"
 									+ loc.getName() + "</a></p>");
 							out.write("</div>");
@@ -124,7 +124,7 @@
 							out.write("<div class='panel' style='width: 100%; margin-bottom:10px;'>");
 							out.write("<div class='panel-body'>");
 							out.write("<a href='" + request.getContextPath()
-									+ "/postdetail?cate=" + cate + "&post="
+									+ "/detail?cate=" + cate + "&post="
 									+ p.getPostId()
 									+ "'><img class='img-responsive' src='"
 									+ mdPost.getImagesFromPost(p.getPostId()).get(0)
@@ -132,7 +132,7 @@
 							out.write("</div>");
 							out.write("<div class='panel-footer'>");
 							out.write("<a href='" + request.getContextPath()
-									+ "/postdetail?cate=" + cate + "&post="
+									+ "/detail?cate=" + cate + "&post="
 									+ p.getPostId() + "'>" + p.getTitle() + "</a>");
 							out.write("</div></div>");
 						}
@@ -158,7 +158,7 @@
 				<br> <br>
 			</div>
 			<form class="form form-group" role="form" method="post"
-				action="postdetail" <%=msg1%>>
+				action="detail" <%=msg1%>>
 				<input type="hidden" name="txt_postId" value="<%=postId%>">
 				<input type="hidden" name="txt_cate" value="<%=cate%>">
 				<textarea class="form-control" rows="3"
@@ -170,15 +170,11 @@
 			<div <%=msg2%>>
 				<h4>Bạn chưa đăng nhập! Vui lòng đăng nhập để bình luận!</h4>
 			</div>
-			<div class="comment-detail panel panel-group"
-				style="margin-top: 55px;">
+			
 				<%
-					if (listComment.size() == 0) {
-						out.write("<div class='panel panel-default'>");
-						out.write("<div class='panel-body'>");
-						out.write("<p>Chưa có bình luận nào</p>");
-						out.write("</div></div>");
-					} else
+					if (listComment.size() > 0) {
+					
+						out.write("<div class='comment-detail panel panel-group' style='margin-top: 55px;'>");
 						for (dtoComment comment : listComment) {
 							out.write("<div class='panel panel-default'>");
 							out.write("<div class='panel-body'>");
@@ -188,8 +184,10 @@
 							out.write("<p>" + comment.getContent() + "</p>");
 							out.write("</div></div>");
 						}
+						out.write("</div>");
+					}
 				%>
-			</div>
+			
 		</div>
 	</div>
 	<!-- body footer -->

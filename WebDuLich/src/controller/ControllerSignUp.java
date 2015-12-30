@@ -28,7 +28,7 @@ import utility.Md5Utility;
 public class ControllerSignUp extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -62,7 +62,12 @@ public class ControllerSignUp extends HttpServlet
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		String email_ajax = request.getParameter("email_ajax");
 		try {
 			if (request.getParameter("email_ajax") == null) {
@@ -99,7 +104,12 @@ public class ControllerSignUp extends HttpServlet
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 
 		String email = request.getParameter("email");
 		String username = request.getParameter("user_name");

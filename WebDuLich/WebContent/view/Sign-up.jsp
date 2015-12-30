@@ -27,7 +27,7 @@
 		
 		
 		<center>
-		<form id="signupForm" onsubmit="return checkSubmit()" method="POST" action="ControllerSignUp">
+		<form id="signupForm" onsubmit="return checkSubmit()" method="POST" action="sign-up">
 			<br />
 			
 			<i id ="hintEmailExist" style="color:#E82626"></i>

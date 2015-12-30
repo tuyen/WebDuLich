@@ -34,29 +34,26 @@
 			<!-- /.column 1-->
 			<!-- .column 2-->
 			<div class="col-md-8">
-				
+
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<center>
-						<h4>Hình ảnh của bạn</h4>
-						<br>
-						<%
-							try {
-								List<String> urls = (List<String>) request
-										.getAttribute("url_image");
-								if(urls.size() == 0)
-								{
-									out.print("<p>Bạn chưa có hình ảnh nào</p>");	
-								}									
-								for(String i : urls)
-								{									
-									out.print("<a href='"+request.getContextPath() + i);
-									out.print("'> <img src='"+ request.getContextPath() + i+"' width='200' height='200'></a>");
+							<h4>Hình ảnh của bạn</h4>
+							<br>
+							<%
+								try {
+									List<String> urls = (List<String>) request.getAttribute("url_image");
+									if (urls.size() == 0) {
+										out.print("<p>Bạn chưa có hình ảnh nào</p>");
+									}
+									for (String i : urls) {
+										out.print("<a href='" + request.getContextPath() + i);
+										out.print("'> <img src='" + request.getContextPath() + i + "' width='200' height='200'></a>");
+									}
+								} catch (Exception i) {
+									out.print("hihi");
 								}
-							} catch (Exception i) {
-								out.print("hihi");
-							}
-						%>
+							%>
 						</center>
 					</div>
 				</div>
@@ -68,7 +65,7 @@
 		<div class="col-md-2"></div>
 
 	</div>
-	</div>
+
 	<jsp:include page="body-footer.jsp" />
 
 

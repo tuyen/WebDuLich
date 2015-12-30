@@ -25,7 +25,7 @@ import dto.dtoTouristPlace;
 @WebServlet("/AddUserFeeling")
 public class AddUserFeeling extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	LoginUtility login = new LoginUtility();
 	String userId = "";
 
@@ -44,10 +44,14 @@ public class AddUserFeeling extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		if ((!login.isLogged(request, response))
-				|| (!login.getAccountType().equals("company"))) {
-			response.sendRedirect("ControllerHome");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
+		if ((!login.isLogged(request, response))) {
+			response.sendRedirect("home");
 			return;
 		}
 		
@@ -140,7 +144,12 @@ public class AddUserFeeling extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		if ((!login.isLogged(request, response))
 				|| (!login.getAccountType().equals("company"))) {
 			response.sendRedirect("ControllerHome");

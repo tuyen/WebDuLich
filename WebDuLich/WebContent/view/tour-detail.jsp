@@ -104,7 +104,7 @@
 									out.write("<span class = 'glyphicon glyphicon-hand-right'>&nbsp;</span>");
 									out.write("<a class = 'title-overflow' href = '"
 											+ request.getContextPath()
-											+ "/postdetail?cate=2&post=" + place.getPlaceId()
+											+ "/detail?cate=2&post=" + place.getPlaceId()
 											+ "'>" + place.getTitle() + "</a> <br>");
 								}
 							}
@@ -189,7 +189,7 @@
 							out.write("<div class='panel' style='width: 100%; margin-bottom:10px;'>");
 							out.write("<div class='panel-body'>");
 							out.write("<a href='" + request.getContextPath()
-									+ "/postdetail?cate=" + cate + "&post="
+									+ "/detail?cate=" + cate + "&post="
 									+ p.getPostId()
 									+ "'><img class='img-responsive' src='"
 									+ mdPost.getImagesFromPost(p.getPostId()).get(0)
@@ -197,7 +197,7 @@
 							out.write("</div>");
 							out.write("<div class='panel-footer'>");
 							out.write("<a href='" + request.getContextPath()
-									+ "/postdetail?cate=" + cate + "&post="
+									+ "/detail?cate=" + cate + "&post="
 									+ p.getPostId() + "'>" + p.getTitle() + "</a>");
 							out.write("</div></div>");
 						}
@@ -214,7 +214,7 @@
 			</div>
 			<div class="form form-group">
 				<form class="form form-group" role="form" method="post"
-					action="postdetail">
+					action="detail">
 					<input type="hidden" name="txt_postId" value="<%=postId%>">
 					<input type="hidden" name="txt_cate" value="<%=cate%>">
 					<textarea class="form-control" rows="3"
@@ -224,15 +224,11 @@
 						value="Bình luận">
 				</form>
 			</div>
-			<div class="comment-detail panel panel-group" id="comment_list"
-				style="margin-top: 55px;">
+			
 				<%
-					if (listComment.size() == 0) {
-						out.write("<div class='panel panel-default'>");
-						out.write("<div class='panel-body'>");
-						out.write("<p>Chưa có bình luận nào</p>");
-						out.write("</div></div>");
-					} else
+					if (listComment.size() > 0) {
+						
+						out.write("<div class='comment-detail panel panel-group' id='comment_list' style='margin-top: 55px;'>");
 						for (dtoComment comment : listComment) {
 							out.write("<div class='panel panel-default'>");
 							out.write("<div class='panel-body'>");
@@ -242,8 +238,11 @@
 							out.write("<p>" + comment.getContent() + "</p>");
 							out.write("</div></div>");
 						}
+						out.write("</div>");
+					} 
+						
 				%>
-			</div>
+			
 		</div>
 	</div>
 	<!-- body footer -->

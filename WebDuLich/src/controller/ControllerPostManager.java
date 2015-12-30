@@ -14,11 +14,12 @@ import model.ModelPost;
 /**
  * Servlet implementation class ControllerPostManager
  */
-@WebServlet("/postmanager")
+@WebServlet("/ControllerPostManager")
 public class ControllerPostManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LoginUtility login = new LoginUtility();
 	ModelPost md = new ModelPost();
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -36,7 +37,12 @@ public class ControllerPostManager extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-		
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		md.getAllCategory();
 		request.getRequestDispatcher("view/manage-post.jsp").include(request,
 				response);
@@ -50,6 +56,12 @@ public class ControllerPostManager extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		String deletePost = request.getParameter("delete_post");
 		md.updateDelete(deletePost);
 	}

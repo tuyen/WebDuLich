@@ -15,7 +15,7 @@ import utility.LoginUtility;
 @WebServlet("/ControllerSignOut")
 public class ControllerSignOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,6 +31,12 @@ public class ControllerSignOut extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		HttpSession session1 = request.getSession();
 		String controller  = "";
 		controller = (String)session1.getAttribute("controller")!=null?(String)session1.getAttribute("controller"):"";
@@ -40,19 +46,19 @@ public class ControllerSignOut extends HttpServlet {
 		switch (controller)
 		{
 		case "home":
-			response.sendRedirect("ControllerHome");
+			response.sendRedirect("home");
 			break;
 		case "tours":
 			response.sendRedirect("tours");
 			break;
 		case "tours-place":
-			response.sendRedirect("touristplace");
+			response.sendRedirect("tourist-place");
 			break;
 		case "feeling":
-			response.sendRedirect("feelings");
+			response.sendRedirect("user-review");
 			break;
 		default:
-			response.sendRedirect("ControllerHome");
+			response.sendRedirect("home");
 			break;
 		}
 		

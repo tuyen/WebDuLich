@@ -21,7 +21,7 @@
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 
-					<li id='not-focus'><a href="ControllerHome"><img alt=""
+					<li id='not-focus'><a href="home"><img alt=""
 							src="view/resource/image/logo.png"
 							height="80px" width="100px" style="margin: -30px 0px 0px 0px"></a></li>
 					<%
@@ -32,58 +32,58 @@
 						switch (controller)
 						{
 						case "home":
-							out.write("	<li class='active'><a href='ControllerHome'><span"
+							out.write("	<li class='active'><a href='home'><span"
 									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
 
 							"<li><a href='tours'>Tours</a></li>" +
 
-							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='feelings'>Cảm nhận của du khách</a></li>");
+							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
 							break;
 						case "tours":
-							out.write("	<li ><a href='ControllerHome'><span"
+							out.write("	<li ><a href='home'><span"
 									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
 
 							"<li class='active'><a href='tours'>Tours</a></li>" +
 
-							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='feelings'>Cảm nhận của du khách</a></li>");
+							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
 							break;
 						case "tours-place":
-							out.write("	<li><a href='ControllerHome'><span"
+							out.write("	<li><a href='home'><span"
 									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
 
 							"<li><a href='tours'>Tours</a></li>" +
 
-							"<li class='active'><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='feelings'>Cảm nhận của du khách</a></li>");
+							"<li class='active'><a href='tourist-place'>Điểm du lịch</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
 							break;
 						case "feeling":
-							out.write("	<li ><a href='ControllerHome'><span"
+							out.write("	<li ><a href='home'><span"
 									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
 
 							"<li><a href='tours'>Tours</a></li>" +
 
-							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li class='active'><a href='feelings'>Cảm nhận của du khách</a></li>");
+							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
+									+ "<li class='active'><a href='user-review'>Cảm nhận của du khách</a></li>");
 							break;
 						case "sign-up":
-							out.write("	<li> <a href='ControllerHome'><span"
+							out.write("	<li> <a href='home'><span"
 									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
 
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='feelings'>Cảm nhận của du khách</a></li>");
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
 							break;
 						default:
-							out.write("	<li> <a href='ControllerHome'><span"
+							out.write("	<li> <a href='home'><span"
 									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
 
 							"<li><a href='tours'>Tours</a></li>" +
 
-							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='feelings'>Cảm nhận của du khách</a></li>");
+							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
 							break;
 						}
 					%>
@@ -130,9 +130,6 @@
 							accountType = user.getAccountByUserId(userID).getAccountType();
 							name = user.getAccountByUserId(userID).getFullName();
 							}
-							//image_name = (String) session.getAttribute("avatar");
-							//name = (String) session.getAttribute("name");
-							//accountType = (String) session.getAttribute("login_accounttype");
 						}
 						if (name != null) {
 							if ("default-avatar.png".equals(image_name)) {
@@ -146,14 +143,15 @@
 										+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
-										+ "<li><a href='AddTourPlace'>Thêm điểm du lịch</a></li>"
-										+ "<li><a href='AddTour'>Thêm tour mới</a></li>"
-										+ "<li><a href='postmanager'>Quản lý bài đăng</a></li>"
-										+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
+										+ "<li><a href='add-tour-place'>Thêm điểm du lịch</a></li>"
+										+ "<li><a href='add-tour'>Thêm tour mới</a></li>"
+										+ "<li><a href='post-manager'>Quản lý bài đăng</a></li>"
+										+ "<li><a href='write-your-feeling'>Viết bài cảm nhận</a></li>" +
+										"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
 
 								"<li class='divider'></li>" +
 										//"<li class='nav-header'>Nav header</li>"+
-										"<li><a href='" + request.getContextPath() + "/ControllerSignOut'>Đăng xuất</a></li>" +
+										"<li><a href='" + request.getContextPath() + "/sign-out'>Đăng xuất</a></li>" +
 										//"<li><a href='#'>One more separated link</a></li>"+
 										"</ul></li>";
 							}
@@ -163,11 +161,12 @@
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
 
-										+ "<li><a href='ProfileManager'>Thay đổi thông tin cá nhân</a></li>" +
+										+ "<li><a href='write-your-feeling'>Viết bài cảm nhận</a></li>" +
+										"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
 
 								"<li class='divider'></li>" +
 										//"<li class='nav-header'>Nav header</li>"+
-										"<li><a href='" + request.getContextPath() + "/ControllerSignOut'>Đăng xuất</a></li>" +
+										"<li><a href='" + request.getContextPath() + "/sign-out'>Đăng xuất</a></li>" +
 										//"<li><a href='#'>One more separated link</a></li>"+
 										"</ul></li>";
 							}
@@ -176,12 +175,12 @@
 
 						else {
 							if ("sign-up".equals(controller)) {
-								page_1 = "<li class='active' id='signup'><a href='ControllerSignUp'>Đăng ký</a></li>"
+								page_1 = "<li class='active' id='signup'><a href='sign-up'>Đăng ký</a></li>"
 										+ "<li id ='signin' class='dropdown'><a class='dropdown-toggle' href='#'"
 										+ "data-toggle='dropdown'>Đăng nhập <strong class='caret'></strong></a>"
 										+ "<div class='dropdown-menu'  style='padding: 15px;z-index:20;'>"
 										+ "<!-- Login form here -->"
-										+ "<form id='signinForm' action='ControllerSignIn' method='post' "
+										+ "<form id='signinForm' action='sign-in' method='post' "
 										+ "accept-charset='UTF-8' role='form' >" + "<input id='user_username'"
 										+ "placeholder=' Email'" + "style='margin-bottom: 15px;' type='email' name='email'"
 										+ "size='25' required='required'/> <br/>" + "<input id='user_password'"
@@ -198,12 +197,12 @@
 										+ "id='forgot_password'>Forgot password ?</a>" + "</form>" + "</div>" + "</li>";
 							}
 							else {
-								page_1 = "<li id='signup'><a href='ControllerSignUp'>Đăng ký</a></li>"
+								page_1 = "<li id='signup'><a href='sign-up'>Đăng ký</a></li>"
 										+ "<li id ='signin' class='dropdown'><a class='dropdown-toggle' href='#'"
 										+ "data-toggle='dropdown'>Đăng nhập <strong class='caret'></strong></a>"
 										+ "<div class='dropdown-menu'  style='padding: 15px;z-index:20;'>"
 										+ "<!-- Login form here -->"
-										+ "<form id='signinForm' action='ControllerSignIn' method='post' "
+										+ "<form id='signinForm' action='sign-in' method='post' "
 										+ "accept-charset='UTF-8' role='form' >" + "<input id='user_username'"
 										+ "placeholder=' Email'" + "style='margin-bottom: 15px;' type='email' name='email'"
 										+ "size='25' required='required'/> <br/>" + "<input id='user_password'"
@@ -216,16 +215,16 @@
 
 								"<button  id='btn-signin' type='submit'"
 										+ "class='btn btn-block btn-primary' style='clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom: 10px;'>Sign In</button>"
-										+ "<a	href='ControllerForgotPassword' style='float: right;'"
+										+ "<a	href='forgot-password' style='float: right;'"
 										+ "id='forgot_password'>Forgot password ?</a>" + "</form>" + "</div>" + "</li>";
 							}
 
 						}
 						out.print(page_1);
-						//response.getWriter().print(page_1);
 					%>
 				</ul>
 			</div>
 		</nav>
 	</div>
 </div>
+

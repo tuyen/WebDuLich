@@ -10,8 +10,8 @@ public class LoginUtility
 {
 	ModelUser user;
 	Md5Utility md5;
-	String currentUserID = null;
-	String currentUserAccounttype = null;
+	String currentUserID = "";
+	String currentUserAccounttype = "";
 	public LoginUtility()
 	{
 		user = new ModelUser();

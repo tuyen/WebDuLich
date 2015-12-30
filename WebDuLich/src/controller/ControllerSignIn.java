@@ -17,6 +17,7 @@ import com.mysql.fabric.Response;
 
 import dto.dtoUser;
 import model.ModelUser;
+import utility.LoginUtility;
 import utility.Md5Utility;
 
 /**
@@ -25,7 +26,8 @@ import utility.Md5Utility;
 @WebServlet("/ControllerSignIn")
 public class ControllerSignIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+	LoginUtility login = new LoginUtility();
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,7 +40,23 @@ public class ControllerSignIn extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
+		if(login.isLogged(request, response))
+		{
+			response.sendRedirect("home");
+			return;
+		}
+		
+		request.getRequestDispatcher("view/SignIn.jsp").include(request,
+				response);
 	}
 	
 	/**
@@ -46,6 +64,12 @@ public class ControllerSignIn extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		Md5Utility md5 = new Md5Utility();
 		//dang o trang nao
 		HttpSession session1 = request.getSession();
@@ -117,19 +141,19 @@ public class ControllerSignIn extends HttpServlet {
 			switch (controller)
 			{
 			case "home":
-				response.sendRedirect("ControllerHome");
+				response.sendRedirect("home");
 				break;
 			case "tours":
 				response.sendRedirect("tours");
 				break;
 			case "tours-place":
-				response.sendRedirect("touristplace");
+				response.sendRedirect("tourist-place");
 				break;
 			case "feeling":
-				response.sendRedirect("feelings");
+				response.sendRedirect("user-review");
 				break;
 			default:
-				response.sendRedirect("ControllerHome");
+				response.sendRedirect("home");
 				break;
 			}
 			
@@ -141,19 +165,19 @@ public class ControllerSignIn extends HttpServlet {
 				switch (controller)
 				{
 				case "home":
-					response.sendRedirect("ControllerHome?active=false");
+					response.sendRedirect("home?active=false");
 					break;
 				case "tours":
 					response.sendRedirect("tours?active=false");
 					break;
 				case "tours-place":
-					response.sendRedirect("touristplace?active=false");
+					response.sendRedirect("tourist-place?active=false");
 					break;
 				case "feeling":
-					response.sendRedirect("feelings?active=false");
+					response.sendRedirect("user-review?active=false");
 					break;
 				default:
-					response.sendRedirect("ControllerHome?active=false");
+					response.sendRedirect("home?active=false");
 					break;
 				}
 				//String a = request.getContextPath()+"/view/resource/image/user/default-avatar.png";
@@ -165,19 +189,19 @@ public class ControllerSignIn extends HttpServlet {
 				switch (controller)
 				{
 				case "home":
-					response.sendRedirect("ControllerHome?login=false");
+					response.sendRedirect("home?login=false");
 					break;
 				case "tours":
 					response.sendRedirect("tours?login=false");
 					break;
 				case "tours-place":
-					response.sendRedirect("touristplace?login=false");
+					response.sendRedirect("tourist-place?login=false");
 					break;
 				case "feeling":
-					response.sendRedirect("feelings?login=false");
+					response.sendRedirect("user-review?login=false");
 					break;
 				default:
-					response.sendRedirect("ControllerHome?login=false");
+					response.sendRedirect("home?login=false");
 					break;
 				}
 				//response.sendRedirect("ControllerHome?login=false");		

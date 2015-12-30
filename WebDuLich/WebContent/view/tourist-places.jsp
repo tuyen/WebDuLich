@@ -55,7 +55,7 @@
 		<div class="panel panel-body">
 			<lable class="text-left"> <i>Tùy chọn tìm kiếm</i></lable>
 			<center>
-				<form action="touristplace" style="margin: 10px" class="form"
+				<form action="tourist-place" style="margin: 10px" class="form"
 					method="get" role="form">
 					<div class="form-group">
 						<table width="50%">
@@ -114,7 +114,7 @@
 										+ i
 										+ "' class='active item'><a href = '"
 										+ request.getContextPath()
-										+ "/postdetail?cate=2&post="
+										+ "/detail?cate=2&post="
 										+ post.getPostId()
 										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 										+ src + "'></a></div>");
@@ -123,7 +123,7 @@
 										+ i
 										+ "' class='item'><a href = '"
 										+ request.getContextPath()
-										+ "/postdetail?cate=2&post="
+										+ "/detail?cate=2&post="
 										+ post.getPostId()
 										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 										+ src + "'></a></div>");
@@ -132,7 +132,7 @@
 						out.write("<div class = 'panel-footer'>");
 						out.write("<div style='font-size: 17px;'>");
 						out.write("<a href='" + request.getContextPath()
-								+ "/postdetail?cate=2&post=" + post.getPostId()
+								+ "/detail?cate=2&post=" + post.getPostId()
 								+ "'> " + post.getTitle() + " </a>");
 						out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 						out.write("<td><p data-toggle='tooltip' title='"
@@ -144,7 +144,7 @@
 				else
 					out.write("<center> <h3> Không tìm thấy bài viết nào! Bạn hãy là người đầu tiên <a href = '"
 							+ request.getContextPath()
-							+ "/AddTourPlace'> viết bài </a> nhé! </h3> </center>");
+							+ "/add-tour-place'> viết bài </a> nhé! </h3> </center>");
 			%>
 		</ul>
 

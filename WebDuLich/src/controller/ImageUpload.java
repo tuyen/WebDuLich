@@ -24,7 +24,7 @@ import org.apache.commons.io.FilenameUtils;
 @WebServlet("/ImageUpload")
 public class ImageUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -43,6 +43,12 @@ public class ImageUpload extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		String userId = "1";
 		String path = this.getServletContext().getRealPath("/")
 				+ "/view/resource/image/user/" + userId + "/";
@@ -116,6 +122,12 @@ public class ImageUpload extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		try {
 			this.uploadImage(request, response);
 		} catch (Exception e) {

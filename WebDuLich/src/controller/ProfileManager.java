@@ -30,7 +30,7 @@ import dto.dtoUser;
 @WebServlet("/ProfileManager")
 public class ProfileManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -54,6 +54,12 @@ public class ProfileManager extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		if (!login.isLogged(request, response)) {
 			response.sendRedirect("ControllerHome");
 			return;
@@ -145,7 +151,12 @@ public class ProfileManager extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		if (!login.isLogged(request, response)) {
 			response.sendRedirect("ControllerHome");
 			return;

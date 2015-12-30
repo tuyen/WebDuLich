@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jws.WebService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +30,8 @@ import dto.dtoTouristPlace;
 public class AddTour extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
+	
 	LoginUtility login = new LoginUtility();
 	String userId = "";
 
@@ -46,15 +49,23 @@ public class AddTour extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
+		// TODO Auto-generated method stub
+		
+		
 		
 		if((!login.isLogged(request, response))||(!login.getAccountType().equals("company")))
 		{
-			response.sendRedirect("ControllerHome");
+			request.getRequestDispatcher("view/Access-denied.jsp").include(request,
+					response);
 			return;
 		}					
 		String edit = request.getParameter("edit");
@@ -112,7 +123,7 @@ public class AddTour extends HttpServlet {
 					if (!post.equals("-1")) {
 						modelPost.insertPlace(postId, placeId);
 
-						String view_url = "postdetail?cate=1&post=" + postId;
+						String view_url = "detail?cate=1&post=" + postId;
 						response.sendRedirect(view_url);
 						return;
 					}
@@ -151,7 +162,7 @@ public class AddTour extends HttpServlet {
 				modelPost.updatePost(post);
 				modelPost.removeAllPlace(edit_post);
 				modelPost.insertPlace(edit_post, placeId);
-				String view_url = "postdetail?cate=1&post=" + edit_post;
+				String view_url = "detail?cate=1&post=" + edit_post;
 				response.sendRedirect(view_url);
 				return;			
 			}
@@ -173,10 +184,15 @@ public class AddTour extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
 		if(!login.isLogged(request, response))
 		{
-			response.sendRedirect("ControllerHome");
+			response.sendRedirect("home");
 			return;
 		}
 		else

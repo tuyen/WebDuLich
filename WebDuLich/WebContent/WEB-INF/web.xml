@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>bananatour</display-name>
-  
+  <servlet>
+    <servlet-name>add-tour</servlet-name>
+    <servlet-class>controller.AddTour</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>add-tour</servlet-name>
+    <url-pattern>/add-tour</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>add-tour-place</servlet-name>
+    <servlet-class>controller.AddTourPlace</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>add-tour-place</servlet-name>
+    <url-pattern>/add-tour-place</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>write-your-feeling</servlet-name>
+    <servlet-class>controller.AddUserFeeling</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>write-your-feeling</servlet-name>
+    <url-pattern>/write-your-feeling</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>active</servlet-name>
+    <servlet-class>controller.ControllerActiveAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>active</servlet-name>
+    <url-pattern>/active</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>user-review</servlet-name>
+    <servlet-class>controller.ControllerFeelings</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>user-review</servlet-name>
+    <url-pattern>/user-review</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>forgot-password</servlet-name>
+    <servlet-class>controller.ControllerForgotPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>forgot-password</servlet-name>
+    <url-pattern>/forgot-password</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>home</servlet-name>
     <servlet-class>controller.ControllerHome</servlet-class>
@@ -10,8 +57,46 @@
     <servlet-name>home</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
-  
-  
+  <servlet>
+    <servlet-name>post-manager</servlet-name>
+    <servlet-class>controller.ControllerPostManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>post-manager</servlet-name>
+    <url-pattern>/post-manager</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>sign-in</servlet-name>
+    <servlet-class>controller.ControllerSignIn</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sign-in</servlet-name>
+    <url-pattern>/sign-in</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>sign-out</servlet-name>
+    <servlet-class>controller.ControllerSignOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sign-out</servlet-name>
+    <url-pattern>/sign-out</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>sign-up</servlet-name>
+    <servlet-class>controller.ControllerSignUp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sign-up</servlet-name>
+    <url-pattern>/sign-up</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>tourist-place</servlet-name>
+    <servlet-class>controller.ControllerTouristPlaces</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>tourist-place</servlet-name>
+    <url-pattern>/tourist-place</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>tours</servlet-name>
     <servlet-class>controller.ControllerTours</servlet-class>
@@ -20,29 +105,53 @@
     <servlet-name>tours</servlet-name>
     <url-pattern>/tours</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
-    <servlet-name>addtour</servlet-name>
-    <servlet-class>controller.AddTour</servlet-class>
+    <servlet-name>detail</servlet-name>
+    <servlet-class>controller.CotrollerPostDetail</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>addtour</servlet-name>
-    <url-pattern>/addtour</url-pattern>
+    <servlet-name>detail</servlet-name>
+    <url-pattern>/detail</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
-    <servlet-name>addtourplace</servlet-name>
-    <servlet-class>controller.AddTourPlace</servlet-class>
+  <servlet>
+    <servlet-name>image-upload</servlet-name>
+    <servlet-class>controller.ImageUpload</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>addtourplace</servlet-name>
-    <url-pattern>/addtourplace</url-pattern>
+    <servlet-name>image-upload</servlet-name>
+    <url-pattern>/image-upload</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>setting</servlet-name>
+    <servlet-class>controller.ProfileManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>setting</servlet-name>
+    <url-pattern>/setting</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>page-not-found</servlet-name>
+    <servlet-class>controller.Http404</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>page-not-found</servlet-name>
+    <url-pattern>/page-not-found</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>error</servlet-name>
+    <servlet-class>controller.PageError</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>error</servlet-name>
+    <url-pattern>/error</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/page-not-found</location>
+  </error-page>
   
-    
   <welcome-file-list>
-    <welcome-file>home</welcome-file>    
+    <welcome-file>home</welcome-file>
   </welcome-file-list>
   <context-param>
     <param-name>host</param-name>
