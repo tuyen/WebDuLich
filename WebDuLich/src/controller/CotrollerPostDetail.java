@@ -135,8 +135,12 @@ public class CotrollerPostDetail extends HttpServlet {
 		}
 		else
 		{
-			response.getWriter().write("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt tour!");
-			return;
+			if ((!login.isLogged(request, response))) {
+				response.getWriter().write("Bạn chưa đăng nhập, vui lòng đăng nhập để đặt tour!");
+				return;
+			} else {
+				userId = this.login.getLoggedUserID();
+			}			
 		}
 		String txt_postId = request.getParameter("txt_postId");
 		String txt_comment = request.getParameter("txt_comment");
