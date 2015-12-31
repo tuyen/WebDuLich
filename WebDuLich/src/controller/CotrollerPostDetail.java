@@ -218,18 +218,28 @@ public class CotrollerPostDetail extends HttpServlet {
 			mdBookedTour.addBookedTour(bookedTour);
 		mdPost.updateBuys(postId);
 
-		String content = "Xin chào!" + postOwnerAccount.getFullName() + "! <br>"
-				+ "Tour du liÌ£ch baÌ£n Ä‘Äƒng taÌ£i <a href = '" + postUrl
-				+ "'> BananaTour </a> vÆ°Ì€a Ä‘Æ°Æ¡Ì£c khaÌ�ch haÌ€ng Ä‘ÄƒÌ£t mua. <br>"
-				+ "ThÃ´ng tin khaÌ�ch Ä‘ÄƒÌ£t mua nhu sau: <br> - TÃªn: " + customerAccount.getFullName()
-				+ ".<br> - Email: " + customerAccount.getEmail() + ". <br> - Ä�iÃªÌ£n thoaÌ£i: "
-				+ customerAccount.getPhone() + ".<br> - Ä�iÌ£a chiÌ‰: " + customerAccount.getAddress()
-				+ ". <br> BananaTour xin chuÌ�c " + postOwnerAccount.getFullName()
-				+ " coÌ� 1 ngaÌ€y laÌ€m viÃªÌ£c hiÃªÌ£u quaÌ‰ vaÌ€ coÌ� Ä‘Æ°Æ¡Ì£c nhÆ°Ìƒng hÆ¡Ì£p Ä‘Ã´Ì€ng chÃ¢Ì�t lÆ°Æ¡Ì£ng tÆ°Ì€ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "ThÃ´ng baÌ�o Ä‘ÄƒÌ£t tour", content);
+		String content = "Xin chào "
+				+ postOwnerAccount.getFullName()
+				+ "! <br>"
+				+ "Tour du lịch bạn đăng tại <a href = '"
+				+ postUrl
+				+ "'> BananaTour </a> vừa được khách hàng đặt mua. <br>"
+				+ "Thông tin khách đặt mua nhu sau: <br> - Tên: "
+				+ customerAccount.getFullName()
+				+ ".<br> - Email: "
+				+ customerAccount.getEmail()
+				+ ". <br> - Điện thoại: "
+				+ customerAccount.getPhone()
+				+ ".<br> - Địa chỉ: "
+				+ customerAccount.getAddress()
+				+ ". <br> BananaTour xin chúc "
+				+ postOwnerAccount.getFullName()
+				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng từ BananaTour!";
+		sendMail(request, customerAccount.getEmail(), "Thông báo đặt tour",
+				content);
 		try {
-			response.getWriter().write(
-					"BaÌ£n Ä‘aÌƒ Ä‘ÄƒÌ£t tour thaÌ€nh cÃ´ng, Ä‘Æ¡n viÌ£ lÆ°Ìƒ haÌ€nh seÌƒ liÃªn hÃªÌ£ vÆ¡Ì�i baÌ£n sÆ¡Ì�m nhÃ¢Ì�t coÌ� thÃªÌ‰. ChuÌ�c baÌ£n coÌ� nhÆ°Ìƒng chuyÃªÌ�n Ä‘i thuÌ� viÌ£!");
+			response.getWriter()
+			.write("Bạn đã đặt tour thành công, đơn vị lữ hành sẽ liên hệ với bạn sớm nhất có thể. Chúc bạn có những chuyến đi thú vị!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -246,18 +256,28 @@ public class CotrollerPostDetail extends HttpServlet {
 
 		mdBookedTour.updateBookedTour(bookedTour);
 
-		String content = "Xin chaÌ€o " + postOwnerAccount.getFullName() + "! <br>"
-				+ "KhaÌ�ch haÌ€ng Ä‘ÄƒÌ£t tour du liÌ£ch baÌ£n Ä‘Äƒng taÌ£i <a href = '" + postUrl
-				+ "'> BananaTour </a> vÆ°Ì€a huÌ‰y Ä‘ÄƒÌ£t tour. <br>"
-				+ "ThÃ´ng tin khaÌ�ch haÌ€ng nhÆ° sau: <br> - TÃªn: " + customerAccount.getFullName()
-				+ ".<br> - Email: " + customerAccount.getEmail() + ". <br> - Ä�iÃªÌ£n thoaÌ£i: "
-				+ customerAccount.getPhone() + ".<br> - Ä�iÌ£a chiÌ‰: " + customerAccount.getAddress()
-				+ ". <br> BananaTour rÃ¢Ì�t tiÃªÌ�c vÃªÌ€ Ä‘iÃªÌ€u naÌ€y! Xin chuÌ�c " + postOwnerAccount.getFullName()
-				+ " coÌ� 1 ngaÌ€y laÌ€m viÃªÌ£c hiÃªÌ£u quaÌ‰ vaÌ€ coÌ� Ä‘Æ°Æ¡Ì£c nhÆ°Ìƒng hÆ¡Ì£p Ä‘Ã´Ì€ng chÃ¢Ì�t lÆ°Æ¡Ì£ng khaÌ�c tÆ°Ì€ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "ThÃ´ng baÌ�o huÌ‰y tour", content);
+		String content = "Xin chào "
+				+ postOwnerAccount.getFullName()
+				+ "! <br>"
+				+ "Khách hàng đặt tour du lịch bạn đăng tại <a href = '"
+				+ postUrl
+				+ "'> BananaTour </a> vừa hủy đặt tour. <br>"
+				+ "Thông tin khách hàng như sau: <br> - Tên: "
+				+ customerAccount.getFullName()
+				+ ".<br> - Email: "
+				+ customerAccount.getEmail()
+				+ ". <br> - Điện thoại: "
+				+ customerAccount.getPhone()
+				+ ".<br> - Địa chỉ: "
+				+ customerAccount.getAddress()
+				+ ". <br> BananaTour rất tiếc về điều này! Xin chúc "
+				+ postOwnerAccount.getFullName()
+				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng khác từ BananaTour!";
+		sendMail(request, customerAccount.getEmail(), "Thông báo hủy tour",
+				content);
 		try {
-			response.getWriter().write(
-					"BaÌ£n Ä‘aÌƒ huÌ‰y Ä‘ÄƒÌ£t tour thaÌ€nh cÃ´ng. ChuÌ�c baÌ£n coÌ� nhÆ°Ìƒng lÆ°Ì£a choÌ£n thuÌ� viÌ£ vÆ¡Ì�i BananaTour!");
+			response.getWriter()
+			.write("Bạn đã hủy đặt tour thành công. Chúc bạn có những lựa chọn thú vị với BananaTour!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
