@@ -1,0 +1,10 @@
+vao url: http://localhost:8080/WebDuLich/Path
+
+de lay duong dan toi thu muc deploy
+duong dan co dang: E:\PROJECT\WebDuLich\trunk\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WebDuLich\
+
+vao thu muc view/resource/image/user
+
+giai nen user_data.zip o do. 
+
+Done!
