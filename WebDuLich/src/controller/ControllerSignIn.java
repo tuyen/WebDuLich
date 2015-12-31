@@ -152,6 +152,12 @@ public class ControllerSignIn extends HttpServlet {
 			case "feeling":
 				response.sendRedirect("user-review");
 				break;
+			case "food":
+				response.sendRedirect("foods");
+				break;
+			case "event":
+				response.sendRedirect("events");
+				break;
 			default:
 				response.sendRedirect("home");
 				break;
@@ -176,6 +182,12 @@ public class ControllerSignIn extends HttpServlet {
 				case "feeling":
 					response.sendRedirect("user-review?active=false");
 					break;
+				case "food":
+					response.sendRedirect("foods?active=false");
+					break;
+				case "event":
+					response.sendRedirect("events?active=false");
+					break;
 				default:
 					response.sendRedirect("home?active=false");
 					break;
@@ -199,6 +211,12 @@ public class ControllerSignIn extends HttpServlet {
 					break;
 				case "feeling":
 					response.sendRedirect("user-review?login=false");
+					break;
+				case "food":
+					response.sendRedirect("foods?login=false");
+					break;
+				case "event":
+					response.sendRedirect("events?login=false");
 					break;
 				default:
 					response.sendRedirect("home?login=false");

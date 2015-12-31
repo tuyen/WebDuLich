@@ -57,6 +57,12 @@ public class ControllerSignOut extends HttpServlet {
 		case "feeling":
 			response.sendRedirect("user-review");
 			break;
+		case "food":
+			response.sendRedirect("foods");
+			break;
+		case "event":
+			response.sendRedirect("events");
+			break;
 		default:
 			response.sendRedirect("home");
 			break;
