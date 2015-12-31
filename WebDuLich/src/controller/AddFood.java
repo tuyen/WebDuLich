@@ -12,127 +12,106 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utility.LoginUtility;
-import model.ModelPost;
 import dto.dtoPost;
+import model.ModelPost;
+import utility.LoginUtility;
 
 /**
- * Servlet implementation class AddTourPlace
+ * Servlet implementation class AddFood
  */
-@WebServlet("/AddTourPlace")
-public class AddTourPlace extends HttpServlet {
+@WebServlet("/AddFood")
+public class AddFood extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AddTourPlace() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		if(!ckcon.isConnected())
-		{			
-			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
-					response);
-			return;
-		}
-		String edit = request.getParameter("edit");
-		dtoPost dto = new dtoPost();			
-		
-		if((!login.isLogged(request, response)))
-		{
-			response.sendRedirect("sign-in");
-			return;
-		}
-		
-		if((!login.getAccountType().equals("company")))
-		{
-			request.getRequestDispatcher("view/Access-denied.jsp").include(request,
-					response);
-			return;
-		}
-		else
-		{
-			userId = login.getLoggedUserID();
-		}
-		
-		if (edit != null && edit != "")
-		{
-			ModelPost post = new ModelPost();
-			dto = post.getPost(edit);
-			
-		}
-		request.setAttribute("edit", dto);
-		RequestDispatcher rd = request
-				.getRequestDispatcher("view/add-tour-place.jsp");
-		rd.include(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	
+      
 	LoginUtility login = new LoginUtility();
 	String userId = "";
 	String edit_post = "";
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	private CheckDatabaseServerConnection ckcon = new CheckDatabaseServerConnection();
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AddFood() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		if(!ckcon.isConnected())
-		{			
-			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
-					response);
+		if (!ckcon.isConnected()) {
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request, response);
 			return;
 		}
-		if(!login.isLogged(request, response))
-		{
-			response.sendRedirect("home");
+		String edit = request.getParameter("edit");
+		dtoPost dto = new dtoPost();
+
+		if ((!login.isLogged(request, response))) {
+			response.sendRedirect("sign-in");
 			return;
 		}
-		else
-		{
+		if ((!login.getAccountType().equals("company"))) {
+			request.getRequestDispatcher("view/Access-denied.jsp").include(request, response);
+			return;
+		} else {
 			userId = login.getLoggedUserID();
 		}
-		
-		edit_post = request.getParameter("edit_post");
-		if(edit_post == null)
-		{
-			this.addAPlace(request, response);
+
+		if (edit != null && edit != "") {
+			ModelPost post = new ModelPost();
+			dto = post.getPost(edit);
+
+		}
+		request.setAttribute("edit", dto);
+		RequestDispatcher rd = request.getRequestDispatcher("view/add-food.jsp");
+		rd.include(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		if (!ckcon.isConnected()) {
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request, response);
 			return;
 		}
-		else
-		{
-			this.updateAPlace(request, response);
+		if (!login.isLogged(request, response)) {
+			response.sendRedirect("home");
+			return;
+		} else {
+			userId = login.getLoggedUserID();
+		}
+
+		edit_post = request.getParameter("edit_post");
+		if (edit_post == null) {
+			this.addAFood(request, response);
+			return;
+		} else {
+			this.updateAFood(request, response);
 			return;
 		}
 		// TODO Auto-generated method stub
-			
+
 	}
 
+	
+	
 	private String getCurrentDate() {
 		Date date = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return dateFormat.format(date);
 	}
 
-	private void addAPlace(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void addAFood(HttpServletRequest request, HttpServletResponse response) {
 		String txt_place = request.getParameter("txt_place");
 		String txt_detail = request.getParameter("txt_detail");
 		String txt_location = request.getParameter("txt_location");
@@ -141,7 +120,7 @@ public class AddTourPlace extends HttpServlet {
 			if (txt_detail != "" && txt_location != "") {
 				dtoPost post = new dtoPost();
 				post.setTitle(txt_place);
-				post.setCategoryId("2");
+				post.setCategoryId("5");
 				post.setContent(txt_detail);
 				post.setPostDate(this.getCurrentDate());
 				post.setPrice("0");
@@ -152,7 +131,7 @@ public class AddTourPlace extends HttpServlet {
 				modelPost.addTouristPlace(post);
 
 				String postId = modelPost.getLastPost(userId);
-				String view_url = "detail?cate=2&post=" + postId;
+				String view_url = "detail?cate=5&post=" + postId;
 				try {
 					response.sendRedirect(view_url);
 				} catch (IOException e) {
@@ -163,9 +142,9 @@ public class AddTourPlace extends HttpServlet {
 			}
 		}
 
-	}	
-	private void updateAPlace(HttpServletRequest request,
-			HttpServletResponse response) {
+	}
+
+	private void updateAFood(HttpServletRequest request, HttpServletResponse response) {
 		String txt_place = request.getParameter("txt_place");
 		String txt_detail = request.getParameter("txt_detail");
 		String txt_location = request.getParameter("txt_location");
@@ -175,15 +154,15 @@ public class AddTourPlace extends HttpServlet {
 				dtoPost post = new dtoPost();
 				post.setPostId(edit_post);
 				post.setTitle(txt_place);
-				post.setCategoryId("2");
+				post.setCategoryId("5");
 				post.setContent(txt_detail);
 				post.setPrice("0");
-				post.setNumberPeople("0");				
+				post.setNumberPeople("0");
 				post.setLocationId(txt_location);
 				ModelPost modelPost = new ModelPost();
 				modelPost.updatePost(post);
-				
-				String view_url = "detail?cate=2&post=" + edit_post;
+
+				String view_url = "detail?cate=5&post=" + edit_post;
 				try {
 					response.sendRedirect(view_url);
 				} catch (IOException e) {

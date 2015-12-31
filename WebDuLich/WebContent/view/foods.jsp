@@ -28,12 +28,12 @@
 		listPost = mdPost.SearchTouristPlaces(place, 10,
 				(cur_page - 1) * 10);
 	} else
-		listPost = mdPost.getPosts("2", 10, (cur_page - 1) * 10);
+		listPost = mdPost.getPosts("5", 10, (cur_page - 1) * 10);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Điểm du lịch</title>
+<title>Ẩm thực</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,7 +114,7 @@
 										+ i
 										+ "' class='active item'><a href = '"
 										+ request.getContextPath()
-										+ "/detail?cate=2&post="
+										+ "/detail?cate=5&post="
 										+ post.getPostId()
 										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 										+ src + "'></a></div>");
@@ -123,7 +123,7 @@
 										+ i
 										+ "' class='item'><a href = '"
 										+ request.getContextPath()
-										+ "/detail?cate=2&post="
+										+ "/detail?cate=5&post="
 										+ post.getPostId()
 										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 										+ src + "'></a></div>");
@@ -132,7 +132,7 @@
 						out.write("<div class = 'panel-footer'>");
 						out.write("<div style='font-size: 17px;'>");
 						out.write("<a href='" + request.getContextPath()
-								+ "/detail?cate=2&post=" + post.getPostId()
+								+ "/detail?cate=5&post=" + post.getPostId()
 								+ "'> " + post.getTitle() + " </a>");
 						out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 						out.write("<td><p data-toggle='tooltip' title='"
@@ -144,7 +144,7 @@
 				else
 					out.write("<center> <h3> Không tìm thấy bài viết nào! Bạn hãy là người đầu tiên <a href = '"
 							+ request.getContextPath()
-							+ "/add-tour-place'> viết bài </a> nhé! </h3> </center>");
+							+ "/add-food'> viết bài </a> nhé! </h3> </center>");
 			%>
 		</ul>
 
@@ -162,11 +162,11 @@
 						if (cur_page == _page)
 							out.write("<li class = 'active'><a href='"
 									+ request.getContextPath()
-									+ "/tourist-place?page=" + _page + "'>" + _page
+									+ "/foods?page=" + _page + "'>" + _page
 									+ "</a></li>");
 						else
 							out.write("<li><a href='" + request.getContextPath()
-									+ "/tourist-place?page=" + _page + "'>" + _page
+									+ "/foods?page=" + _page + "'>" + _page
 									+ "</a></li>");
 						_page++;
 					}

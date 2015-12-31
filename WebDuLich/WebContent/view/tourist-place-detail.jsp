@@ -99,15 +99,15 @@
 								+ listPlace.get(0).getTitle() + "</a></p>");
 						out.write("</div>");
 					}else
-						if (cate.equals("2")) {
-							dtoLocation loc =mdPost.getLocation(post.getLocationId()); 
+					{
+							dtoLocation loc = mdPost.getLocation(post.getLocationId()); 
 							out.write("<div class='well well-sm'>");
-							out.write("<p><b>Điểm du lịch thuộc về tỉnh/ thành phố: </b><a href='"
+							out.write("<p><b>Thuộc về địa danh: </b><a href='"
 									+ request.getContextPath() + "/tourist-place?place="
 									+ loc.getLocationId() + "'>"
 									+ loc.getName() + "</a></p>");
 							out.write("</div>");
-						}
+					}
 				%>
 				<div class="content">
 					<%

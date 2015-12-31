@@ -18,6 +18,22 @@
     <url-pattern>/add-tour-place</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>add-event</servlet-name>
+    <servlet-class>controller.AddEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>add-event</servlet-name>
+    <url-pattern>/add-event</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>add-food</servlet-name>
+    <servlet-class>controller.AddFood</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>add-food</servlet-name>
+    <url-pattern>/add-food</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>write-your-feeling</servlet-name>
     <servlet-class>controller.AddUserFeeling</servlet-class>
   </servlet>
@@ -129,6 +145,24 @@
     <servlet-name>setting</servlet-name>
     <url-pattern>/setting</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>events</servlet-name>
+    <servlet-class>controller.ControllerEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>events</servlet-name>
+    <url-pattern>/events</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>foods</servlet-name>
+    <servlet-class>controller.ControllerFood</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>foods</servlet-name>
+    <url-pattern>/foods</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>page-not-found</servlet-name>
     <servlet-class>controller.Http404</servlet-class>

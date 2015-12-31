@@ -129,6 +129,12 @@
 														case "3":
 															process = "write-your-feeling";
 															break;
+														case "4":
+															process = "add-event";
+															break;
+														case "5":
+															process = "add-food";
+															break;
 														}
 														out.write("<tr id = '"+p.getPostId()+"'>");
 														out.write("<td>" + p.getPostDate() + "</td>");

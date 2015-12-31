@@ -38,7 +38,9 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
+							+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+							+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+							"<li><a href='foods'>Đặc sản</a></li>");
 							break;
 						case "tours":
 							out.write("	<li ><a href='home'><span"
@@ -47,7 +49,9 @@
 							"<li class='active'><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
 						case "tours-place":
 							out.write("	<li><a href='home'><span"
@@ -56,7 +60,9 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li class='active'><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
 						case "feeling":
 							out.write("	<li ><a href='home'><span"
@@ -65,7 +71,31 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li class='active'><a href='user-review'>Đánh giá của du khách</a></li>");
+									+ "<li class='active'><a href='user-review'>Đánh giá của du khách</a></li>"
+									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+									"<li><a href='foods'>Đặc sản</a></li>");
+							break;
+						case "food":
+							out.write("	<li ><a href='home'><span"
+									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
+
+							"<li><a href='tours'>Tours</a></li>" +
+
+							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+									"<li class='active'><a href='foods'>Đặc sản</a></li>");
+							break;
+						case "event":
+							out.write("	<li ><a href='home'><span"
+									+ "class='glyphicon glyphicon-home'></span> Trang chủ</a></li>" +
+
+							"<li><a href='tours'>Tours</a></li>" +
+
+							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+"<li class='active'><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
 						case "sign-up":
 							out.write("	<li> <a href='home'><span"
@@ -74,7 +104,9 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
 						default:
 							out.write("	<li> <a href='home'><span"
@@ -83,7 +115,9 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
+									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
 						}
 					%>
@@ -144,8 +178,10 @@
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
 										+ "<li><a href='add-tour-place'>Thêm điểm du lịch</a></li>"
-										+ "<li><a href='add-tour'>Thêm tour mới</a></li>"
-										+ "<li><a href='write-your-feeling'>Viết bài Đánh giá</a></li>" 
+										+ "<li><a href='add-tour'>Thêm tour mới</a></li>"										
+										+ "<li><a href='add-event'>Thêm lễ hội</a></li>"
+										+ "<li><a href='add-food'>Thêm đặc sản</a></li>"
+										+ "<li><a href='write-your-feeling'>Viết bài Đánh giá</a></li>"										
 										+ "<li><a href='post-manager'>Quản lý bài đăng</a></li>"																			
 										+"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
 
