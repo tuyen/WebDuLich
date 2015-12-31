@@ -18,6 +18,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
+import utility.LoginUtility;
+
 /**
  * Servlet implementation class ImageUpload
  */
@@ -32,7 +34,7 @@ public class ImageUpload extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	LoginUtility login = new LoginUtility();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -49,7 +51,14 @@ public class ImageUpload extends HttpServlet {
 					response);
 			return;
 		}
-		String userId = "1";
+		if((!login.isLogged(request, response))||(!login.getAccountType().equals("company")))
+		{
+			request.getRequestDispatcher("view/Access-denied.jsp").include(request,
+					response);
+			return;
+		}
+		
+		String userId = login.getLoggedUserID();		
 		String path = this.getServletContext().getRealPath("/")
 				+ "/view/resource/image/user/" + userId + "/";
 		File folder = new File(path);
@@ -72,7 +81,20 @@ public class ImageUpload extends HttpServlet {
 
 	private void uploadImage(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String userId = "1";
+		if(!ckcon.isConnected())
+		{			
+			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
+					response);
+			return;
+		}
+		if((!login.isLogged(request, response))||(!login.getAccountType().equals("company")))
+		{
+			request.getRequestDispatcher("view/Access-denied.jsp").include(request,
+					response);
+			return;
+		}
+		
+		String userId = login.getLoggedUserID();	
 		if (ServletFileUpload.isMultipartContent(request)) {
 			// Create a factory for disk-based file items
 			DiskFileItemFactory factory = new DiskFileItemFactory();

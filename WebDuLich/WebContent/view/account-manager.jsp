@@ -138,7 +138,7 @@
 							</div>
 							<div id="update_information" class="hidden_div">
 								<h3>Cập nhật thông tin tài khoản</h3>
-								<form role="form" action="ProfileManager" method="post">
+								<form role="form" action="setting" method="post">
 									<div class="form-group">
 										<label for="email">Họ & Tên:</label> <input type="text"
 											class="form-control" required value="<%=user.getFullName()%>"
@@ -211,7 +211,7 @@
 							<div id="update_password" class="hidden_div">
 								<h4>Thay đổi mật khẩu:</h4>
 								<form role="form" onsubmit="return change_pass_ajax()"
-									action="ProfileManager" method="post">
+									action="setting" method="post">
 									<div class="form-group">
 										<label for="old_password">Mật khẩu cũ:</label> <input
 											type="password" required class="form-control"
@@ -243,7 +243,7 @@
 						</div>
 						<div class="panel-body">
 							<div id="update_information">
-								<form role="form" method="post" action="ProfileManager"
+								<form role="form" method="post" action="setting"
 									enctype="multipart/form-data">
 									<div class="form-group">
 										<label for="file">File name:</label> <input type="file"
@@ -261,7 +261,7 @@
 							<div id="update_password" class="hidden_div">
 								<h4>Thay đổi mật khẩu:</h4>
 								<form role="form" onsubmit="return change_pass_ajax()"
-									action="ProfileManager" method="post">
+									action="setting" method="post">
 									<div class="form-group">
 										<label for="old_password">Mật khẩu cũ:</label> <input
 											type="password" required class="form-control"
@@ -294,7 +294,7 @@
 					}
 					$
 							.post(
-									"ProfileManager",
+									"setting",
 									{
 										btn_change : "btn_change",
 										confirmPassword : confirm_pass,

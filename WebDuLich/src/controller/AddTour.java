@@ -58,11 +58,13 @@ public class AddTour extends HttpServlet {
 					response);
 			return;
 		}
-		// TODO Auto-generated method stub
-		
-		
-		
-		if((!login.isLogged(request, response))||(!login.getAccountType().equals("company")))
+		if((!login.isLogged(request, response)))
+		{
+			response.sendRedirect("sign-in");
+			return;
+		}
+		// TODO Auto-generated method stub			
+		if((!login.getAccountType().equals("company")))
 		{
 			request.getRequestDispatcher("view/Access-denied.jsp").include(request,
 					response);

@@ -66,7 +66,7 @@
 										+ i
 										+ "' class='active item'><a href = '"
 										+ request.getContextPath()
-										+ "/postdetail?cate=3&post="
+										+ "/detail?cate=3&post="
 										+ post.getPostId()
 										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 										+ src + "'></a></div>");
@@ -75,7 +75,7 @@
 										+ i
 										+ "' class='item'><a href = '"
 										+ request.getContextPath()
-										+ "/postdetail?cate=3&post="
+										+ "/detail?cate=3&post="
 										+ post.getPostId()
 										+ "'><img class='img-responsive' width = '100%'alt='not found'src='"
 										+ src + "'></a></div>");
@@ -84,7 +84,7 @@
 						out.write("<div class = 'panel-footer'>");
 						out.write("<div style='font-size: 17px;'>");
 						out.write("<a href='" + request.getContextPath()
-								+ "/postdetail?cate=3&post=" + post.getPostId()
+								+ "/detail?cate=3&post=" + post.getPostId()
 								+ "'> " + post.getTitle() + " </a>");
 						out.write("<table width='100%' style = 'margin-top:10px;'><tr>");
 						out.write("<td><p data-toggle='tooltip' title='"
@@ -96,7 +96,7 @@
 				else
 					out.write("<center> <h4> Không tìm thấy bài viết nào! Bạn hãy là người đầu tiên <a href = '"
 							+ request.getContextPath()
-							+ "/AddTourPlace'> viết bài </a> nhé! </h4> </center>");
+							+ "/write-your-feeling'> viết bài </a> nhé! </h4> </center>");
 			%>
 		</ul>		
 

@@ -51,7 +51,7 @@ public class AddUserFeeling extends HttpServlet {
 			return;
 		}
 		if ((!login.isLogged(request, response))) {
-			response.sendRedirect("home");
+			response.sendRedirect("sign-in");
 			return;
 		}
 		
@@ -115,7 +115,7 @@ public class AddUserFeeling extends HttpServlet {
 						id = post.getLastFeelingId(userId);
 						String[] str = { tourId };
 						post.insertPlace(id, str);
-						String url = "postdetail?cate=3&post=" + id;
+						String url = "detail?cate=3&post=" + id;
 						response.sendRedirect(url);
 						return;
 					} catch (SQLException e) {
@@ -150,12 +150,17 @@ public class AddUserFeeling extends HttpServlet {
 					response);
 			return;
 		}
-		if ((!login.isLogged(request, response))
-				|| (!login.getAccountType().equals("company"))) {
-			response.sendRedirect("ControllerHome");
+		if ((!login.isLogged(request, response))) {
+			response.sendRedirect("sign-in");
 			return;
 		} else {
 			userId = login.getLoggedUserID();
+		}
+		if(!login.getAccountType().equals("company"))
+		{
+			request.getRequestDispatcher("view/Access-denied.jsp").include(request,
+					response);
+			return;
 		}
 
 		this.addTourFeeling(request, response);

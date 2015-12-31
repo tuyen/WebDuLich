@@ -223,8 +223,7 @@
 						style="margin-top: 10px; margin-bottom: 10px" type="submit"
 						value="Bình luận">
 				</form>
-			</div>
-			
+			</div>			
 				<%
 					if (listComment.size() > 0) {
 						
@@ -232,10 +231,10 @@
 						for (dtoComment comment : listComment) {
 							out.write("<div class='panel panel-default'>");
 							out.write("<div class='panel-body'>");
-							out.write("<img class='avatar' src='view/resource/image/user/"+comment.getUserId()+"/"
+							out.write("<img class='avatar' src='"+request.getContextPath()+"/view/resource/image/user/"+comment.getUserId()+"/"
 									+ mdUser.getAvatarByCommentId(comment
 											.getCommentId()) + "' alt='user avatar'>");
-							out.write("<p>" + comment.getContent() + "</p>");
+							out.write("<p class='user_comment'>" + comment.getContent() + "</p>");
 							out.write("</div></div>");
 						}
 						out.write("</div>");

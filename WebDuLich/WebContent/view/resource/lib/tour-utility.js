@@ -23,7 +23,7 @@ function bookTour(cate, post) {
 	var post_url = window.location;	
 	$.ajax({
 		type : "post",
-		url : "postdetail",
+		url : "detail",
 		data : {
 			bookTour : $("#book_tour").attr("value"),
 			postUrl : post_url.toString(),
@@ -72,7 +72,7 @@ $(document).ready(function() {
 function commentButtonClick() {
 	$.ajax({
 		type : "post",
-		url : "postdetail",
+		url : "detail",
 		data : {
 			txtComment : $("#txtComment").val()
 		},

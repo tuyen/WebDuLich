@@ -116,6 +116,20 @@
 				<tbody>
 					<%
 						for (dtoPost p : listPost) {
+														String type = p.getCategoryId();
+														String process = "";
+														switch(type)
+														{
+														case "1":
+															process = "add-tour";
+															break;
+														case "2":
+															process = "add-tour-place";
+															break;
+														case "3":
+															process = "write-your-feeling";
+															break;
+														}
 														out.write("<tr id = '"+p.getPostId()+"'>");
 														out.write("<td>" + p.getPostDate() + "</td>");
 														out.write("<td><b font-size = '20px'><a href= '"
@@ -124,7 +138,7 @@
 																+ "'>" + p.getTitle() + "</a></b>");
 														out.write("<p>" + p.getShortContent() + " ...</p></td>");
 														out.write("<td style = 'font-size:15px'>");
-														out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/AddTour?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
+														out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/"+process+"?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
 														out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-toggle='modal' data-target='#myModal' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
 														out.write("</td>");
 														out.write("</tr>");

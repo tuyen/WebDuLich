@@ -38,7 +38,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
 							break;
 						case "tours":
 							out.write("	<li ><a href='home'><span"
@@ -47,7 +47,7 @@
 							"<li class='active'><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
 							break;
 						case "tours-place":
 							out.write("	<li><a href='home'><span"
@@ -56,7 +56,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li class='active'><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
 							break;
 						case "feeling":
 							out.write("	<li ><a href='home'><span"
@@ -65,7 +65,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li class='active'><a href='user-review'>Cảm nhận của du khách</a></li>");
+									+ "<li class='active'><a href='user-review'>Đánh giá của du khách</a></li>");
 							break;
 						case "sign-up":
 							out.write("	<li> <a href='home'><span"
@@ -74,7 +74,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
 							break;
 						default:
 							out.write("	<li> <a href='home'><span"
@@ -83,7 +83,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>");
+									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>");
 							break;
 						}
 					%>
@@ -145,9 +145,9 @@
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
 										+ "<li><a href='add-tour-place'>Thêm điểm du lịch</a></li>"
 										+ "<li><a href='add-tour'>Thêm tour mới</a></li>"
-										+ "<li><a href='post-manager'>Quản lý bài đăng</a></li>"
-										+ "<li><a href='write-your-feeling'>Viết bài cảm nhận</a></li>" +
-										"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
+										+ "<li><a href='write-your-feeling'>Viết bài Đánh giá</a></li>" 
+										+ "<li><a href='post-manager'>Quản lý bài đăng</a></li>"																			
+										+"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
 
 								"<li class='divider'></li>" +
 										//"<li class='nav-header'>Nav header</li>"+
@@ -161,7 +161,7 @@
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
 
-										+ "<li><a href='write-your-feeling'>Viết bài cảm nhận</a></li>" +
+										+ "<li><a href='write-your-feeling'>Viết bài Đánh giá</a></li>" +
 										"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
 
 								"<li class='divider'></li>" +

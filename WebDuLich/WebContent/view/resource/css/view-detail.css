@@ -65,8 +65,16 @@ li.post {
 }
 
 .avatar {
-	width: 40px;
-	height: 40px;
+	width: 65px;
+	height: 65px;
+	float: left;
+	display: inline;
+}
+
+.user_comment
+{
+	margin: 20px;	
+	float: left;
 }
 
 span.top {

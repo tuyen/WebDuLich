@@ -166,14 +166,14 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
 				style="width: 102.5%; margin: 20px 0px 10px -13px">
 				<div class="separator" style="margin: 10px 0 0 0">
-					<a href="user-review"><h3 style="font: italic bold 18px/30px Georgia, serif;">Cảm nhận của du khách</h3></a>
+					<a href="user-review"><h3 style="font: italic bold 18px/30px Georgia, serif;">Đánh giá của du khách</h3></a>
 				</div>
 			</div>
 			<br /> <br />
 			<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
 				if (listFeeling.size() == 0) {
-					out.write("<div class = 'panel panel-body'> <h4> Chưa có bài cảm nhận nào!!! Bạn hãy là người đầu tiên <a href=''> viết cảm nhận </a> nhé :) </h4> </div>");
+					out.write("<div class = 'panel panel-body'> <h4> Chưa có bài đánh giá nào!!! Bạn hãy là người đầu tiên <a href='write-your-feeling'> viết cảm nhận </a> nhé :) </h4> </div>");
 				}
 				for (dtoPost post : listFeeling) {
 					out.write("<li class='post'style = 'width:33.33333333333333333333333333333%'> ");

@@ -61,7 +61,7 @@ public class ProfileManager extends HttpServlet {
 			return;
 		}
 		if (!login.isLogged(request, response)) {
-			response.sendRedirect("ControllerHome");
+			response.sendRedirect("sign-in");
 			return;
 		} else {
 			userId = login.getLoggedUserID();
@@ -158,7 +158,7 @@ public class ProfileManager extends HttpServlet {
 			return;
 		}
 		if (!login.isLogged(request, response)) {
-			response.sendRedirect("ControllerHome");
+			response.sendRedirect("sign-in");
 			return;
 		} else {
 			userId = login.getLoggedUserID();
@@ -212,10 +212,15 @@ public class ProfileManager extends HttpServlet {
 				}
 			} catch (FileUploadException e) {
 				// TODO Auto-generated catch block
+				response.sendRedirect("error");
 				e.printStackTrace();
+				return;
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				response.sendRedirect("error");
 				e.printStackTrace();
+				return;
 			}
 
 		} else {
