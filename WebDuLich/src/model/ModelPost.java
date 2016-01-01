@@ -38,10 +38,14 @@ public class ModelPost extends Model {
 			this.connection.close();
 		}
 	}
-	
+
+	/**
+	 * delete post by postId
+	 * 
+	 * @param postId
+	 */
 	public void updateDelete(String postId) {
-		String sql = "UPDATE `post` SET `Deleted` = 1 WHERE `PostId`="
-				+ postId;
+		String sql = "UPDATE `post` SET `Deleted` = 1 WHERE `PostId`=" + postId;
 		if (this.connection.connect()) {
 			this.connection.write(sql);
 			this.connection.close();
@@ -64,8 +68,53 @@ public class ModelPost extends Model {
 	 * @return listPost List<dtoPost>
 	 */
 	public List<dtoPost> getAllPostByCategory(String categoryId) {
+
 		List<dtoPost> listPost = new ArrayList<dtoPost>();
-		String sql = "select * from post where post.Deleted = 0 and post.CategoryId = " + categoryId;
+		String sql = "select * from post where post.Deleted = 0";
+		if (categoryId != null)
+			sql += " and post.CategoryId = " + categoryId;
+		if (connection.connect()) {
+			ResultSet rs = connection.read(sql);
+			try {
+				while (rs.next()) {
+					dtoPost post = new dtoPost();
+					post.setPostId(rs.getString("PostId"));
+					post.setCategoryId(rs.getString("CategoryId"));
+					post.setLocationId(rs.getString("LocationId"));
+					post.setUserId(rs.getString("UserId"));
+					post.setTitle(rs.getString("Title"));
+					post.setContent(rs.getString("Content"));
+					post.setPostDate(rs.getString("Date"));
+					post.setPrice(rs.getString("Price"));
+					post.setViews(rs.getString("Views"));
+					post.setBuys(rs.getString("Buys"));
+					post.setNumberPeople(rs.getString("NumberPerson"));
+					post.setTotalTime(rs.getString("TotalTime"));
+					post.setShortContent(getShortContents(post.getPostId()));
+					listPost.add(post);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		connection.close();
+		return listPost;
+	}
+
+	/**
+	 * get all post by specific category by a user
+	 * 
+	 * @param categoryId
+	 *            String
+	 * @return listPost List<dtoPost>
+	 */
+	public List<dtoPost> getAllPostByCategory(String categoryId, String userId) {
+		List<dtoPost> listPost = new ArrayList<dtoPost>();
+		String sql = "select * from post where post.Deleted = 0 and post.UserId = "
+				+ userId;
+		if (categoryId != null)
+			sql += " and post.CategoryId = " + categoryId;
 		if (connection.connect()) {
 			ResultSet rs = connection.read(sql);
 			try {
@@ -160,6 +209,7 @@ public class ModelPost extends Model {
 
 	/**
 	 * get the list place of a tour
+	 * 
 	 * @param postId
 	 * @return
 	 */
@@ -187,9 +237,10 @@ public class ModelPost extends Model {
 		}
 		return tours;
 	}
-	
+
 	/**
 	 * get location by id
+	 * 
 	 * @param locationId
 	 * @return
 	 */
@@ -291,6 +342,7 @@ public class ModelPost extends Model {
 
 	/**
 	 * get the number of post was found by previous query statement
+	 * 
 	 * @return
 	 */
 	public int getCountPost() {
@@ -365,8 +417,8 @@ public class ModelPost extends Model {
 				if (dto.getLocationId() != "")
 					preStatement.setInt(11,
 							Integer.parseInt(dto.getLocationId().trim()));
-				
-				preStatement.setBoolean(12,false);
+
+				preStatement.setBoolean(12, false);
 				rs = preStatement.execute();
 
 			} catch (SQLException e) {
@@ -568,8 +620,9 @@ public class ModelPost extends Model {
 					rs.close();
 					// count the number of rows found when execute the first
 					// statement
-					
-					rs = connection.getPrepareStatement().executeQuery("select FOUND_ROWS()");					
+
+					rs = connection.getPrepareStatement().executeQuery(
+							"select FOUND_ROWS()");
 					if (rs.next())
 						num_rows = rs.getInt(1);
 				} catch (SQLException e) {
@@ -624,7 +677,8 @@ public class ModelPost extends Model {
 					rs.close();
 					// count the number of rows found when execute the first
 					// statement
-					rs = connection.getPrepareStatement().executeQuery("select FOUND_ROWS()");
+					rs = connection.getPrepareStatement().executeQuery(
+							"select FOUND_ROWS()");
 					if (rs.next())
 						num_rows = rs.getInt(1);
 				} catch (SQLException e) {
@@ -683,7 +737,8 @@ public class ModelPost extends Model {
 					rs.close();
 					// count the number of rows found when execute the first
 					// statement
-					rs = connection.getPrepareStatement().executeQuery("select FOUND_ROWS()");
+					rs = connection.getPrepareStatement().executeQuery(
+							"select FOUND_ROWS()");
 					if (rs.next())
 						num_rows = rs.getInt(1);
 				} catch (SQLException e) {
@@ -738,7 +793,8 @@ public class ModelPost extends Model {
 					rs.close();
 					// count the number of rows found when execute the first
 					// statement
-					rs = connection.getPrepareStatement().executeQuery("select FOUND_ROWS()");
+					rs = connection.getPrepareStatement().executeQuery(
+							"select FOUND_ROWS()");
 					if (rs.next())
 						num_rows = rs.getInt(1);
 				} catch (SQLException e) {
@@ -795,7 +851,8 @@ public class ModelPost extends Model {
 					rs.close();
 					// count the number of rows found when execute the first
 					// statement
-					rs = connection.getPrepareStatement().executeQuery("select FOUND_ROWS()");
+					rs = connection.getPrepareStatement().executeQuery(
+							"select FOUND_ROWS()");
 					if (rs.next())
 						num_rows = rs.getInt(1);
 				} catch (SQLException e) {

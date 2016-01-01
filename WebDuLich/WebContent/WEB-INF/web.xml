@@ -66,6 +66,14 @@
     <url-pattern>/forgot-password</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>admin-manager</servlet-name>
+    <servlet-class>controller.ControllerAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admin-manager</servlet-name>
+    <url-pattern>/admin-manager</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>home</servlet-name>
     <servlet-class>controller.ControllerHome</servlet-class>
   </servlet>

@@ -1,3 +1,4 @@
+<%@page import="model.ModelUser"%>
 <%@page import="utility.LoginUtility"%>
 <%@page import="dto.dtoPost"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,13 +17,12 @@
 
 	String strCate = request.getParameter("cate");
 	List<dtoPost> listPost = null;
-	if(login.isLogged(request, response)){
-	if (strCate != null)
-		listPost = mdPost.getAllPostByCategory(strCate, login.getLoggedUserID());
-	else
-		listPost = mdPost.getAllPostByCategory("1", login.getLoggedUserID());
-	}
+	
+		listPost = mdPost.getAllPostByCategory(strCate);
+	
 	List<String> listSrc = new ArrayList<String>();
+	
+	ModelUser mdUser = new ModelUser();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -78,7 +78,7 @@
 		%>
 		<div class="text-right">
 			<div class="separator">
-				<h3>DANH MỤC BÀI ĐÃ ĐĂNG</h3>
+				<h3 style="font: italic bold 18px/30px Georgia, serif;">Quản lý bài đăng</h3>
 				<form action="" style="margin-bottom: 10px">
 					<div class="btn-group">
 						<%
@@ -94,7 +94,7 @@
 							<%
 								for (dtoCategory cate : listCate)
 																				out.print("<li>	<a href='" + request.getContextPath()
-																						+ "/post-manager?cate=" + cate.getCategoryId()
+																						+ "/admin-manager?cate=" + cate.getCategoryId()
 																						+ "'>" + cate.getName() + "</a></li>");
 							%>
 						</ul>
@@ -111,13 +111,13 @@
 				<thead>
 					<tr>
 						<th width="20%">Ngày đăng</th>
-						<th width="65%">Tên bài đăng</th>
+						<th width="45%">Tên bài đăng</th>
+						<td width="20%">Tác giả</td>
 						<th width="15%">Tùy chọn</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-					if(listPost != null){
 						for (dtoPost p : listPost) {
 														String type = p.getCategoryId();
 														String process = "";
@@ -132,12 +132,6 @@
 														case "3":
 															process = "write-your-feeling";
 															break;
-														case "4":
-															process = "add-event";
-															break;
-														case "5":
-															process = "add-food";
-															break;
 														}
 														out.write("<tr id = '"+p.getPostId()+"'>");
 														out.write("<td>" + p.getPostDate() + "</td>");
@@ -146,14 +140,13 @@
 																+ p.getCategoryId() + "&post=" + p.getPostId()
 																+ "'>" + p.getTitle() + "</a></b>");
 														out.write("<p>" + p.getShortContent() + " ...</p></td>");
+														out.write("<td>" + mdUser.getUserEmailById(p.getUserId()) + "</td>");
 														out.write("<td style = 'font-size:15px'>");
 														out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/"+process+"?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
 														out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-toggle='modal' data-target='#myModal' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
 														out.write("</td>");
 														out.write("</tr>");
 													}
-					}else
-						out.write("error login");
 					%>
 				</tbody>
 			</table>

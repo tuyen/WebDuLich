@@ -57,6 +57,33 @@ public class ModelUser extends Model {
 		}
 		return user;
 	}
+	
+	public String getUserEmailById(String userId) {
+		String user = "";
+		String sql = "SELECT Email FROM `user` WHERE `UserId` = ?";
+		if (connection.connect()) {
+			try {
+				PreparedStatement stm = connection.getConnection()
+						.prepareStatement(sql);
+				stm.setString(1, userId);
+				connection.setPrepareStatement(stm);
+				ResultSet rs = connection.readSecure();
+				try {
+					if (rs.next() != false) {
+						
+						user=rs.getString("Email");					
+					} else
+						return null;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			connection.close();
+		}
+		return user;
+	}
 
 	/**
 	 * get account by email
