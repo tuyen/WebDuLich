@@ -705,7 +705,7 @@ public class ModelPost extends Model {
 			int limit, int offset) {
 		List<dtoPost> listPost = new ArrayList<dtoPost>();
 		if (connection.connect()) {
-			String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM `post`, `user` WHERE `post`.`UserId` = `user`.`UserId` AND `user`.`CompanyName` = ? AND `post`.`LocationId` = ? AND `post`.`CategoryId` = 1  order by post.PostId desc limit "
+			String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM `post`, `user` WHERE `post`.`UserId` = `user`.`UserId` AND `user`.`CompanyName` = ? AND Deleted = 0 AND `post`.`LocationId` = ? AND `post`.`CategoryId` = 1  order by post.PostId desc limit "
 					+ offset + "," + limit;
 			try {
 				PreparedStatement stm = connection.getConnection()

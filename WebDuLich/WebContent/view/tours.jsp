@@ -22,10 +22,10 @@
 	List<dtoPost> listPost = null;
 	ModelPost mdPost = new ModelPost();	
 	String placeId = request.getParameter("place");
-	if(placeId.equals("Tỉnh thành"))
+	if("Tỉnh thành".equals(placeId))
 		placeId = null;	
 	String companyId = request.getParameter("tourist");
-	if(companyId.equals("Công ty lữ hành"))
+	if("Công ty lữ hành".equals(companyId))
 		companyId = null;
 	if (placeId != null && companyId != null) //search both place and company
 	{
@@ -189,7 +189,7 @@
 
 		<%
 			int pages = mdPost.getCountPost() / 10;
-			//if(mdPost.getCountPost() % 10 != 0)
+			if(mdPost.getCountPost() % 10 != 0)
 				pages += 1;
 			if (pages > 1) {
 		%>

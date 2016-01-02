@@ -151,22 +151,27 @@
 		<!-- pagination -->
 
 		<%
-			int pages = mdPost.getCountPost() / 10 + 1;
-			if (pages > 1) {
+		int pages = mdPost.getCountPost() / 10;
+		if(mdPost.getCountPost() % 10 != 0)
+			pages += 1;
+		if (pages > 1) {
 		%>
 		<nav>
 		<ul class="pagination pull-right">
 			<%
 				int _page = 1;
+				String link = "/events?";
+				if(place != null)
+					link +="place=" + place ;				
 					while (pages >= _page) {
 						if (cur_page == _page)
 							out.write("<li class = 'active'><a href='"
 									+ request.getContextPath()
-									+ "/events?page=" + _page + "'>" + _page
+									+ link + "&page=" + _page + "'>" + _page
 									+ "</a></li>");
 						else
 							out.write("<li><a href='" + request.getContextPath()
-									+ "/events?page=" + _page + "'>" + _page
+									+ link + "&page=" + _page + "'>" + _page
 									+ "</a></li>");
 						_page++;
 					}

@@ -142,31 +142,34 @@
 						out.write("</div></div></div></li>");
 					}
 				else
-					out.write("<center> <h3> Không tìm thấy bài viết nào! Bạn hãy là người đầu tiên <a href = '"
-							+ request.getContextPath()
-							+ "/add-tour-place'> viết bài </a> nhé! </h3> </center>");
+					out.write("<center> <h2> Rất tiếc chưa có bài viết nào!</h2> </center>");
 			%>
 		</ul>
 
 		<!-- pagination -->
 
 		<%
-			int pages = mdPost.getCountPost() / 10 + 1;
-			if (pages > 1) {
+		int pages = mdPost.getCountPost() / 10;
+		if(mdPost.getCountPost() % 10 != 0)
+			pages += 1;
+		if (pages > 1) {
 		%>
 		<nav>
 		<ul class="pagination pull-right">
 			<%
 				int _page = 1;
+				String link = "/tourist-place?";
+				if(place != null)
+					link +="place=" + place ;				
 					while (pages >= _page) {
 						if (cur_page == _page)
 							out.write("<li class = 'active'><a href='"
 									+ request.getContextPath()
-									+ "/tourist-place?page=" + _page + "'>" + _page
+									+ link + "&page=" + _page + "'>" + _page
 									+ "</a></li>");
 						else
 							out.write("<li><a href='" + request.getContextPath()
-									+ "/tourist-place?page=" + _page + "'>" + _page
+									+ link + "&page=" + _page + "'>" + _page
 									+ "</a></li>");
 						_page++;
 					}
