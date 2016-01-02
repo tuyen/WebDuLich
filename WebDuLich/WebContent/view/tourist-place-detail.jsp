@@ -75,8 +75,7 @@
 						out.write("<div class='carousel-caption'>");
 						out.write("<h2 class='text-center'>" + post.getTitle()
 								+ "</h2>");
-						out.write("<p class='text-center'>" + post.getShortContent()
-								+ "</p>");
+						
 						out.write("</div>");
 						out.write("</div>");
 					}
