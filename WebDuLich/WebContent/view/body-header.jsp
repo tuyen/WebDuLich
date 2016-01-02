@@ -38,7 +38,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-							+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+							+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>"
 							+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 							"<li><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -49,7 +49,7 @@
 							"<li class='active'><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>"
 									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -60,7 +60,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li class='active'><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>"
 									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -71,7 +71,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li class='active'><a href='user-review'>Đánh giá của du khách</a></li>"
+									+ "<li class='active'><a href='user-review'>Cảm nhận của du khách</a></li>"
 									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -82,7 +82,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>"
 									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 									"<li class='active'><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -93,7 +93,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>"
 									+"<li class='active'><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -104,7 +104,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='touristplace'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>"
 									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -115,7 +115,7 @@
 							"<li><a href='tours'>Tours</a></li>" +
 
 							"<li><a href='tourist-place'>Điểm du lịch</a></li>"
-									+ "<li><a href='user-review'>Đánh giá của du khách</a></li>"
+									+ "<li><a href='user-review'>Cảm nhận của du khách</a></li>"
 									+"<li><a href='events'>Lễ Hội & Sự Kiện</a></li>" +
 									"<li><a href='foods'>Đặc sản</a></li>");
 							break;
@@ -179,9 +179,9 @@
 										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
 										+ "<li><a href='add-tour-place'>Thêm điểm du lịch</a></li>"
 										+ "<li><a href='add-tour'>Thêm tour mới</a></li>"										
-										+ "<li><a href='add-event'>Thêm lễ hội</a></li>"
+										+ "<li><a href='add-event'>Thêm lễ hội & sự kiện</a></li>"
 										+ "<li><a href='add-food'>Thêm đặc sản</a></li>"
-										+ "<li><a href='write-your-feeling'>Viết bài Đánh giá</a></li>"										
+										+ "<li><a href='write-your-feeling'>Viết bài Cảm nhận</a></li>"										
 										+ "<li><a href='post-manager'>Quản lý bài đăng</a></li>"																			
 										+"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
 
@@ -195,9 +195,9 @@
 								page_1 = "<li><img id = 'avatar' src='" + image_src
 										+ "' class='img-thumbnail' width ='50px' height = '50px' style='margin-top:15px;'>&nbsp;</li>"
 										+ "<li class='dropdown'><a href='#' class='dropdown-toggle'data-toggle='dropdown'>" + name
-										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"
-
-										+ "<li><a href='write-your-feeling'>Viết bài Đánh giá</a></li>" +
+										+ "&nbsp;<b class='caret'></b></a>" + "<ul class='dropdown-menu'>"										
+										+ "<li><a href='write-your-feeling'>Viết bài cảm nhận</a></li>" 
+										+ "<li><a href='post-manager'>Quản lý bài đăng</a></li>"+
 										"<li><a href='setting'>Thay đổi thông tin cá nhân</a></li>" +
 
 								"<li class='divider'></li>" +

@@ -19,12 +19,9 @@
 <title>Travel</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 
+<script src="view/resource/lib/jquery-2.1.4.min.js"></script>
 <link href="view/resource/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="view/resource/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="view/resource/css/css_home.css" rel="stylesheet">
-<script type="text/javascript"
-	src="view/resource/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript"
 	src="view/resource/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript"
@@ -32,6 +29,9 @@
 <script src="view/view/resource/ckeditor/ckeditor.js"></script>
 <link href="view/resource/css/account_manager.css" rel="stylesheet">
 <script src="view/resource/datepicker/js/bootstrap-datepicker.js"></script>
+<link href="view/resource/css/css_home.css" rel="stylesheet">
+<link href="view/resource/css/view-tour.css" rel="stylesheet">
+<script type="text/javascript" src="view/resource/lib/tour-utility.js"></script>
 </head>
 <body>
 	<jsp:include page="body-header.jsp" />
@@ -179,8 +179,9 @@
 									<div class='form-group'>
 										<%
 											if (isCompany) {
-												out.print("<label for='email'>Tên công ty:</label> <input type='text' class='form-control' id='email' required value='"
-														+ user.getCompany() + "' name='companyName'>");
+												out.print(
+														"<label for='email'>Tên công ty:</label> <input type='text' class='form-control' id='email' required value='"
+																+ user.getCompany() + "' name='companyName'>");
 											}
 										%>
 									</div>
@@ -189,9 +190,9 @@
 									<div class="form-group">
 										<%
 											if (isCompany) {
-												out.print("<label for='email'>Mô tả công ty:</label> <input type='text' class='form-control' id='email' required value='"
-														+ user.getCompanyDescription()
-														+ "' name='companyDescription'>");
+												out.print(
+														"<label for='email'>Mô tả công ty:</label> <input type='text' class='form-control' id='email' required value='"
+																+ user.getCompanyDescription() + "' name='companyDescription'>");
 											}
 										%>
 									</div>
@@ -336,7 +337,9 @@
 		</div>
 	</div>
 
-
+	<jsp:include page="body-footer.jsp"></jsp:include>
+	<!-- go to top button -->
+	<span class="top"></span>
 </body>
 </html>
 
