@@ -230,7 +230,7 @@
 								"<button  id='btn-signin' type='submit'"
 										+ "class='btn btn-block btn-primary' style='clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom: 10px;'>Sign In</button>"
 										+ "<a	href='ControllerForgotPassword' style='float: right;'"
-										+ "id='forgot_password'>Forgot password ?</a>" + "</form>" + "</div>" + "</li>";
+										+ "id='forgot_password'>Quên mật khẩu ?</a>" + "</form>" + "</div>" + "</li>";
 							}
 							else {
 								page_1 = "<li id='signup'><a href='sign-up'>Đăng ký</a></li>"

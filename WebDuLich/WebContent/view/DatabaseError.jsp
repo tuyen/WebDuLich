@@ -10,8 +10,8 @@
 	<!-- Begin Body -->
 	<div style="height: 30px"></div>
 	<div class="container">
-		<center><h1>Sorry! Site currently maintained by the administrator</h1></center>		
-		<center><h1>Please come back later</h1></center>
+		<center><h1>Hệ thống đang được bảo trì!</h1></center>		
+		<center><h1>Vui lòng quay lai sau</h1></center>
 	</div>
 	
 </body>

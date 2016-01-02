@@ -34,31 +34,34 @@
 			<div class="col-xs-3"></div>
 			<div class="col-xs-6" style="margin-bottom: 20%">
 				<div class="col-xs-12">
-					<h2>Vui lòng nhập email đã đăng kí để hệ thống cấp lại mật khẩu cho bạn!</h2>
+					<h2>Vui lòng nhập email đã đăng kí để hệ thống cấp lại mật
+						khẩu cho bạn!</h2>
 				</div>
-				<form id="emailForm"  method="POST" action="ControllerForgotPassword" accept-charset="UTF-8">
-					<i id="hintError" style="color:#E82626"></i>
-					<div class="input-group" style="margin-bottom:10px">
+				<form id="emailForm" method="POST" action="ControllerForgotPassword"
+					accept-charset="UTF-8">
+					<i id="hintError" style="color: #E82626"></i>
+					<div class="input-group" style="margin-bottom: 10px">
 						<span class="input-group-addon "> <i
-								class="icon-envelope icon-2x glyphicon glyphicon-envelope"></i>
-						</span>
-						
-						<input id="email" class="form-control input-lg"
+							class="icon-envelope icon-2x glyphicon glyphicon-envelope"></i>
+						</span> <input id="email" class="form-control input-lg"
 							placeholder="Email" required="required" width=100%
-							maxlength="100" type="text" name="email"  >
+							maxlength="100" type="text" name="email">
 					</div>
 					<div>
-					<button type="submit" id="btn-submit-email"
-						class="btn btn-block btn-primary btn-lg">Cấp lại mật khẩu</button>
+						<button type="submit" id="btn-submit-email"
+							class="btn btn-block btn-primary btn-lg">Cấp lại mật
+							khẩu</button>
 					</div>
 				</form>
-			<div class="col-xs-3"></div>
+				<div class="col-xs-3"></div>
+			</div>
 		</div>
-	</div>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="footer">
 
 	</div>
-
+	<jsp:include page="body-footer.jsp"></jsp:include>
+	<!-- go to top button -->
+	<span class="top"></span>
 </body>
 </html>
