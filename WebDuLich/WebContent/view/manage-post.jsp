@@ -15,6 +15,7 @@
 	listCate = mdPost.getAllCategory();
 
 	String strCate = request.getParameter("cate");
+	String cateName = "Thể loại";
 	List<dtoPost> listPost = null;
 	if(login.isLogged(request, response)){	
 		listPost = mdPost.getAllPostByCategory(strCate, login.getLoggedUserID());	
@@ -75,24 +76,47 @@
 		%>
 		<div class="text-right">
 			<div class="separator">
-				<h3 style="font: italic bold 18px/30px Georgia, serif;">Danh mục bài đã đăng</h3>
+				<h3 style="font: italic bold 18px/30px Georgia, serif;">Danh
+					mục bài đã đăng</h3>
 				<form action="" style="margin-bottom: 10px">
 					<div class="btn-group">
 						<%
-							if (request.getParameter("cate") != null)
-																	out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
-																			+ listCate.get(Integer.parseInt(strCate) - 1)
-																					.getName()
-																			+ " <span class='caret'></span></button>");
-																else
-																	out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
+							if (strCate != null)		{						
+												switch (strCate){
+												case "1":
+													cateName = "Tour";
+													break;
+												case "2":
+													cateName = "Điểm du lịch";
+													break;
+												case "3":
+													cateName = "Bài cảm nhận";
+													break;
+												case "4":
+													cateName = "Lễ hội & sự kiện";
+													break;
+												case "5":
+													cateName = "Đặc sản";
+													break;									
+												}
+																					out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
+																							+ cateName
+																							+ " <span class='caret'></span></button>");
+											}else
+																					out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
 						%>
 						<ul class="dropdown-menu">
 							<%
-								for (dtoCategory cate : listCate)
-																				out.print("<li>	<a href='" + request.getContextPath()
-																						+ "/post-manager?cate=" + cate.getCategoryId()
-																						+ "'>" + cate.getName() + "</a></li>");
+								out.print("<li>	<a href='" + request.getContextPath()
+														+ "/post-manager?cate=" + listCate.get(0).getCategoryId() + "'> Tour </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/post-manager?cate=" + listCate.get(1).getCategoryId() + "'> Điểm du lịch </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/post-manager?cate=" + listCate.get(2).getCategoryId() + "'> Bài cảm nhận </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/post-manager?cate=" + listCate.get(3).getCategoryId() + "'> Lễ hội & sự kiện </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/post-manager?cate=" + listCate.get(4).getCategoryId() + "'> Đặc sản </a></li>");
 							%>
 						</ul>
 					</div>
@@ -114,43 +138,43 @@
 				</thead>
 				<tbody>
 					<%
-					if(listPost != null){
-						for (dtoPost p : listPost) {
-														String type = p.getCategoryId();
-														String process = "";
-														switch(type)
-														{
-														case "1":
-															process = "add-tour";
-															break;
-														case "2":
-															process = "add-tour-place";
-															break;
-														case "3":
-															process = "write-your-feeling";
-															break;
-														case "4":
-															process = "add-event";
-															break;
-														case "5":
-															process = "add-food";
-															break;
-														}
-														out.write("<tr id = '"+p.getPostId()+"'>");
-														out.write("<td>" + p.getPostDate() + "</td>");
-														out.write("<td><b font-size = '20px'><a href= '"
-																+ request.getContextPath() + "/detail?cate="
-																+ p.getCategoryId() + "&post=" + p.getPostId()
-																+ "'>" + p.getTitle() + "</a></b>");
-														out.write("<p>" + p.getShortContent() + " ...</p></td>");
-														out.write("<td style = 'font-size:15px'>");
-														out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/"+process+"?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
-														out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-toggle='modal' data-target='#myModal' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
-														out.write("</td>");
-														out.write("</tr>");
-													}
-					}else
-						out.write("error login");
+						if(listPost != null){
+									for (dtoPost p : listPost) {
+																	String type = p.getCategoryId();
+																	String process = "";
+																	switch(type)
+																	{
+																	case "1":
+																		process = "add-tour";
+																		break;
+																	case "2":
+																		process = "add-tour-place";
+																		break;
+																	case "3":
+																		process = "write-your-feeling";
+																		break;
+																	case "4":
+																		process = "add-event";
+																		break;
+																	case "5":
+																		process = "add-food";
+																		break;
+																	}
+																	out.write("<tr id = '"+p.getPostId()+"'>");
+																	out.write("<td>" + p.getPostDate() + "</td>");
+																	out.write("<td><b font-size = '20px'><a href= '"
+																			+ request.getContextPath() + "/detail?cate="
+																			+ p.getCategoryId() + "&post=" + p.getPostId()
+																			+ "'>" + p.getTitle() + "</a></b>");
+																	out.write("<p>" + p.getShortContent() + " ...</p></td>");
+																	out.write("<td style = 'font-size:15px'>");
+																	out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/"+process+"?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
+																	out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-toggle='modal' data-target='#myModal' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
+																	out.write("</td>");
+																	out.write("</tr>");
+																}
+								}else
+									out.write("error login");
 					%>
 				</tbody>
 			</table>
@@ -163,28 +187,31 @@
 	<jsp:include page="body-footer.jsp" />
 	<!-- go to top button -->
 	<span class="top"></span>
-	
+
 	<!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Thông báo xác thực</h4>
-        </div>
-        <div class="modal-body">
-          <p>Bạn có chắc muốn xóa bài viết này?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Xác nhận</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-	<script type="text/javascript" src = "view/resource/lib/datatable.js">	</script>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Thông báo xác thực</h4>
+				</div>
+				<div class="modal-body">
+					<p>Bạn có chắc muốn xóa bài viết này?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Xác
+						nhận</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript" src="view/resource/lib/datatable.js">
+		
+	</script>
 </body>
 </html>

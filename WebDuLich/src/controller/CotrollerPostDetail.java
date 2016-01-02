@@ -235,7 +235,7 @@ public class CotrollerPostDetail extends HttpServlet {
 				+ ". <br> BananaTour xin chúc "
 				+ postOwnerAccount.getFullName()
 				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng từ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "Thông báo đặt tour",
+		sendMail(request, postOwnerAccount.getEmail(), "Thông báo đặt tour",
 				content);
 		try {
 			response.getWriter()
@@ -273,7 +273,7 @@ public class CotrollerPostDetail extends HttpServlet {
 				+ ". <br> BananaTour rất tiếc về điều này! Xin chúc "
 				+ postOwnerAccount.getFullName()
 				+ " có 1 ngày làm việc hiệu quả và có được những hợp đồng chất lượng khác từ BananaTour!";
-		sendMail(request, customerAccount.getEmail(), "Thông báo hủy tour",
+		sendMail(request, postOwnerAccount.getEmail(), "Thông báo hủy tour",
 				content);
 		try {
 			response.getWriter()

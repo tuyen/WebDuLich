@@ -710,8 +710,6 @@ public class ModelPost extends Model {
 			try {
 				PreparedStatement stm = connection.getConnection()
 						.prepareStatement(sql);
-				if (company.equals(""))
-					stm.setString(1, company);
 				stm.setString(1, company);
 				stm.setString(2, locationId);
 				connection.setPrepareStatement(stm);

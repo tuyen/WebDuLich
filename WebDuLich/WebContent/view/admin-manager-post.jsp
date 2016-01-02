@@ -16,6 +16,7 @@
 	listCate = mdPost.getAllCategory();
 
 	String strCate = request.getParameter("cate");
+	String cateName = "Thể loại";
 	List<dtoPost> listPost = null;
 	
 		listPost = mdPost.getAllPostByCategory(strCate);
@@ -82,20 +83,42 @@
 				<form action="" style="margin-bottom: 10px">
 					<div class="btn-group">
 						<%
-							if (request.getParameter("cate") != null)
-																	out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
-																			+ listCate.get(Integer.parseInt(strCate) - 1)
-																					.getName()
-																			+ " <span class='caret'></span></button>");
-																else
-																	out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
+							if (strCate != null)		{						
+												switch (strCate){
+												case "1":
+													cateName = "Tour";
+													break;
+												case "2":
+													cateName = "Điểm du lịch";
+													break;
+												case "3":
+													cateName = "Bài cảm nhận";
+													break;
+												case "4":
+													cateName = "Lễ hội & sự kiện";
+													break;
+												case "5":
+													cateName = "Đặc sản";
+													break;									
+												}
+																					out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'>"
+																							+ cateName
+																							+ " <span class='caret'></span></button>");
+											}else
+																					out.write("<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown' style='width: 100%'> Thể loại <span class='caret'></span></button>");
 						%>
 						<ul class="dropdown-menu">
 							<%
-								for (dtoCategory cate : listCate)
-																				out.print("<li>	<a href='" + request.getContextPath()
-																						+ "/admin-manager?cate=" + cate.getCategoryId()
-																						+ "'>" + cate.getName() + "</a></li>");
+								out.print("<li>	<a href='" + request.getContextPath()
+														+ "/admin-manager?cate=" + listCate.get(0).getCategoryId() + "'> Tour </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/admin-manager?cate=" + listCate.get(1).getCategoryId() + "'> Điểm du lịch </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/admin-manager?cate=" + listCate.get(2).getCategoryId() + "'> Bài cảm nhận </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/admin-manager?cate=" + listCate.get(3).getCategoryId() + "'> Lễ hội & sự kiện </a></li>");
+												out.print("<li>	<a href='" + request.getContextPath()
+														+ "/admin-manager?cate=" + listCate.get(4).getCategoryId() + "'> Đặc sản </a></li>");
 							%>
 						</ul>
 					</div>
