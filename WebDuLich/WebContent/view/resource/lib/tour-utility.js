@@ -1,11 +1,4 @@
 /**
- * show tooltip
- */
-$(document).ready(function() {
-	$('[data-toggle="tooltip"]').tooltip();
-});
-
-/**
  * show loading icon when loading data
  */
 $(document).ajaxStart(function() {

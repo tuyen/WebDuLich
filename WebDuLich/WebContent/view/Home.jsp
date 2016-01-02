@@ -314,6 +314,7 @@
 	<jsp:include page="body-footer.jsp" />
 	<jsp:include page="notify.jsp" />
 	
-
+<!-- go to top button -->
+	<span class="top"></span>
 </body>
 </html>
