@@ -162,7 +162,7 @@
 																+ request.getContextPath() + "/detail?cate="
 																+ p.getCategoryId() + "&post=" + p.getPostId()
 																+ "'>" + p.getTitle() + "</a></b>");
-														out.write("<p>" + p.getShortContent() + " ...</p></td>");
+														out.write("</td>");
 														out.write("<td>" + mdUser.getUserEmailById(p.getUserId()) + "</td>");
 														out.write("<td style = 'font-size:15px'>");
 														out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/"+process+"?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");

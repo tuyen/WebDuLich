@@ -166,7 +166,7 @@
 																			+ request.getContextPath() + "/detail?cate="
 																			+ p.getCategoryId() + "&post=" + p.getPostId()
 																			+ "'>" + p.getTitle() + "</a></b>");
-																	out.write("<p>" + p.getShortContent() + " ...</p></td>");
+																	out.write("</td>");
 																	out.write("<td style = 'font-size:15px'>");
 																	out.write("<a style = 'margin-left:20px;' 	href = '"+request.getContextPath() + "/"+process+"?edit="+p.getPostId()+"' class = 'btn btn-warning' data-tooltip = 'tooltip' title = 'Chỉnh sửa'><span class = 'glyphicon glyphicon-edit'></span></a>");
 																	out.write("<a style = 'margin-left:20px;' href = '#' class = 'btn btn-danger' data-toggle='modal' data-target='#myModal' data-tooltip = 'tooltip' title = 'Xóa'><span class = 'glyphicon glyphicon-remove'></span></a>");
