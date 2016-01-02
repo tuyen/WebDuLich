@@ -16,11 +16,8 @@
 
 	String strCate = request.getParameter("cate");
 	List<dtoPost> listPost = null;
-	if(login.isLogged(request, response)){
-	if (strCate != null)
-		listPost = mdPost.getAllPostByCategory(strCate, login.getLoggedUserID());
-	else
-		listPost = mdPost.getAllPostByCategory("1", login.getLoggedUserID());
+	if(login.isLogged(request, response)){	
+		listPost = mdPost.getAllPostByCategory(strCate, login.getLoggedUserID());	
 	}
 	List<String> listSrc = new ArrayList<String>();
 %>
