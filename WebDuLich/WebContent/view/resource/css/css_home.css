@@ -1,23 +1,24 @@
-
 /*.navbar-form input, .form-inline input {
 	width:auto;
 }
 */
-
-html, body{
+html, body {
 	height: 100%;
 }
+
 .wrapper {
-	min-height:100%;
-	position:relative;
+	min-height: 100%;
+	position: relative;
 }
-.container{
-	padding-bottom:150px;
+
+.container {
+	padding-bottom: 200px;
 }
-.panel-body
-{
-	padding:2px;
+
+.panel-body {
+	padding: 2px;
 }
+
 .carousel-inner img {
 	margin: 0 auto;
 	position: relative;
@@ -33,102 +34,107 @@ html, body{
 }
 
 #avatar {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: inline-block;
-    height:50px;
-    line-height: 1.42857;
-    max-width: 100%;
-    padding:0;
-    transition: all 0.2s ease-in-out 0s;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	display: inline-block;
+	height: 50px;
+	line-height: 1.42857;
+	max-width: 100%;
+	padding: 0;
+	transition: all 0.2s ease-in-out 0s;
 }
+
 .container-fluid {
-    padding-right: 30px;
+	padding-right: 30px;
 }
-#footer
-{
-    background-color: #C5C6FE;
-   height: 150px;
-   width: 100%;
-   position: absolute;
-   bottom: 0;
-   left: 0;
+
+#footer {
+	background-color: #2E2E2E;
+	color: white;
+	height: 150px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 150px;
 }
-p#end
-{
+
+p#end {
 	font-weight: bold;
 }
 
-body{
-    background-color: #F1F2FA;
-    padding-top: 90px; 
+body {
+	padding-top: 90px;
 }
+
 header {
-	height:60px;
+	height: 60px;
 	background-color: #DDDEFF;
-    color:#00148E;
-}
-.navbar-header
-{
-    background-color: #02162D;
-}
-@media (min-width: 768px){
-    .affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:2;
-}
-.affix + .container
-{
-	padding-top: 60px;
+	color: #00148E;
 }
 
-
-@media (max-width: 768px) {
-
-    label{
-        color: white;
-    }
-    #user_username {
-        width: 100%;
-    }
-    #user_password{
-        width: 100%;
-    }
-    #forgot_password{
-        color: white;
-    }
-
+.navbar-header {
+	background-color: #02162D;
 }
 
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: #FFFFFF;
-    background-color: #02162D;
-}
-.navbar-default .navbar-nav > li > a
-{
-	color: #FFFFFF;
-	padding-top: 30px;
-	height: 80px;
-	font-weight: bold;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #FFFFFF;
-    background-color: #02162D;
-}
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-
-    background-color: #00244F;
-
-}
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #FFFFFF;
-    background-color: #02162D;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus >#not-focus 
-{
-	background-color: #00244F;
+@media ( min-width : 768px) {
+	.affix {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 2;
+	}
+	.affix+.container {
+		padding-top: 60px;
+	}
+	@media ( max-width : 768px) {
+		label {
+			color: white;
+		}
+		#user_username {
+			width: 100%;
+		}
+		#user_password {
+			width: 100%;
+		}
+		#forgot_password {
+			color: white;
+		}
+	}
+	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+		.navbar-default .navbar-nav>.open>a:focus {
+		color: #FFFFFF;
+		background-color: #02162D;
+	}
+	.navbar-default .navbar-nav>li>a {
+		color: #FFFFFF;
+		padding-top: 30px;
+		height: 80px;
+		font-weight: bold;
+	}
+	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
+		{
+		color: #FFFFFF;
+		background-color: #02162D;
+	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		background-color: #00244F;
+	}
+	.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
+		.navbar-default .navbar-nav>.active>a:focus {
+		color: #FFFFFF;
+		background-color: #02162D;
+	}
+	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus>#not-focus
+		{
+		background-color: #00244F;
+	}
+	.my-panel {
+		background-color: #0094DA;
+		color: white;
+	}
+	.panel {
+		border: 1px solid #0094DA;
+	}
 }

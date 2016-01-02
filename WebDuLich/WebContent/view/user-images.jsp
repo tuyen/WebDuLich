@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User image</title>
+<title>User image - Banana Tour</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css"

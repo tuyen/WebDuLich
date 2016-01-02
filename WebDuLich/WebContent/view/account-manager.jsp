@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Travel</title>
+<title>Quản lý tài khoản - Banana Tour</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 
 <script src="view/resource/lib/jquery-2.1.4.min.js"></script>

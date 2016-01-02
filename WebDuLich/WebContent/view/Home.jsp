@@ -109,8 +109,8 @@
 
 
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-				style="width: 102.5%; margin: 20px 0px 10px -13px">
-				<div class="separator" style="margin: 10px 0 0 0">
+				style="width: 100%; margin: 20px 0px 10px -13px">
+				<div class="separator" style="margin: 0px 0 0 0">
 					<a href="tourist-place"><h3 style="font: italic bold 18px/30px Georgia, serif;">Các
 						điểm du lịch</h3></a>
 				</div>
@@ -164,9 +164,9 @@
 			%>
 			</ul>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-				style="width: 102.5%; margin: 20px 0px 10px -13px">
-				<div class="separator" style="margin: 10px 0 0 0">
-					<a href="user-review"><h3 style="font: italic bold 18px/30px Georgia, serif;">Đánh giá của du khách</h3></a>
+				style="width: 100%; margin: 20px 0px 10px -13px">
+				<div class="separator" style="margin: 0px 0 0 0">
+					<a href="user-review"><h3 style="font: italic bold 18px/30px Georgia, serif;">Cảm nhận của du khách</h3></a>
 				</div>
 			</div>
 			<br /> <br />

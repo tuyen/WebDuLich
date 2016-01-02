@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Thêm tour du lịch</title>
+<title>Thêm tour du lịch - Banana Tour</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css"

@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Thêm lễ hội và sự kiện</title>
+<title>Thêm đặc sản - Banana Tour</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 
 <link href="view/resource/bootstrap/css/bootstrap.min.css"

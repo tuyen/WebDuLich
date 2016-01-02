@@ -33,7 +33,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Điểm du lịch</title>
+<title>Điểm du lịch - Banana Tour</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,8 +52,8 @@
 	<!-- body content -->
 	<div class="container" style="width: 80%">
 
-		<div class="panel panel-body">
-			<lable class="text-left"> <i>Tùy chọn tìm kiếm</i></lable>
+		<div class="panel panel-body my-panel">
+			<lable class="text-left"> <i>Tìm kiếm điểm du lịch</i></lable>
 			<center>
 				<form action="tourist-place" style="margin: 10px" class="form"
 					method="get" role="form">
@@ -83,7 +83,7 @@
 											%>
 										</select></td>
 									<td><div class="btn-group" style="float: right">
-											<button type="submit" id="btnSearch" class="btn btn-primary">Tìm
+											<button type="submit" id="btnSearch" class="btn btn-default">Tìm
 												kiếm</button>
 										</div></td>
 								</tr>

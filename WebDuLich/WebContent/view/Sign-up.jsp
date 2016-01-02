@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Travel</title>
+<title>Đăng ký - Banana Tour</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <link href="view/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -21,9 +21,8 @@
 	<jsp:include page="body-header.jsp" />
 
 	<!-- Begin Body -->
-	<div style="margin-top:"></div>
 	<div class="container" >
-		<center><h3>Welcome to Banana Tour</h3></center>
+		<center><h3>Chào mừng bạn đến với Banana Tour!!!</h3></center>
 		
 		
 		<center>
@@ -113,7 +112,6 @@
 		</form>
 		</center>
 	</div>
-	<div style="margin-bottom:60px"></div>
 	<jsp:include page="body-footer.jsp" />
 
 

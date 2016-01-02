@@ -1,7 +1,7 @@
 .separator {
 	margin-top: 50px;
 	text-align: right;
-	border-top: 1px solid #000;
+	border-top: 3px solid #0094DA;
 	overflow: visible;
 }
 
@@ -9,7 +9,8 @@
 	margin-top: -12px;
 	display: block;
 	font-style: italic;
-	background: #F1F2FA;
+	background: #0094DA;
+	color:white;
 	z-index: 10;
 	padding: 2px 20px;
 	float: left;
@@ -35,7 +36,7 @@
 	margin-top: -12px;
 	display: block;
 	font-style: italic;
-	background: #F1F2FA;
+	background: #0094DA;
 	z-index: 10;
 	padding: 2px 20px;
 	float: right;
@@ -57,7 +58,6 @@
 li.post {
 	margin-bottom: 10px;
 	margin-top: 10px;
-	background: #F7F7F8;
 }
 
 .glyphicon.glyphicon-ok {

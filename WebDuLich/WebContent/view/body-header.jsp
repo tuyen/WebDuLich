@@ -220,15 +220,15 @@
 										+ "accept-charset='UTF-8' role='form' >" + "<input id='user_username'"
 										+ "placeholder=' Email'" + "style='margin-bottom: 15px;' type='email' name='email'"
 										+ "size='25' required='required'/> <br/>" + "<input id='user_password'"
-										+ "placeholder=' Password'" + "style='margin-bottom: 15px;'"
+										+ "placeholder=' mật khẩu'" + "style='margin-bottom: 15px;'"
 										+ "type='password' name='password' size='25' required='required'/> <br />" +
 
 								"<input id='user_remember_me' style='float: left; margin-right: 10px;'"
 										+ "type='checkbox' name='remember' value='1' /> <label "
-										+ "class='string optional' for='user_remember_me'>" + "Remember me</label> " +
+										+ "class='string optional' for='user_remember_me'>" + "Ghi nhớ</label> " +
 
 								"<button  id='btn-signin' type='submit'"
-										+ "class='btn btn-block btn-primary' style='clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom: 10px;'>Sign In</button>"
+										+ "class='btn btn-block btn-primary' style='clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom: 10px;'>Đăng nhập</button>"
 										+ "<a	href='ControllerForgotPassword' style='float: right;'"
 										+ "id='forgot_password'>Quên mật khẩu ?</a>" + "</form>" + "</div>" + "</li>";
 							}
@@ -242,17 +242,17 @@
 										+ "accept-charset='UTF-8' role='form' >" + "<input id='user_username'"
 										+ "placeholder=' Email'" + "style='margin-bottom: 15px;' type='email' name='email'"
 										+ "size='25' required='required'/> <br/>" + "<input id='user_password'"
-										+ "placeholder=' Password'" + "style='margin-bottom: 15px;'"
+										+ "placeholder=' mật khẩu'" + "style='margin-bottom: 15px;'"
 										+ "type='password' name='password' size='25' required='required'/> <br />" +
 
 								"<input id='user_remember_me' style='float: left; margin-right: 10px;'"
 										+ "type='checkbox' name='remember' value='1' /> <label "
-										+ "class='string optional' for='user_remember_me'>" + "Remember me</label> " +
+										+ "class='string optional' for='user_remember_me'>" + "Ghi nhớ</label> " +
 
 								"<button  id='btn-signin' type='submit'"
-										+ "class='btn btn-block btn-primary' style='clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom: 10px;'>Sign In</button>"
+										+ "class='btn btn-block btn-primary' style='clear: left; width: 100%; height: 32px; font-size: 13px; margin-bottom: 10px;'>Đăng nhập</button>"
 										+ "<a	href='forgot-password' style='float: right;'"
-										+ "id='forgot_password'>Forgot password ?</a>" + "</form>" + "</div>" + "</li>";
+										+ "id='forgot_password'>Quên mật khẩu?</a>" + "</form>" + "</div>" + "</li>";
 							}
 
 						}

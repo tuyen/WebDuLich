@@ -4,14 +4,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Banana Tour - Database error</title>
+<title>Lỗi dữ liệu - Banana Tour</title>
 </head>
 <body>	
 	<!-- Begin Body -->
 	<div style="height: 30px"></div>
 	<div class="container">
-		<center><h1>Hệ thống đang được bảo trì!</h1></center>		
-		<center><h1>Vui lòng quay lai sau</h1></center>
+		<center><h1>Hừm!!! Trang web hiện tại đang được bảo trì!</h1></center>		
+		<center><h1>Quý khách vui lòng quay lại sau! Cảm ơn!</h1></center>		
 	</div>
 	
 </body>

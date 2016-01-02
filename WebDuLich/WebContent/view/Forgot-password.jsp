@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Forgot password</title>
+<title>Quên mật khẩu - Banana Tour</title>
 <link rel="shortcut icon" href="view/resource/image/logo.ico" />
 <link href="view/resource/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
