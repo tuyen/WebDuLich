@@ -78,7 +78,7 @@
 		%>
 		<div class="text-right">
 			<div class="separator">
-				<h3>DANH MỤC BÀI ĐÃ ĐĂNG</h3>
+				<h3 style="font: italic bold 18px/30px Georgia, serif;">Danh mục bài đã đăng</h3>
 				<form action="" style="margin-bottom: 10px">
 					<div class="btn-group">
 						<%
