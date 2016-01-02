@@ -107,6 +107,8 @@
 						%>
 						<ul class="dropdown-menu">
 							<%
+							out.print("<li>	<a href='" + request.getContextPath()
+									+ "/post-manager"+"'> Thể loại </a></li>");
 								out.print("<li>	<a href='" + request.getContextPath()
 														+ "/post-manager?cate=" + listCate.get(0).getCategoryId() + "'> Tour </a></li>");
 												out.print("<li>	<a href='" + request.getContextPath()
