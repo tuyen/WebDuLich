@@ -63,7 +63,7 @@ public class ControllerSignIn extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
 		if(!ckcon.isConnected())
 		{			
 			request.getRequestDispatcher("view/DatabaseError.jsp").include(request,
@@ -103,6 +103,7 @@ public class ControllerSignIn extends HttpServlet {
 				cookieUserID.setMaxAge(60*60*24*30);
 				
 				Cookie cookieAccoutType = new Cookie ("login_accounttype",user.getAccountType());
+				cookieAccoutType.setMaxAge(60*60*24*30);
 				String token = md5.generateToken();
 				try {
 					signin.setToken(user.getUserId(), token);
