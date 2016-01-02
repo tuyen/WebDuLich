@@ -113,13 +113,12 @@
 
 
 
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-				style="width: 100%; margin: 20px 0px 10px -13px">
+			
 				<div class="separator" style="margin: 0px 0 0 0">
 					<a href="tourist-place"><h3 style="font: italic bold 18px/30px Georgia, serif;">Các
 						điểm du lịch</h3></a>
 				</div>
-			</div>
+			
 			<br /> <br />
 			<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
@@ -167,25 +166,22 @@
 					out.write("</div></div></div></li>");
 				}
 			%>
-			</ul>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-				style="width: 100%; margin: 20px 0px 10px -13px">
+			</ul>	
 				<div class="separator" style="margin: 0px 0 0 0">
 					<a href="user-review"><h3 style="font: italic bold 18px/30px Georgia, serif;">Cảm nhận của du khách</h3></a>
-				</div>
-			</div>
+				</div>			
 			<br /> <br />
 			<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
 				if (listFeeling.size() == 0) {
-					out.write("<div class = 'panel panel-body'> <h4> Chưa có bài đánh giá nào!!! Bạn hãy là người đầu tiên <a href='write-your-feeling'> viết cảm nhận </a> nhé :) </h4> </div>");
+					out.write("<h4> Chưa có bài đánh giá nào!!! </h4>");
 				}
 				for (dtoPost post : listFeeling) {
 					out.write("<li class='post'style = 'width:33.33333333333333333333333333333%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
+					out.write("<div class = 'panel-body'>");
 					out.write("<div id='carousel-" + post.getPostId()
-							+ "' class='carousel slide'data-ride='carousel'>");
+							+ "' class='carousel slide' data-ride='carousel'>");
 					out.write("<div class='carousel-inner'role='listbox'>");
 					List<String> listSrc = mdPost.getImagesFromPost(
 							post.getPostId(), 3);
@@ -214,13 +210,11 @@
 			%>
 		</ul>
 		
-		
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-				style="width: 100%; margin: 20px 0px 10px -13px">
+					
 				<div class="separator" style="margin: 0px 0 0 0">
 					<a href="events"><h3 style="font: italic bold 18px/30px Georgia, serif;">Lễ hội & sự kiện</h3></a>
 				</div>
-			</div>
+		
 			<br /> <br />
 			<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
@@ -230,7 +224,7 @@
 				for (dtoPost post : listEvent) {
 					out.write("<li class='post'style = 'width:33.33333333333333333333333333333%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
+					out.write("<div class = 'panel-body'>");
 					out.write("<div id='carousel-" + post.getPostId()
 							+ "' class='carousel slide'data-ride='carousel'>");
 					out.write("<div class='carousel-inner'role='listbox'>");
@@ -262,12 +256,11 @@
 		</ul>
 		
 		
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-				style="width: 100%; margin: 20px 0px 10px -13px">
+			
 				<div class="separator" style="margin: 0px 0 0 0">
 					<a href="foods"><h3 style="font: italic bold 18px/30px Georgia, serif;">Đặc sản</h3></a>
 				</div>
-			</div>
+			
 			<br /> <br />
 			<ul class='list-inline' style='margin: 0 auto; width: 100%;'>
 			<%
@@ -277,7 +270,7 @@
 				for (dtoPost post : listFood) {
 					out.write("<li class='post'style = 'width:33.33333333333333333333333333333%'> ");
 					out.write("<div class = 'panel'style = 'width:100%'> ");
-					out.write("<div class = 'panel-body'");
+					out.write("<div class = 'panel-body'>");
 					out.write("<div id='carousel-" + post.getPostId()
 							+ "' class='carousel slide'data-ride='carousel'>");
 					out.write("<div class='carousel-inner'role='listbox'>");
